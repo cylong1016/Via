@@ -1,5 +1,8 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- Default activity_make margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="LinearComponentSize">0dp</dimen>
+    <dimen name="previewBarHeight">18dp</dimen>
 </resources>

@@ -25,7 +25,7 @@ public class PicChooseActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.screen);
+        //setContentView(R.layout.activity_make);
         String loc = getResources().getString(R.string.pic_location);
         uri = Uri.parse(loc);
         Intent temp = new Intent();

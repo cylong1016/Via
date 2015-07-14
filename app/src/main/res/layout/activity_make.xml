@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerVertical="true"
-    android:layout_centerHorizontal="true">
+    android:layout_centerHorizontal="true"
+    android:id="@+id/entirety">
 
     <LinearLayout
+        android:id="@+id/topTool"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/LinearComponentSize"
         android:layout_gravity="center_horizontal"
         android:layout_weight="2">
 
@@ -21,16 +23,16 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView3"
                 android:src="@mipmap/icon_back"
                 android:layout_gravity="center_vertical" />
 
             <ImageView
+                android:id="@+id/icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView2"
                 android:layout_gravity="center_vertical"/>
 
         </LinearLayout>
@@ -44,10 +46,10 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_save"
-                android:id="@+id/imageView4"
                 android:layout_gravity="center_vertical"/>
 
         </LinearLayout>
@@ -55,53 +57,56 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="1">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/test"
-            android:text="这是一个可以展开的组件"
-            android:id="@+id/textView" />
-
-    </LinearLayout>
-
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:layout_weight="17"
-        >
-
+        android:layout_height="@dimen/LinearComponentSize"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_weight="18">
 
         <ImageView
+            android:id="@+id/photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00FFFF"
+            android:layout_marginTop="@dimen/previewBarHeight"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:id="@+id/template"
+            android:layout_marginTop="@dimen/previewBarHeight"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/imageView6"
-            android:layout_gravity="center_horizontal"
-            android:src="@mipmap/type_1"/>
+            android:gravity="center"
+            android:background="#FFF000"
+            android:src="@mipmap/type_1"
+            />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="76dp"
-            android:id="@+id/editText"
-            android:layout_margin="40dp"
-            android:layout_alignParentBottom="true"
+            android:id="@+id/explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:inputType="textMultiLine"
+            android:background="#0000FF"
+            android:layout_alignBottom="@+id/template"
             />
+
+        <TextView
+            android:id="@+id/preview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/previewBarHeight"
+            android:background="@color/test"
+            android:text="这是一个可以展开的组件"
+            android:onClick="previewListener"/>
 
     </RelativeLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/LinearComponentSize"
         android:gravity="center"
         android:layout_weight="3"
         android:background="#30363A">
@@ -109,43 +114,43 @@
         <LinearLayout
             android:orientation="horizontal"
             android:background="#30363A"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/LinearComponentSize"
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="0dp"
+                android:id="@+id/openPicture"
+                android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView"
                 android:src="@mipmap/icon_picture"
                 android:layout_weight="1"/>
 
             <ImageView
-                android:layout_width="0dp"
+                android:id="@+id/crop"
+                android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView10"
                 android:src="@mipmap/icon_crop"
                 android:layout_weight="1"/>
 
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/imageView9"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
                 android:src="@mipmap/icon_picture"
                 android:layout_weight="1"/>
 
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/imageView8"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
                 android:src="@mipmap/icon_picture"
                 android:layout_weight="1"/>
 
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/imageView7"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
                 android:src="@mipmap/icon_picture"
                 android:layout_weight="1"/>
 
@@ -154,15 +159,15 @@
         <LinearLayout
             android:orientation="horizontal"
             android:background="#30363A"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/LinearComponentSize"
             android:layout_height="match_parent"
             android:gravity="right|center"
             android:layout_weight="1">
 
             <ImageView
-                android:layout_width="0dp"
+                android:id="@+id/newScreen"
+                android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView5"
                 android:src="@mipmap/icon_new"
                 android:layout_weight="1"/>
 
