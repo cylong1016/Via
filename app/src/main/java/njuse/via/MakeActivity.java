@@ -75,9 +75,13 @@ public class MakeActivity extends Activity {
 
     public void previewListener(View view) {
         previewOn = !previewOn;
+        int previewH = (int) (screenHeight * 1.0 / 23);
         TextView preview = (TextView) findViewById(R.id.preview); // 获取预览图组件
-        int height = 0;
-        preview.setHeight(preview.getHeight() * 6);
+        if(previewOn) {
+            preview.setHeight(previewH * 6);
+        } else {
+            preview.setHeight(previewH);
+        }
 //        while(true) {
 //            try {
 //                Thread.sleep(20);

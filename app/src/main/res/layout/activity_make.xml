@@ -96,10 +96,17 @@
         <TextView
             android:id="@+id/preview"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/previewBarHeight"
+            android:layout_height="10dp"
             android:background="@color/test"
-            android:text="这是一个可以展开的组件"
-            android:onClick="previewListener"/>
+            android:text="这里可以预览" />
+
+        <ImageView
+            android:id="@+id/expand"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/previewBarHeight"
+            android:background="@color/expand_arrows"
+            android:src="@mipmap/icon_expand"
+            android:onClick="previewListener" />
 
     </RelativeLayout>
 

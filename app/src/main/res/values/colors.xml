@@ -2,4 +2,6 @@
     <color name="test">#00FF00</color>
 
     <color name="white">#FFFFFF</color>
+    
+    <color name="expand_arrows">#3AA0D4</color>
 </resources>
