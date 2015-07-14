@@ -2,11 +2,14 @@ package njuse.via;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 
 public class MainActivity extends Activity {
@@ -15,6 +18,13 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setShape(GradientDrawable.OVAL); // 画框
+        drawable.setStroke(1, Color.LTGRAY); // 边框粗细及颜色
+
+        Button make = (Button) findViewById(R.id.MakeButton);
+        make.setBackgroundDrawable(drawable); // 设置背景（效果就是有边框及底色）
     }
 
     @Override
