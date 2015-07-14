@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center_horizontal"
-                android:text="开始记录"
+                android:text="@string/make"
                 android:onClick="makeButtonListener"
                 />
             <Button
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center_horizontal"
-                android:text="回忆故事"
+                android:text="@string/read"
                 android:onClick="readButtonListener"
                 />
         </LinearLayout>
