@@ -17,13 +17,20 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setButton();
 
+//        make.setBackgroundDrawable(drawable); // 设置背景（效果就是有边框及底色）
+    }
+
+    public void setButton() {
         GradientDrawable drawable = new GradientDrawable();
-        drawable.setShape(GradientDrawable.OVAL); // 画框
+        drawable.setShape(GradientDrawable.RECTANGLE); // 画框
         drawable.setStroke(1, Color.LTGRAY); // 边框粗细及颜色
 
         Button make = (Button) findViewById(R.id.MakeButton);
-        make.setBackgroundDrawable(drawable); // 设置背景（效果就是有边框及底色）
+        Button read = (Button) findViewById(R.id.ReadButton);
+        make.setBackground(drawable);
+        read.setBackground(drawable);
     }
 
     @Override

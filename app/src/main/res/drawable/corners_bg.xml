@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 边框的颜色 ：不能和窗口背景色一样-->
+    <stroke
+        android:width="3dp"
+        android:color="#ffffff" />
+    <solid android:color="@android:color/transparent"  />
+    <corners android:topLeftRadius="10dp"
+        android:topRightRadius="10dp"
+        android:bottomRightRadius="10dp"
+        android:bottomLeftRadius="10dp"/>
+</shape>  
