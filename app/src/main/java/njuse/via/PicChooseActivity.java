@@ -4,30 +4,45 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
  * Created by zr on 2015/7/14.
  */
 public class PicChooseActivity extends Activity{
-
-    private static Uri uri = null;
+    Uri uri = null;
     private static final int ALBUM = 0;
     private static final int CAMERA = 1;
     private static final int CROP_PIC = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_make);
-        String loc = getResources().getString(R.string.pic_location);
-        uri = Uri.parse(loc);
+        String path  = "file:///sdcard/Android/Via/";
+        String dirpath = "/sdcard/Android/Via";
+        //åˆ›å»ºæ–‡ä»¶å¤¹
+        File file = new File(dirpath);
+        if(!file.exists()){
+            try {
+                file.mkdirs();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        //ç¡®å®šè¿™ä¸€æ¬¡å›¾ç‰‡çš„æ—¶é—´æˆ³
+        String time = String.valueOf(System.currentTimeMillis());
+        path = path + "img_"+time+".jpg";
+
+        //String loc = getResources().getString(R.string.pic_location);
+        uri = Uri.parse(path);
+        //è·å¾—æ˜¯ç›¸å†Œé€‰æ‹©è¿˜æ˜¯ç›¸æœº
         Intent temp = new Intent();
         String type = temp.getStringExtra("type");
         switch (type){
@@ -42,12 +57,12 @@ public class PicChooseActivity extends Activity{
 
     public void getCamera(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //´«µİ²ÎÊı°ÑÅÄÏÂµÄÍ¼Æ¬±£´æµ½uri
+        //å›¾ç‰‡è¾“å‡ºåˆ°uri
         intent.putExtra(MediaStore.EXTRA_OUTPUT,uri);
         startActivityForResult(intent, CAMERA);
     }
     public void getAlbum(){
-        //×°ÈëµÃµ½Ïà²áµÄÊÂ¼ş
+        //è·å–ç›¸å†Œ
         Intent intent=new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("image/*");
@@ -66,9 +81,17 @@ public class PicChooseActivity extends Activity{
                 break;
             case CROP_PIC:
                 if(uri!=null){
-                    Bitmap bitmap = decodeUriAsBitmap(uri);
-                     //ÉèÖÃÍ¼Æ¬
+                    String res  = uri.toString();
+
+                    Intent intent  = new Intent();
+                    intent.putExtra("result",res);
+                    //10æ˜¯å®šä¹‰çš„ResultCodeï¼Œå¯ä»¥è‡ªå®šä¹‰åœ¨resä¸­
+                    setResult(10,intent);
+                    //Bitmap bitmap = decodeUriAsBitmap(uri);
+                    //((ImageView)findViewById(R.id.photo)).setImageBitmap(bitmap);
+                     //è¿”å›bitmap
                     //((ImageView)findViewById(R.id.imageView)).setImageBitmap(bitmap);
+
                     finish();
                 }
             default:
@@ -86,25 +109,25 @@ public class PicChooseActivity extends Activity{
         }
         return bitmap;
     }
-    //²Ã¼ôÍ¼Æ¬
+    //è£å‰ª
     private void cutpicture(Uri uri,int outputX,int outputY,int requestCode){
-        //µ÷ÓÃ°²×¿×Ô´øµÄ²Ã¼ô
+        //è°ƒç”¨API
         Intent intent = new Intent("com.android.camera.action.CROP");
-        //ÉèÖÃÀàĞÍ
+        //è®¾ç½®è£å‰ªå‚æ•°
         intent.setDataAndType(uri, "image/*");
         intent.putExtra("crop", "true");
         intent.putExtra("aspectX", 2);
         intent.putExtra("aspectY", 1);
-        //ÉèÖÃ²Ã¼ô¿ò´óĞ¡
+        //è¾“å‡ºå‚æ•°
         intent.putExtra("outputX", outputX);
         intent.putExtra("outputY", outputY);
         intent.putExtra("scale", true);
-        //Êä³öµ½Ö¸¶¨Ä¿Â¼ÏÂ
+        //è¾“å‡ºåˆ°uri
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         intent.putExtra("return-data", false);
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         intent.putExtra("noFaceDetection", true); // no face detection
-        //»Øµ½activityµÄ¼àÌı
+        //è¿”å›ç»“æœ
         startActivityForResult(intent, requestCode);
     }
     @Override
