@@ -2,7 +2,6 @@ package njuse.via;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,13 +38,21 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void button1(View view) {
+    /**
+     * 开始制作按钮的监听
+     * @param view
+     */
+    public void makeButtonListener(View view) {
         Intent intent = new Intent();
-        intent.setClass(this,Via.class);
+        intent.setClass(this,MakeActivity.class);
         this.startActivity(intent);
     }
 
-    public void button2(View view) {
+    /**
+     * 读取的按钮的监听
+     * @param view
+     */
+    public void readButtonListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this,ReadActivity.class);
         this.startActivity(intent);

@@ -25,7 +25,7 @@
                 android:layout_weight="1"
                 android:layout_gravity="center_horizontal"
                 android:text="开始记录"
-                android:onClick="button1"
+                android:onClick="makeButtonListener"
                 />
             <Button
                 android:id="@+id/ZoomOutButton"
@@ -34,7 +34,7 @@
                 android:layout_weight="1"
                 android:layout_gravity="center_horizontal"
                 android:text="回忆故事"
-                android:onClick="button2"
+                android:onClick="readButtonListener"
                 />
         </LinearLayout>
     </RelativeLayout>

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Via extends Activity {
+public class MakeActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
