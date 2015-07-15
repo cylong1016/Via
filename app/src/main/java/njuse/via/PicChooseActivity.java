@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -99,6 +98,7 @@ public class PicChooseActivity extends Activity{
         }
     }
 
+    /*
     private Bitmap decodeUriAsBitmap(Uri uri){
         Bitmap bitmap = null;
         try {
@@ -109,6 +109,7 @@ public class PicChooseActivity extends Activity{
         }
         return bitmap;
     }
+    */
     //裁剪
     private void cutpicture(Uri uri,int outputX,int outputY,int requestCode){
         //调用API
@@ -116,7 +117,7 @@ public class PicChooseActivity extends Activity{
         //设置裁剪参数
         intent.setDataAndType(uri, "image/*");
         intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", 2);
+        intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
         //输出参数
         intent.putExtra("outputX", outputX);

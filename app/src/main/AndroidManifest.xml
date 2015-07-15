@@ -30,6 +30,14 @@
             android:name=".ReadActivity"
             android:label="@string/title_activity_read" >
         </activity>
+        <activity
+            android:name=".PicChooseActivity"
+            android:label="@string/title_activity_photo">
+            <intent-filter>
+                <action android:name="pichandle"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
