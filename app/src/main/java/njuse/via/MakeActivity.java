@@ -3,10 +3,13 @@ package njuse.via;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -61,10 +64,12 @@ public class MakeActivity extends Activity {
         int photoHeight = (int)(screenHeight * 17.0 / 23); // 装载图片组件的高
 
         EditText explainEdit = (EditText) findViewById(R.id.explain); // 获得输入文字的组件
-        int explainX = (int) (screenWidth * (31.0 / 720));
-        int explainY = (int) (photoHeight * (609.0 / 850));
-        int explainW = (int) (screenWidth * (657.0 / 720));
-        int explainH = (int) (photoHeight * (146.0 / 850));
+        int imgH = 850;
+        int imgW = 720;
+        int explainX = (int) (screenWidth * (31.0 / imgW));
+        int explainY = (int) (photoHeight * (609.0 / imgH));
+        int explainW = (int) (screenWidth * (657.0 / imgW));
+        int explainH = (int) (photoHeight * (146.0 / imgH));
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(explainW, explainH);
         params.setMargins(explainX, explainY, 0, 0);
         explainEdit.setLayoutParams(params);
@@ -75,19 +80,32 @@ public class MakeActivity extends Activity {
 
     public void previewListener(View view) {
         previewOn = !previewOn;
-        int previewH = (int) (screenHeight * 1.0 / 23);
         TextView preview = (TextView) findViewById(R.id.preview); // 获取预览图组件
+        ImageView expend = (ImageView) findViewById(R.id.expand); // 获取扩大按钮图片
+
+        RelativeLayout.LayoutParams preParams =
+                new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 0);
+
+        int expendH = expend.getLayoutParams().height;
+        RelativeLayout.LayoutParams expParams =
+                new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, expendH);
+
         if(previewOn) {
-            preview.setHeight(previewH * 6);
+            int previewMaxH = preview.getLayoutParams().height * 3;
+            preParams.height = previewMaxH;
+            preview.setLayoutParams(preParams);
+
+            expParams.topMargin = previewMaxH;
+            expend.setLayoutParams(expParams);
+            expend.setImageResource(R.mipmap.icon_collapse);
         } else {
-            preview.setHeight(previewH);
+            int previewMinH = preview.getLayoutParams().height / 3;
+            preParams.height = previewMinH;
+            preview.setLayoutParams(preParams);
+
+            expParams.topMargin = 0;
+            expend.setLayoutParams(expParams);
+            expend.setImageResource(R.mipmap.icon_expand);
         }
-//        while(true) {
-//            try {
-//                Thread.sleep(20);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
     }
 }
