@@ -60,8 +60,8 @@ public class PicChooseActivity extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        camera = (Button)getActivity().findViewById(1);
-        album = (Button)getActivity().findViewById(1);
+        camera = (Button)getActivity().findViewById(R.id.btn_take_photo);
+        album = (Button)getActivity().findViewById(R.id.btn_pick_photo);
 
         MyButtonClickListener clickListener = new MyButtonClickListener();
        camera.setOnClickListener(clickListener);
