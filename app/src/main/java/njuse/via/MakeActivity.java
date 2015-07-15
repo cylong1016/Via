@@ -122,4 +122,16 @@ public class MakeActivity extends Activity {
         intent.setClass(this, SelectPhotoActivity.class);
         this.startActivity(intent);
     }
+
+    /**
+     * 返回主菜单监听
+     * @param view
+     */
+    public void backToMainListener(View view) {
+        Intent intent = new Intent();
+        intent.setClass(this, MainActivity.class);
+        this.startActivity(intent);
+        //设置切换动画，从左边进入，右边退出
+        overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+    }
 }

@@ -64,6 +64,7 @@ public class MainActivity extends Activity {
         Intent intent = new Intent();
         intent.setClass(this, MakeActivity.class);
         this.startActivity(intent);
+        overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
     }
 
     /**
@@ -75,5 +76,6 @@ public class MainActivity extends Activity {
         Intent intent = new Intent();
         intent.setClass(this, ReadActivity.class);
         this.startActivity(intent);
+        overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
     }
 }
