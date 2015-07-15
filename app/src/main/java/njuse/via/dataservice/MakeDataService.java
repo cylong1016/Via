@@ -12,12 +12,14 @@ public interface MakeDataService {
 
     /**
      * 保存制作的数据
+     *
      * @param screenList 幕的列表
      */
     void saveMakeRes(LinkedList<Screen> screenList);
 
     /**
      * 读取制作的数据
+     *
      * @return LinkedList<Screen>
      */
     LinkedList<Screen> readMakeRes();

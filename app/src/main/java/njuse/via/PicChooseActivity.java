@@ -14,81 +14,86 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
- * Created by zr on 2015/7/14.
+ * Created by zr on 2015/7/14
  */
-public class PicChooseActivity extends Activity{
+public class PicChooseActivity extends Activity {
     Uri uri = null;
     private static final int ALBUM = 0;
     private static final int CAMERA = 1;
     private static final int CROP_PIC = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String path  = "file:///sdcard/Android/Via/";
+        String path = "file:///sdcard/Android/Via/";
         String dirpath = "/sdcard/Android/Via";
         //创建文件夹
         File file = new File(dirpath);
-        if(!file.exists()){
+        if (!file.exists()) {
             try {
                 file.mkdirs();
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         //确定这一次图片的时间戳
         String time = String.valueOf(System.currentTimeMillis());
-        path = path + "img_"+time+".jpg";
+        path = path + "img_" + time + ".jpg";
 
         //String loc = getResources().getString(R.string.pic_location);
         uri = Uri.parse(path);
         //获得是相册选择还是相机
         Intent temp = new Intent();
         String type = temp.getStringExtra("type");
-        switch (type){
+        switch (type) {
             case "camera":
-                getCamera();break;
+                getCamera();
+                break;
             case "album":
-                getAlbum();break;
+                getAlbum();
+                break;
             default:
                 break;
         }
     }
 
-    public void getCamera(){
+    public void getCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //图片输出到uri
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,uri);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         startActivityForResult(intent, CAMERA);
     }
-    public void getAlbum(){
+
+    public void getAlbum() {
         //获取相册
-        Intent intent=new Intent(Intent.ACTION_GET_CONTENT);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("image/*");
         intent.putExtra("return-data", true);
         startActivityForResult(intent, ALBUM);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode){
+        switch (requestCode) {
             case CAMERA:
-                cutpicture(uri,300,300,CROP_PIC);
+                cutpicture(uri, 300, 300, CROP_PIC);
                 break;
             case ALBUM:
-                cutpicture(uri,300,300,CROP_PIC);
+                cutpicture(uri, 300, 300, CROP_PIC);
                 break;
             case CROP_PIC:
-                if(uri!=null){
-                    String res  = uri.toString();
+                if (uri != null) {
+                    String res = uri.toString();
 
-                    Intent intent  = new Intent();
-                    intent.putExtra("result",res);
+                    Intent intent = new Intent();
+                    intent.putExtra("result", res);
                     //10是定义的ResultCode，可以自定义在res中
-                    setResult(10,intent);
+                    setResult(10, intent);
                     //Bitmap bitmap = decodeUriAsBitmap(uri);
                     //((ImageView)findViewById(R.id.photo)).setImageBitmap(bitmap);
-                     //返回bitmap
+                    //返回bitmap
                     //((ImageView)findViewById(R.id.imageView)).setImageBitmap(bitmap);
 
                     finish();
@@ -111,7 +116,7 @@ public class PicChooseActivity extends Activity{
     }
     */
     //裁剪
-    private void cutpicture(Uri uri,int outputX,int outputY,int requestCode){
+    private void cutpicture(Uri uri, int outputX, int outputY, int requestCode) {
         //调用API
         Intent intent = new Intent("com.android.camera.action.CROP");
         //设置裁剪参数
@@ -131,6 +136,7 @@ public class PicChooseActivity extends Activity{
         //返回结果
         startActivityForResult(intent, requestCode);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

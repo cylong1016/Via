@@ -57,21 +57,23 @@ public class MainActivity extends Activity {
 
     /**
      * 开始制作按钮的监听
+     *
      * @param view
      */
     public void makeButtonListener(View view) {
         Intent intent = new Intent();
-        intent.setClass(this,MakeActivity.class);
+        intent.setClass(this, MakeActivity.class);
         this.startActivity(intent);
     }
 
     /**
      * 读取的按钮的监听
+     *
      * @param view
      */
     public void readButtonListener(View view) {
         Intent intent = new Intent();
-        intent.setClass(this,ReadActivity.class);
+        intent.setClass(this, ReadActivity.class);
         this.startActivity(intent);
     }
 }

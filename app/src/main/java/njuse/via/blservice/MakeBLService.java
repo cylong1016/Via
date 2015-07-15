@@ -10,6 +10,7 @@ public interface MakeBLService {
 
     /**
      * 在末尾添加一幕
+     *
      * @param screen
      * @return 总是true
      */
@@ -17,6 +18,7 @@ public interface MakeBLService {
 
     /**
      * 在指定位置添加一幕
+     *
      * @param loc
      * @param screen
      */
@@ -24,6 +26,7 @@ public interface MakeBLService {
 
     /**
      * 删除指定位置的幕
+     *
      * @param loc
      * @return 删除的元素
      */
@@ -31,6 +34,7 @@ public interface MakeBLService {
 
     /**
      * 删除传进来的指定的幕
+     *
      * @param screen
      * @return
      */
@@ -38,6 +42,7 @@ public interface MakeBLService {
 
     /**
      * 更新指定位置的幕
+     *
      * @param loc
      * @param screen
      * @return 前一个元素的索引

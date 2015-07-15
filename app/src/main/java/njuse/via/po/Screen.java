@@ -8,13 +8,21 @@ import java.io.Serializable;
  */
 public class Screen implements Serializable {
 
-    /** 当前幕ID */
+    /**
+     * 当前幕ID
+     */
     protected int ID;
-    /** 幕的类型，详见ScreenEnum */
+    /**
+     * 幕的类型，详见ScreenEnum
+     */
     protected ScreenEnum screenEnum;
-    /** 文字 */
+    /**
+     * 文字
+     */
     protected String text;
-    /** 背景图片URL */
+    /**
+     * 背景图片URL
+     */
     protected String backGroundURL;
 
     public Screen(ScreenEnum screenEnum) {

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg"
-    >
+    android:background="@drawable/bg">
+
     <RelativeLayout
         android:id="@+id/main"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        >
+        android:layout_height="fill_parent">
 
         <LinearLayout
             android:id="@+id/LinearLayoutMain"
@@ -16,8 +16,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="30dp"
             android:orientation="vertical"
-            android:layout_alignParentBottom="true"
-            >
+            android:layout_alignParentBottom="true">
+
             <Button
                 android:id="@+id/MakeButton"
                 android:layout_width="200dp"
@@ -28,8 +28,8 @@
                 android:onClick="makeButtonListener"
                 android:textColor="@color/white"
                 android:background="@drawable/corners_bg"
-                android:layout_margin="10dp"
-                />
+                android:layout_margin="10dp" />
+
             <Button
                 android:id="@+id/ReadButton"
                 android:layout_width="200dp"
@@ -39,8 +39,7 @@
                 android:text="@string/read"
                 android:textColor="@color/white"
                 android:onClick="readButtonListener"
-                android:background="@drawable/corners_bg"
-                />
+                android:background="@drawable/corners_bg" />
 
         </LinearLayout>
     </RelativeLayout>

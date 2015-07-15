@@ -1,18 +1,21 @@
 package njuse.via;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+/**
+ * 制作界面
+ * Created by cylong on 2015-07-09
+ */
 public class MakeActivity extends Activity {
 
     private int screenWidth;
@@ -22,8 +25,7 @@ public class MakeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make);
-
-        getScreenInfo();
+        getScreenInfo(); // 获得屏幕信息
         initComponent(); // 初始化部分组件的位置
     }
 
@@ -61,7 +63,7 @@ public class MakeActivity extends Activity {
      */
     private void initComponent() {
 
-        int photoHeight = (int)(screenHeight * 17.0 / 23); // 装载图片组件的高
+        int photoHeight = (int) (screenHeight * 17.0 / 23); // 装载图片组件的高
 
         EditText explainEdit = (EditText) findViewById(R.id.explain); // 获得输入文字的组件
         int imgH = 850;
@@ -75,7 +77,9 @@ public class MakeActivity extends Activity {
         explainEdit.setLayoutParams(params);
     }
 
-    /** 预览图是否打开 */
+    /**
+     * 预览图是否打开
+     */
     private boolean previewOn = false;
 
     public void previewListener(View view) {
@@ -90,7 +94,7 @@ public class MakeActivity extends Activity {
         RelativeLayout.LayoutParams expParams =
                 new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, expendH);
 
-        if(previewOn) {
+        if (previewOn) {
             int previewMaxH = preview.getLayoutParams().height * 3;
             preParams.height = previewMaxH;
             preview.setLayoutParams(preParams);
@@ -107,5 +111,15 @@ public class MakeActivity extends Activity {
             expend.setLayoutParams(expParams);
             expend.setImageResource(R.mipmap.icon_expand);
         }
+    }
+
+    /**
+     * 选择图片监听
+     * @param view
+     */
+    public void selectPhotoListener(View view) {
+        Intent intent = new Intent();
+        intent.setClass(this, SelectPhotoActivity.class);
+        this.startActivity(intent);
     }
 }

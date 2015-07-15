@@ -1,5 +1,4 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -33,7 +32,7 @@
                 android:id="@+id/icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical" />
 
         </LinearLayout>
 
@@ -50,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_save"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical" />
 
         </LinearLayout>
 
@@ -81,8 +80,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:background="#FFF000"
-            android:src="@mipmap/type_1"
-            />
+            android:src="@mipmap/type_1" />
 
         <EditText
             android:id="@+id/explain"
@@ -91,8 +89,7 @@
             android:layout_centerHorizontal="true"
             android:inputType="textMultiLine"
             android:background="#0000FF"
-            android:layout_alignBottom="@+id/template"
-            />
+            android:layout_alignBottom="@+id/template" />
 
         <TextView
             android:id="@+id/preview"
@@ -128,39 +125,40 @@
             android:gravity="center_vertical">
 
             <ImageView
-                android:id="@+id/openPicture"
+                android:id="@+id/selectPhoto"
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_picture"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:onClick="selectPhotoListener"/>
 
             <ImageView
                 android:id="@+id/crop"
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_crop"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/imageView9"
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_picture"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/imageView8"
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_picture"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/imageView7"
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_picture"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -177,7 +175,7 @@
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_new"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
         </LinearLayout>
 
