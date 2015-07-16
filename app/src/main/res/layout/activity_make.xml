@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:inputType="textMultiLine"
-            android:background="@drawable/btn_down"
+            android:background="@drawable/text_border"
             android:layout_alignBottom="@+id/template" />
 
         <TextView
