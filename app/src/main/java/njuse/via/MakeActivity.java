@@ -105,10 +105,10 @@ public class MakeActivity extends Activity {
         EditText explainEdit = (EditText) findViewById(R.id.explain); // 获得输入文字的组件
         int imgH = 850;
         int imgW = 720;
-        int explainX = (int) (screenWidth * (31.0 / imgW));
-        int explainY = (int) (photoHeight * (609.0 / imgH));
-        int explainW = (int) (screenWidth * (657.0 / imgW));
-        int explainH = (int) (photoHeight * (146.0 / imgH));
+        int explainX = (int) (screenWidth * (63.0 / imgW));
+        int explainY = (int) (photoHeight * (672.0 / imgH));
+        int explainW = (int) (screenWidth * (583.0 / imgW));
+        int explainH = (int) (photoHeight * (122.0 / imgH));
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(explainW, explainH);
         params.setMargins(explainX, explainY, 0, 0);
         explainEdit.setLayoutParams(params);
