@@ -4,5 +4,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="LinearComponentSize">0dp</dimen>
-    <dimen name="previewBarHeight">18dp</dimen>
+    <dimen name="previewBarHeight">18dp</dimen> <!-- 预览图的高度 -->
 </resources>

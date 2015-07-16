@@ -12,7 +12,7 @@
         android:layout_marginRight="10dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:background="#7F505050">
+        android:background="@color/select_photo_background">
 
         <Button
             android:id="@+id/btn_take_photo"
@@ -23,6 +23,8 @@
             android:layout_marginTop="20dp"
             android:padding="10dp"
             android:text="@string/Camera"
+            android:background="@mipmap/btn_nor"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <Button
@@ -34,6 +36,8 @@
             android:layout_marginTop="5dp"
             android:padding="10dp"
             android:text="@string/album"
+            android:background="@mipmap/btn_nor"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <Button
@@ -47,6 +51,8 @@
             android:padding="10dp"
             android:text="@string/cancel"
             android:textStyle="bold"
+            android:background="@mipmap/btn_nor"
+            android:textColor="@color/white"
             android:onClick="cancelBtnListener"/>
     </LinearLayout>
 </RelativeLayout>

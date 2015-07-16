@@ -27,6 +27,10 @@ public class MakeActivity extends Activity {
         setContentView(R.layout.activity_make);
         getScreenInfo(); // 获得屏幕信息
         initComponent(); // 初始化部分组件的位置
+        initListener(); // 初始化按钮的监听
+    }
+
+    public void initListener() {
     }
 
     @Override

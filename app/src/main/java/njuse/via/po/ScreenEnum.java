@@ -5,11 +5,8 @@ package njuse.via.po;
  * Created by cylong on 2015-07-09 0009
  */
 public enum ScreenEnum {
-    START("开始幕"),
     NORMAL("正常幕"),
-    TRANSITION("过度幕"),
-    OPTION("选项幕"),
-    ENDING("结束幕");
+    OPTION("选项幕");
 
     private final String value;
 

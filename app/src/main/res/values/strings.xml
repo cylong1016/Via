@@ -8,9 +8,12 @@
     <string name="title_activity_select_photo">PicChooseActivity</string>
 
     <string name="pic_location">to_define</string>
+
+    <!-- 主界面的两个按钮 -->
     <string name="make">make</string>
     <string name="read">read</string>
 
+    <!--选择图片的三个按钮-->
     <string name="Camera">camera</string>
     <string name="album">album</string>
     <string name="cancel">cancel</string>
