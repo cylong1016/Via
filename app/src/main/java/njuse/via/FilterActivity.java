@@ -44,7 +44,7 @@ public class FilterActivity extends Activity {
         path = Environment.getExternalStorageDirectory() ; //»ñµÃSDCardÄ¿Â¼
         iv = (ImageView)findViewById(R.id.photo);
         if(bmpDefaultPic==null) {
-            bmpDefaultPic = BitmapFactory.decodeFile(path + "/Pictures/ai1.png", null);
+            bmpDefaultPic = BitmapFactory.decodeResource(getResources(), R.drawable.filter);
         }
         iv.setImageBitmap(bmpDefaultPic);
     }
