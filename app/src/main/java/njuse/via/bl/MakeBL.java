@@ -12,6 +12,15 @@ import njuse.via.po.Screen;
 public class MakeBL implements MakeBLService {
 
     private LinkedList<Screen> screenList = new LinkedList<>();
+    private int templateID;                    //模板的id，表示使用选中的模板
+
+    public MakeBL(int teamplate_ID){
+        this.templateID=templateID;
+    }
+
+    public int getTempplateID(){
+        return templateID;
+    }
 
     @Override
     public boolean insert(Screen screen) {
