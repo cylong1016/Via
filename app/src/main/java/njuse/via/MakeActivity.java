@@ -29,40 +29,7 @@ public class MakeActivity extends Activity {
         setContentView(R.layout.activity_make);
         getScreenInfo(); // 获得屏幕信息
         initComponent(); // 初始化部分组件的位置
-        initListener(); // 初始化按钮的监听
     }
-
-    public void initListener() {
-        ImageView back = (ImageView) findViewById(R.id.back);
-        back.setOnTouchListener(touchListener);
-        ImageView save = (ImageView) findViewById(R.id.save);
-        save.setOnTouchListener(touchListener);
-        ImageView selectPhoto = (ImageView) findViewById(R.id.selectPhoto);
-        selectPhoto.setOnTouchListener(touchListener);
-        ImageView crop = (ImageView) findViewById(R.id.crop);
-        crop.setOnTouchListener(touchListener);
-        ImageView filter = (ImageView) findViewById(R.id.filter);
-        filter.setOnTouchListener(touchListener);
-        ImageView paster = (ImageView) findViewById(R.id.paster);
-        paster.setOnTouchListener(touchListener);
-        ImageView select = (ImageView) findViewById(R.id.select);
-        select.setOnTouchListener(touchListener);
-        ImageView newScreen = (ImageView) findViewById(R.id.newScreen);
-        newScreen.setOnTouchListener(touchListener);
-    }
-
-    View.OnTouchListener touchListener = new View.OnTouchListener() {
-
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                v.setBackgroundColor(Color.BLACK);
-            } else if(event.getAction() == MotionEvent.ACTION_UP){
-                v.setBackgroundColor(getResources().getColor(R.color.tool_bar_background));
-            }
-            return false;
-        }
-    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -103,7 +70,7 @@ public class MakeActivity extends Activity {
         EditText explainEdit = (EditText) findViewById(R.id.explain); // 获得输入文字的组件
         int imgH = 850;
         int imgW = 720;
-        int explainX = (int) (screenWidth * (63.0 / imgW));
+        int explainX = (int) (screenWidth * (68.0 / imgW));
         int explainY = (int) (photoHeight * (672.0 / imgH));
         int explainW = (int) (screenWidth * (583.0 / imgW));
         int explainH = (int) (photoHeight * (122.0 / imgH));
