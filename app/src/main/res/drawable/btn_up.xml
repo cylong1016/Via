@@ -6,6 +6,6 @@
         android:width="1dp"
         android:color="@android:color/white"/>
     <!-- 圆角 -->
-    <corners android:radius="6dp" />
+    <corners android:radius="@dimen/radius" />
 
 </shape>

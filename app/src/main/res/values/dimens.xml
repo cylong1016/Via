@@ -6,5 +6,11 @@
     <dimen name="LinearComponentSize">0dp</dimen>
     <dimen name="previewBarHeight">28dp</dimen> <!-- 预览图的高度 -->
 
+    <!-- 选择图片，拍照，取消按钮离左右的边距 -->
     <dimen name="select_photo_btn_margin">30dp</dimen>
+    <!-- 按钮圆角 -->
+    <dimen name="radius">8dp</dimen>
+
+    <!-- 文本与边框的间距 -->
+    <dimen name="text_mergin">8dp</dimen>
 </resources>
