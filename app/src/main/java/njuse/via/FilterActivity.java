@@ -44,7 +44,7 @@ public class FilterActivity extends Activity {
         path = Environment.getExternalStorageDirectory() ; //获得SDCard目录
         iv = (ImageView)findViewById(R.id.photo);
         if(bmpDefaultPic==null) {
-            bmpDefaultPic = BitmapFactory.decodeFile(path + "/Pictures/ai1.png", null);
+            bmpDefaultPic = BitmapFactory.decodeFile(path + "/Pictures/108.jpg", null);
         }
         iv.setImageBitmap(bmpDefaultPic);
     }
@@ -76,7 +76,7 @@ public class FilterActivity extends Activity {
      * 无效果，返回原图
      */
     public void NoListener(View view) {
-        bmpDefaultPic = BitmapFactory.decodeFile(path + "/Pictures/ai1.png", null);
+        bmpDefaultPic = BitmapFactory.decodeFile(path + "/Pictures/108.g", null);
         iv.setImageBitmap(bmpDefaultPic);
     }
 
@@ -125,8 +125,13 @@ public class FilterActivity extends Activity {
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
     }
-    public void ColorToneListener(View view) {
-        ColorToneFilter filter = new ColorToneFilter(bmpDefaultPic,50,50);
+    public void RedToneListener(View view) {
+        ColorToneFilter filter = new ColorToneFilter(bmpDefaultPic,0xFF0000,192);
+        bitmap = filter.imageProcess().getDstBitmap();
+        iv.setImageBitmap(bitmap);
+    }
+    public void BlueToneListener(View view) {
+        ColorToneFilter filter = new ColorToneFilter(bmpDefaultPic,0x0000FF,192);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
     }
@@ -144,7 +149,7 @@ public class FilterActivity extends Activity {
     }
 
     public void saveMyBitmap(String bitName) throws IOException {
-        File f = new File(path + "/Pictures/"+bitName+"ai1.png");
+        File f = new File(path + "/Pictures/"+bitName+"108.png");
         f.createNewFile();
         FileOutputStream fOut = null;
         try {
