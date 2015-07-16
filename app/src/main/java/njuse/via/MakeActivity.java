@@ -138,4 +138,14 @@ public class MakeActivity extends Activity {
         //设置切换动画，从左边进入，右边退出
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
     }
+
+    /**
+     * 滤镜的按钮的监听
+     * @param view
+     */
+    public void filterListener(View view) {
+        Intent intent = new Intent();
+        intent.setClass(this, FilterActivity.class);
+        this.startActivity(intent);
+    }
 }

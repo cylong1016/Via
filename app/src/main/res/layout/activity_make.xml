@@ -145,7 +145,9 @@
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_filter"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:onClick="filterListener"
+                />
 
             <ImageView
                 android:id="@+id/imageView8"

@@ -1,0 +1,126 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true"
+    android:id="@+id/entirety">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/LinearComponentSize"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_weight="30">
+
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00FFFF"
+            android:layout_marginTop="@dimen/previewBarHeight"
+            android:layout_alignParentStart="true"
+            android:onClick="selectFilter"
+            />
+
+    </RelativeLayout>
+
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/LinearComponentSize"
+            android:layout_gravity="center_vertical"
+            android:background="#00000000"
+            android:layout_weight="6"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:background="#30363A"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <ImageButton
+                    android:id="@+id/NoFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_add_sel"
+                    />
+
+                <ImageButton
+                    android:id="@+id/IceFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_picture"
+                    android:onClick="selectPhotoListener"/>
+
+                <ImageButton
+                    android:id="@+id/MoltenFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_crop"
+                    />
+
+                <ImageButton
+                    android:id="@+id/ComicFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_filter"
+                    android:onClick="filterListener"
+                    />
+
+                <ImageButton
+                    android:id="@+id/SoftGlowFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_picture"
+                    />
+
+                <ImageButton
+                    android:id="@+id/GlowingEdgeFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_add_sel"
+                    />
+
+                <ImageButton
+                    android:id="@+id/FeatherFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_picture"
+                    android:onClick="selectPhotoListener"/>
+
+                <ImageButton
+                    android:id="@+id/ZoomBlurFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_crop"
+                    />
+
+                <ImageButton
+                    android:id="@+id/LomoFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_filter"
+                    android:onClick="filterListener"
+                    />
+
+                <ImageButton
+                    android:id="@+id/FilmFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_picture"
+                    />
+
+                <ImageButton
+                    android:id="@+id/ColorToneFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_add_sel"
+                    />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+</LinearLayout>

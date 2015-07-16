@@ -17,4 +17,7 @@
     <string name="Camera">camera</string>
     <string name="album">album</string>
     <string name="cancel">cancel</string>
+    <string name="title_activity_filter">FilterActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
