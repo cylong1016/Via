@@ -2,15 +2,19 @@ package njuse.via;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 制作界面
@@ -31,7 +35,36 @@ public class MakeActivity extends Activity {
     }
 
     public void initListener() {
+        ImageView back = (ImageView) findViewById(R.id.back);
+        back.setOnTouchListener(touchListener);
+        ImageView save = (ImageView) findViewById(R.id.save);
+        save.setOnTouchListener(touchListener);
+        ImageView selectPhoto = (ImageView) findViewById(R.id.selectPhoto);
+        selectPhoto.setOnTouchListener(touchListener);
+        ImageView crop = (ImageView) findViewById(R.id.crop);
+        crop.setOnTouchListener(touchListener);
+        ImageView filter = (ImageView) findViewById(R.id.filter);
+        filter.setOnTouchListener(touchListener);
+        ImageView paster = (ImageView) findViewById(R.id.paster);
+        paster.setOnTouchListener(touchListener);
+        ImageView select = (ImageView) findViewById(R.id.select);
+        select.setOnTouchListener(touchListener);
+        ImageView newScreen = (ImageView) findViewById(R.id.newScreen);
+        newScreen.setOnTouchListener(touchListener);
     }
+
+    View.OnTouchListener touchListener = new View.OnTouchListener() {
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                v.setBackgroundColor(Color.BLACK);
+            } else if(event.getAction() == MotionEvent.ACTION_UP){
+                v.setBackgroundColor(getResources().getColor(R.color.tool_bar_background));
+            }
+            return false;
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -127,6 +160,7 @@ public class MakeActivity extends Activity {
         this.startActivity(intent);
     }
 
+
     /**
      * 返回主菜单监听
      * @param view
@@ -138,7 +172,6 @@ public class MakeActivity extends Activity {
         //设置切换动画，从左边进入，右边退出
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
     }
-
     /**
      * 滤镜的按钮的监听
      * @param view
@@ -147,5 +180,45 @@ public class MakeActivity extends Activity {
         Intent intent = new Intent();
         intent.setClass(this, FilterActivity.class);
         this.startActivity(intent);
+    }
+
+    /**
+     * 保存按钮的监听
+     * @param view
+     */
+    public void saveListener(View view) {
+
+    }
+
+    /**
+     * 裁剪按钮的监听
+     * @param view
+     */
+    public void cropListener(View view) {
+
+    }
+
+    /**
+     * 贴图按钮监听
+     * @param view
+     */
+    public void pasterListener(View view) {
+
+    }
+
+    /**
+     * 添加选项按钮监听
+     * @param view
+     */
+    public void selectListener(View view) {
+
+    }
+
+    /**
+     * 新建按钮监听
+     * @param view
+     */
+    public void newScreenListener(View view) {
+
     }
 }

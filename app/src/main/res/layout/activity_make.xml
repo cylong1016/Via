@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:background="#30363A"
+            android:background="@color/tool_bar_background"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
@@ -41,7 +41,7 @@
             android:orientation="horizontal"
             android:layout_weight="1"
             android:gravity="right"
-            android:background="#30363A"
+            android:background="@color/tool_bar_background"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
@@ -50,7 +50,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_save"
-                android:layout_gravity="center_vertical" />
+                android:layout_gravity="center_vertical"
+                android:onClick="saveListener"/>
 
         </LinearLayout>
 
@@ -115,11 +116,11 @@
         android:layout_height="@dimen/LinearComponentSize"
         android:gravity="center"
         android:layout_weight="3"
-        android:background="#30363A">
+        android:background="@color/tool_bar_background">
 
         <LinearLayout
             android:orientation="horizontal"
-            android:background="#30363A"
+            android:background="@color/tool_bar_background"
             android:layout_width="@dimen/LinearComponentSize"
             android:layout_height="match_parent"
             android:layout_weight="5"
@@ -138,36 +139,38 @@
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_crop"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:onClick="cropListener"/>
 
             <ImageView
-                android:id="@+id/imageView9"
+                android:id="@+id/filter"
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_filter"
                 android:layout_weight="1"
-                android:onClick="filterListener"
-                />
+                android:onClick="filterListener"/>
 
             <ImageView
-                android:id="@+id/imageView8"
+                android:id="@+id/paster"
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_picture"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:onClick="pasterListener"/>
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/select"
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_add_sel"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:onClick="selectListener"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:background="#30363A"
+            android:background="@color/tool_bar_background"
             android:layout_width="@dimen/LinearComponentSize"
             android:layout_height="match_parent"
             android:gravity="right|center"
@@ -178,7 +181,8 @@
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_new"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:onClick="newScreenListener"/>
 
         </LinearLayout>
 
