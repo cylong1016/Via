@@ -21,6 +21,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.FileNotFoundException;
 
 /**
  * ��������
@@ -28,6 +31,8 @@ import android.widget.TextView;
  */
 public class MakeActivity extends Activity {
 
+
+    public static String picPath = null;
     private int screenWidth;
     private int screenHeight;
 
@@ -39,6 +44,7 @@ public class MakeActivity extends Activity {
         initTextEditSize(); // ��ʼ��������λ�úʹ�С
         initPhotoViewSize(); // ��ʼ����ʾͼƬ��view��λ�úʹ�С
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -175,7 +181,8 @@ public class MakeActivity extends Activity {
     public void selectPhotoListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, SelectPhotoActivity.class);
-        this.startActivity(intent);
+        intent.putExtra("type", "camera");
+        this.startActivityForResult(intent, 1);
     }
 
 
@@ -213,7 +220,49 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void cropListener(View view) {
+        if(picPath!=null) {
+            Intent intent = new Intent();
+            intent.setClass(this, CropPicActivity.class);
+            this.startActivityForResult(intent, 0);
+        }
+        else{
+            Toast.makeText(this, "没有导入图片", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==1) {
+            ImageView mImageView = (ImageView) findViewById(R.id.photoView);
+            byte[] b = data.getByteArrayExtra("bitmap");
+            Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+            if (bitmap != null) {
+
+                mImageView.setImageBitmap(bitmap);
+            }
+        }
+        if(resultCode==2){
+            Log.e("back", "back to make");
+            picPath = data.getStringExtra("bitmap");
+            Uri uri = Uri.parse(data.getStringExtra("bitmap"));
+            Bitmap bit = decodeUriAsBitmap(uri);
+            ImageView mImageView = (ImageView) findViewById(R.id.photoView);
+            mImageView.setImageBitmap(bit);
+        }
+
+
+    }
+
+    private Bitmap decodeUriAsBitmap(Uri uri) {
+        Bitmap bitmap = null;
+        try {
+            bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return bitmap;
     }
 
     /**
@@ -241,3 +290,4 @@ public class MakeActivity extends Activity {
     }
 
 }
+
