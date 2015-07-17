@@ -229,7 +229,9 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void selectListener(View view) {
-
+        Intent intent = new Intent();
+        intent.setClass(this, FilterActivity.class);
+        this.startActivity(intent);
     }
 
     /**
