@@ -27,7 +27,6 @@ import njuse.via.filter.MoltenFilter;
 import njuse.via.filter.SoftGlowFilter;
 import njuse.via.filter.ZoomBlurFilter;
 
-
 public class FilterActivity extends Activity {
 
     private String filename = "D://108.jpg";
@@ -145,8 +144,16 @@ public class FilterActivity extends Activity {
         Intent intent = new Intent();
         intent.setClass(this, MakeActivity.class);
         this.startActivity(intent);
-        saveMyBitmap("helloFilter");
-        //TODO ±£¥ÊÕº∆¨
+        new Thread() { // ∑¿÷π«–ªª…¡∆¡
+            public void run() {
+                try {
+                    saveMyBitmap("helloFilter");
+                    //TODO ±£¥ÊÕº∆¨
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 
     public void saveMyBitmap(String bitName) throws IOException {
