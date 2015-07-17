@@ -6,7 +6,7 @@ import java.util.LinkedList;
 /**
  * Created by zucewei on 2015/7/16.
  *
- * ------  һ��ѡ������ݽṹ  ------
+ * ------  一组选项的数据结构  ------
  */
 
 public class Option implements Serializable {
@@ -28,6 +28,21 @@ public class Option implements Serializable {
 
     public void remove(OptionItem item){
         optionList.remove(item);
+    }
+
+    public OptionItem getOptionItem(int location){
+        /*根据位置获取到对应的 选项*/
+        return optionList.get(location);
+    }
+
+    public OptionItem getOptionItem(String text){
+        /*根据文字的内容是否相等来获取 选项*/
+        for(int i=0;i<optionList.size();i++){
+            if(optionList.get(i).getText().equals(text)){
+                return optionList.get(i);
+            }
+        }
+        return null;
     }
 
     public  OptionItem update(int loc,OptionItem item){
