@@ -3,11 +3,15 @@ package njuse.via;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,7 +32,8 @@ public class MakeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make);
         getScreenInfo(); // �����Ļ��Ϣ
-        initComponent(); // ��ʼ�����������λ��
+        initTextEditSize(); // ��ʼ��������λ�úʹ�С
+        initPhotoViewSize(); // ��ʼ����ʾͼƬ��view��λ�úʹ�С
     }
 
     @Override
@@ -61,22 +66,66 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ��ʼ�����������λ��
+     * ��ʼ��������λ��
      */
-    private void initComponent() {
-
+    private void initTextEditSize() {
+        double imgH = 850.0;
+        double imgW = 720.0;
+        double magniscale = screenWidth / imgW; // ͼƬ�Ŵ�ı���
         int photoHeight = (int) (screenHeight * 17.0 / 23); // װ��ͼƬ����ĸ�
 
         EditText explainEdit = (EditText) findViewById(R.id.explain); // ����������ֵ����
-        int imgH = 850;
-        int imgW = 720;
-        int explainX = (int) (screenWidth * (68.0 / imgW));
+        int explainX = (int) (magniscale * 68.0);
         int explainY = (int) (photoHeight * (672.0 / imgH));
-        int explainW = (int) (screenWidth * (583.0 / imgW));
-        int explainH = (int) (photoHeight * (122.0 / imgH));
+        int explainW = (int) (magniscale * 583.0);
+        int explainH = (int) (explainW * (122.0 / 583.0));
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(explainW, explainH);
         params.setMargins(explainX, explainY, 0, 0);
         explainEdit.setLayoutParams(params);
+    }
+
+    /**
+     * ��ʼ����ʾͼƬ�����λ��
+     */
+    public void initPhotoViewSize() {
+        ImageView photoView = (ImageView) findViewById(R.id.photoView); // �����ʾͼƬ��view
+        double imgH = 850.0;
+        double imgW = 720.0;
+        int photoHeight = (int) (screenHeight * 17.0 / 23); // װ��ͼƬ����ĸ�
+
+        double magniscaleW = screenWidth / imgW; // ͼƬ��Ŵ�ı���
+        double magniscaleH = photoHeight / imgH; // ͼƬ�߷Ŵ�ı���
+        int viewX;
+        int viewY;
+        int viewW;
+        int viewH;
+
+        if(magniscaleW < magniscaleH) { // ģ��ͼƬ�������ʾͼƬ��view�Ͽ�
+            double temp = (photoHeight - imgH * magniscaleW) / 2;
+            viewX = (int) (magniscaleW * 68.0);
+            viewY = (int) (61.0 * magniscaleW + temp + dpTopx(25)); // TODO
+            Log.i("height", temp + " " + screenHeight + " " + photoHeight + " " + magniscaleW);
+            viewW = (int) (magniscaleW * 583.0);
+            viewH = viewW;
+        } else {
+            viewX = 0;
+            viewY = 0;
+            viewW = 0;
+            viewH = 0;
+        }
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(viewW, viewH);
+        params.setMargins(viewX, viewY, 0, 0);
+        photoView.setLayoutParams(params);
+    }
+
+    /**
+     * ��dip��dpֵת��Ϊpxֵ����֤�ߴ��С����
+     * @param dipValue
+     * @return
+     */
+    public int dpTopx(float dipValue) {
+        float scale = this.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
     }
 
     /**
@@ -176,9 +225,7 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void selectListener(View view) {
-        Intent intent = new Intent();
-        intent.setClass(this, OptionActivity.class);
-        this.startActivity(intent);
+
     }
 
     /**

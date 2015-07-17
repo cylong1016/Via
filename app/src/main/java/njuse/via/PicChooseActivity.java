@@ -4,35 +4,29 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+
+import njuse.via.bl.PicCompress;
 
 /**
  * Created by zr on 2015/7/14.
  */
-public class PicChooseActivity extends Fragment{
+public class PicChooseActivity extends Activity{
     Uri uri = null;
     private static final int ALBUM = 0;
     private static final int CAMERA = 1;
     private static final int CROP_PIC = 2;
 
-    public interface PicListener{
-        public void showImage(Uri uri);
-    }
-
-    private PicListener myLisener;
-    private Button camera;
-    private Button album;
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        myLisener = (PicListener)activity;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,35 +48,19 @@ public class PicChooseActivity extends Fragment{
 
         //String loc = getResources().getString(R.string.pic_location);
         uri = Uri.parse(path);
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        camera = (Button)getActivity().findViewById(R.id.btn_take_photo);
-        album = (Button)getActivity().findViewById(R.id.btn_pick_photo);
-
-        MyButtonClickListener clickListener = new MyButtonClickListener();
-       camera.setOnClickListener(clickListener);
-        album.setOnClickListener(clickListener);
-    }
-
-    class MyButtonClickListener implements View.OnClickListener{
-        @Override
-        public void onClick(View v) {
-            Button button = (Button)v;
-            if(button ==camera){
+        String type = getIntent().getStringExtra("type");
+        switch (type){
+            case "camera":
                 getCamera();
-            }
-            else if(button==album){
+                break;
+            case "album":
                 getAlbum();
-            }
-            else{
-
-            }
+                break;
+            default:
+                break;
         }
     }
+
 
 
     public void getCamera(){
@@ -104,22 +82,42 @@ public class PicChooseActivity extends Fragment{
         super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode){
             case CAMERA:
-                cutpicture(uri,300,300,CROP_PIC);
+                //cutpicture(uri,300,300,CROP_PIC);
+
+//                Bitmap bitmap = decodeUriAsBitmap(uri);
+//
+//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//                byte[] datas = baos.toByteArray();
+
+
+                Intent intent = new Intent();
+                intent.setClass(this,MakeActivity.class);
+                intent.putExtra("bitmap", uri.toString());
+                setResult(10, intent);
+                Log.e("putextra","put data");
+                finish();
                 break;
             case ALBUM:
-                cutpicture(uri,300,300,CROP_PIC);
+                //cutpicture(uri,300,300,CROP_PIC);
+                Uri tempuri = data.getData();
+                Intent inte = new Intent();
+                inte.setClass(this,MakeActivity.class);
+                inte.putExtra("bitmap", tempuri.toString());
+                setResult(10, inte);
+                finish();
                 break;
             case CROP_PIC:
                 if(uri!=null){
-                    myLisener.showImage(uri);
+                   // myListener.showImage(uri);
                 }
             default:
                 break;
         }
     }
 
-    /*
-    private Bitmap decodeUriAsBitmap(Uri uri){
+
+    private Bitmap decodeUriAsBitmap(Uri uri) {
         Bitmap bitmap = null;
         try {
             bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
@@ -129,7 +127,7 @@ public class PicChooseActivity extends Fragment{
         }
         return bitmap;
     }
-    */
+
     //裁剪
     private void cutpicture(Uri uri,int outputX,int outputY,int requestCode){
         //调用API
@@ -151,7 +149,6 @@ public class PicChooseActivity extends Fragment{
         //返回结果
         startActivityForResult(intent, requestCode);
     }
-
 
 
 

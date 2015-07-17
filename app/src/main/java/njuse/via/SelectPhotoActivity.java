@@ -1,6 +1,7 @@
 package njuse.via;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -15,27 +16,49 @@ public class SelectPhotoActivity extends Activity {
     }
 
     /**
-     * ÅÄÕÕ°´Å¥¼àÌý
+     * ï¿½ï¿½ï¿½Õ°ï¿½Å¥ï¿½ï¿½ï¿½ï¿½
      * @param view
      */
     public void takePhotoListener(View view) {
-
+        Intent intent = new Intent();
+        intent.setClass(this,PicChooseActivity.class);
+        intent.putExtra("type", "camera");
+        startActivityForResult(intent, 10);
     }
 
     /**
-     * ´ÓÏà²áÑ¡Ôñ°´Å¥¼àÌý
+     * ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½
      * @param view
      */
     public void pickPhotoListener(View view) {
-
+        Intent intent = new Intent();
+        intent.setClass(this,PicChooseActivity.class);
+        intent.putExtra("type", "album");
+        startActivityForResult(intent, 11);
     }
 
     /**
-     * ³·Ïú°´Å¥µÄµã»÷¼àÌý
+     * ï¿½ï¿½ï¿½ï¿½Å¥ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      * @param view
      */
     public void cancelBtnListener(View view) {
         this.finish();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==10){
+            Intent intent = new Intent();
+            intent.putExtra("bitmap",data.getStringExtra("bitmap"));
+            setResult(2,intent);
+            finish();
+        }
+        if(resultCode==11){
+            Intent intent = new Intent();
+            intent.putExtra("bitmap",data.getStringExtra("bitmap"));
+            setResult(2,intent);
+            finish();
+        }
+    }
 }
