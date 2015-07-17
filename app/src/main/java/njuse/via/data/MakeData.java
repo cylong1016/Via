@@ -20,7 +20,7 @@ import njuse.via.po.ScreenSet;
  */
 public class MakeData implements MakeDataService {
 /**
- * ÎÄ¼ş¶ÔÏóĞòÁĞ»¯ºÍ·´ĞòÁĞ»¯
+ * æ–‡ä»¶å¯¹è±¡åºåˆ—åŒ–å’Œååºåˆ—åŒ–
  *
  * */
 
@@ -28,7 +28,7 @@ public class MakeData implements MakeDataService {
     @Override
     public void saveMakeRes(ScreenSet list,String fileName) {
 
-        //µ±ÎÄ¼ş¼Ğ²»´æÔÚÊ±´´½¨ÎÄ¼ş¼Ğ
+        //å½“æ–‡ä»¶å¤¹ä¸å­˜åœ¨æ—¶åˆ›å»ºæ–‡ä»¶å¤¹
         File file = new File(dirpath);
         if(!file.exists()){
             try {
@@ -43,7 +43,7 @@ public class MakeData implements MakeDataService {
 
     }
 
-    @Override    //¶ÁÈ¡ÒÑ¾­Íê³ÉµÄ×÷Æ·
+    @Override    //è¯»å–å·²ç»å®Œæˆçš„ä½œå“
     public ScreenSet readMakeRes(String fileName) {
         String file=dirpath+"/"+fileName+".out";
         ScreenSet  set=(ScreenSet)getObjectFromSDcard(file);
@@ -80,7 +80,7 @@ public class MakeData implements MakeDataService {
 //			  File path1 = new File(path);
             e.printStackTrace();
 
-            System.out.println("ĞòÁĞ»¯Ê±²¢Ã»ÓĞÕÒµ½ÎÄ¼ş£¡£¡£¡£¡");
+            System.out.println("åºåˆ—åŒ–æ—¶å¹¶æ²¡æœ‰æ‰¾åˆ°æ–‡ä»¶ï¼ï¼ï¼ï¼");
         } catch (IOException e) {
             e.printStackTrace();
         }finally{
@@ -99,7 +99,7 @@ public class MakeData implements MakeDataService {
     private Object getObjectFromSDcard(String file){
 
         if(! new File(file).exists()){
-            System.out.println("ĞòÁĞ»¯ÎÄ¼ş²»´æÔÚ£¡");
+            System.out.println("åºåˆ—åŒ–æ–‡ä»¶ä¸å­˜åœ¨ï¼");
             return null;
         }
 
@@ -113,7 +113,7 @@ public class MakeData implements MakeDataService {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            System.out.println("Ã»ÓĞÕÒµ½ÎÄ¼ş£¡");
+            System.out.println("æ²¡æœ‰æ‰¾åˆ°æ–‡ä»¶ï¼");
         } catch (StreamCorruptedException e) {
             e.printStackTrace();
         } catch (IOException e) {
