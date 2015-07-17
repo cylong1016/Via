@@ -15,10 +15,27 @@ public class SelectPhotoActivity extends Activity {
     }
 
     /**
+     * 拍照按钮监听
+     * @param view
+     */
+    public void takePhotoListener(View view) {
+
+    }
+
+    /**
+     * 从相册选择按钮监听
+     * @param view
+     */
+    public void pickPhotoListener(View view) {
+
+    }
+
+    /**
      * 撤销按钮的点击监听
      * @param view
      */
     public void cancelBtnListener(View view) {
         this.finish();
     }
+
 }

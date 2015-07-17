@@ -23,7 +23,8 @@
             android:text="@string/Camera"
             android:background="@drawable/btn_selector"
             android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="takePhotoListener"/>
 
         <Button
             android:id="@+id/btn_pick_photo"
@@ -36,7 +37,8 @@
             android:text="@string/album"
             android:background="@drawable/btn_selector"
             android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="pickPhotoListener"/>
 
         <Button
             android:id="@+id/btn_cancel"
