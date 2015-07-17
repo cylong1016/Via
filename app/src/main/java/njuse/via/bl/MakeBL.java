@@ -48,7 +48,7 @@ public class MakeBL implements MakeBLService {
     }
 
     @Override
-    public ScreenSet readMakeRes() {
+    public ScreenSet readMakeRes(){
         return screenList;
     }
 

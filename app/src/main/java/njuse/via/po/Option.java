@@ -6,7 +6,7 @@ import java.util.LinkedList;
 /**
  * Created by zucewei on 2015/7/16.
  *
- * ------选项的数据结构------
+ * ------  一组选项的数据结构  ------
  */
 
 public class Option implements Serializable {
@@ -30,7 +30,7 @@ public class Option implements Serializable {
         optionList.remove(item);
     }
 
-    public  OptionItem updaet(int loc,OptionItem item){
+    public  OptionItem update(int loc,OptionItem item){
         if(loc>optionList.size()){
             return null;
         }else {
