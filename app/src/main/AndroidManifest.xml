@@ -51,6 +51,11 @@
             android:name=".FilterActivity"
             android:label="@string/title_activity_filter" >
         </activity>
+        <activity
+            android:name=".OptionActivity"
+            android:label="@string/title_activity_select_option"
+            android:theme="@style/ActivityPopup" >
+        </activity>
     </application>
 
 </manifest>

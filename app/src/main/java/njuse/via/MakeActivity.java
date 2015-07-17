@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
- * ÖÆ×÷½çÃæ
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * Created by cylong on 2015-07-09
  */
 public class MakeActivity extends Activity {
@@ -27,8 +27,8 @@ public class MakeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make);
-        getScreenInfo(); // »ñµÃÆÁÄ»ÐÅÏ¢
-        initComponent(); // ³õÊ¼»¯²¿·Ö×é¼þµÄÎ»ÖÃ
+        getScreenInfo(); // ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½Ï¢
+        initComponent(); // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
     }
 
     @Override
@@ -53,7 +53,7 @@ public class MakeActivity extends Activity {
     }
 
     private void getScreenInfo() {
-        /* »ñÈ¡ÆÁÄ»¿í¸ß */
+        /* ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ */
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         screenWidth = dm.widthPixels;
@@ -61,13 +61,13 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ³õÊ¼»¯²¿·Ö×é¼þµÄÎ»ÖÃ
+     * ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
      */
     private void initComponent() {
 
-        int photoHeight = (int) (screenHeight * 17.0 / 23); // ×°ÔØÍ¼Æ¬×é¼þµÄ¸ß
+        int photoHeight = (int) (screenHeight * 17.0 / 23); // ×°ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½
 
-        EditText explainEdit = (EditText) findViewById(R.id.explain); // »ñµÃÊäÈëÎÄ×ÖµÄ×é¼þ
+        EditText explainEdit = (EditText) findViewById(R.id.explain); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½
         int imgH = 850;
         int imgW = 720;
         int explainX = (int) (screenWidth * (68.0 / imgW));
@@ -80,14 +80,14 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * Ô¤ÀÀÍ¼ÊÇ·ñ´ò¿ª
+     * Ô¤ï¿½ï¿½Í¼ï¿½Ç·ï¿½ï¿½
      */
     private boolean previewOn = false;
 
     public void previewListener(View view) {
         previewOn = !previewOn;
-        TextView preview = (TextView) findViewById(R.id.preview); // »ñÈ¡Ô¤ÀÀÍ¼×é¼þ
-        ImageView expend = (ImageView) findViewById(R.id.expand); // »ñÈ¡À©´ó°´Å¥Í¼Æ¬
+        TextView preview = (TextView) findViewById(R.id.preview); // ï¿½ï¿½È¡Ô¤ï¿½ï¿½Í¼ï¿½ï¿½ï¿½
+        ImageView expend = (ImageView) findViewById(R.id.expand); // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Å¥Í¼Æ¬
 
         RelativeLayout.LayoutParams preParams =
                 new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 0);
@@ -116,7 +116,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * Ñ¡ÔñÍ¼Æ¬¼àÌý
+     * Ñ¡ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
      * @param view
      */
     public void selectPhotoListener(View view) {
@@ -127,18 +127,18 @@ public class MakeActivity extends Activity {
 
 
     /**
-     * ·µ»ØÖ÷²Ëµ¥¼àÌý
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
      * @param view
      */
     public void backToMainListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
         this.startActivity(intent);
-        //ÉèÖÃÇÐ»»¶¯»­£¬´Ó×ó±ß½øÈë£¬ÓÒ±ßÍË³ö
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½ë£¬ï¿½Ò±ï¿½ï¿½Ë³ï¿½
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
     }
     /**
-     * ÂË¾µµÄ°´Å¥µÄ¼àÌý
+     * ï¿½Ë¾ï¿½ï¿½Ä°ï¿½Å¥ï¿½Ä¼ï¿½ï¿½ï¿½
      * @param view
      */
     public void filterListener(View view) {
@@ -148,7 +148,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ±£´æ°´Å¥µÄ¼àÌý
+     * ï¿½ï¿½ï¿½æ°´Å¥ï¿½Ä¼ï¿½ï¿½ï¿½
      * @param view
      */
     public void saveListener(View view) {
@@ -156,7 +156,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ²Ã¼ô°´Å¥µÄ¼àÌý
+     * ï¿½Ã¼ï¿½ï¿½ï¿½Å¥ï¿½Ä¼ï¿½ï¿½ï¿½
      * @param view
      */
     public void cropListener(View view) {
@@ -164,7 +164,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ÌùÍ¼°´Å¥¼àÌý
+     * ï¿½ï¿½Í¼ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½
      * @param view
      */
     public void pasterListener(View view) {
@@ -172,15 +172,17 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * Ìí¼ÓÑ¡Ïî°´Å¥¼àÌý
+     * ï¿½ï¿½ï¿½Ñ¡ï¿½î°´Å¥ï¿½ï¿½ï¿½ï¿½
      * @param view
      */
     public void selectListener(View view) {
-
+        Intent intent = new Intent();
+        intent.setClass(this, OptionActivity.class);
+        this.startActivity(intent);
     }
 
     /**
-     * ÐÂ½¨°´Å¥¼àÌý
+     * ï¿½Â½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½
      * @param view
      */
     public void newScreenListener(View view) {
