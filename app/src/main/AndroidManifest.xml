@@ -52,6 +52,11 @@
             android:label="@string/title_activity_filter"
             android:theme="@style/ActivityPopup">
         </activity>
+        <activity
+            android:name=".CropPicActivity"
+            android:label="@string/title_activity_crop"
+            >
+        </activity>
     </application>
 
 </manifest>

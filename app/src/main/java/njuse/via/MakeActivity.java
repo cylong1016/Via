@@ -2,6 +2,10 @@ package njuse.via;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -12,13 +16,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.FileNotFoundException;
 
 /**
- * ÖÆ×÷½çÃæ
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * Created by cylong on 2015-07-09
  */
 public class MakeActivity extends Activity {
 
+
+    public static String picPath = null;
     private int screenWidth;
     private int screenHeight;
 
@@ -26,10 +35,11 @@ public class MakeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make);
-        getScreenInfo(); // »ñµÃÆÁÄ»ÐÅÏ¢
-        initTextEditSize(); // ³õÊ¼»¯ÊäÈë¿òµÄÎ»ÖÃºÍ´óÐ¡
-        initPhotoViewSize(); // ³õÊ¼»¯ÏÔÊ¾Í¼Æ¬µÄviewµÄÎ»ÖÃºÍ´óÐ¡
+        getScreenInfo(); // ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½Ï¢
+        initTextEditSize(); // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ÃºÍ´ï¿½Ð¡
+        initPhotoViewSize(); // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½viewï¿½ï¿½Î»ï¿½ÃºÍ´ï¿½Ð¡
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,7 +63,7 @@ public class MakeActivity extends Activity {
     }
 
     private void getScreenInfo() {
-        /* »ñÈ¡ÆÁÄ»¿í¸ß */
+        /* ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ */
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         screenWidth = dm.widthPixels;
@@ -61,15 +71,15 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ³õÊ¼»¯ÊäÈë¿òµÄÎ»ÖÃ
+     * ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
      */
     private void initTextEditSize() {
         double imgH = 850.0;
         double imgW = 720.0;
-        double magniscale = screenWidth / imgW; // Í¼Æ¬·Å´óµÄ±ÈÀý
-        int photoHeight = (int) (screenHeight * 17.0 / 23); // ×°ÔØÍ¼Æ¬×é¼þµÄ¸ß
+        double magniscale = screenWidth / imgW; // Í¼Æ¬ï¿½Å´ï¿½Ä±ï¿½ï¿½ï¿½
+        int photoHeight = (int) (screenHeight * 17.0 / 23); // ×°ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½
 
-        EditText explainEdit = (EditText) findViewById(R.id.explain); // »ñµÃÊäÈëÎÄ×ÖµÄ×é¼þ
+        EditText explainEdit = (EditText) findViewById(R.id.explain); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½
         int explainX = (int) (magniscale * 68.0);
         int explainY = (int) (photoHeight * (672.0 / imgH));
         int explainW = (int) (magniscale * 583.0);
@@ -80,22 +90,22 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ³õÊ¼»¯ÏÔÊ¾Í¼Æ¬×é¼þµÄÎ»ÖÃ
+     * ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
      */
     public void initPhotoViewSize() {
-        ImageView photoView = (ImageView) findViewById(R.id.photoView); // »ñµÃÏÔÊ¾Í¼Æ¬µÄview
+        ImageView photoView = (ImageView) findViewById(R.id.photoView); // ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½view
         double imgH = 850.0;
         double imgW = 720.0;
-        int photoHeight = (int) (screenHeight * 17.0 / 23); // ×°ÔØÍ¼Æ¬×é¼þµÄ¸ß
+        int photoHeight = (int) (screenHeight * 17.0 / 23); // ×°ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½
 
-        double magniscaleW = screenWidth / imgW; // Í¼Æ¬¿í·Å´óµÄ±ÈÀý
-        double magniscaleH = photoHeight / imgH; // Í¼Æ¬¸ß·Å´óµÄ±ÈÀý
+        double magniscaleW = screenWidth / imgW; // Í¼Æ¬ï¿½ï¿½Å´ï¿½Ä±ï¿½ï¿½ï¿½
+        double magniscaleH = photoHeight / imgH; // Í¼Æ¬ï¿½ß·Å´ï¿½Ä±ï¿½ï¿½ï¿½
         int viewX;
         int viewY;
         int viewW;
         int viewH;
 
-        if(magniscaleW < magniscaleH) { // Ä£°åÍ¼Æ¬Ïà¶ÔÓÚÏÔÊ¾Í¼Æ¬µÄview½Ï¿í
+        if(magniscaleW < magniscaleH) { // Ä£ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½viewï¿½Ï¿ï¿½
             double temp = (photoHeight - imgH * magniscaleW) / 2;
             viewX = (int) (magniscaleW * 68.0);
             viewY = (int) (61.0 * magniscaleW + temp + dpTopx(25)); // TODO
@@ -114,7 +124,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ½«dip»òdpÖµ×ª»»ÎªpxÖµ£¬±£Ö¤³ß´ç´óÐ¡²»±ä
+     * ï¿½ï¿½dipï¿½ï¿½dpÖµ×ªï¿½ï¿½ÎªpxÖµï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ß´ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½
      * @param dipValue
      * @return
      */
@@ -124,14 +134,14 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * Ô¤ÀÀÍ¼ÊÇ·ñ´ò¿ª
+     * Ô¤ï¿½ï¿½Í¼ï¿½Ç·ï¿½ï¿½
      */
     private boolean previewOn = false;
 
     public void previewListener(View view) {
         previewOn = !previewOn;
-        TextView preview = (TextView) findViewById(R.id.preview); // »ñÈ¡Ô¤ÀÀÍ¼×é¼þ
-        ImageView expend = (ImageView) findViewById(R.id.expand); // »ñÈ¡À©´ó°´Å¥Í¼Æ¬
+        TextView preview = (TextView) findViewById(R.id.preview); // ï¿½ï¿½È¡Ô¤ï¿½ï¿½Í¼ï¿½ï¿½ï¿½
+        ImageView expend = (ImageView) findViewById(R.id.expand); // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Å¥Í¼Æ¬
 
         RelativeLayout.LayoutParams preParams =
                 new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 0);
@@ -160,29 +170,30 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * Ñ¡ÔñÍ¼Æ¬¼àÌý
+     * Ñ¡ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
      * @param view
      */
     public void selectPhotoListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, SelectPhotoActivity.class);
-        this.startActivity(intent);
+        intent.putExtra("type", "camera");
+        this.startActivityForResult(intent, 1);
     }
 
 
     /**
-     * ·µ»ØÖ÷²Ëµ¥¼àÌý
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
      * @param view
      */
     public void backToMainListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
         this.startActivity(intent);
-        //ÉèÖÃÇÐ»»¶¯»­£¬´Ó×ó±ß½øÈë£¬ÓÒ±ßÍË³ö
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½ë£¬ï¿½Ò±ï¿½ï¿½Ë³ï¿½
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
     }
     /**
-     * ÂË¾µµÄ°´Å¥µÄ¼àÌý
+     * ï¿½Ë¾ï¿½ï¿½Ä°ï¿½Å¥ï¿½Ä¼ï¿½ï¿½ï¿½
      * @param view
      */
     public void filterListener(View view) {
@@ -192,7 +203,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ±£´æ°´Å¥µÄ¼àÌý
+     * ï¿½ï¿½ï¿½æ°´Å¥ï¿½Ä¼ï¿½ï¿½ï¿½
      * @param view
      */
     public void saveListener(View view) {
@@ -200,15 +211,57 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ²Ã¼ô°´Å¥µÄ¼àÌý
+     * ï¿½Ã¼ï¿½ï¿½ï¿½Å¥ï¿½Ä¼ï¿½ï¿½ï¿½
      * @param view
      */
     public void cropListener(View view) {
+        if(picPath!=null) {
+            Intent intent = new Intent();
+            intent.setClass(this, CropPicActivity.class);
+            this.startActivityForResult(intent, 0);
+        }
+        else{
+            Toast.makeText(this,"æ²¡æœ‰å¯¼å…¥å›¾ç‰‡",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==1) {
+            ImageView mImageView = (ImageView) findViewById(R.id.photoView);
+            byte[] b = data.getByteArrayExtra("bitmap");
+            Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+            if (bitmap != null) {
+
+                mImageView.setImageBitmap(bitmap);
+            }
+        }
+        if(resultCode==2){
+            Log.e("back", "back to make");
+            picPath = data.getStringExtra("bitmap");
+            Uri uri = Uri.parse(data.getStringExtra("bitmap"));
+            Bitmap bit = decodeUriAsBitmap(uri);
+            ImageView mImageView = (ImageView) findViewById(R.id.photoView);
+            mImageView.setImageBitmap(bit);
+        }
+
 
     }
 
+    private Bitmap decodeUriAsBitmap(Uri uri) {
+        Bitmap bitmap = null;
+        try {
+            bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return bitmap;
+    }
+
     /**
-     * ÌùÍ¼°´Å¥¼àÌý
+     * ï¿½ï¿½Í¼ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½
      * @param view
      */
     public void pasterListener(View view) {
@@ -216,7 +269,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * Ìí¼ÓÑ¡Ïî°´Å¥¼àÌý
+     * ï¿½ï¿½ï¿½Ñ¡ï¿½î°´Å¥ï¿½ï¿½ï¿½ï¿½
      * @param view
      */
     public void selectListener(View view) {
@@ -224,7 +277,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ÐÂ½¨°´Å¥¼àÌý
+     * ï¿½Â½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½
      * @param view
      */
     public void newScreenListener(View view) {
