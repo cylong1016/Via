@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import njuse.via.blservice.MakeBLService;
 import njuse.via.po.Screen;
+import njuse.via.po.ScreenSet;
 
 /**
  * 制作时候的操作
@@ -11,40 +12,44 @@ import njuse.via.po.Screen;
  */
 public class MakeBL implements MakeBLService {
 
-    private LinkedList<Screen> screenList = new LinkedList<>();
-    private int templateID;                    //模板的id，表示使用选中的模板
+    private ScreenSet screenList = new ScreenSet();
 
-    public MakeBL(int teamplate_ID){
-        this.templateID=templateID;
+
+    @Override
+    public void setTemplateID(int id) {
+        screenList.setTemplateID(id);
     }
 
-    public int getTempplateID(){
-        return templateID;
-    }
+
 
     @Override
     public boolean insert(Screen screen) {
-        return screenList.add(screen);
+        return screenList.getScreenList().add(screen);
     }
 
     @Override
     public void insert(int loc, Screen screen) {
-        screenList.add(loc, screen);
+        screenList.getScreenList().add(loc, screen);
     }
 
     @Override
     public Screen remove(int loc) {
-        return screenList.remove(loc);
+        return screenList.getScreenList().remove(loc);
     }
 
     @Override
     public boolean remove(Screen screen) {
-        return screenList.remove(screen);
+        return screenList.getScreenList().remove(screen);
     }
 
     @Override
     public Screen update(int loc, Screen screen) {
-        return screenList.set(loc, screen);
+        return screenList.getScreenList().set(loc, screen);
+    }
+
+    @Override
+    public ScreenSet readMakeRes() {
+        return screenList;
     }
 
 }

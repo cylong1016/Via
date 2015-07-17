@@ -1,8 +1,10 @@
 package njuse.via.dataservice;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import njuse.via.po.Screen;
+import njuse.via.po.ScreenSet;
 
 /**
  * 用于保存和读取制作的结果
@@ -15,12 +17,18 @@ public interface MakeDataService {
      *
      * @param screenList 幕的列表
      */
-    void saveMakeRes(LinkedList<Screen> screenList);
+    void saveMakeRes(ScreenSet screenList,String fileName);
 
     /**
-     * 读取制作的数据
+     * 按作品名读取制作的数据
      *
-     * @return LinkedList<Screen>
+     * @return ScreenSet
      */
-    LinkedList<Screen> readMakeRes();
+    ScreenSet readMakeRes(String fileName);
+    /**
+     * 读取制作的所有数据
+     *
+     * @return ArrayList<ScreenSet>
+     */
+    ArrayList<ScreenSet> readAllMakeRes();
 }

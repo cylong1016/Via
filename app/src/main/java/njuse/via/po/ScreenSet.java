@@ -13,11 +13,14 @@ public class ScreenSet implements Serializable {
     public  ScreenSet(int templateID){
         this.templateID=templateID;
     }
+    public ScreenSet(){}
 
     public int getTemplateID(){
         return templateID;
     }
-
+    public void setTemplateID(int id){
+        this.templateID=id;
+    }
     public LinkedList<Screen> getScreenList(){
         return screenList;
     }

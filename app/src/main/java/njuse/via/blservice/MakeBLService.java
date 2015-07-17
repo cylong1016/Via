@@ -1,6 +1,7 @@
 package njuse.via.blservice;
 
 import njuse.via.po.Screen;
+import njuse.via.po.ScreenSet;
 
 /**
  * 制作时候的操作
@@ -8,6 +9,10 @@ import njuse.via.po.Screen;
  */
 public interface MakeBLService {
 
+    /**
+     * 设定一套作品的使用模板
+     */
+    void setTemplateID(int id);
     /**
      * 在末尾添加一幕
      *
@@ -48,5 +53,10 @@ public interface MakeBLService {
      * @return 前一个元素的索引
      */
     Screen update(int loc, Screen screen);
+
+    /**
+     * @return 制作好的一个作品
+     */
+    ScreenSet readMakeRes();
 
 }
