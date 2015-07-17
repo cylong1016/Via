@@ -176,9 +176,7 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void selectListener(View view) {
-        Intent intent = new Intent();
-        intent.setClass(this, OptionActivity.class);
-        this.startActivity(intent);
+
     }
 
     /**

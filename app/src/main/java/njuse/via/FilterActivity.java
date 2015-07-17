@@ -141,8 +141,8 @@ public class FilterActivity extends Activity {
      * 确认滤镜
      */
     public void ensureFilter(View view) throws IOException{
-        //设置切换动画，从左边进入，右边退出
-        overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+//        //设置切换动画，从左边进入，右边退出
+//        overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
         Intent intent = new Intent();
         intent.setClass(this, MakeActivity.class);
         this.startActivity(intent);
