@@ -279,7 +279,7 @@ public class MakeActivity extends Activity {
      */
     public void selectListener(View view) {
         Intent intent = new Intent();
-        intent.setClass(this, FilterActivity.class);
+        intent.setClass(this, OptionActivity.class);
         this.startActivity(intent);
     }
 
