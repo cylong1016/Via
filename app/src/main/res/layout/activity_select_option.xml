@@ -34,14 +34,44 @@
             android:layout_weight="5"
             android:textStyle="bold" />
 
+        <EditText
+            android:id="@+id/edt_option1"
+            android:layout_width="@dimen/LinearComponentSize"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/option1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:visibility="gone"
+            android:background="@drawable/btn_selector"
+            android:textColor="@color/white"
+            android:layout_weight="5"
+            android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/btn_option1_del1"
             android:layout_width="@dimen/LinearComponentSize"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/select_option_layout_margin"
             android:padding="10dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:src="@mipmap/icon_new_option"
             android:onClick="delOptionListener"
+            android:background="@drawable/icon_selector"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/edt_option1_ent1"
+            android:layout_width="@dimen/LinearComponentSize"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/select_option_layout_margin"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:src="@mipmap/icon_expand"
+            android:onClick="ensureInputListener"
             android:background="@drawable/icon_selector"
             android:textColor="@color/white"
             android:layout_weight="1"
@@ -70,6 +100,20 @@
                 android:layout_weight="5"
                 android:textStyle="bold" />
 
+            <EditText
+                android:id="@+id/edt_option2"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:visibility="gone"
+                android:text="@string/option2"
+                android:background="@drawable/btn_selector"
+                android:textColor="@color/white"
+                android:layout_weight="5"
+                android:textStyle="bold" />
+
             <ImageView
                 android:id="@+id/btn_option1_del2"
                 android:layout_width="@dimen/LinearComponentSize"
@@ -78,6 +122,20 @@
                 android:padding="10dp"
                 android:onClick="delOptionListener"
                 android:src="@mipmap/icon_new_option"
+                android:background="@drawable/icon_selector"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/edt_option1_ent2"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/select_option_layout_margin"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:onClick="ensureInputListener"
+                android:src="@mipmap/icon_expand"
                 android:background="@drawable/icon_selector"
                 android:textColor="@color/white"
                 android:layout_weight="1"
@@ -106,6 +164,20 @@
                 android:layout_weight="5"
                 android:textStyle="bold" />
 
+            <EditText
+                android:id="@+id/edt_option3"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/option3"
+                android:background="@drawable/btn_selector"
+                android:textColor="@color/white"
+                android:layout_weight="5"
+                android:textStyle="bold" />
+
             <ImageView
                 android:id="@+id/btn_option1_del3"
                 android:layout_width="@dimen/LinearComponentSize"
@@ -114,6 +186,20 @@
                 android:padding="10dp"
                 android:onClick="delOptionListener"
                 android:src="@mipmap/icon_new_option"
+                android:background="@drawable/icon_selector"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/edt_option1_ent3"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/select_option_layout_margin"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:onClick="ensureInputListener"
+                android:src="@mipmap/icon_expand"
                 android:background="@drawable/icon_selector"
                 android:textColor="@color/white"
                 android:layout_weight="1"
@@ -142,6 +228,20 @@
                 android:layout_weight="5"
                 android:textStyle="bold" />
 
+            <EditText
+                android:id="@+id/edt_option4"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/option4"
+                android:visibility="gone"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:background="@drawable/btn_selector"
+                android:textColor="@color/white"
+                android:layout_weight="5"
+                android:textStyle="bold" />
+
             <ImageView
                 android:id="@+id/btn_option1_del4"
                 android:layout_width="@dimen/LinearComponentSize"
@@ -150,6 +250,20 @@
                 android:padding="10dp"
                 android:onClick="delOptionListener"
                 android:src="@mipmap/icon_new_option"
+                android:background="@drawable/icon_selector"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/edt_option1_ent4"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/select_option_layout_margin"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:onClick="ensureInputListener"
+                android:src="@mipmap/icon_expand"
                 android:background="@drawable/icon_selector"
                 android:textColor="@color/white"
                 android:layout_weight="1"
