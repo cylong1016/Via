@@ -2,12 +2,11 @@ package njuse.via;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,7 +27,8 @@ public class MakeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make);
         getScreenInfo(); // 获得屏幕信息
-        initComponent(); // 初始化部分组件的位置
+        initTextEditSize(); // 初始化输入框的位置和大小
+        initPhotoViewSize(); // 初始化显示图片的view的位置和大小
     }
 
     @Override
@@ -61,22 +61,66 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * 初始化部分组件的位置
+     * 初始化输入框的位置
      */
-    private void initComponent() {
-
+    private void initTextEditSize() {
+        double imgH = 850.0;
+        double imgW = 720.0;
+        double magniscale = screenWidth / imgW; // 图片放大的比例
         int photoHeight = (int) (screenHeight * 17.0 / 23); // 装载图片组件的高
 
         EditText explainEdit = (EditText) findViewById(R.id.explain); // 获得输入文字的组件
-        int imgH = 850;
-        int imgW = 720;
-        int explainX = (int) (screenWidth * (68.0 / imgW));
+        int explainX = (int) (magniscale * 68.0);
         int explainY = (int) (photoHeight * (672.0 / imgH));
-        int explainW = (int) (screenWidth * (583.0 / imgW));
-        int explainH = (int) (photoHeight * (122.0 / imgH));
+        int explainW = (int) (magniscale * 583.0);
+        int explainH = (int) (explainW * (122.0 / 583.0));
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(explainW, explainH);
         params.setMargins(explainX, explainY, 0, 0);
         explainEdit.setLayoutParams(params);
+    }
+
+    /**
+     * 初始化显示图片组件的位置
+     */
+    public void initPhotoViewSize() {
+        ImageView photoView = (ImageView) findViewById(R.id.photoView); // 获得显示图片的view
+        double imgH = 850.0;
+        double imgW = 720.0;
+        int photoHeight = (int) (screenHeight * 17.0 / 23); // 装载图片组件的高
+
+        double magniscaleW = screenWidth / imgW; // 图片宽放大的比例
+        double magniscaleH = photoHeight / imgH; // 图片高放大的比例
+        int viewX;
+        int viewY;
+        int viewW;
+        int viewH;
+
+        if(magniscaleW < magniscaleH) { // 模板图片相对于显示图片的view较宽
+            double temp = (photoHeight - imgH * magniscaleW) / 2;
+            viewX = (int) (magniscaleW * 68.0);
+            viewY = (int) (61.0 * magniscaleW + temp + dpTopx(25)); // TODO
+            Log.i("height", temp + " " + screenHeight + " " + photoHeight + " " + magniscaleW);
+            viewW = (int) (magniscaleW * 583.0);
+            viewH = viewW;
+        } else {
+            viewX = 0;
+            viewY = 0;
+            viewW = 0;
+            viewH = 0;
+        }
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(viewW, viewH);
+        params.setMargins(viewX, viewY, 0, 0);
+        photoView.setLayoutParams(params);
+    }
+
+    /**
+     * 将dip或dp值转换为px值，保证尺寸大小不变
+     * @param dipValue
+     * @return
+     */
+    public int dpTopx(float dipValue) {
+        float scale = this.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
     }
 
     /**
