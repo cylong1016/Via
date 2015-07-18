@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,13 +23,14 @@ import njuse.via.crop.ShowImageActivity;
  * Created by zr on 2015/7/17.
  */
 public class CropPicActivity extends Activity{
+    public static String picPath = null;
     private ClipImageLayout mClipImageLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        picPath = getIntent().getStringExtra("path");
         setContentView(R.layout.activity_crop);
-
         mClipImageLayout = (ClipImageLayout) findViewById(R.id.id_clipImageLayout);
 
     }
@@ -58,6 +60,8 @@ public class CropPicActivity extends Activity{
         return super.onOptionsItemSelected(item);
     }
 
+
+
     public void cropPic(View v){
         Bitmap bitmap = mClipImageLayout.clip();
 
@@ -77,7 +81,7 @@ public class CropPicActivity extends Activity{
 
     private void saveMyBitmap(Bitmap mBitmap)  {
         //Log.e("myuri",bitName);
-        String temp = MakeActivity.picPath;
+        String temp = picPath;
 
         String[] arr = temp.split("/");
         temp = arr[arr.length-1];

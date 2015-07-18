@@ -33,7 +33,6 @@ import njuse.via.po.Option;
 public class MakeActivity extends Activity {
 
 
-    public static String picPath = null;
     private int screenWidth;
     private int screenHeight;
     private static MakeBLService makeBL = new MakeBL();
@@ -226,9 +225,11 @@ public class MakeActivity extends Activity {
      */
     public void cropListener(View view) {
 //        if(screen.getBackGroundURL()!=null) {
-        if(picPath!=null) {
+        String path = screen.getBackGroundURL();
+        if(path!=null) {
             Intent intent = new Intent();
             intent.setClass(this, CropPicActivity.class);
+            intent.putExtra("path",path);
             this.startActivityForResult(intent, 0);
         }
         else{
@@ -252,7 +253,9 @@ public class MakeActivity extends Activity {
         if(resultCode==2){
             //Log.e("back", "back to make");
 //            screen.setBackGroundURL(data.getStringExtra("bitmap"));
-            picPath=data.getStringExtra("bitmap");
+            String path = data.getStringExtra("bitmap");
+            screen.setBackGroundURL(path);
+
             Uri uri = Uri.parse(data.getStringExtra("bitmap"));
             Bitmap bit = decodeUriAsBitmap(uri);
             ImageView mImageView = (ImageView) findViewById(R.id.photoView);

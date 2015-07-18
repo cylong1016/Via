@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.RelativeLayout;
 
+import njuse.via.CropPicActivity;
 import njuse.via.MakeActivity;
 import njuse.via.R;
 
@@ -40,7 +41,7 @@ public class ClipImageLayout extends RelativeLayout
          * 这里测试，直接写死了图片，真正使用过程中，可以提取为自定义属性
          */
         Drawable d = null;
-        Uri uri = Uri.parse(MakeActivity.picPath);
+        Uri uri = Uri.parse(CropPicActivity.picPath);
         try {
            d = Drawable.createFromStream(context.getContentResolver().openInputStream(uri), null);
         }catch (Exception e){
