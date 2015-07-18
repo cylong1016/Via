@@ -29,7 +29,7 @@ public class PicChooseActivity extends Activity{
     private static final int ALBUM = 0;
     private static final int CAMERA = 1;
     private static final int CROP_PIC = 2;
-
+    PicCompress pc;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class PicChooseActivity extends Activity{
         String path  = "file:///sdcard/Android/Via/original/";
         String dirpath = "/sdcard/Android/Via/original";
         //创建文件夹
+        pc = new PicCompress();
         File file = new File(dirpath);
         if(!file.exists()){
             try {
@@ -83,51 +84,59 @@ public class PicChooseActivity extends Activity{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode){
+                if(resultCode==RESULT_CANCELED){
+                    Log.e("canceled","here");
+                    finish();
+                }
+        if(resultCode==RESULT_OK){
+            switch(requestCode) {
             case CAMERA:
 //                Bundle bundle = data.getExtras();
 //                Bitmap bitmap = (Bitmap)bundle.get("data");
 
 
-
                 Bitmap bitmap = decodeUriAsBitmap(camerauri);
+                bitmap = pc.compressImage(bitmap);
 
                 String temp[] = camerauri.toString().split("/");
-                String bitname = temp[temp.length-1];
-                saveMyBitmap(bitmap,bitname);
+                String bitname = temp[temp.length - 1];
+                saveMyBitmap(bitmap, bitname);
 
                 Intent intent = new Intent();
-                intent.setClass(this,MakeActivity.class);
+                intent.setClass(this, MakeActivity.class);
                 intent.putExtra("bitmap", uri);
                 setResult(10, intent);
-                Log.e("putextra","put data");
+                Log.e("putextra", "put data");
                 finish();
                 break;
             case ALBUM:
                 //cutpicture(uri,300,300,CROP_PIC);
                 Uri tempuri = data.getData();
 
-                Log.e("hi",tempuri.toString());
+                Log.e("hi", tempuri.toString());
 
                 Bitmap bitmap1 = decodeUriAsBitmap(tempuri);
+                bitmap1 = pc.compressImage(bitmap1);
+
 
                 String temp1[] = tempuri.toString().split("/");
-                bitname = temp1[temp1.length-1].replace("%3A","_")+".jpg";
-                saveMyBitmap(bitmap1,bitname);
+                bitname = temp1[temp1.length - 1].replace("%3A", "_") + ".jpg";
+                saveMyBitmap(bitmap1, bitname);
 
 
                 Intent inte = new Intent();
-                inte.setClass(this,MakeActivity.class);
+                inte.setClass(this, MakeActivity.class);
                 inte.putExtra("bitmap", uri);
                 setResult(10, inte);
                 finish();
                 break;
             case CROP_PIC:
-                if(uri!=null){
-                   // myListener.showImage(uri);
+                if (uri != null) {
+                    // myListener.showImage(uri);
                 }
             default:
                 break;
+        }
         }
     }
 
