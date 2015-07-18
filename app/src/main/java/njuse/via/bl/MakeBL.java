@@ -1,8 +1,11 @@
 package njuse.via.bl;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import njuse.via.blservice.MakeBLService;
+import njuse.via.data.MakeData;
+import njuse.via.dataservice.MakeDataService;
 import njuse.via.po.Screen;
 import njuse.via.po.ScreenSet;
 
@@ -19,8 +22,6 @@ public class MakeBL implements MakeBLService {
     public void setTemplateID(int id) {
         screenList.setTemplateID(id);
     }
-
-
 
     @Override
     public boolean insert(Screen screen) {
@@ -50,6 +51,18 @@ public class MakeBL implements MakeBLService {
     @Override
     public ScreenSet readMakeRes(){
         return screenList;
+    }
+
+    @Override
+    public ScreenSet getMakeResource(String fileName) {
+        MakeDataService mkd=new MakeData();
+        return mkd.readMakeRes(fileName);
+    }
+
+    @Override
+    public ArrayList<ScreenSet> getAllMakeRes() {
+        MakeDataService mkd=new MakeData();
+        return mkd.readAllMakeRes();
     }
 
 }
