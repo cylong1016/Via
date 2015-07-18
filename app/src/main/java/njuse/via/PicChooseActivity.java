@@ -25,6 +25,7 @@ import njuse.via.bl.PicCompress;
  */
 public class PicChooseActivity extends Activity{
     String uri = "";
+    Uri camerauri = null;
     private static final int ALBUM = 0;
     private static final int CAMERA = 1;
     private static final int CROP_PIC = 2;
@@ -47,7 +48,7 @@ public class PicChooseActivity extends Activity{
         //确定这一次图片的时间戳
         String time = String.valueOf(System.currentTimeMillis());
         path = path + "img_"+time+".jpg";
-
+        camerauri = Uri.parse(path);
         //String loc = getResources().getString(R.string.pic_location);
         //uri = Uri.parse(path);
         String type = getIntent().getStringExtra("type");
@@ -68,7 +69,7 @@ public class PicChooseActivity extends Activity{
     public void getCamera(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //图片输出到uri
-
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,camerauri);
         startActivityForResult(intent, CAMERA);
     }
     public void getAlbum(){
@@ -93,7 +94,11 @@ public class PicChooseActivity extends Activity{
 //                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 //                byte[] datas = baos.toByteArray();
 
-                Uri camerauri = data.getData();
+//                Bundle bundle = data.getExtras();
+//                Bitmap bitmap = (Bitmap)bundle.get("data");
+
+
+
                 Bitmap bitmap = decodeUriAsBitmap(camerauri);
 
                 String temp[] = camerauri.toString().split("/");
@@ -103,7 +108,7 @@ public class PicChooseActivity extends Activity{
 
                 Intent intent = new Intent();
                 intent.setClass(this,MakeActivity.class);
-                intent.putExtra("bitmap", uri);
+                intent.putExtra("bitmap", camerauri.toString());
                 setResult(10, intent);
                 Log.e("putextra","put data");
                 finish();
@@ -111,7 +116,9 @@ public class PicChooseActivity extends Activity{
             case ALBUM:
                 //cutpicture(uri,300,300,CROP_PIC);
                 Uri tempuri = data.getData();
+
                 Log.e("tempuri",tempuri.toString());
+                
                 Bitmap bitmap1 = decodeUriAsBitmap(tempuri);
                 String temp1[] = tempuri.toString().split("/");
                 bitname = temp1[temp1.length-1];
