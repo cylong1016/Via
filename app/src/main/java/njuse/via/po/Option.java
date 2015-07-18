@@ -68,6 +68,10 @@ public class Option implements Serializable {
         }
     }
 
+    public  int getItemLength(){
+        return optionList.size();
+    }
+
 //    @Override
 //    public int describeContents() {
 //        return 0;
