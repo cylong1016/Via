@@ -37,7 +37,8 @@ public class MakeActivity extends Activity {
     private int screenWidth;
     private int screenHeight;
     private static MakeBLService makeBL = new MakeBL();
-    public Option option;
+
+    public Screen screen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class MakeActivity extends Activity {
         getScreenInfo(); // 获得屏幕信息
         initTextEditSize();
         initPhotoViewSize();
+        screen=makeBL.getNewScreen();
     }
 
 
@@ -223,6 +225,7 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void cropListener(View view) {
+//        if(screen.getBackGroundURL()!=null) {
         if(picPath!=null) {
             Intent intent = new Intent();
             intent.setClass(this, CropPicActivity.class);
@@ -248,7 +251,8 @@ public class MakeActivity extends Activity {
         }
         if(resultCode==2){
             //Log.e("back", "back to make");
-            picPath = data.getStringExtra("bitmap");
+//            screen.setBackGroundURL(data.getStringExtra("bitmap"));
+            picPath=data.getStringExtra("bitmap");
             Uri uri = Uri.parse(data.getStringExtra("bitmap"));
             Bitmap bit = decodeUriAsBitmap(uri);
             ImageView mImageView = (ImageView) findViewById(R.id.photoView);
@@ -256,7 +260,7 @@ public class MakeActivity extends Activity {
         }
         if(resultCode==98){
             Bundle b=data.getExtras();
-            option=(Option) b.get("roption");
+            screen.setOption((Option) b.get("roption"));
         }
 
 
@@ -289,7 +293,7 @@ public class MakeActivity extends Activity {
         Intent intent = new Intent();
         intent.setClass(this, OptionActivity.class);
         Bundle b=new Bundle();
-        b.putSerializable("option",option);
+        b.putSerializable("option",screen.getOption());
         intent.putExtras(b);
         this.startActivityForResult(intent, 98);
     }
@@ -300,7 +304,7 @@ public class MakeActivity extends Activity {
      */
     public void newScreenListener(View view) {
         // 保存当前幕
-        Screen screen = new Screen(ScreenEnum.NORMAL);
+//        Screen screen = new Screen(ScreenEnum.NORMAL);
         EditText edit = (EditText) findViewById(R.id.explain);
         String text = edit.getText().toString(); // 获得用户输入的文本
         screen.setText(text);
@@ -308,7 +312,7 @@ public class MakeActivity extends Activity {
         // 获得文本图片的url
         // 获得选项
 
-        makeBL.insert(screen);
+//        makeBL.insert(screen);
 
         // 新建一幕
     }

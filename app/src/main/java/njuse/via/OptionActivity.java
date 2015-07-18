@@ -157,6 +157,9 @@ public class OptionActivity extends Activity {
                 }
                 opItem=new OptionItem(but.getText().toString(),boo);
                 op.insert(0,opItem);
+                break;
+            case 0:
+                op=null;
         }
 
         Intent intent=new Intent();
