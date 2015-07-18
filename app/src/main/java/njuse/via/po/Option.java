@@ -1,5 +1,8 @@
 package njuse.via.po;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.LinkedList;
 
@@ -9,7 +12,7 @@ import java.util.LinkedList;
  * ------  一组选项的数据结构  ------
  */
 
-public class Option implements Serializable {
+public class Option implements Serializable,Parcelable {
     private LinkedList<OptionItem> optionList = new LinkedList<>();
 
     public void insert(OptionItem item){
@@ -64,5 +67,31 @@ public class Option implements Serializable {
             }
         }
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+    /************************************/
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+            dest.writeValue(optionList);
+    }
+
+    public static final Parcelable.Creator<Option> CREATOR = new Creator<Option>(){
+
+        public Option createFromParcel(Parcel source) {
+            // TODO Auto-generated method stub
+            Option option = new Option();
+            option.optionList=(LinkedList<OptionItem>) source.readValue(option.getClass().getClassLoader());
+            return option;
+        }
+
+        public Option[] newArray(int size) {
+            // TODO Auto-generated method stub
+            return new Option[size];
+        }
+    };
+
 
 }

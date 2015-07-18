@@ -54,15 +54,21 @@ public class MakeBL implements MakeBLService {
     }
 
     @Override
-    public ScreenSet getMakeResource(String fileName) {
+    public ScreenSet getMakeResource(String fileName){
         MakeDataService mkd=new MakeData();
         return mkd.readMakeRes(fileName);
     }
 
     @Override
-    public ArrayList<ScreenSet> getAllMakeRes() {
+    public ArrayList<ScreenSet> getAllMakeRes(){
         MakeDataService mkd=new MakeData();
         return mkd.readAllMakeRes();
+    }
+
+    @Override
+    public void saveWork(String fileName) {
+        MakeDataService mkd=new MakeData();
+        mkd.saveMakeRes(screenList,fileName);
     }
 
 }

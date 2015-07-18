@@ -9,7 +9,7 @@ import njuse.via.po.ScreenSet;
  * 制作时候的操作
  * Created by cylong on 2015-07-10 0010
  */
-public interface MakeBLService {
+public interface MakeBLService{
 
     /**
      * 设定一套作品的使用模板
@@ -74,5 +74,12 @@ public interface MakeBLService {
      * @return ArrayList<ScreenSet>
      */
     ArrayList<ScreenSet> getAllMakeRes();
+
+    /**
+     *
+     * 保存当前制作的序列化文件
+     *需传入保存的文件名 fileName
+     */
+    public void  saveWork(String fileName);
 
 }
