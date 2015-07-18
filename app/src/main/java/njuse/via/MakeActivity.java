@@ -24,6 +24,8 @@ import njuse.via.blservice.MakeBLService;
 import njuse.via.po.Screen;
 import njuse.via.po.ScreenEnum;
 
+import njuse.via.po.Option;
+
 /**
  * 制作界面
  * Created by cylong on 2015-07-09
@@ -35,6 +37,7 @@ public class MakeActivity extends Activity {
     private int screenWidth;
     private int screenHeight;
     private static MakeBLService makeBL = new MakeBL();
+    public Option option;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -251,6 +254,10 @@ public class MakeActivity extends Activity {
             ImageView mImageView = (ImageView) findViewById(R.id.photoView);
             mImageView.setImageBitmap(bit);
         }
+        if(resultCode==98){
+            Bundle b=data.getExtras();
+            option=(Option) b.get("roption");
+        }
 
 
     }
@@ -281,7 +288,10 @@ public class MakeActivity extends Activity {
     public void selectListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, OptionActivity.class);
-        this.startActivity(intent);
+        Bundle b=new Bundle();
+        b.putSerializable("option",option);
+        intent.putExtras(b);
+        this.startActivityForResult(intent, 98);
     }
 
     /**
@@ -302,6 +312,8 @@ public class MakeActivity extends Activity {
 
         // 新建一幕
     }
+
+
 
 
 
