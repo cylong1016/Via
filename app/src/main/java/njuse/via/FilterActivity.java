@@ -40,12 +40,13 @@ public class FilterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
-        path = Environment.getExternalStorageDirectory() ; //»ñµÃSDCardÄ¿Â¼
+        path = Environment.getExternalStorageDirectory() ; //ï¿½ï¿½ï¿½SDCardÄ¿Â¼
         iv = (ImageView)findViewById(R.id.photo);
-        if(bmpDefaultPic==null) {
+//        if(bmpDefaultPic==null) {
 //            bmpDefaultPic = BitmapFactory.decodeFile(path + "/Pictures/108.jpg", null);
-            bmpDefaultPic = BitmapFactory.decodeResource(getResources(), R.drawable.filter);
-        }
+        bmpDefaultPic = BitmapFactory.decodeResource(getResources(), R.drawable.filter);
+        bitmap = bmpDefaultPic;
+//        }
         iv.setImageBitmap(bmpDefaultPic);
     }
 
@@ -73,12 +74,12 @@ public class FilterActivity extends Activity {
 
     /**
      * @param view
-     * ÎÞÐ§¹û£¬·µ»ØÔ­Í¼
+     * ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­Í¼
      */
     public void NoListener(View view) {
 //        bmpDefaultPic = BitmapFactory.decodeFile(path + "/Pictures/108.g", null);
-        bmpDefaultPic = BitmapFactory.decodeResource(getResources(), R.drawable.filter);
-        iv.setImageBitmap(bmpDefaultPic);
+        bitmap = bmpDefaultPic;
+        iv.setImageBitmap(bitmap);
     }
 
     public void IceListener(View view) {
@@ -139,28 +140,29 @@ public class FilterActivity extends Activity {
 
     /**
      * @param view
-     * È·ÈÏÂË¾µ
+     * È·ï¿½ï¿½ï¿½Ë¾ï¿½
      */
     public void ensureFilter(View view) throws IOException{
-//        //ÉèÖÃÇÐ»»¶¯»­£¬´Ó×ó±ß½øÈë£¬ÓÒ±ßÍË³ö
+//        //ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½ë£¬ï¿½Ò±ï¿½ï¿½Ë³ï¿½
 //        overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
         Intent intent = new Intent();
         intent.setClass(this, MakeActivity.class);
         this.startActivity(intent);
-        new Thread() { // ·ÀÖ¹ÇÐ»»ÉÁÆÁ
+        new Thread() { // ï¿½ï¿½Ö¹ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½
             public void run() {
                 try {
-                    saveMyBitmap("helloFilter");
-                    //TODO ±£´æÍ¼Æ¬
+                    saveMyBitmap();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }.start();
+        setResult(RESULT_CANCELED, null);
+        finish();
     }
 
-    public void saveMyBitmap(String bitName) throws IOException {
-        File f = new File(path + "/Pictures/"+bitName+"108.png");
+    public void saveMyBitmap() throws IOException {
+        File f = new File(path + "/Pictures/108.png");
         f.createNewFile();
         FileOutputStream fOut = null;
         try {
