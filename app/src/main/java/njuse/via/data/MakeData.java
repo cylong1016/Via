@@ -65,7 +65,10 @@ public class MakeData implements MakeDataService {
 
 
     private void serialize2SDcard(Object target,String file){
-
+            /*
+            *
+            * 将对象序列化并保存
+            * */
         FileOutputStream fos = null;
         ObjectOutputStream o = null;
 
@@ -97,6 +100,9 @@ public class MakeData implements MakeDataService {
 
 
     private Object getObjectFromSDcard(String file){
+        /*
+        * 读取序列化对象
+        * */
 
         if(! new File(file).exists()){
             System.out.println("序列化文件不存在！");

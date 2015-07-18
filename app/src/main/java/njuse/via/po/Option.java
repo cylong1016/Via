@@ -53,4 +53,16 @@ public class Option implements Serializable {
         }
     }
 
+    public void removeOptionItem(String text){
+        /**
+         * 按指定内容删除其中一个选项
+         * */
+        for(int i=0;i<optionList.size();i++){
+            if(optionList.get(i).getText().equals(text)){
+                optionList.remove(i);
+                return;
+            }
+        }
+    }
+
 }

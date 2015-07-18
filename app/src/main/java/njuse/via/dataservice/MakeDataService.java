@@ -12,6 +12,8 @@ import njuse.via.po.ScreenSet;
  */
 public interface MakeDataService {
 
+
+
     /**
      * 保存制作的数据
      *
@@ -19,12 +21,16 @@ public interface MakeDataService {
      */
     void saveMakeRes(ScreenSet screenList,String fileName);
 
+
+
     /**
      * 按作品名读取制作的数据
      *
      * @return ScreenSet
      */
     ScreenSet readMakeRes(String fileName);
+
+
     /**
      * 读取制作的所有数据
      *
