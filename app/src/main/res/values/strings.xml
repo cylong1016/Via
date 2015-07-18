@@ -6,12 +6,26 @@
     <string name="title_activity_read">ReadActivity</string>
     <string name="title_activity_photo">PicChooseActivity</string>
     <string name="title_activity_select_photo">PicChooseActivity</string>
+    <string name="title_activity_select_option">OptionActivity</string>
+    <string name="title_activity_crop">PicCrop</string>
 
     <string name="pic_location">to_define</string>
+
+    <!-- 主界面的两个按钮 -->
     <string name="make">make</string>
     <string name="read">read</string>
 
+    <!--选择图片的三个按钮-->
     <string name="Camera">camera</string>
     <string name="album">album</string>
     <string name="cancel">cancel</string>
+    <string name="title_activity_filter">FilterActivity</string>
+
+    <string name="option1">Option 1</string>
+    <string name="option2">Option 2</string>
+    <string name="option3">Option 3</string>
+    <string name="option4">Option 4</string>
+    <string name="option_add">+</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>

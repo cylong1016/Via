@@ -1,9 +1,13 @@
 package njuse.via.bl;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import njuse.via.blservice.MakeBLService;
+import njuse.via.data.MakeData;
+import njuse.via.dataservice.MakeDataService;
 import njuse.via.po.Screen;
+import njuse.via.po.ScreenSet;
 
 /**
  * 制作时候的操作
@@ -11,31 +15,54 @@ import njuse.via.po.Screen;
  */
 public class MakeBL implements MakeBLService {
 
-    private LinkedList<Screen> screenList = new LinkedList<>();
+    private ScreenSet screenList = new ScreenSet();
+
+
+    @Override
+    public void setTemplateID(int id) {
+        screenList.setTemplateID(id);
+    }
 
     @Override
     public boolean insert(Screen screen) {
-        return screenList.add(screen);
+        return screenList.getScreenList().add(screen);
     }
 
     @Override
     public void insert(int loc, Screen screen) {
-        screenList.add(loc, screen);
+        screenList.getScreenList().add(loc, screen);
     }
 
     @Override
     public Screen remove(int loc) {
-        return screenList.remove(loc);
+        return screenList.getScreenList().remove(loc);
     }
 
     @Override
     public boolean remove(Screen screen) {
-        return screenList.remove(screen);
+        return screenList.getScreenList().remove(screen);
     }
 
     @Override
     public Screen update(int loc, Screen screen) {
-        return screenList.set(loc, screen);
+        return screenList.getScreenList().set(loc, screen);
+    }
+
+    @Override
+    public ScreenSet readMakeRes(){
+        return screenList;
+    }
+
+    @Override
+    public ScreenSet getMakeResource(String fileName) {
+        MakeDataService mkd=new MakeData();
+        return mkd.readMakeRes(fileName);
+    }
+
+    @Override
+    public ArrayList<ScreenSet> getAllMakeRes() {
+        MakeDataService mkd=new MakeData();
+        return mkd.readAllMakeRes();
     }
 
 }

@@ -1,6 +1,9 @@
 package njuse.via.blservice;
 
+import java.util.ArrayList;
+
 import njuse.via.po.Screen;
+import njuse.via.po.ScreenSet;
 
 /**
  * 制作时候的操作
@@ -8,6 +11,10 @@ import njuse.via.po.Screen;
  */
 public interface MakeBLService {
 
+    /**
+     * 设定一套作品的使用模板
+     */
+    void setTemplateID(int id);
     /**
      * 在末尾添加一幕
      *
@@ -48,5 +55,24 @@ public interface MakeBLService {
      * @return 前一个元素的索引
      */
     Screen update(int loc, Screen screen);
+
+    /**
+     * @return 当前制作好的一个作品
+     */
+    ScreenSet readMakeRes();
+
+
+    /**
+     * 按作品名读取制作的已经序列化保存的数据
+     *
+     * @return ScreenSet
+     */
+    ScreenSet getMakeResource(String fileName);
+    /**
+     * 读取制作的已经序列化保存的所有数据
+     *
+     * @return ArrayList<ScreenSet>
+     */
+    ArrayList<ScreenSet> getAllMakeRes();
 
 }

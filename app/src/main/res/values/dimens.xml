@@ -4,5 +4,27 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="LinearComponentSize">0dp</dimen>
-    <dimen name="previewBarHeight">18dp</dimen>
+    <dimen name="previewBarHeight">28dp</dimen> <!-- 预览图的高度 -->
+
+    <!-- 选择图片，拍照，取消按钮离左右的边距 -->
+    <dimen name="select_photo_btn_margin">30dp</dimen>
+
+    <!-- 选项上端内边距 -->
+    <dimen name="select_option_btn_top_margin">10dp</dimen>
+    <!-- 选项以及取消按钮离左边距 -->
+    <dimen name="select_option_btn_left_margin">40dp</dimen>
+    <!-- 选项以及取消按钮离右边距 -->
+    <dimen name="select_option_btn_right_margin">60dp</dimen>
+    <!-- 选项单个布局内左边距 -->
+    <dimen name="select_option_layout_left_padding">30dp</dimen>
+    <!-- 选项单个布局内右边距 -->
+    <dimen name="select_option_layout_right_padding">30dp</dimen>
+    <!-- 选项单个布局内选项和删除间距 -->
+    <dimen name="select_option_layout_margin">5dp</dimen>
+
+    <!-- 按钮圆角 -->
+    <dimen name="radius">8dp</dimen>
+
+    <!-- 文本与边框的间距 -->
+    <dimen name="text_mergin">8dp</dimen>
 </resources>

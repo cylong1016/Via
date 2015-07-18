@@ -25,8 +25,14 @@ public class Screen implements Serializable {
      */
     protected String backGroundURL;
 
+    private Option option;
+
+
     public Screen(ScreenEnum screenEnum) {
         this.screenEnum = screenEnum;
+        if (!(screenEnum==ScreenEnum.OPTION)){
+            option=null;
+        }
     }
 
     public void setText(String text) {
@@ -55,5 +61,18 @@ public class Screen implements Serializable {
 
     public ScreenEnum getScreenEnum() {
         return screenEnum;
+    }
+
+    public void setOption(Option option){
+        screenEnum=ScreenEnum.OPTION;
+        this.option=option;
+    }
+
+    public Option getOption(){
+        if (screenEnum!=ScreenEnum.OPTION){
+            return null;
+        }else{
+            return  option;
+        }
     }
 }

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/aso_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="@dimen/select_option_btn_top_margin"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@color/select_photo_background">
+
+    <LinearLayout
+        android:id="@+id/option1_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingEnd="@dimen/select_option_layout_right_padding"
+        android:paddingStart="@dimen/select_option_layout_left_padding"
+        android:orientation="horizontal"
+        android:background="@color/select_photo_background">
+
+        <Button
+            android:id="@+id/btn_option1"
+            android:layout_width="@dimen/LinearComponentSize"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/option1"
+            android:background="@drawable/btn_selector"
+            android:textColor="@color/white"
+            android:layout_weight="5"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edt_option1"
+            android:layout_width="@dimen/LinearComponentSize"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/option1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:visibility="gone"
+            android:background="@drawable/btn_selector"
+            android:textColor="@color/white"
+            android:layout_weight="5"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btn_option1_del1"
+            android:layout_width="@dimen/LinearComponentSize"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/select_option_layout_margin"
+            android:padding="10dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:src="@mipmap/icon_new_option"
+            android:onClick="delOptionListener"
+            android:background="@drawable/icon_selector"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/edt_option1_ent1"
+            android:layout_width="@dimen/LinearComponentSize"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/select_option_layout_margin"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:src="@mipmap/icon_expand"
+            android:onClick="ensureInputListener"
+            android:background="@drawable/icon_selector"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/option2_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingEnd="@dimen/select_option_layout_right_padding"
+            android:paddingStart="@dimen/select_option_layout_left_padding"
+            android:orientation="horizontal"
+            android:background="@color/select_photo_background">
+
+            <Button
+                android:id="@+id/btn_option2"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/option2"
+                android:background="@drawable/btn_selector"
+                android:textColor="@color/white"
+                android:layout_weight="5"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edt_option2"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:visibility="gone"
+                android:text="@string/option2"
+                android:background="@drawable/btn_selector"
+                android:textColor="@color/white"
+                android:layout_weight="5"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btn_option1_del2"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/select_option_layout_margin"
+                android:padding="10dp"
+                android:onClick="delOptionListener"
+                android:src="@mipmap/icon_new_option"
+                android:background="@drawable/icon_selector"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/edt_option1_ent2"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/select_option_layout_margin"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:onClick="ensureInputListener"
+                android:src="@mipmap/icon_expand"
+                android:background="@drawable/icon_selector"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/option3_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingEnd="@dimen/select_option_layout_right_padding"
+            android:paddingStart="@dimen/select_option_layout_left_padding"
+            android:orientation="horizontal"
+            android:background="@color/select_photo_background">
+
+            <Button
+                android:id="@+id/btn_option3"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/option3"
+                android:background="@drawable/btn_selector"
+                android:textColor="@color/white"
+                android:layout_weight="5"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edt_option3"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/option3"
+                android:background="@drawable/btn_selector"
+                android:textColor="@color/white"
+                android:layout_weight="5"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btn_option1_del3"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/select_option_layout_margin"
+                android:padding="10dp"
+                android:onClick="delOptionListener"
+                android:src="@mipmap/icon_new_option"
+                android:background="@drawable/icon_selector"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/edt_option1_ent3"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/select_option_layout_margin"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:onClick="ensureInputListener"
+                android:src="@mipmap/icon_expand"
+                android:background="@drawable/icon_selector"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/option4_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingEnd="@dimen/select_option_layout_right_padding"
+            android:paddingStart="@dimen/select_option_layout_left_padding"
+            android:orientation="horizontal"
+            android:background="@color/select_photo_background">
+
+            <Button
+                android:id="@+id/btn_option4"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/option4"
+                android:background="@drawable/btn_selector"
+                android:textColor="@color/white"
+                android:layout_weight="5"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edt_option4"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/option4"
+                android:visibility="gone"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:background="@drawable/btn_selector"
+                android:textColor="@color/white"
+                android:layout_weight="5"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btn_option1_del4"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/select_option_layout_margin"
+                android:padding="10dp"
+                android:onClick="delOptionListener"
+                android:src="@mipmap/icon_new_option"
+                android:background="@drawable/icon_selector"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/edt_option1_ent4"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/select_option_layout_margin"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:onClick="ensureInputListener"
+                android:src="@mipmap/icon_expand"
+                android:background="@drawable/icon_selector"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/btn_option_add"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/select_photo_btn_margin"
+            android:layout_marginEnd="@dimen/select_photo_btn_margin"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:onClick="addOptionListener"
+            android:src="@mipmap/icon_new"
+            android:background="@drawable/btn_selector"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="@dimen/select_photo_btn_margin"
+            android:layout_marginEnd="@dimen/select_photo_btn_margin"
+            android:layout_marginTop="15dp"
+            android:padding="10dp"
+            android:text="@string/cancel"
+            android:textStyle="bold"
+            android:background="@drawable/btn_selector"
+            android:textColor="@color/white"
+            android:onClick="cancelOptionBtnListener"/>
+    </LinearLayout>
+</RelativeLayout>

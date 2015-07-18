@@ -2,8 +2,18 @@
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.net.Uri;
+import android.graphics.Color;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +21,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.FileNotFoundException;
 
 /**
  * 制作界面
@@ -18,6 +31,8 @@ import android.widget.TextView;
  */
 public class MakeActivity extends Activity {
 
+
+    public static String picPath = null;
     private int screenWidth;
     private int screenHeight;
 
@@ -26,8 +41,10 @@ public class MakeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make);
         getScreenInfo(); // 获得屏幕信息
-        initComponent(); // 初始化部分组件的位置
+        initTextEditSize();
+        initPhotoViewSize();
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,17 +78,17 @@ public class MakeActivity extends Activity {
     /**
      * 初始化部分组件的位置
      */
-    private void initComponent() {
-
-        int photoHeight = (int) (screenHeight * 17.0 / 23); // 装载图片组件的高
+    private void initTextEditSize() {
+        double imgH = 850.0;
+        double imgW = 720.0;
+        double magniscale = screenWidth / imgW;
+        int photoHeight = (int) (screenHeight * 17.0 / 23);
 
         EditText explainEdit = (EditText) findViewById(R.id.explain); // 获得输入文字的组件
-        int imgH = 850;
-        int imgW = 720;
-        int explainX = (int) (screenWidth * (31.0 / imgW));
-        int explainY = (int) (photoHeight * (609.0 / imgH));
-        int explainW = (int) (screenWidth * (657.0 / imgW));
-        int explainH = (int) (photoHeight * (146.0 / imgH));
+        int explainX = (int) (magniscale * 68.0);
+        int explainY = (int) (photoHeight * (672.0 / imgH));
+        int explainW = (int) (magniscale * 583.0);
+        int explainH = (int) (explainW * (122.0 / 583.0));
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(explainW, explainH);
         params.setMargins(explainX, explainY, 0, 0);
         explainEdit.setLayoutParams(params);
@@ -79,6 +96,50 @@ public class MakeActivity extends Activity {
 
     /**
      * 预览图是否打开
+     */
+    public void initPhotoViewSize() {
+        ImageView photoView = (ImageView) findViewById(R.id.photoView); // �����ʾͼƬ��view
+        double imgH = 850.0;
+        double imgW = 720.0;
+        int photoHeight = (int) (screenHeight * 17.0 / 23); // װ��ͼƬ����ĸ�
+
+        double magniscaleW = screenWidth / imgW; // ͼƬ��Ŵ�ı���
+        double magniscaleH = photoHeight / imgH; // ͼƬ�߷Ŵ�ı���
+        int viewX;
+        int viewY;
+        int viewW;
+        int viewH;
+
+        if(magniscaleW < magniscaleH) { // ģ��ͼƬ�������ʾͼƬ��view�Ͽ�
+            double temp = (photoHeight - imgH * magniscaleW) / 2;
+            viewX = (int) (magniscaleW * 68.0);
+            viewY = (int) (61.0 * magniscaleW + temp + dpTopx(25)); // TODO
+            Log.i("height", temp + " " + screenHeight + " " + photoHeight + " " + magniscaleW);
+            viewW = (int) (magniscaleW * 583.0);
+            viewH = viewW;
+        } else {
+            viewX = 0;
+            viewY = 0;
+            viewW = 0;
+            viewH = 0;
+        }
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(viewW, viewH);
+        params.setMargins(viewX, viewY, 0, 0);
+        photoView.setLayoutParams(params);
+    }
+
+    /**
+     * ��dip��dpֵת��Ϊpxֵ����֤�ߴ��С����
+     * @param dipValue
+     * @return
+     */
+    public int dpTopx(float dipValue) {
+        float scale = this.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
+
+    /**
+     * Ԥ��ͼ�Ƿ��
      */
     private boolean previewOn = false;
 
@@ -120,8 +181,10 @@ public class MakeActivity extends Activity {
     public void selectPhotoListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, SelectPhotoActivity.class);
-        this.startActivity(intent);
+        intent.putExtra("type", "camera");
+        this.startActivityForResult(intent, 1);
     }
+
 
     /**
      * 返回主菜单监听
@@ -134,4 +197,99 @@ public class MakeActivity extends Activity {
         //设置切换动画，从左边进入，右边退出
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
     }
+    /**
+     * �˾��İ�ť�ļ���
+     * @param view
+     */
+    public void filterListener(View view) {
+        Intent intent = new Intent();
+        intent.setClass(this, FilterActivity.class);
+        this.startActivity(intent);
+    }
+
+    /**
+     * ���水ť�ļ���
+     * @param view
+     */
+    public void saveListener(View view) {
+
+    }
+
+    /**
+     * �ü���ť�ļ���
+     * @param view
+     */
+    public void cropListener(View view) {
+        if(picPath!=null) {
+            Intent intent = new Intent();
+            intent.setClass(this, CropPicActivity.class);
+            this.startActivityForResult(intent, 0);
+        }
+        else{
+            Toast.makeText(this, "没有导入图片", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==1) {
+            ImageView mImageView = (ImageView) findViewById(R.id.photoView);
+            byte[] b = data.getByteArrayExtra("bitmap");
+            Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+            if (bitmap != null) {
+
+                mImageView.setImageBitmap(bitmap);
+            }
+        }
+        if(resultCode==2){
+            Log.e("back", "back to make");
+            picPath = data.getStringExtra("bitmap");
+            Uri uri = Uri.parse(data.getStringExtra("bitmap"));
+            Bitmap bit = decodeUriAsBitmap(uri);
+            ImageView mImageView = (ImageView) findViewById(R.id.photoView);
+            mImageView.setImageBitmap(bit);
+        }
+
+
+    }
+
+    private Bitmap decodeUriAsBitmap(Uri uri) {
+        Bitmap bitmap = null;
+        try {
+            bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return bitmap;
+    }
+
+    /**
+     * ��ͼ��ť����
+     * @param view
+     */
+    public void pasterListener(View view) {
+
+    }
+
+    /**
+     * ���ѡ�ť����
+     * @param view
+     */
+    public void selectListener(View view) {
+        Intent intent = new Intent();
+        intent.setClass(this, OptionActivity.class);
+        this.startActivity(intent);
+    }
+
+    /**
+     * �½���ť����
+     * @param view
+     */
+    public void newScreenListener(View view) {
+
+    }
+
 }
+
