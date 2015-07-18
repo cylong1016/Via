@@ -1,5 +1,7 @@
 package njuse.via.blservice;
 
+import java.util.ArrayList;
+
 import njuse.via.po.Screen;
 import njuse.via.po.ScreenSet;
 
@@ -55,8 +57,22 @@ public interface MakeBLService {
     Screen update(int loc, Screen screen);
 
     /**
-     * @return 制作好的一个作品
+     * @return 当前制作好的一个作品
      */
     ScreenSet readMakeRes();
+
+
+    /**
+     * 按作品名读取制作的已经序列化保存的数据
+     *
+     * @return ScreenSet
+     */
+    ScreenSet getMakeResource(String fileName);
+    /**
+     * 读取制作的已经序列化保存的所有数据
+     *
+     * @return ArrayList<ScreenSet>
+     */
+    ArrayList<ScreenSet> getAllMakeRes();
 
 }

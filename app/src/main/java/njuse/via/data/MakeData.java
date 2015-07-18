@@ -37,7 +37,7 @@ public class MakeData implements MakeDataService {
                 e.printStackTrace();
             }
         }
-
+        list.setWorkName(fileName);
         String path=dirpath+"/"+fileName+".out";
         serialize2SDcard(list,path);
 
