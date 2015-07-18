@@ -23,7 +23,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * 制作界面
@@ -237,13 +240,14 @@ public class MakeActivity extends Activity {
             ImageView mImageView = (ImageView) findViewById(R.id.photoView);
             byte[] b = data.getByteArrayExtra("bitmap");
             Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+
             if (bitmap != null) {
 
                 mImageView.setImageBitmap(bitmap);
             }
         }
         if(resultCode==2){
-            Log.e("back", "back to make");
+            //Log.e("back", "back to make");
             picPath = data.getStringExtra("bitmap");
             Uri uri = Uri.parse(data.getStringExtra("bitmap"));
             Bitmap bit = decodeUriAsBitmap(uri);
@@ -290,6 +294,8 @@ public class MakeActivity extends Activity {
     public void newScreenListener(View view) {
 
     }
+
+
 
 }
 
