@@ -4,12 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.net.Uri;
-import android.graphics.Color;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -40,7 +34,7 @@ public class MakeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make);
-        getScreenInfo(); // �����Ļ��Ϣ
+        getScreenInfo(); // �����Ļ���?
         initTextEditSize(); // ��ʼ��������λ�úʹ�С
         initPhotoViewSize(); // ��ʼ����ʾͼƬ��view��λ�úʹ�С
     }
@@ -68,7 +62,7 @@ public class MakeActivity extends Activity {
     }
 
     private void getScreenInfo() {
-        /* ��ȡ��Ļ��� */
+        /* ��ȡ��Ļ���? */
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         screenWidth = dm.widthPixels;
@@ -81,8 +75,8 @@ public class MakeActivity extends Activity {
     private void initTextEditSize() {
         double imgH = 850.0;
         double imgW = 720.0;
-        double magniscale = screenWidth / imgW; // ͼƬ�Ŵ�ı���
-        int photoHeight = (int) (screenHeight * 17.0 / 23); // װ��ͼƬ����ĸ�
+        double magniscale = screenWidth / imgW; // ͼƬ�Ŵ�ı���?
+        int photoHeight = (int) (screenHeight * 17.0 / 23); // װ��ͼƬ����ĸ�?
 
         EditText explainEdit = (EditText) findViewById(R.id.explain); // ����������ֵ����
         int explainX = (int) (magniscale * 68.0);
@@ -95,16 +89,16 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ��ʼ����ʾͼƬ�����λ��
+     * ��ʼ����ʾͼƬ�����λ��?
      */
     public void initPhotoViewSize() {
         ImageView photoView = (ImageView) findViewById(R.id.photoView); // �����ʾͼƬ��view
         double imgH = 850.0;
         double imgW = 720.0;
-        int photoHeight = (int) (screenHeight * 17.0 / 23); // װ��ͼƬ����ĸ�
+        int photoHeight = (int) (screenHeight * 17.0 / 23); // װ��ͼƬ����ĸ�?
 
         double magniscaleW = screenWidth / imgW; // ͼƬ��Ŵ�ı���
-        double magniscaleH = photoHeight / imgH; // ͼƬ�߷Ŵ�ı���
+        double magniscaleH = photoHeight / imgH; // ͼƬ�߷Ŵ�ı���?
         int viewX;
         int viewY;
         int viewW;
@@ -129,7 +123,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ��dip��dpֵת��Ϊpxֵ����֤�ߴ��С����
+     * ��dip��dpֵת��Ϊpxֵ����֤�ߴ��С����?
      * @param dipValue
      * @return
      */
@@ -139,13 +133,13 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * Ԥ��ͼ�Ƿ��
+     * Ԥ��ͼ�Ƿ��?
      */
     private boolean previewOn = false;
 
     public void previewListener(View view) {
         previewOn = !previewOn;
-        TextView preview = (TextView) findViewById(R.id.preview); // ��ȡԤ��ͼ���
+        TextView preview = (TextView) findViewById(R.id.preview); // ��ȡԤ��ͼ���?
         ImageView expend = (ImageView) findViewById(R.id.expand); // ��ȡ����ťͼƬ
 
         RelativeLayout.LayoutParams preParams =
@@ -194,7 +188,7 @@ public class MakeActivity extends Activity {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
         this.startActivity(intent);
-        //�����л�����������߽��룬�ұ��˳�
+        //�����л�����������߽��룬�ұ��˳�?
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
     }
     /**
@@ -274,7 +268,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ���ѡ�ť����
+     * ���ѡ�ť����?
      * @param view
      */
     public void selectListener(View view) {
