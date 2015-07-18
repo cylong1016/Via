@@ -56,24 +56,10 @@ public interface MakeBLService{
      */
     Screen update(int loc, Screen screen);
 
-    /**
-     * @return 当前制作好的一个作品
+    /**当前制作的一个作品
+     * @return Screenset
      */
-    ScreenSet readMakeRes();
-
-
-    /**
-     * 按作品名读取制作的已经序列化保存的数据
-     *
-     * @return ScreenSet
-     */
-    ScreenSet getMakeResource(String fileName);
-    /**
-     * 读取制作的已经序列化保存的所有数据
-     *
-     * @return ArrayList<ScreenSet>
-     */
-    ArrayList<ScreenSet> getAllMakeRes();
+    public ScreenSet getScreenSet();
 
     /**
      *
@@ -81,5 +67,11 @@ public interface MakeBLService{
      *需传入保存的文件名 fileName
      */
     public void  saveWork(String fileName);
+
+    public  Screen getNextScreen(int screen_id);            //获取当前幕的下一幕
+
+    public Screen getPreviousScreen(int screen_id);         //获取当前幕的下一幕
+
+    public  Screen getNewScreen();                          //获取一个新的幕，并添加到当前的作品中
 
 }

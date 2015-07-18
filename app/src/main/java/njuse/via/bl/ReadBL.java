@@ -3,6 +3,8 @@ package njuse.via.bl;
 import java.util.ArrayList;
 
 import njuse.via.blservice.ReadBLService;
+import njuse.via.data.MakeData;
+import njuse.via.dataservice.MakeDataService;
 import njuse.via.po.ScreenSet;
 
 /**
@@ -10,12 +12,14 @@ import njuse.via.po.ScreenSet;
  */
 class ReadBL implements ReadBLService{
     @Override
-    public ScreenSet getMakeResource(String fileName) {
-        return null;
+    public ScreenSet getMakeResource(String fileName){
+        MakeDataService mkd=new MakeData();
+        return mkd.readMakeRes(fileName);
     }
 
     @Override
-    public ArrayList<ScreenSet> getAllMakeRes() {
-        return null;
+    public ArrayList<ScreenSet> getAllMakeRes(){
+        MakeDataService mkd=new MakeData();
+        return mkd.readAllMakeRes();
     }
 }

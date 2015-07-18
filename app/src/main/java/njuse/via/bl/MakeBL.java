@@ -49,26 +49,29 @@ public class MakeBL implements MakeBLService {
     }
 
     @Override
-    public ScreenSet readMakeRes(){
+    public ScreenSet getScreenSet(){
         return screenList;
-    }
-
-    @Override
-    public ScreenSet getMakeResource(String fileName){
-        MakeDataService mkd=new MakeData();
-        return mkd.readMakeRes(fileName);
-    }
-
-    @Override
-    public ArrayList<ScreenSet> getAllMakeRes(){
-        MakeDataService mkd=new MakeData();
-        return mkd.readAllMakeRes();
     }
 
     @Override
     public void saveWork(String fileName) {
         MakeDataService mkd=new MakeData();
         mkd.saveMakeRes(screenList,fileName);
+    }
+
+    @Override
+    public Screen getNextScreen(int screen_id) {
+        return screenList.getNextScreen(screen_id);
+    }
+
+    @Override
+    public Screen getPreviousScreen(int screen_id) {
+        return screenList.getBeforeScreen(screen_id);
+    }
+
+    @Override
+    public Screen getNewScreen() {
+        return screenList.getNewScreen();
     }
 
 }

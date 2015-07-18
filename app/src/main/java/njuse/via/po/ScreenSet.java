@@ -7,9 +7,10 @@ import java.util.LinkedList;
  * Created by zucewei on 2015/7/16.
  */
 public class ScreenSet implements Serializable {
-    private LinkedList<Screen> screenList = new LinkedList<>();
-    private int templateID;                    //Ä£°åµÄid£¬±íÊ¾Ê¹ÓÃÑ¡ÖĞµÄÄ£°å
-    private String workName;                    //×÷Æ·µÄÃû³Æ£¬ÓÃÓÚÇø·Ö²»Í¬×÷Æ·
+    int num=0;
+    private LinkedList<Screen> screenList = new LinkedList<>(); //ä½œå“çš„æ¯ä¸€å¹•ä¿¡æ¯
+    private int templateID;                                      //è¿™ä¸€å¥—ä½œå“ä½¿ç”¨çš„æ¨¡æ¿å·
+    private String workName;                                      //åˆ¶ä½œçš„ä½œå“åç§°
 
 
     public  ScreenSet(int templateID){
@@ -21,6 +22,37 @@ public class ScreenSet implements Serializable {
     public int getTemplateID(){
         return templateID;
     }
+
+    public boolean insert(Screen screen) {
+        return screenList.add(screen);
+    }
+
+
+    public void insert(int loc, Screen screen) {
+        screenList.add(loc, screen);
+    }
+
+
+    public Screen remove(int loc) {
+        return screenList.remove(loc);
+    }
+
+    public Screen getNewScreen(){
+        num++;
+        Screen screen=new Screen(num);
+        screenList.add(screen);
+        return screen;
+    }
+
+    public boolean remove(Screen screen) {
+        return screenList.remove(screen);
+    }
+
+
+    public Screen update(int loc, Screen screen) {
+        return screenList.set(loc, screen);
+    }
+
     public void setWorkName(String name){
         this.workName=name;
     }
@@ -33,4 +65,24 @@ public class ScreenSet implements Serializable {
     public LinkedList<Screen> getScreenList(){
         return screenList;
     }
+
+    public Screen getBeforeScreen(int id){
+        for(int i=screenList.size();i>=0;i--){
+            if(i!=0&&screenList.get(i).getID()==id){
+                return screenList.get(i-1);
+            }
+        }
+        return null;//å½“æ‰¾ä¸åˆ°çš„æ—¶å€™ï¼Œç›´æ¥è¿”å›null
+    }
+
+    public Screen getNextScreen(int id){
+        int max=screenList.size();
+        for(int i=0;i<max;i++){
+            if(i!=(max-1)&&screenList.get(i).getID()==id){
+                return screenList.get(i+1);
+            }
+        }
+        return null;
+    }
+
 }

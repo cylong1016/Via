@@ -27,7 +27,11 @@ public class Screen implements Serializable {
 
     private Option option;
 
-
+    public Screen(){}
+    public  Screen(int id){
+            this.ID=id;
+            this.screenEnum=ScreenEnum.NORMAL;
+    }
     public Screen(ScreenEnum screenEnum) {
         this.screenEnum = screenEnum;
         if (!(screenEnum==ScreenEnum.OPTION)){

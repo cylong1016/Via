@@ -13,6 +13,7 @@ import java.util.LinkedList;
  */
 
 public class Option implements Serializable {
+
     private LinkedList<OptionItem> optionList = new LinkedList<>();
 
     public void insert(OptionItem item){
@@ -70,6 +71,15 @@ public class Option implements Serializable {
 
     public  int getItemLength(){
         return optionList.size();
+    }
+
+    public int getTrueLocation(){
+        for(int i=0;i<optionList.size();i++) {
+            if (optionList.get(i).getValue() == true) {
+                return (1 + i);
+            }
+        }
+        return 0;   ///当没有正确选项的情况下就返回 0
     }
 
 //    @Override
