@@ -9,10 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import njuse.via.R;
 import njuse.via.crop.ClipImageLayout;
@@ -61,9 +57,6 @@ public class CropPicActivity extends Activity{
     public void cropPic(View v){
         Bitmap bitmap = mClipImageLayout.clip();
 
-        saveMyBitmap(bitmap);
-
-
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] datas = baos.toByteArray();
@@ -74,40 +67,4 @@ public class CropPicActivity extends Activity{
         finish();
     }
 
-
-    private void saveMyBitmap(Bitmap mBitmap)  {
-        //Log.e("myuri",bitName);
-        String temp = MakeActivity.picPath;
-
-        String[] arr = temp.split("/");
-        temp = arr[arr.length-1];
-        String bitName = temp;
-        File f = new File( "/sdcard/Android/Via/crop/"+bitName);
-        File file = new File("/sdcard/Android/Via/crop");
-        FileOutputStream fOut = null;
-
-        if(!file.exists()){
-            try {
-                file.mkdirs();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-        }
-        try {
-            fOut = new FileOutputStream(f);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
-        try {
-            fOut.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            fOut.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

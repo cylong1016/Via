@@ -34,8 +34,8 @@ public class PicChooseActivity extends Activity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String path  = "file:///sdcard/Android/Via/original/";
-        String dirpath = "/sdcard/Android/Via/original";
+        String path  = "file:///sdcard/Android/Via/";
+        String dirpath = "/sdcard/Android/Via";
         //创建文件夹
         File file = new File(dirpath);
         if(!file.exists()){
@@ -85,6 +85,15 @@ public class PicChooseActivity extends Activity{
         super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode){
             case CAMERA:
+                //cutpicture(uri,300,300,CROP_PIC);
+
+
+
+//
+//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//                byte[] datas = baos.toByteArray();
+
 //                Bundle bundle = data.getExtras();
 //                Bitmap bitmap = (Bitmap)bundle.get("data");
 
@@ -94,11 +103,12 @@ public class PicChooseActivity extends Activity{
 
                 String temp[] = camerauri.toString().split("/");
                 String bitname = temp[temp.length-1];
+                bitname = bitname.split("\\.")[0];
                 saveMyBitmap(bitmap,bitname);
 
                 Intent intent = new Intent();
                 intent.setClass(this,MakeActivity.class);
-                intent.putExtra("bitmap", uri);
+                intent.putExtra("bitmap", camerauri.toString());
                 setResult(10, intent);
                 Log.e("putextra","put data");
                 finish();
@@ -107,12 +117,12 @@ public class PicChooseActivity extends Activity{
                 //cutpicture(uri,300,300,CROP_PIC);
                 Uri tempuri = data.getData();
 
-                Log.e("hi",tempuri.toString());
-
+                Log.e("tempuri",tempuri.toString());
+                
                 Bitmap bitmap1 = decodeUriAsBitmap(tempuri);
-
                 String temp1[] = tempuri.toString().split("/");
-                bitname = temp1[temp1.length-1].replace("%3A","_")+".jpg";
+                bitname = temp1[temp1.length-1];
+                bitname = bitname.split("\\.")[0];
                 saveMyBitmap(bitmap1,bitname);
 
 
@@ -132,21 +142,10 @@ public class PicChooseActivity extends Activity{
     }
 
     private void saveMyBitmap(Bitmap mBitmap,String bitName)  {
-
-        File f = new File( "/sdcard/Android/Via/copy/"+bitName);
-        File file = new File("/sdcard/Android/Via/copy");
-        uri = "file:///sdcard/Android/Via/copy/"+bitName;
+        Log.e("myuri",bitName);
+        File f = new File( "/sdcard/Android/Via/"+bitName + "_copy.jpg");
+        uri = "file:///sdcard/Android/Via/"+bitName + "_copy.jpg";
         FileOutputStream fOut = null;
-
-        if(!file.exists()){
-            try {
-                file.mkdirs();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-        }
-
-
         try {
             fOut = new FileOutputStream(f);
         } catch (FileNotFoundException e) {
@@ -178,6 +177,27 @@ public class PicChooseActivity extends Activity{
         return bitmap;
     }
 
+    //裁剪
+    private void cutpicture(Uri uri,int outputX,int outputY,int requestCode){
+        //调用API
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        //设置裁剪参数
+        intent.setDataAndType(uri, "image/*");
+        intent.putExtra("crop", "true");
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        //输出参数
+        intent.putExtra("outputX", outputX);
+        intent.putExtra("outputY", outputY);
+        intent.putExtra("scale", true);
+        //输出到uri
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        intent.putExtra("return-data", false);
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+        intent.putExtra("noFaceDetection", true); // no face detection
+        //返回结果
+        startActivityForResult(intent, requestCode);
+    }
 
 
 
