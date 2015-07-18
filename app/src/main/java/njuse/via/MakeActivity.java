@@ -1,4 +1,4 @@
-package njuse.via;
+ï»¿package njuse.via;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
- * ÖÆ×÷½çÃæ
+ * åˆ¶ä½œç•Œé¢
  * Created by cylong on 2015-07-09
  */
 public class MakeActivity extends Activity {
@@ -25,8 +25,8 @@ public class MakeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make);
-        getScreenInfo(); // »ñµÃÆÁÄ»ĞÅÏ¢
-        initComponent(); // ³õÊ¼»¯²¿·Ö×é¼şµÄÎ»ÖÃ
+        getScreenInfo(); // è·å¾—å±å¹•ä¿¡æ¯
+        initComponent(); // åˆå§‹åŒ–éƒ¨åˆ†ç»„ä»¶çš„ä½ç½®
     }
 
     @Override
@@ -51,7 +51,7 @@ public class MakeActivity extends Activity {
     }
 
     private void getScreenInfo() {
-        /* »ñÈ¡ÆÁÄ»¿í¸ß */
+        /* è·å–å±å¹•å®½é«˜ */
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         screenWidth = dm.widthPixels;
@@ -59,13 +59,13 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ³õÊ¼»¯²¿·Ö×é¼şµÄÎ»ÖÃ
+     * åˆå§‹åŒ–éƒ¨åˆ†ç»„ä»¶çš„ä½ç½®
      */
     private void initComponent() {
 
-        int photoHeight = (int) (screenHeight * 17.0 / 23); // ×°ÔØÍ¼Æ¬×é¼şµÄ¸ß
+        int photoHeight = (int) (screenHeight * 17.0 / 23); // è£…è½½å›¾ç‰‡ç»„ä»¶çš„é«˜
 
-        EditText explainEdit = (EditText) findViewById(R.id.explain); // »ñµÃÊäÈëÎÄ×ÖµÄ×é¼ş
+        EditText explainEdit = (EditText) findViewById(R.id.explain); // è·å¾—è¾“å…¥æ–‡å­—çš„ç»„ä»¶
         int imgH = 850;
         int imgW = 720;
         int explainX = (int) (screenWidth * (31.0 / imgW));
@@ -78,14 +78,14 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * Ô¤ÀÀÍ¼ÊÇ·ñ´ò¿ª
+     * é¢„è§ˆå›¾æ˜¯å¦æ‰“å¼€
      */
     private boolean previewOn = false;
 
     public void previewListener(View view) {
         previewOn = !previewOn;
-        TextView preview = (TextView) findViewById(R.id.preview); // »ñÈ¡Ô¤ÀÀÍ¼×é¼ş
-        ImageView expend = (ImageView) findViewById(R.id.expand); // »ñÈ¡À©´ó°´Å¥Í¼Æ¬
+        TextView preview = (TextView) findViewById(R.id.preview); // è·å–é¢„è§ˆå›¾ç»„ä»¶
+        ImageView expend = (ImageView) findViewById(R.id.expand); // è·å–æ‰©å¤§æŒ‰é’®å›¾ç‰‡
 
         RelativeLayout.LayoutParams preParams =
                 new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 0);
@@ -114,7 +114,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * Ñ¡ÔñÍ¼Æ¬¼àÌı
+     * é€‰æ‹©å›¾ç‰‡ç›‘å¬
      * @param view
      */
     public void selectPhotoListener(View view) {
@@ -124,14 +124,14 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ·µ»ØÖ÷²Ëµ¥¼àÌı
+     * è¿”å›ä¸»èœå•ç›‘å¬
      * @param view
      */
     public void backToMainListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
         this.startActivity(intent);
-        //ÉèÖÃÇĞ»»¶¯»­£¬´Ó×ó±ß½øÈë£¬ÓÒ±ßÍË³ö
+        //è®¾ç½®åˆ‡æ¢åŠ¨ç”»ï¼Œä»å·¦è¾¹è¿›å…¥ï¼Œå³è¾¹é€€å‡º
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
     }
 }
