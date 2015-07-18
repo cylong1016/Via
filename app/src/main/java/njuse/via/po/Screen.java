@@ -64,7 +64,6 @@ public class Screen implements Serializable {
     }
 
     public void setOption(Option option){
-
         if(option==null){
             screenEnum = ScreenEnum.NORMAL;
             this.option=null;
