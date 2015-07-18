@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Lf on 2015/7/17.
@@ -56,10 +57,6 @@ public class OptionActivity extends Activity {
         but.setBackgroundResource(R.drawable.btn_choose_selector);
     }
 
-    /**
-     * ������ť�ĵ������
-     * @param view
-     */
     public void cancelOptionBtnListener(View view) {
         this.finish();
     }
@@ -73,6 +70,39 @@ public class OptionActivity extends Activity {
         Button but2=(Button) findViewById(R.id.btn_option2);
         Button but3=(Button) findViewById(R.id.btn_option3);
         Button but4=(Button) findViewById(R.id.btn_option4);
+
+        if(view.getId()==true_id){
+            Toast.makeText(getApplicationContext(), R.string.del_err_inf,
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        switch (note){
+            case R.id.btn_option1_del1:
+                if(true_id==but1.getId()){
+                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
+                            Toast.LENGTH_SHORT).show();
+                    return ;
+                }
+            case R.id.btn_option1_del2:
+                if(true_id==but2.getId()){
+                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
+                            Toast.LENGTH_SHORT).show();
+                    return ;
+                }
+            case R.id.btn_option1_del3:
+                if(true_id==but3.getId()){
+                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
+                            Toast.LENGTH_SHORT).show();
+                    return ;
+                }
+            case R.id.btn_option1_del4:
+                if(true_id==but4.getId()){
+                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
+                            Toast.LENGTH_SHORT).show();
+                    return ;
+                }
+        }
+
         switch(note){
             case R.id.btn_option1_del1:
                 but1.setText(but2.getText());
@@ -81,8 +111,10 @@ public class OptionActivity extends Activity {
                     but2.setBackgroundResource(R.drawable.btn_selector);
                     true_id=but1.getId();
                 }else if(true_id==but1.getId()){
-                    but1.setBackgroundResource(R.drawable.btn_selector);
-                    true_id=0;
+                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
+                            Toast.LENGTH_SHORT).show();
+//                    but1.setBackgroundResource(R.drawable.btn_selector);
+//                    true_id=0;
                 }
             case R.id.btn_option1_del2:
                 but2.setText(but3.getText());
@@ -91,8 +123,10 @@ public class OptionActivity extends Activity {
                     but3.setBackgroundResource(R.drawable.btn_selector);
                     true_id=but2.getId();
                 }else if(true_id==but2.getId()){
-                    but2.setBackgroundResource(R.drawable.btn_selector);
-                    true_id=0;
+                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
+                            Toast.LENGTH_SHORT).show();
+//                    but2.setBackgroundResource(R.drawable.btn_selector);
+//                    true_id=0;
                 }
             case R.id.btn_option1_del3:
                 but3.setText(but4.getText());
@@ -101,10 +135,18 @@ public class OptionActivity extends Activity {
                     but4.setBackgroundResource(R.drawable.btn_selector);
                     true_id=but3.getId();
                 }else if(true_id==but3.getId()){
-                    but3.setBackgroundResource(R.drawable.btn_selector);
-                    true_id=0;
+                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
+                            Toast.LENGTH_SHORT).show();
+//                    but3.setBackgroundResource(R.drawable.btn_selector);
+//                    true_id=0;
+                }
+            case R.id.btn_option1_del4:
+                if(true_id==but4.getId()){
+                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
+                            Toast.LENGTH_SHORT).show();
                 }
         }
+
         switch(button_show_number){
             case 1:findViewById(R.id.option1_layout).setVisibility(View.GONE);break;
             case 2:findViewById(R.id.option2_layout).setVisibility(View.GONE);break;
@@ -171,25 +213,25 @@ public class OptionActivity extends Activity {
         switch(button_show_number){
             case 1:
                 Button but1=(Button)findViewById(R.id.btn_option1);
-                but1.setText(R.string.option1);
+                but1.setText(R.string.new_option);
                 but1.setBackgroundResource(R.drawable.btn_selector);
                 findViewById(R.id.option1_layout).setVisibility(View.VISIBLE);
                 break;
             case 2:
                 Button but2=(Button)findViewById(R.id.btn_option2);
-                but2.setText(R.string.option2);
+                but2.setText(R.string.new_option);
                 but2.setBackgroundResource(R.drawable.btn_selector);
                 findViewById(R.id.option2_layout).setVisibility(View.VISIBLE);
                 break;
             case 3:
                 Button but3=(Button)findViewById(R.id.btn_option3);
-                but3.setText(R.string.option3);
+                but3.setText(R.string.new_option);
                 but3.setBackgroundResource(R.drawable.btn_selector);
                 findViewById(R.id.option3_layout).setVisibility(View.VISIBLE);
                 break;
             case 4:
                 Button but4=(Button)findViewById(R.id.btn_option4);
-                but4.setText(R.string.option4);
+                but4.setText(R.string.new_option);
                 but4.setBackgroundResource(R.drawable.btn_selector);
                 findViewById(R.id.option4_layout).setVisibility(View.VISIBLE);
                 break;
@@ -202,6 +244,9 @@ public class OptionActivity extends Activity {
     private class OptionButtonListener implements View.OnClickListener, View.OnLongClickListener {
 
         public void onClick(View view){
+
+            setEditTextGone();
+
             view.setVisibility(View.GONE);
             Button but=(Button) view;
             // 接受软键盘输入的编辑文本或其它视图
