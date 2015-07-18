@@ -28,6 +28,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import njuse.via.bl.MakeBL;
+import njuse.via.blservice.MakeBLService;
+import njuse.via.po.Screen;
+import njuse.via.po.ScreenEnum;
+
 /**
  * 制作界面
  * Created by cylong on 2015-07-09
@@ -38,6 +43,7 @@ public class MakeActivity extends Activity {
     public static String picPath = null;
     private int screenWidth;
     private int screenHeight;
+    private static MakeBLService makeBL = new MakeBL();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -292,7 +298,18 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void newScreenListener(View view) {
+        // 保存当前幕
+        Screen screen = new Screen(ScreenEnum.NORMAL);
+        EditText edit = (EditText) findViewById(R.id.explain);
+        String text = edit.getText().toString(); // 获得用户输入的文本
+        screen.setText(text);
 
+        // 获得文本图片的url
+        // 获得选项
+
+        makeBL.insert(screen);
+
+        // 新建一幕
     }
 
 

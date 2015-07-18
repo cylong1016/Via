@@ -76,7 +76,8 @@ public class FilterActivity extends Activity {
      * 无效果，返回原图
      */
     public void NoListener(View view) {
-        bmpDefaultPic = BitmapFactory.decodeFile(path + "/Pictures/108.g", null);
+//        bmpDefaultPic = BitmapFactory.decodeFile(path + "/Pictures/108.g", null);
+        bmpDefaultPic = BitmapFactory.decodeResource(getResources(), R.drawable.filter);
         iv.setImageBitmap(bmpDefaultPic);
     }
 

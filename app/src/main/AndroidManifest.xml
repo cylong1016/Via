@@ -49,8 +49,7 @@
         </activity>
         <activity
             android:name=".FilterActivity"
-            android:label="@string/title_activity_filter"
-            android:theme="@style/ActivityPopup">
+            android:label="@string/title_activity_filter">
         </activity>
         <activity
             android:name=".OptionActivity"
