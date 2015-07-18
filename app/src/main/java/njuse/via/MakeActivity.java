@@ -26,7 +26,7 @@ import android.widget.Toast;
 import java.io.FileNotFoundException;
 
 /**
- * ��������
+ * 制作界面
  * Created by cylong on 2015-07-09
  */
 public class MakeActivity extends Activity {
@@ -40,9 +40,9 @@ public class MakeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make);
-        getScreenInfo(); // �����Ļ��Ϣ
-        initTextEditSize(); // ��ʼ��������λ�úʹ�С
-        initPhotoViewSize(); // ��ʼ����ʾͼƬ��view��λ�úʹ�С
+        getScreenInfo(); // 获得屏幕信息
+        initTextEditSize();
+        initPhotoViewSize();
     }
 
 
@@ -68,7 +68,7 @@ public class MakeActivity extends Activity {
     }
 
     private void getScreenInfo() {
-        /* ��ȡ��Ļ��� */
+        /* 获取屏幕宽高 */
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         screenWidth = dm.widthPixels;
@@ -76,15 +76,15 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ��ʼ��������λ��
+     * 初始化部分组件的位置
      */
     private void initTextEditSize() {
         double imgH = 850.0;
         double imgW = 720.0;
-        double magniscale = screenWidth / imgW; // ͼƬ�Ŵ�ı���
-        int photoHeight = (int) (screenHeight * 17.0 / 23); // װ��ͼƬ����ĸ�
+        double magniscale = screenWidth / imgW;
+        int photoHeight = (int) (screenHeight * 17.0 / 23);
 
-        EditText explainEdit = (EditText) findViewById(R.id.explain); // ����������ֵ����
+        EditText explainEdit = (EditText) findViewById(R.id.explain); // 获得输入文字的组件
         int explainX = (int) (magniscale * 68.0);
         int explainY = (int) (photoHeight * (672.0 / imgH));
         int explainW = (int) (magniscale * 583.0);
@@ -95,22 +95,22 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ��ʼ����ʾͼƬ�����λ��
+     * 预览图是否打开
      */
     public void initPhotoViewSize() {
-        ImageView photoView = (ImageView) findViewById(R.id.photoView); // �����ʾͼƬ��view
+        ImageView photoView = (ImageView) findViewById(R.id.photoView); // 显示图片的view
         double imgH = 850.0;
         double imgW = 720.0;
-        int photoHeight = (int) (screenHeight * 17.0 / 23); // װ��ͼƬ����ĸ�
+        int photoHeight = (int) (screenHeight * 17.0 / 23); // 显示图片组件的高
 
-        double magniscaleW = screenWidth / imgW; // ͼƬ��Ŵ�ı���
-        double magniscaleH = photoHeight / imgH; // ͼƬ�߷Ŵ�ı���
+        double magniscaleW = screenWidth / imgW; // 宽缩放的比例
+        double magniscaleH = photoHeight / imgH; // 高缩放比例
         int viewX;
         int viewY;
         int viewW;
         int viewH;
 
-        if(magniscaleW < magniscaleH) { // ģ��ͼƬ�������ʾͼƬ��view�Ͽ�
+        if(magniscaleW < magniscaleH) { // 图片相对于显示图片的view较宽
             double temp = (photoHeight - imgH * magniscaleW) / 2;
             viewX = (int) (magniscaleW * 68.0);
             viewY = (int) (61.0 * magniscaleW + temp + dpTopx(25)); // TODO
@@ -129,7 +129,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ��dip��dpֵת��Ϊpxֵ����֤�ߴ��С����
+     * dp转化成px
      * @param dipValue
      * @return
      */
@@ -139,14 +139,14 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * Ԥ��ͼ�Ƿ��
+     * 预览图是否打开
      */
     private boolean previewOn = false;
 
     public void previewListener(View view) {
         previewOn = !previewOn;
-        TextView preview = (TextView) findViewById(R.id.preview); // ��ȡԤ��ͼ���
-        ImageView expend = (ImageView) findViewById(R.id.expand); // ��ȡ����ťͼƬ
+        TextView preview = (TextView) findViewById(R.id.preview); // 获取预览图组件
+        ImageView expend = (ImageView) findViewById(R.id.expand); // 获取扩大按钮图片
 
         RelativeLayout.LayoutParams preParams =
                 new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 0);
@@ -175,7 +175,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ѡ��ͼƬ����
+     * 选择图片监听
      * @param view
      */
     public void selectPhotoListener(View view) {
@@ -187,18 +187,18 @@ public class MakeActivity extends Activity {
 
 
     /**
-     * �������˵�����
+     * 返回主菜单监听
      * @param view
      */
     public void backToMainListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
         this.startActivity(intent);
-        //�����л�����������߽��룬�ұ��˳�
+        //设置切换动画，从左边进入，右边退出
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
     }
     /**
-     * �˾��İ�ť�ļ���
+     * 滤镜按钮监听
      * @param view
      */
     public void filterListener(View view) {
@@ -208,7 +208,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ���水ť�ļ���
+     * 保存按钮监听
      * @param view
      */
     public void saveListener(View view) {
@@ -216,7 +216,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * �ü���ť�ļ���
+     * 裁剪按钮监听
      * @param view
      */
     public void cropListener(View view) {
@@ -266,7 +266,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ��ͼ��ť����
+     * 贴图按钮监听
      * @param view
      */
     public void pasterListener(View view) {
@@ -274,7 +274,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * ���ѡ�ť����
+     * 选项按钮监听
      * @param view
      */
     public void selectListener(View view) {
@@ -284,7 +284,7 @@ public class MakeActivity extends Activity {
     }
 
     /**
-     * �½���ť����
+     * 新增 一幕监听
      * @param view
      */
     public void newScreenListener(View view) {
