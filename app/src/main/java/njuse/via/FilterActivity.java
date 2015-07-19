@@ -205,7 +205,7 @@ public class FilterActivity extends Activity {
     public void ensureFilter(View view) throws IOException{
         Intent intent = new Intent();
         intent.setClass(this, MakeActivity.class);
-        this.startActivity(intent);
+        this.startActivityForResult(intent,16);
         new Thread() { // ��ֹ�л�����
             public void run() {
                 try {
@@ -220,8 +220,6 @@ public class FilterActivity extends Activity {
         }.start();
         setResult(RESULT_CANCELED, null);
         finish();
-        MakeActivity activity = new MakeActivity();
-        activity.setImgAfterFilter();
     }
 
     public void saveMyBitmap(String tempUrl,Bitmap bmpTemp) throws IOException {
