@@ -84,8 +84,8 @@ public class CropPicActivity extends Activity{
         String[] arr = temp.split("/");
         temp = arr[arr.length-1];
         String bitName = temp;
-        File f = new File( "/sdcard/Android/Via/crop/"+bitName);
-        File file = new File("/sdcard/Android/Via/crop");
+        File f = new File( "/sdcard/Via/crop/"+bitName);
+        File file = new File("/sdcard/Via/crop");
         FileOutputStream fOut = null;
 
         if(!file.exists()){

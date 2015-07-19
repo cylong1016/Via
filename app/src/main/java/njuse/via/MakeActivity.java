@@ -2,6 +2,7 @@ package njuse.via;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -18,9 +19,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
 
 import njuse.via.bl.MakeBL;
 import njuse.via.blservice.MakeBLService;
+
+import njuse.via.po.Screen;
+
 import njuse.via.po.Option;
 import njuse.via.po.Screen;
 
@@ -33,17 +40,18 @@ public class MakeActivity extends Activity {
 
     private int screenWidth;
     private int screenHeight;
-    private static MakeBLService makeBL = new MakeBL();
+    private int statusBarHeight;
+    private MakeBLService makeBL = new MakeBL();
 
     public Screen screen;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make);
         getScreenInfo(); // 获得屏幕信息
-        initTextEditSize();
-        initPhotoViewSize();
+        initPhotoViewLoc();
         screen=makeBL.getNewScreen();
     }
 
@@ -75,74 +83,85 @@ public class MakeActivity extends Activity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         screenWidth = dm.widthPixels;
         screenHeight = dm.heightPixels;
+
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            statusBarHeight = getResources().getDimensionPixelSize(resourceId);
+        }
     }
 
     /**
-     * 初始化部分组件的位置
+     * 初始化中间放图片和文字的的组件位置
      */
-    private void initTextEditSize() {
-        double imgH = 850.0;
-        double imgW = 720.0;
-        double magniscale = screenWidth / imgW;
-        int photoHeight = (int) (screenHeight * 17.0 / 23);
-
-        EditText explainEdit = (EditText) findViewById(R.id.explain); // 获得输入文字的组件
-        int explainX = (int) (magniscale * 68.0);
-        int explainY = (int) (photoHeight * (672.0 / imgH));
-        int explainW = (int) (magniscale * 583.0);
-        int explainH = (int) (explainW * (122.0 / 583.0));
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(explainW, explainH);
-        params.setMargins(explainX, explainY, 0, 0);
-        explainEdit.setLayoutParams(params);
-    }
-
-    /**
-     * 预览图是否打开
-     */
-    public void initPhotoViewSize() {
+    public void initPhotoViewLoc() {
         ImageView photoView = (ImageView) findViewById(R.id.photoView); // 显示图片的view
+        EditText explainEdit = (EditText) findViewById(R.id.explain); // 获得输入文字的组件
         double imgH = 850.0;
         double imgW = 720.0;
-        int photoHeight = (int) (screenHeight * 17.0 / 23); // 显示图片组件的高
+        int softHeight = screenHeight - statusBarHeight; // 去掉状态栏的高度
+        int photoHeight = (int) (softHeight * 17.0 / 23); // 显示图片组件的高
 
         double magniscaleW = screenWidth / imgW; // 宽缩放的比例
-        double magniscaleH = photoHeight / imgH; // 高缩放比例
+        double magniscaleH = softHeight / imgH; // 高缩放比例
         int viewX;
         int viewY;
         int viewW;
         int viewH;
 
+        int explainX;
+        int explainY;
+        int explainW;
+        int explainH;
+
         if(magniscaleW < magniscaleH) { // 图片相对于显示图片的view较宽
             double temp = (photoHeight - imgH * magniscaleW) / 2;
             viewX = (int) (magniscaleW * 68.0);
-            viewY = (int) (61.0 * magniscaleW + temp + dpTopx(25)); // TODO
-            Log.i("height", temp + " " + screenHeight + " " + photoHeight + " " + magniscaleW);
+            viewY = (int) (61.0 * magniscaleW + temp + dpTopx(28));
             viewW = (int) (magniscaleW * 583.0);
             viewH = viewW;
+
+            explainX = (int) (magniscaleW * 68.0);
+            explainY = (int) (672.0 * magniscaleW + temp + dpTopx(28));
+            explainW = (int) (magniscaleW * 583.0);
+            explainH = (int) (explainW * (122.0 / 583.0));
+            Log.i("height", explainX + " " + explainY + " " + explainW + " " + explainH);
         } else {
+            // TODO 横屏
             viewX = 0;
             viewY = 0;
             viewW = 0;
             viewH = 0;
+
+            explainX = 0;
+            explainY = 0;
+            explainW = 0;
+            explainH = 0;
         }
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(viewW, viewH);
-        params.setMargins(viewX, viewY, 0, 0);
-        photoView.setLayoutParams(params);
+        // 设置放置图片view的位置
+        RelativeLayout.LayoutParams paramsView = new RelativeLayout.LayoutParams(viewW, viewH);
+        paramsView.setMargins(viewX, viewY, 0, 0);
+        photoView.setLayoutParams(paramsView);
+        // 设置文字输入框的位置
+        RelativeLayout.LayoutParams paramsEdit = new RelativeLayout.LayoutParams(explainW, explainH);
+        paramsEdit.setMargins(explainX, explainY, 0, 0);
+        explainEdit.setLayoutParams(paramsEdit);
     }
 
     public void initScreen(){
         EditText edit=(EditText) findViewById(R.id.explain);
-        edit.setText(screen.getText());
+        String text = screen.getText();
+        edit.setText(text);
         ImageView img=(ImageView) findViewById(R.id.photoView);
         if(screen.getBackGroundURL()!=null){
             img.setImageURI(Uri.parse(screen.getBackGroundURL()));
         }else{
-
+            img.setImageResource(R.drawable.cat);
         }
     }
 
     /**
      * dp转化成px
+     *
      * @param dipValue
      * @return
      */
@@ -189,6 +208,7 @@ public class MakeActivity extends Activity {
 
     /**
      * 选择图片监听
+     *
      * @param view
      */
     public void selectPhotoListener(View view) {
@@ -201,6 +221,7 @@ public class MakeActivity extends Activity {
 
     /**
      * 返回主菜单监听
+     *
      * @param view
      */
     public void backToMainListener(View view) {
@@ -210,8 +231,10 @@ public class MakeActivity extends Activity {
         //设置切换动画，从左边进入，右边退出
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
     }
+
     /**
      * 滤镜按钮监听
+     *
      * @param view
      */
     public void filterListener(View view) {
@@ -223,26 +246,31 @@ public class MakeActivity extends Activity {
 
     /**
      * 保存按钮监听
+     *
      * @param view
      */
     public void saveListener(View view) {
-
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
+        String date = sDateFormat.format(new java.util.Date());
+        String workName="via_"+date;
+        makeBL.saveWork(workName);
+        Toast.makeText(this,"保存文件成功！",Toast.LENGTH_SHORT).show();
     }
 
     /**
      * 裁剪按钮监听
+     *
      * @param view
      */
     public void cropListener(View view) {
 //        if(screen.getBackGroundURL()!=null) {
         String path = screen.getBackGroundURL();
-        if(path!=null) {
+        if (path != null) {
             Intent intent = new Intent();
             intent.setClass(this, CropPicActivity.class);
-            intent.putExtra("path",path);
+            intent.putExtra("path", path);
             this.startActivityForResult(intent, 0);
-        }
-        else{
+        } else {
             Toast.makeText(this, "没有导入图片", Toast.LENGTH_SHORT).show();
         }
     }
@@ -250,7 +278,7 @@ public class MakeActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==1) {
+        if (resultCode == 1) {
             ImageView mImageView = (ImageView) findViewById(R.id.photoView);
             byte[] b = data.getByteArrayExtra("bitmap");
             Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
@@ -258,28 +286,46 @@ public class MakeActivity extends Activity {
             if (bitmap != null) {
 
                 mImageView.setImageBitmap(bitmap);
+                System.gc();
             }
-            String path = screen.getBackGroundURL().replace("copy","crop");
+            String path = screen.getBackGroundURL().replace("copy", "crop");
             screen.setBackGroundURL(path);
         }
-        if(resultCode==2){
+        if (resultCode == 2) {
             //Log.e("back", "back to make");
 //            screen.setBackGroundURL(data.getStringExtra("bitmap"));
-            String path = data.getStringExtra("bitmap");
+            String path = data.getStringExtra("path");
             screen.setBackGroundURL(path);
 
-            Uri uri = Uri.parse(data.getStringExtra("bitmap"));
-            Bitmap bit = decodeUriAsBitmap(uri);
             ImageView mImageView = (ImageView) findViewById(R.id.photoView);
-            mImageView.setImageBitmap(bit);
+            byte[] b = data.getByteArrayExtra("bitmap");
+            Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+
+            if (bitmap != null) {
+
+                mImageView.setImageBitmap(bitmap);
+                System.gc();
+            }
         }
-        if(resultCode==98){
-            Bundle b=data.getExtras();
+        if (resultCode == 98) {
+            Bundle b = data.getExtras();
             screen.setOption((Option) b.get("roption"));
         }
 
 
     }
+
+    /*
+    滤镜结束之后调用这个方法
+     */
+    private void setImgAfterFilter(){
+        Bitmap bitmap = decodeUriAsBitmap(Uri.parse(screen.getBackGroundURL()));
+        ImageView mImageView = (ImageView) findViewById(R.id.photoView);
+        if(bitmap!=null) {
+            mImageView.setImageBitmap(bitmap);
+        }
+    }
+
 
     private Bitmap decodeUriAsBitmap(Uri uri) {
         Bitmap bitmap = null;
@@ -318,23 +364,13 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void newScreenListener(View view) {
-        // 保存当前幕
-//        Screen screen = new Screen(ScreenEnum.NORMAL);
         EditText edit = (EditText) findViewById(R.id.explain);
         String text = edit.getText().toString(); // 获得用户输入的文本
         screen.setText(text);
-
-        // 获得文本图片的url
-        // 获得选项
-
-//        makeBL.insert(screen);
-
         // 新建一幕
+        screen = makeBL.getNewScreen();
+        initScreen();
     }
-
-
-
-
 
 }
 
