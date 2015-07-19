@@ -34,8 +34,8 @@ public class PicChooseActivity extends Activity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String path  = "file:///sdcard/Android/Via/original/";
-        String dirpath = "/sdcard/Android/Via/original";
+        String path  = "file:///sdcard/Via/original/";
+        String dirpath = "/sdcard/Via/original";
         //创建文件夹
         pc = new PicCompress();
         File file = new File(dirpath);
@@ -153,9 +153,9 @@ public class PicChooseActivity extends Activity{
 
     private void saveMyBitmap(Bitmap mBitmap,String bitName)  {
 
-        File f = new File( "/sdcard/Android/Via/copy/"+bitName);
-        File file = new File("/sdcard/Android/Via/copy");
-        uri = "file:///sdcard/Android/Via/copy/"+bitName;
+        File f = new File( "/sdcard/Via/copy/"+bitName);
+        File file = new File("/sdcard/Via/copy");
+        uri = "file:///sdcard/Via/copy/"+bitName;
         FileOutputStream fOut = null;
 
         if(!file.exists()){
