@@ -79,7 +79,7 @@
             android:id="@+id/photoView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFF000"
+            android:background="@android:color/darker_gray"
             android:layout_alignTop="@+id/template"
             android:layout_alignParentStart="true" />
 
