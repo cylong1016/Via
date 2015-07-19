@@ -2,7 +2,6 @@ package njuse.via;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -19,15 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 
 import njuse.via.bl.MakeBL;
 import njuse.via.blservice.MakeBLService;
-
-import njuse.via.po.Screen;
-
 import njuse.via.po.Option;
 import njuse.via.po.Screen;
 

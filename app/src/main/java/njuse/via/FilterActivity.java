@@ -221,9 +221,9 @@ public class FilterActivity extends Activity {
         finish();
     }
 
-    public void saveMyBitmap(String url) throws IOException {
+    public void saveMyBitmap(String tempUrl) throws IOException {
         String copyURL = url;
-        copyURL = copyURL.replace("original", url);
+        copyURL = copyURL.replace("original", tempUrl);
         File f = new File(copyURL);
         f.createNewFile();
         FileOutputStream fOut = null;
