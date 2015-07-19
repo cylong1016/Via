@@ -213,7 +213,9 @@ public class PicChooseActivity extends Activity{
     private Bitmap decodeUriAsBitmap(Uri uri) {
         Bitmap bitmap = null;
         try {
-            bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+            BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+            bitmapOptions.inSampleSize = 2;
+            bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri),null,bitmapOptions);
         } catch (FileNotFoundException e) {
             Log.e("error","unknown");
             e.printStackTrace();
