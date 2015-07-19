@@ -34,6 +34,7 @@
             android:scrollbars="none" >
 
             <LinearLayout
+                android:id="@+id/LinearFilter"
                 android:orientation="horizontal"
                 android:background="#30363A"
                 android:layout_width="@dimen/LinearComponentSize"

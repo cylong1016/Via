@@ -5,11 +5,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,22 +33,34 @@ public class FilterActivity extends Activity {
     private String filename = "D://108.jpg";
     private ImageView myImageView;
     private File path;
-    private Bitmap bmpDefaultPic = null,bitmap;
+    private Bitmap bmpDefaultPic = null,bitmap,cropDefault,cropBmp;
     private ImageView iv;
+    private String url;//原图的图片，original
+    private boolean isCrop = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
-
-        path = Environment.getExternalStorageDirectory() ; //���SDCardĿ¼
         iv = (ImageView)findViewById(R.id.photo);
-//        if(bmpDefaultPic==null) {
-//            bmpDefaultPic = BitmapFactory.decodeFile(path + "/Pictures/108.jpg", null);
-        bmpDefaultPic = BitmapFactory.decodeResource(getResources(), R.drawable.filter);
+        url = getIntent().getStringExtra("path");
+        bmpDefaultPic = BitmapFactory.decodeFile(url);
+
+        LinearLayout layout = (LinearLayout) findViewById(R.id.entirety);
+        TextView tx = new TextView(this);
+        tx.setText(url);
+        layout.addView(tx, 0);
+
         bitmap = bmpDefaultPic;
-//        }
         iv.setImageBitmap(bmpDefaultPic);
+        if(url.contentEquals("crop")) {
+            cropDefault = BitmapFactory.decodeFile(url);
+            cropBmp = cropDefault;
+            isCrop = true;
+            url = url.replace("crop","original");
+        }else if(url.contentEquals("copy")) {
+            url = url.replace("copy","original");
+        }
     }
 
     @Override
@@ -77,65 +90,111 @@ public class FilterActivity extends Activity {
      * ��Ч��������ԭͼ
      */
     public void NoListener(View view) {
-//        bmpDefaultPic = BitmapFactory.decodeFile(path + "/Pictures/108.g", null);
         bitmap = bmpDefaultPic;
         iv.setImageBitmap(bitmap);
+        if(isCrop) {
+            cropBmp = cropDefault;
+        }
     }
 
     public void IceListener(View view) {
         IceFilter filter = new IceFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
+        if(isCrop) {
+            IceFilter filter_Crop = new IceFilter(cropDefault);
+            cropBmp = filter_Crop.imageProcess().getDstBitmap();
+        }
     }
     public void MoltenListener(View view) {
         MoltenFilter filter = new MoltenFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
+        if(isCrop) {
+            MoltenFilter filter_Crop = new MoltenFilter(cropDefault);
+            cropBmp = filter_Crop.imageProcess().getDstBitmap();
+        }
     }
     public void ComicListener(View view) {
         ComicFilter filter = new ComicFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
+        if(isCrop) {
+            ComicFilter filter_Crop = new ComicFilter(cropDefault);
+            cropBmp = filter_Crop.imageProcess().getDstBitmap();
+        }
     }
     public void SoftGlowListener(View view) {
         SoftGlowFilter filter = new SoftGlowFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
+        if(isCrop) {
+            SoftGlowFilter filter_Crop = new SoftGlowFilter(cropDefault);
+            cropBmp = filter_Crop.imageProcess().getDstBitmap();
+        }
     }
     public void GlowingEdgeListener(View view) {
         GlowingEdgeFilter filter = new GlowingEdgeFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
+        if(isCrop) {
+            GlowingEdgeFilter filter_Crop = new GlowingEdgeFilter(cropDefault);
+            cropBmp = filter_Crop.imageProcess().getDstBitmap();
+        }
     }
     public void FeatherListener(View view) {
         FeatherFilter filter= new FeatherFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
+        if(isCrop) {
+            FeatherFilter filter_Crop = new FeatherFilter(cropDefault);
+            cropBmp = filter_Crop.imageProcess().getDstBitmap();
+        }
     }
     public void ZoomBlurListener(View view) {
         ZoomBlurFilter filter = new ZoomBlurFilter(bmpDefaultPic,20);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
+        if(isCrop) {
+            ZoomBlurFilter filter_Crop = new ZoomBlurFilter(cropDefault,20);
+            cropBmp = filter_Crop.imageProcess().getDstBitmap();
+        }
     }
     public void LomoListener(View view) {
         LomoFilter filter = new LomoFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
+        if(isCrop) {
+            LomoFilter filter_Crop = new LomoFilter(cropDefault);
+            cropBmp = filter_Crop.imageProcess().getDstBitmap();
+        }
     }
     public void FilmListener(View view) {
         FilmFilter filter = new FilmFilter(bmpDefaultPic,20);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
+        if(isCrop) {
+            FilmFilter filter_Crop = new FilmFilter(bmpDefaultPic,20);
+            cropBmp = filter_Crop.imageProcess().getDstBitmap();
+        }
     }
     public void RedToneListener(View view) {
         ColorToneFilter filter = new ColorToneFilter(bmpDefaultPic,0xFF0000,192);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
+        if(isCrop) {
+            ColorToneFilter filter_Crop = new ColorToneFilter(bmpDefaultPic,0xFF0000,192);
+            cropBmp = filter_Crop.imageProcess().getDstBitmap();
+        }
     }
     public void BlueToneListener(View view) {
         ColorToneFilter filter = new ColorToneFilter(bmpDefaultPic,0x0000FF,192);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
+        if(isCrop) {
+            ColorToneFilter filter_Crop = new ColorToneFilter(bmpDefaultPic,0x0000FF,192);
+            cropBmp = filter_Crop.imageProcess().getDstBitmap();
+        }
     }
 
     /**
@@ -143,15 +202,16 @@ public class FilterActivity extends Activity {
      * ȷ���˾�
      */
     public void ensureFilter(View view) throws IOException{
-//        //�����л�����������߽��룬�ұ��˳�
-//        overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
         Intent intent = new Intent();
         intent.setClass(this, MakeActivity.class);
         this.startActivity(intent);
         new Thread() { // ��ֹ�л�����
             public void run() {
                 try {
-                    saveMyBitmap();
+                    saveMyBitmap("copy");
+                    if(isCrop) {
+                        saveMyBitmap("crop");
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -161,8 +221,10 @@ public class FilterActivity extends Activity {
         finish();
     }
 
-    public void saveMyBitmap() throws IOException {
-        File f = new File(path + "/Pictures/108.png");
+    public void saveMyBitmap(String url) throws IOException {
+        String copyURL = url;
+        copyURL = copyURL.replace("original", url);
+        File f = new File(copyURL);
         f.createNewFile();
         FileOutputStream fOut = null;
         try {

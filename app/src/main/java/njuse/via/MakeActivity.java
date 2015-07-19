@@ -21,10 +21,8 @@ import java.io.FileNotFoundException;
 
 import njuse.via.bl.MakeBL;
 import njuse.via.blservice.MakeBLService;
-import njuse.via.po.Screen;
-import njuse.via.po.ScreenEnum;
-
 import njuse.via.po.Option;
+import njuse.via.po.Screen;
 
 /**
  * 制作界面
@@ -219,6 +217,7 @@ public class MakeActivity extends Activity {
     public void filterListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, FilterActivity.class);
+        intent.putExtra("path",screen.getBackGroundURL());
         this.startActivity(intent);
     }
 
