@@ -17,7 +17,6 @@ public class MakeBL implements MakeBLService {
 
     private ScreenSet screenList = new ScreenSet();
 
-
     @Override
     public void setTemplateID(int id) {
         screenList.setTemplateID(id);

@@ -35,7 +35,7 @@ public class MakeActivity extends Activity {
     private int screenWidth;
     private int screenHeight;
     private int statusBarHeight;
-    private static MakeBLService makeBL = new MakeBL();
+    private MakeBLService makeBL = new MakeBL();
 
     public Screen screen;
 
@@ -142,12 +142,12 @@ public class MakeActivity extends Activity {
 
     public void initScreen(){
         EditText edit=(EditText) findViewById(R.id.explain);
-        edit.setText(screen.getText());
+        String text = screen.getText();
+        edit.setText(text);
         ImageView img=(ImageView) findViewById(R.id.photoView);
         if(screen.getBackGroundURL()!=null){
             img.setImageURI(Uri.parse(screen.getBackGroundURL()));
         }else{
-
         }
     }
 
@@ -327,18 +327,12 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void newScreenListener(View view) {
-        // 保存当前幕
-//        Screen screen = new Screen(ScreenEnum.NORMAL);
         EditText edit = (EditText) findViewById(R.id.explain);
         String text = edit.getText().toString(); // 获得用户输入的文本
         screen.setText(text);
-
-        // 获得文本图片的url
-        // 获得选项
-
-//        makeBL.insert(screen);
-
         // 新建一幕
+        screen = makeBL.getNewScreen();
+        initScreen();
     }
 
 
