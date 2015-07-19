@@ -234,10 +234,14 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void filterListener(View view) {
-        Intent intent = new Intent();
-        intent.setClass(this, FilterActivity.class);
-        intent.putExtra("path", screen.getBackGroundURL());
-        this.startActivityForResult(intent, 16);
+        if(screen.getBackGroundURL()!=null) {
+            Intent intent = new Intent();
+            intent.setClass(this, FilterActivity.class);
+            intent.putExtra("path", screen.getBackGroundURL());
+            this.startActivityForResult(intent, 16);
+        }else{
+            Toast.makeText(this,"没有导入图片",Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
@@ -259,16 +263,20 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void cropListener(View view) {
-//        if(screen.getBackGroundURL()!=null) {
-        String path = screen.getBackGroundURL().replace("crop","copy");
-        if (path != null) {
-            Intent intent = new Intent();
-            intent.setClass(this, CropPicActivity.class);
-            intent.putExtra("path", path);
-            this.startActivityForResult(intent, 0);
-        } else {
+        if(screen.getBackGroundURL()!=null) {
+            String path = screen.getBackGroundURL().replace("crop","copy");
+            if (path != null) {
+                Intent intent = new Intent();
+                intent.setClass(this, CropPicActivity.class);
+                intent.putExtra("path", path);
+                this.startActivityForResult(intent, 0);
+            } else {
+                Toast.makeText(this, "图片路径错误", Toast.LENGTH_SHORT).show();
+            }
+        }else {
             Toast.makeText(this, "没有导入图片", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     @Override
