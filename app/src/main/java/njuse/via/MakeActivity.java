@@ -132,6 +132,17 @@ public class MakeActivity extends Activity {
         photoView.setLayoutParams(params);
     }
 
+    public void initScreen(){
+        EditText edit=(EditText) findViewById(R.id.explain);
+        edit.setText(screen.getText());
+        ImageView img=(ImageView) findViewById(R.id.photoView);
+        if(screen.getBackGroundURL()!=null){
+            img.setImageURI(Uri.parse(screen.getBackGroundURL()));
+        }else{
+
+        }
+    }
+
     /**
      * dp转化成px
      * @param dipValue
