@@ -94,9 +94,13 @@ public class PicChooseActivity extends Activity{
 //                Bundle bundle = data.getExtras();
 //                Bitmap bitmap = (Bitmap)bundle.get("data");
 
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
 
                 Bitmap bitmap = decodeUriAsBitmap(camerauri);
-                bitmap = pc.compressImage(bitmap);
+                bitmap = pc.comp(bitmap);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] datas = baos.toByteArray();
 
                 String temp[] = camerauri.toString().split("/");
                 String bitname = temp[temp.length - 1];
@@ -104,7 +108,8 @@ public class PicChooseActivity extends Activity{
 
                 Intent intent = new Intent();
                 intent.setClass(this, MakeActivity.class);
-                intent.putExtra("bitmap", uri);
+                intent.putExtra("bitmap",datas);
+                intent.putExtra("path", uri);
                 setResult(10, intent);
                 Log.e("putextra", "put data");
                 finish();
@@ -115,8 +120,13 @@ public class PicChooseActivity extends Activity{
 
                 Log.e("hi", tempuri.toString());
 
+                ByteArrayOutputStream bao = new ByteArrayOutputStream();
+
+
                 Bitmap bitmap1 = decodeUriAsBitmap(tempuri);
-                bitmap1 = pc.compressImage(bitmap1);
+                bitmap1 = pc.comp(bitmap1);
+                bitmap1.compress(Bitmap.CompressFormat.JPEG, 100, bao);
+                byte[] datas2 = bao.toByteArray();
 
 
                 String temp1[] = tempuri.toString().split("/");
@@ -126,7 +136,8 @@ public class PicChooseActivity extends Activity{
 
                 Intent inte = new Intent();
                 inte.setClass(this, MakeActivity.class);
-                inte.putExtra("bitmap", uri);
+                inte.putExtra("bitmap",datas2);
+                inte.putExtra("path", uri);
                 setResult(10, inte);
                 finish();
                 break;

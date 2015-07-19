@@ -50,13 +50,15 @@ public class SelectPhotoActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==10){
             Intent intent = new Intent();
-            intent.putExtra("bitmap",data.getStringExtra("bitmap"));
+            intent.putExtra("path",data.getStringExtra("path"));
+            intent.putExtra("bitmap",data.getByteArrayExtra("bitmap"));
             setResult(2,intent);
             finish();
         }
         if(resultCode==11){
             Intent intent = new Intent();
-            intent.putExtra("bitmap",data.getStringExtra("bitmap"));
+            intent.putExtra("path",data.getStringExtra("path"));
+            intent.putExtra("bitmap",data.getByteArrayExtra("bitmap"));
             setResult(2,intent);
             finish();
         }

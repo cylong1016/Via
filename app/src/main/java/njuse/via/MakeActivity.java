@@ -2,6 +2,7 @@ package njuse.via;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 import njuse.via.bl.MakeBL;
 import njuse.via.blservice.MakeBLService;
@@ -39,6 +42,7 @@ public class MakeActivity extends Activity {
 
     public Screen screen;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +50,7 @@ public class MakeActivity extends Activity {
         getScreenInfo(); // 获得屏幕信息
         initTextEditSize();
         initPhotoViewSize();
-        screen=makeBL.getNewScreen();
+        screen = makeBL.getNewScreen();
     }
 
 
@@ -114,7 +118,7 @@ public class MakeActivity extends Activity {
         int viewW;
         int viewH;
 
-        if(magniscaleW < magniscaleH) { // 图片相对于显示图片的view较宽
+        if (magniscaleW < magniscaleH) { // 图片相对于显示图片的view较宽
             double temp = (photoHeight - imgH * magniscaleW) / 2;
             viewX = (int) (magniscaleW * 68.0);
             viewY = (int) (61.0 * magniscaleW + temp + dpTopx(25)); // TODO
@@ -132,19 +136,20 @@ public class MakeActivity extends Activity {
         photoView.setLayoutParams(params);
     }
 
-    public void initScreen(){
-        EditText edit=(EditText) findViewById(R.id.explain);
+    public void initScreen() {
+        EditText edit = (EditText) findViewById(R.id.explain);
         edit.setText(screen.getText());
-        ImageView img=(ImageView) findViewById(R.id.photoView);
-        if(screen.getBackGroundURL()!=null){
+        ImageView img = (ImageView) findViewById(R.id.photoView);
+        if (screen.getBackGroundURL() != null) {
             img.setImageURI(Uri.parse(screen.getBackGroundURL()));
-        }else{
+        } else {
 
         }
     }
 
     /**
      * dp转化成px
+     *
      * @param dipValue
      * @return
      */
@@ -191,6 +196,7 @@ public class MakeActivity extends Activity {
 
     /**
      * 选择图片监听
+     *
      * @param view
      */
     public void selectPhotoListener(View view) {
@@ -203,6 +209,7 @@ public class MakeActivity extends Activity {
 
     /**
      * 返回主菜单监听
+     *
      * @param view
      */
     public void backToMainListener(View view) {
@@ -212,18 +219,22 @@ public class MakeActivity extends Activity {
         //设置切换动画，从左边进入，右边退出
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
     }
+
     /**
      * 滤镜按钮监听
+     *
      * @param view
      */
     public void filterListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, FilterActivity.class);
+        intent.putExtra("path",screen.getBackGroundURL());
         this.startActivity(intent);
     }
 
     /**
      * 保存按钮监听
+     *
      * @param view
      */
     public void saveListener(View view) {
@@ -232,18 +243,18 @@ public class MakeActivity extends Activity {
 
     /**
      * 裁剪按钮监听
+     *
      * @param view
      */
     public void cropListener(View view) {
 //        if(screen.getBackGroundURL()!=null) {
         String path = screen.getBackGroundURL();
-        if(path!=null) {
+        if (path != null) {
             Intent intent = new Intent();
             intent.setClass(this, CropPicActivity.class);
-            intent.putExtra("path",path);
+            intent.putExtra("path", path);
             this.startActivityForResult(intent, 0);
-        }
-        else{
+        } else {
             Toast.makeText(this, "没有导入图片", Toast.LENGTH_SHORT).show();
         }
     }
@@ -251,7 +262,7 @@ public class MakeActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==1) {
+        if (resultCode == 1) {
             ImageView mImageView = (ImageView) findViewById(R.id.photoView);
             byte[] b = data.getByteArrayExtra("bitmap");
             Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
@@ -259,28 +270,46 @@ public class MakeActivity extends Activity {
             if (bitmap != null) {
 
                 mImageView.setImageBitmap(bitmap);
+                System.gc();
             }
-            String path = screen.getBackGroundURL().replace("copy","crop");
+            String path = screen.getBackGroundURL().replace("copy", "crop");
             screen.setBackGroundURL(path);
         }
-        if(resultCode==2){
+        if (resultCode == 2) {
             //Log.e("back", "back to make");
 //            screen.setBackGroundURL(data.getStringExtra("bitmap"));
-            String path = data.getStringExtra("bitmap");
+            String path = data.getStringExtra("path");
             screen.setBackGroundURL(path);
 
-            Uri uri = Uri.parse(data.getStringExtra("bitmap"));
-            Bitmap bit = decodeUriAsBitmap(uri);
             ImageView mImageView = (ImageView) findViewById(R.id.photoView);
-            mImageView.setImageBitmap(bit);
+            byte[] b = data.getByteArrayExtra("bitmap");
+            Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+
+            if (bitmap != null) {
+
+                mImageView.setImageBitmap(bitmap);
+                System.gc();
+            }
         }
-        if(resultCode==98){
-            Bundle b=data.getExtras();
+        if (resultCode == 98) {
+            Bundle b = data.getExtras();
             screen.setOption((Option) b.get("roption"));
         }
 
 
     }
+
+    /*
+    滤镜结束之后调用这个方法
+     */
+    private void setImgAfterFilter(){
+        Bitmap bitmap = decodeUriAsBitmap(Uri.parse(screen.getBackGroundURL()));
+        ImageView mImageView = (ImageView) findViewById(R.id.photoView);
+        if(bitmap!=null) {
+            mImageView.setImageBitmap(bitmap);
+        }
+    }
+
 
     private Bitmap decodeUriAsBitmap(Uri uri) {
         Bitmap bitmap = null;
