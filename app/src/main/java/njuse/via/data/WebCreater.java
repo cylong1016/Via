@@ -74,10 +74,10 @@ public class WebCreater {
                     "\t\t<img class=\"bg blur\" src=\""+screen.getBackGroundURL()+"\"/>\n" +
                     "\t\t<div class=\"type t1\">\n" +
                     "\t\t\t<div class=\"images\">\n" +
-                    "\t\t\t\t<img src=\"+screen.getBackGroundURL()+\"/>\n" +
+                    "\t\t\t\t<img src=\""+screen.getBackGroundURL()+"\"/>\n" +
                     "\t\t\t</div>\n" +
                     "\t\t\t<div class=\"text\">\n" +
-                    "\t\t\t\t<p>+"+ screen.getText()+"</p>\n" +
+                    "\t\t\t\t<p>"+ screen.getText()+"</p>\n" +
                     "\t\t\t</div>\n" +
                     "\t\t</div>\n" +
                     "\t</div>\n" +

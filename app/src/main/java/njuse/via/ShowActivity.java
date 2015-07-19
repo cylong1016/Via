@@ -15,12 +15,15 @@ public class ShowActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent=getIntent();
+        this.setContentView(R.layout.activity_show);
         String webName=intent.getStringExtra("html");
         WebView myWebView = (WebView) findViewById(R.id.webView);
-//        myWebView.loadUrl("file:///sdcard/Android/Via/web_product/"+webName+".html");
-        myWebView.loadUrl("http://www.baidu.com");
+        myWebView.loadUrl("file:///sdcard/Via/web_product/"+"web2"+".html");
+//        myWebView.loadUrl("file:///sdcard/Via/web_product/"+"web2"+".html");
+//        myWebView.loadUrl("http://www.baidu.com");
         WebSettings webSetting = myWebView.getSettings();
         webSetting.setJavaScriptEnabled(true);
+        myWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
     }
 
 }

@@ -71,6 +71,12 @@
             >
         </activity>
         <activity
+            android:name=".ShowActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_show"
+            >
+        </activity>
+        <activity
             android:name=".PasterActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_paster"
