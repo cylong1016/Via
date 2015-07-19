@@ -152,6 +152,7 @@ public class MakeActivity extends Activity {
         if(screen.getBackGroundURL()!=null){
             img.setImageURI(Uri.parse(screen.getBackGroundURL()));
         }else{
+            img.setImageResource(R.drawable.cat);
         }
     }
 
