@@ -18,6 +18,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,14 +28,17 @@
         </activity>
         <activity
             android:name=".MakeActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_make" >
         </activity>
         <activity
             android:name=".ReadActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_read" >
         </activity>
         <activity
             android:name=".PicChooseActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_photo" >
             <intent-filter>
                 <action android:name="pichandle" />
@@ -44,23 +48,34 @@
         </activity>
         <activity
             android:name=".SelectPhotoActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_select_photo"
             android:theme="@style/ActivityPopup" >
         </activity>
         <activity
             android:name=".FilterActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_filter">
         </activity>
         <activity
             android:name=".OptionActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_select_option"
             android:theme="@style/ActivityPopup" >
         </activity>
         <activity
             android:name=".CropPicActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_crop"
             >
         </activity>
     </application>
+
+    <supports-screens
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:resizeable="true"
+        android:anyDensity="true" />
 
 </manifest>
