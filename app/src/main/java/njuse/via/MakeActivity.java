@@ -310,7 +310,7 @@ public class MakeActivity extends Activity {
     /*
     滤镜结束之后调用这个方法
      */
-    private void setImgAfterFilter(){
+    public void setImgAfterFilter(){
         Bitmap bitmap = decodeUriAsBitmap(Uri.parse(screen.getBackGroundURL()));
         ImageView mImageView = (ImageView) findViewById(R.id.photoView);
         if(bitmap!=null) {

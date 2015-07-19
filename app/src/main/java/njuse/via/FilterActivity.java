@@ -220,6 +220,8 @@ public class FilterActivity extends Activity {
         }.start();
         setResult(RESULT_CANCELED, null);
         finish();
+        MakeActivity activity = new MakeActivity();
+        activity.setImgAfterFilter();
     }
 
     public void saveMyBitmap(String tempUrl,Bitmap bmpTemp) throws IOException {
