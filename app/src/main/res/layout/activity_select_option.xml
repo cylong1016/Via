@@ -54,14 +54,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/select_option_layout_margin"
             android:padding="10dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:src="@mipmap/icon_new_option"
+            android:src="@mipmap/option_delete"
             android:onClick="delOptionListener"
             android:background="@drawable/icon_selector"
-            android:textColor="@color/white"
-            android:layout_weight="1"
-            android:textStyle="bold" />
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/edt_option1_ent1"
@@ -121,11 +117,9 @@
                 android:layout_marginStart="@dimen/select_option_layout_margin"
                 android:padding="10dp"
                 android:onClick="delOptionListener"
-                android:src="@mipmap/icon_new_option"
+                android:src="@mipmap/option_delete"
                 android:background="@drawable/icon_selector"
-                android:textColor="@color/white"
-                android:layout_weight="1"
-                android:textStyle="bold" />
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/edt_option1_ent2"
@@ -185,11 +179,9 @@
                 android:layout_marginStart="@dimen/select_option_layout_margin"
                 android:padding="10dp"
                 android:onClick="delOptionListener"
-                android:src="@mipmap/icon_new_option"
+                android:src="@mipmap/option_delete"
                 android:background="@drawable/icon_selector"
-                android:textColor="@color/white"
-                android:layout_weight="1"
-                android:textStyle="bold" />
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/edt_option1_ent3"
@@ -249,11 +241,9 @@
                 android:layout_marginStart="@dimen/select_option_layout_margin"
                 android:padding="10dp"
                 android:onClick="delOptionListener"
-                android:src="@mipmap/icon_new_option"
+                android:src="@mipmap/option_delete"
                 android:background="@drawable/icon_selector"
-                android:textColor="@color/white"
-                android:layout_weight="1"
-                android:textStyle="bold" />
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/edt_option1_ent4"

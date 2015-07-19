@@ -2,13 +2,10 @@ package njuse.via;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 
 public class MainActivity extends Activity {
@@ -42,7 +39,7 @@ public class MainActivity extends Activity {
     }
 
     /**
-     * ¿ªÊ¼ÖÆ×÷°´Å¥µÄ¼àÌý
+     * ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¥ï¿½Ä¼ï¿½ï¿½ï¿½
      *
      * @param view
      */
@@ -54,7 +51,7 @@ public class MainActivity extends Activity {
     }
 
     /**
-     * ¶ÁÈ¡µÄ°´Å¥µÄ¼àÌý
+     * ï¿½ï¿½È¡ï¿½Ä°ï¿½Å¥ï¿½Ä¼ï¿½ï¿½ï¿½
      *
      * @param view
      */
