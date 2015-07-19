@@ -110,6 +110,7 @@ public class OptionActivity extends Activity {
     }
 
     public void cancelOptionBtnListener(View view) {
+        setEditTextGone();
         this.finish();
     }
 
