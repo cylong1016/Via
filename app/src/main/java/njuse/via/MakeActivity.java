@@ -159,7 +159,7 @@ public class MakeActivity extends Activity {
         if(screen.getBackGroundURL()!=null){
             img.setImageURI(Uri.parse(screen.getBackGroundURL()));
         }else{
-            img.setImageResource(0);
+            img.setImageResource(R.mipmap.make_background);
         }
     }
 
