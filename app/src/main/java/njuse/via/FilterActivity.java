@@ -202,9 +202,6 @@ public class FilterActivity extends Activity {
      * ȷ���˾�
      */
     public void ensureFilter(View view) throws IOException{
-        Intent intent = new Intent();
-        intent.setClass(this, MakeActivity.class);
-        setResult(16,intent);
 //        this.startActivity(intent);
         new Thread() { // ��ֹ�л�����
             public void run() {
@@ -219,6 +216,9 @@ public class FilterActivity extends Activity {
             }
         }.start();
 //        setR0esult(RESULT_CANCELED, null);
+        Intent intent = new Intent();
+        setResult(16,intent);
+        intent.setClass(this, MakeActivity.class);
         finish();
     }
 
