@@ -237,8 +237,8 @@ public class MakeActivity extends Activity {
     public void filterListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, FilterActivity.class);
-        intent.putExtra("path",screen.getBackGroundURL());
-        this.startActivity(intent);
+        intent.putExtra("path", screen.getBackGroundURL());
+        this.startActivityForResult(intent, 16);
     }
 
     /**
@@ -319,7 +319,9 @@ public class MakeActivity extends Activity {
             Bundle b = data.getExtras();
             screen.setOption((Option) b.get("roption"));
         }
-
+        if(resultCode == 16) {
+            setImgAfterFilter();
+        }
 
     }
 
@@ -327,11 +329,18 @@ public class MakeActivity extends Activity {
     滤镜结束之后调用这个方法
      */
     public void setImgAfterFilter(){
-        Bitmap bitmap = decodeUriAsBitmap(Uri.parse(screen.getBackGroundURL()));
+        Bitmap bitmap = BitmapFactory.decodeFile(screen.getBackGroundURL().substring(6));
+
+//        LinearLayout layout = (LinearLayout) findViewById(R.id.topTool);
+//        TextView tx = new TextView(this);
+//        tx.setText(screen.getBackGroundURL());
+//        layout.addView(tx, 0);
+
         ImageView mImageView = (ImageView) findViewById(R.id.photoView);
-        if(bitmap!=null) {
+//        if(bitmap!=null) {
             mImageView.setImageBitmap(bitmap);
-        }
+//        }
+        System.gc();
     }
 
 

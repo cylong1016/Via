@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,7 +55,7 @@ public class FilterActivity extends Activity {
         bmpDefaultPic = BitmapFactory.decodeFile(url);
         bitmap = bmpDefaultPic;
         iv.setImageBitmap(bmpDefaultPic);
-        File path = Environment.getExternalStorageDirectory();
+//        File path = Environment.getExternalStorageDirectory();
 
 //        LinearLayout layout = (LinearLayout) findViewById(R.id.entirety);
 //        TextView tx = new TextView(this);
@@ -205,7 +204,8 @@ public class FilterActivity extends Activity {
     public void ensureFilter(View view) throws IOException{
         Intent intent = new Intent();
         intent.setClass(this, MakeActivity.class);
-        this.startActivityForResult(intent,16);
+        setResult(16,intent);
+//        this.startActivity(intent);
         new Thread() { // ��ֹ�л�����
             public void run() {
                 try {
@@ -218,7 +218,7 @@ public class FilterActivity extends Activity {
                 }
             }
         }.start();
-        setResult(RESULT_CANCELED, null);
+//        setR0esult(RESULT_CANCELED, null);
         finish();
     }
 
