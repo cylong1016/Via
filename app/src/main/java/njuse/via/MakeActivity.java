@@ -390,12 +390,23 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void newScreenListener(View view) {
+        removeAllpasters();
         EditText edit = (EditText) findViewById(R.id.explain);
         String text = edit.getText().toString(); // 获得用户输入的文本
         screen.setText(text);
         // 新建一幕
         screen = makeBL.getNewScreen();
         initScreen();
+    }
+
+    public void removeAllpasters(){
+        ImageView mImageView = (ImageView) findViewById(R.id.photoView);
+        RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
+        for(int i = 0;i<pasters.size();i++){
+            mLayout.removeView(pasters.get(i));
+        }
+        pasters.clear();
+
     }
 
 }
