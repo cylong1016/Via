@@ -25,7 +25,7 @@ public class WebCreater {
                 "<title>" + screenSet.getWorkName() + "</title>\n"+
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"global.css\" />\n" +
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"blur_css.css\">\n" +
-                "<link rel=\"stylesheet\" type=\"text/css\" href=\"jquery.fullPage.css\" />\n" +
+                "<link rel=\"stylesheet\" type=\"text/css\" href=\"jquery.full_page.css\" />\n" +
                 "\n" +
                 "<script type=\"text/javascript\" src=\"jquery-1.8.3.min.js\"></script>\n" +
                 "<script type=\"text/javascript\" src=\"jquery.easing.1.3.js\"></script>\n" +

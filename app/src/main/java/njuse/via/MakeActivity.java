@@ -271,9 +271,9 @@ public class MakeActivity extends Activity {
 //        copyFile(R.raw.blur_css,"blur_css.css");
 //        copyFile(R.raw.global,"global.css");
 //        copyFile(R.raw.jquery_easing_1_3,"jquery.easing.1.3.js");
-//        copyFile(R.raw.jquery_fullpage,"jquery.fullPage.css");
+//        copyFile(R.raw.jquery_fullpage,"jquery.full_page.css");
 //        copyFile(R.raw.jquery_1_8_3_min,"jquery.1.8.3.min.js");
-//        copyFile(R.raw.jquery_fullpage_min,"jquery.fullPage.min.js");
+//        copyFile(R.raw.jquery_fullpage_min,"jquery.full_page.min.js");
         Intent intent =new Intent();
         intent.setClass(this,ShowActivity.class);
         intent.putExtra("html",workName);
