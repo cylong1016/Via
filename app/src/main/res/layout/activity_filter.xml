@@ -45,7 +45,7 @@
                     android:id="@+id/NoFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_add_sel"
+                    android:src="@mipmap/filter_0"
                     android:onClick="NoListener"
                     />
 
@@ -53,7 +53,7 @@
                     android:id="@+id/IceFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_picture"
+                    android:src="@mipmap/filter_1"
                     android:onClick="IceListener"
                     />
 
@@ -61,7 +61,7 @@
                     android:id="@+id/MoltenFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_crop"
+                    android:src="@mipmap/filter_2"
                     android:onClick="MoltenListener"
                     />
 
@@ -69,7 +69,7 @@
                     android:id="@+id/ComicFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_filter"
+                    android:src="@mipmap/filter_3"
                     android:onClick="ComicListener"
                     />
 
@@ -77,7 +77,7 @@
                     android:id="@+id/SoftGlowFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_picture"
+                    android:src="@mipmap/filter_4"
                     android:onClick="SoftGlowListener"
                     />
 
@@ -85,7 +85,7 @@
                     android:id="@+id/GlowingEdgeFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_add_sel"
+                    android:src="@mipmap/filter_5"
                     android:onClick="GlowingEdgeListener"
                     />
 
@@ -93,7 +93,7 @@
                     android:id="@+id/FeatherFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_picture"
+                    android:src="@mipmap/filter_6"
                     android:onClick="FeatherListener"
                     />
 
@@ -101,7 +101,7 @@
                     android:id="@+id/ZoomBlurFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_crop"
+                    android:src="@mipmap/filter_7"
                     android:onClick="ZoomBlurListener"
                     />
 
@@ -109,7 +109,7 @@
                     android:id="@+id/LomoFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_filter"
+                    android:src="@mipmap/filter_8"
                     android:onClick="LomoListener"
                     />
 
@@ -117,7 +117,7 @@
                     android:id="@+id/FilmFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_picture"
+                    android:src="@mipmap/filter_9"
                     android:onClick="FilmListener"
                     />
 
@@ -125,14 +125,14 @@
                     android:id="@+id/RedToneFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_add_sel"
+                    android:src="@mipmap/filter_10"
                     android:onClick="RedToneListener"
                     />
                 <ImageButton
                     android:id="@+id/BlueToneFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_add_sel"
+                    android:src="@mipmap/filter_11"
                     android:onClick="BlueToneListener"
                     />
 

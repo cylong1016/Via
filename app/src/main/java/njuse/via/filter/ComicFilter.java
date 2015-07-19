@@ -6,8 +6,8 @@ import njuse.via.filter.util.ImageUtil;
 
 
 /**
- * Á¬»·»­
- * @author ÑÇÉªboy
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @author ï¿½ï¿½Éªboy
  *
  */
 public class ComicFilter implements ImageFilterInterface {
@@ -24,11 +24,11 @@ public class ComicFilter implements ImageFilterInterface {
 		int R, G, B, pixel;
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				R = image.getRComponent(x, y); // »ñÈ¡RGBÈýÔ­É«
+				R = image.getRComponent(x, y); // ï¿½ï¿½È¡RGBï¿½ï¿½Ô­É«
 				G = image.getGComponent(x, y);
 				B = image.getBComponent(x, y);
 
-				// R = |g ¨C b + g + r| * r / 256;
+				// R = |g ï¿½C b + g + r| * r / 256;
 				pixel = G - B + G + R;
 				if (pixel < 0)
 					pixel = -pixel;
@@ -37,7 +37,6 @@ public class ComicFilter implements ImageFilterInterface {
 					pixel = 255;
 				R = pixel;
 
-				// G = |b ¨C g + b + r| * r / 256;
 				pixel = B - G + B + R;
 				if (pixel < 0)
 					pixel = -pixel;
@@ -46,7 +45,7 @@ public class ComicFilter implements ImageFilterInterface {
 					pixel = 255;
 				G = pixel;
 
-				// B = |b ¨C g + b + r| * g / 256;
+				// B = |b ï¿½C g + b + r| * g / 256;
 				pixel = B - G + B + R;
 				if (pixel < 0)
 					pixel = -pixel;
@@ -58,7 +57,7 @@ public class ComicFilter implements ImageFilterInterface {
 			}
 		}
 		Bitmap bitmap = image.getDstBitmap();
-		bitmap = ImageUtil.toGrayscale(bitmap); // Í¼Æ¬»Ò¶È»¯´¦Àí
+		bitmap = ImageUtil.toGrayscale(bitmap); // Í¼Æ¬ï¿½Ò¶È»ï¿½ï¿½ï¿½ï¿½ï¿½
 		image = new ImageData(bitmap);
 		return image;
 	}
