@@ -203,19 +203,20 @@ public class FilterActivity extends Activity {
      */
     public void ensureFilter(View view) throws IOException{
 //        this.startActivity(intent);
-        new Thread() { // ��ֹ�л�����
-            public void run() {
-                try {
-                    saveMyBitmap("copy",bitmap);
-                    if(isCrop) {
-                        saveMyBitmap("crop",cropBmp);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+//        new Thread() { // ��ֹ�л�����
+//            public void run() {
+//
+//            }
+//        }.start();
 //        setR0esult(RESULT_CANCELED, null);
+        try {
+            saveMyBitmap("copy",bitmap);
+            if(isCrop) {
+                saveMyBitmap("crop",cropBmp);
+            }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
         Intent intent = new Intent();
         setResult(16,intent);
         intent.setClass(this, MakeActivity.class);

@@ -97,6 +97,7 @@ public class PicChooseActivity extends Activity{
                String temp[] = camerauri.toString().split("/");
                 String bitname = temp[temp.length - 1];
                 saveMyBitmap(bitmap, bitname);
+                saveOriginalBitmap(bitmap,bitname);
 
                 Intent intent = new Intent();
                 intent.setClass(this, MakeActivity.class);
