@@ -262,7 +262,7 @@ public class MakeActivity extends Activity {
      */
     public void cropListener(View view) {
 //        if(screen.getBackGroundURL()!=null) {
-        String path = screen.getBackGroundURL();
+        String path = screen.getBackGroundURL().replace("crop","copy");
         if (path != null) {
             Intent intent = new Intent();
             intent.setClass(this, CropPicActivity.class);
@@ -278,15 +278,14 @@ public class MakeActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 1) {
             ImageView mImageView = (ImageView) findViewById(R.id.photoView);
-            byte[] b = data.getByteArrayExtra("bitmap");
-            Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
-
+            String path = data.getStringExtra("bitmap");
+            Bitmap bitmap = decodeUriAsBitmap(Uri.parse(path));
             if (bitmap != null) {
 
                 mImageView.setImageBitmap(bitmap);
                 System.gc();
             }
-            String path = screen.getBackGroundURL().replace("copy", "crop");
+
             screen.setBackGroundURL(path);
         }
         if (resultCode == 2) {
@@ -295,12 +294,11 @@ public class MakeActivity extends Activity {
             String path = data.getStringExtra("path");
             screen.setBackGroundURL(path);
 
-            ImageView mImageView = (ImageView) findViewById(R.id.photoView);
-            byte[] b = data.getByteArrayExtra("bitmap");
-            Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+           Uri uri = Uri.parse(path);
+            Bitmap bitmap = decodeUriAsBitmap(uri);
 
             if (bitmap != null) {
-
+                ImageView mImageView = (ImageView) findViewById(R.id.photoView);
                 mImageView.setImageBitmap(bitmap);
                 System.gc();
             }

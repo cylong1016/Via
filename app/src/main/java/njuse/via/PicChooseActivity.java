@@ -91,24 +91,15 @@ public class PicChooseActivity extends Activity{
         if(resultCode==RESULT_OK){
             switch(requestCode) {
             case CAMERA:
-//                Bundle bundle = data.getExtras();
-//                Bitmap bitmap = (Bitmap)bundle.get("data");
-
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-
                 Bitmap bitmap = decodeUriAsBitmap(camerauri);
                 bitmap = pc.comp(bitmap);
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] datas = baos.toByteArray();
 
-                String temp[] = camerauri.toString().split("/");
+               String temp[] = camerauri.toString().split("/");
                 String bitname = temp[temp.length - 1];
                 saveMyBitmap(bitmap, bitname);
 
                 Intent intent = new Intent();
                 intent.setClass(this, MakeActivity.class);
-                intent.putExtra("bitmap",datas);
                 intent.putExtra("path", uri);
                 setResult(10, intent);
                 Log.e("putextra", "put data");
@@ -120,23 +111,24 @@ public class PicChooseActivity extends Activity{
 
                 Log.e("hi", tempuri.toString());
 
-                ByteArrayOutputStream bao = new ByteArrayOutputStream();
+                //ByteArrayOutputStream bao = new ByteArrayOutputStream();
 
 
                 Bitmap bitmap1 = decodeUriAsBitmap(tempuri);
                 bitmap1 = pc.comp(bitmap1);
-                bitmap1.compress(Bitmap.CompressFormat.JPEG, 100, bao);
-                byte[] datas2 = bao.toByteArray();
+                //bitmap1.compress(Bitmap.CompressFormat.JPEG, 100, bao);
+                //byte[] datas2 = bao.toByteArray();
 
 
                 String temp1[] = tempuri.toString().split("/");
                 bitname = temp1[temp1.length - 1].replace("%3A", "_") + ".jpg";
+                saveOriginalBitmap(bitmap1,bitname);
                 saveMyBitmap(bitmap1, bitname);
 
 
                 Intent inte = new Intent();
                 inte.setClass(this, MakeActivity.class);
-                inte.putExtra("bitmap",datas2);
+                //inte.putExtra("bitmap",datas2);
                 inte.putExtra("path", uri);
                 setResult(10, inte);
                 finish();
@@ -150,7 +142,38 @@ public class PicChooseActivity extends Activity{
         }
         }
     }
+    private void saveOriginalBitmap(Bitmap mBitmap,String bitName)  {
 
+        File f = new File( "/sdcard/Via/original/"+bitName);
+        File file = new File("/sdcard/Via/original");
+        FileOutputStream fOut = null;
+
+        if(!file.exists()){
+            try {
+                file.mkdirs();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
+
+        try {
+            fOut = new FileOutputStream(f);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+        try {
+            fOut.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            fOut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void saveMyBitmap(Bitmap mBitmap,String bitName)  {
 
         File f = new File( "/sdcard/Via/copy/"+bitName);
@@ -192,7 +215,9 @@ public class PicChooseActivity extends Activity{
         try {
             bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
         } catch (FileNotFoundException e) {
+            Log.e("error","unknown");
             e.printStackTrace();
+            Log.e("error","unknown");
             return null;
         }
         return bitmap;
