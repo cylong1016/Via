@@ -69,6 +69,13 @@
             android:label="@string/title_activity_crop"
             >
         </activity>
+        <activity
+            android:name=".PasterActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_paster"
+            android:theme="@style/ActivityPopup">
+
+        </activity>
     </application>
 
     <supports-screens

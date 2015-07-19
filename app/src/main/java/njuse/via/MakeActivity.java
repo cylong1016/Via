@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -12,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,6 +24,7 @@ import java.text.SimpleDateFormat;
 
 import njuse.via.bl.MakeBL;
 import njuse.via.blservice.MakeBLService;
+import njuse.via.paster.SingleTouchView;
 import njuse.via.po.Option;
 import njuse.via.po.Screen;
 
@@ -299,6 +302,19 @@ public class MakeActivity extends Activity {
                 System.gc();
             }
         }
+
+        if (resultCode == 3) {
+            ImageView mImageView = (ImageView) findViewById(R.id.photoView);
+            RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
+            final Drawable d = getResources().getDrawable(R.drawable.paster1);
+            SingleTouchView singleTouchView = new SingleTouchView(MakeActivity.this);
+            singleTouchView.setImageDrawable(d);
+            mLayout.addView(singleTouchView);
+          /*  stickers.add(singleTouchView);
+            isEdit = true;*/
+
+        }
+
         if (resultCode == 98) {
             Bundle b = data.getExtras();
             screen.setOption((Option) b.get("roption"));
@@ -335,7 +351,12 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void pasterListener(View view) {
-
+        Intent intent = new Intent();
+        intent.setClass(this, PasterActivity.class);
+        //  Bundle b=new Bundle();
+        // b.putSerializable("paster",this.class);
+        //  intent.putExtras(b);
+        this.startActivityForResult(intent, 3);
     }
 
     /**

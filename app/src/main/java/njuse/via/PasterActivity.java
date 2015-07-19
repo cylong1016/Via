@@ -16,13 +16,12 @@ public class PasterActivity extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*Intent intent=getIntent();
-        Bundle b=(Bundle) intent.getExtras();
-        */
         setContentView(R.layout.activity_select_paster);
     }
 
     public void paster1Listener(View view){
+        Intent intent=new Intent();
+        setResult(3,intent);
         this.finish();
     }
 
