@@ -5,12 +5,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -43,24 +42,26 @@ public class FilterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
         iv = (ImageView)findViewById(R.id.photo);
-        url = getIntent().getStringExtra("path");
-        bmpDefaultPic = BitmapFactory.decodeFile(url);
+        url = getIntent().getStringExtra("path").substring(7);
 
-        LinearLayout layout = (LinearLayout) findViewById(R.id.entirety);
-        TextView tx = new TextView(this);
-        tx.setText(url);
-        layout.addView(tx, 0);
 
-        bitmap = bmpDefaultPic;
-        iv.setImageBitmap(bmpDefaultPic);
-        if(url.contentEquals("crop")) {
+        if(url.contains("crop")) {
             cropDefault = BitmapFactory.decodeFile(url);
             cropBmp = cropDefault;
             isCrop = true;
             url = url.replace("crop","original");
-        }else if(url.contentEquals("copy")) {
+        }else if(url.contains("copy")) {
             url = url.replace("copy","original");
         }
+        bmpDefaultPic = BitmapFactory.decodeFile(url);
+        bitmap = bmpDefaultPic;
+        iv.setImageBitmap(bmpDefaultPic);
+        File path = Environment.getExternalStorageDirectory();
+
+//        LinearLayout layout = (LinearLayout) findViewById(R.id.entirety);
+//        TextView tx = new TextView(this);
+//        tx.setText(url+" "+path);
+//        layout.addView(tx, 0);
     }
 
     @Override
@@ -208,9 +209,9 @@ public class FilterActivity extends Activity {
         new Thread() { // ��ֹ�л�����
             public void run() {
                 try {
-                    saveMyBitmap("copy");
+                    saveMyBitmap("copy",bitmap);
                     if(isCrop) {
-                        saveMyBitmap("crop");
+                        saveMyBitmap("crop",cropBmp);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -221,7 +222,7 @@ public class FilterActivity extends Activity {
         finish();
     }
 
-    public void saveMyBitmap(String tempUrl) throws IOException {
+    public void saveMyBitmap(String tempUrl,Bitmap bmpTemp) throws IOException {
         String copyURL = url;
         copyURL = copyURL.replace("original", tempUrl);
         File f = new File(copyURL);
@@ -232,7 +233,7 @@ public class FilterActivity extends Activity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+        bmpTemp.compress(Bitmap.CompressFormat.PNG, 100, fOut);
         try {
             fOut.flush();
         } catch (IOException e) {
