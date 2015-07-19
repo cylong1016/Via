@@ -23,7 +23,7 @@ import njuse.via.crop.ShowImageActivity;
 public class CropPicActivity extends Activity{
     public static String picPath = null;
     private ClipImageLayout mClipImageLayout;
-
+    private String uri = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,12 +66,8 @@ public class CropPicActivity extends Activity{
         saveMyBitmap(bitmap);
 
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] datas = baos.toByteArray();
-
         Intent intent = new Intent();
-        intent.putExtra("bitmap", datas);
+        intent.putExtra("bitmap", uri);
         setResult(1,intent);
         finish();
     }
@@ -86,6 +82,7 @@ public class CropPicActivity extends Activity{
         String bitName = temp;
         File f = new File( "/sdcard/Via/crop/"+bitName);
         File file = new File("/sdcard/Via/crop");
+        uri = "file:///sdcard/Via/crop/"+bitName;
         FileOutputStream fOut = null;
 
         if(!file.exists()){

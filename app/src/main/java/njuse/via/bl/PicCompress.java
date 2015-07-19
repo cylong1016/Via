@@ -49,11 +49,14 @@ public class PicCompress {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        Log.e("mylength",":"+baos.toByteArray().length);
+
+        Log.e("mylength",":"+baos.toByteArray().length/1024);
+
         if( baos.toByteArray().length / 1024>1024) {//判断如果图片大于1M,进行压缩避免在生成图片（BitmapFactory.decodeStream）时溢出
             baos.reset();//重置baos即清空baos
             image.compress(Bitmap.CompressFormat.JPEG, 50, baos);//这里压缩50%，把压缩后的数据存放到baos中
         }
+        Log.e("nowlength",":"+baos.toByteArray().length/1024);
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());
         BitmapFactory.Options newOpts = new BitmapFactory.Options();
         //开始读入图片，此时把options.inJustDecodeBounds 设回true了
@@ -82,10 +85,4 @@ public class PicCompress {
         return compressImage(bitmap);//压缩好比例大小后再进行质量压缩
     }
 
-//    public void getScreen(){
-//        DisplayMetrics metrics = new DisplayMetrics();
-//        ((Activity) activity).getWindowManager().getDefaultDisplay().getMetrics(metrics);
-//        int screenWidth = metrics.widthPixels;
-//        int screenHeight =metrics.heightPixels;
-//    }
 }
