@@ -114,9 +114,9 @@ public class MakeActivity extends Activity {
 
         if(magniscaleW < magniscaleH) { // 图片相对于显示图片的view较宽
             double temp = (photoHeight - imgH * magniscaleW) / 2;
-            viewX = (int) (magniscaleW * 68.0);
+            viewX = (int) (magniscaleW * 66.0);
             viewY = (int) (61.0 * magniscaleW + temp + dpTopx(28));
-            viewW = (int) (magniscaleW * 583.0);
+            viewW = (int) (magniscaleW * 587.0);
             viewH = viewW;
 
             explainX = (int) (magniscaleW * 68.0);
@@ -154,7 +154,7 @@ public class MakeActivity extends Activity {
         if(screen.getBackGroundURL()!=null){
             img.setImageURI(Uri.parse(screen.getBackGroundURL()));
         }else{
-            img.setImageResource(R.drawable.cat);
+            img.setImageResource(0);
         }
     }
 
@@ -366,9 +366,6 @@ public class MakeActivity extends Activity {
     public void pasterListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, PasterActivity.class);
-        //  Bundle b=new Bundle();
-        // b.putSerializable("paster",this.class);
-        //  intent.putExtras(b);
         this.startActivityForResult(intent, 3);
     }
 

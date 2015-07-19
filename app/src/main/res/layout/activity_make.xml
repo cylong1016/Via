@@ -69,6 +69,13 @@
         android:layout_weight="18">
 
         <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/bg"
+            android:scaleType="fitXY"
+            android:src="@mipmap/bg"/>
+
+        <ImageView
             android:id="@+id/photoView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -158,7 +165,7 @@
                 android:id="@+id/paster"
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/icon_picture"
+                android:src="@mipmap/icon_sticker"
                 android:background="@drawable/icon_selector"
                 android:layout_weight="1"
                 android:onClick="pasterListener"/>
