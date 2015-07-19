@@ -247,7 +247,11 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void saveListener(View view) {
-
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
+        String date = sDateFormat.format(new java.util.Date());
+        String workName="via_"+date;
+        makeBL.saveWork(workName);
+        Toast.makeText(this,"保存文件成功！",Toast.LENGTH_SHORT);
     }
 
     /**
