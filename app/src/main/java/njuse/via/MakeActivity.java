@@ -21,6 +21,7 @@ import android.widget.Toast;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 
 import njuse.via.bl.MakeBL;
 import njuse.via.blservice.MakeBLService;
@@ -251,7 +252,7 @@ public class MakeActivity extends Activity {
         String date = sDateFormat.format(new java.util.Date());
         String workName="via_"+date;
         makeBL.saveWork(workName);
-        Toast.makeText(this,"保存文件成功！",Toast.LENGTH_SHORT);
+        Toast.makeText(this,"保存文件成功！",Toast.LENGTH_SHORT).show();
     }
 
     /**
