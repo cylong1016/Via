@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -329,7 +328,7 @@ public class MakeActivity extends Activity {
     滤镜结束之后调用这个方法
      */
     public void setImgAfterFilter(){
-        Bitmap bitmap = BitmapFactory.decodeFile(screen.getBackGroundURL().substring(6));
+        Bitmap bitmap = BitmapFactory.decodeFile(screen.getBackGroundURL().substring(7));
 
 //        LinearLayout layout = (LinearLayout) findViewById(R.id.topTool);
 //        TextView tx = new TextView(this);
@@ -337,10 +336,10 @@ public class MakeActivity extends Activity {
 //        layout.addView(tx, 0);
 
         ImageView mImageView = (ImageView) findViewById(R.id.photoView);
-//        if(bitmap!=null) {
+        if(bitmap!=null) {
             mImageView.setImageBitmap(bitmap);
-//        }
-        System.gc();
+        }
+//        System.gc();
     }
 
 
