@@ -260,6 +260,8 @@ public class MakeActivity extends Activity {
 
                 mImageView.setImageBitmap(bitmap);
             }
+            String path = screen.getBackGroundURL().replace("copy","crop");
+            screen.setBackGroundURL(path);
         }
         if(resultCode==2){
             //Log.e("back", "back to make");

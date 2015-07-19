@@ -29,7 +29,7 @@ public class CropPicActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        picPath = getIntent().getStringExtra("path");
+        picPath = getIntent().getStringExtra("path").replace("crop","copy");
         setContentView(R.layout.activity_crop);
         mClipImageLayout = (ClipImageLayout) findViewById(R.id.id_clipImageLayout);
 
