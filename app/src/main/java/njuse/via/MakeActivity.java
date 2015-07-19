@@ -2,6 +2,8 @@ package njuse.via;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -18,7 +20,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -261,6 +266,42 @@ public class MakeActivity extends Activity {
         String workName="via_"+date;
         makeBL.saveWork(workName);
         Toast.makeText(this,"保存文件成功！",Toast.LENGTH_SHORT).show();
+//        copyFile(R.raw.blur, "blur.js");
+//        copyFile(R.raw.blur_css,"blur_css.css");
+//        copyFile(R.raw.global,"global.css");
+//        copyFile(R.raw.jquery_easing_1_3,"jquery.easing.1.3.js");
+//        copyFile(R.raw.jquery_fullpage,"jquery.fullPage.css");
+//        copyFile(R.raw.jquery_1_8_3_min,"jquery.1.8.3.min.js");
+//        copyFile(R.raw.jquery_fullpage_min,"jquery.fullPage.min.js");
+        Intent intent =new Intent();
+        intent.setClass(this,ShowActivity.class);
+        intent.putExtra("html",workName);
+        startActivity(intent);
+    }
+
+    public void copyFile(int id,String name){
+        int byteread = 0;
+        byte[] buf = new byte[4096];
+        FileInputStream inStream = null;
+        FileOutputStream fs=null;
+
+        AssetFileDescriptor fd = getResources().openRawResourceFd(R.raw.blur);
+
+        try {
+            fs = new FileOutputStream(MainActivity.root+"/web_product/"+name);
+            inStream = fd.createInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            while((byteread = inStream.read(buf)) != -1)
+            {
+                fs.write(buf, 0, byteread);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

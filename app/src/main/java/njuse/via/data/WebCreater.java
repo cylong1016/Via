@@ -10,7 +10,7 @@ import njuse.via.po.ScreenSet;
  */
 public class WebCreater {
     public static void createHTML(ScreenSet screenSet){
-        ForFileWriter(createWeb(screenSet),"web2.html");
+        ForFileWriter(createWeb(screenSet),screenSet.getWorkName()+".html");
     }
 
     public static String createWeb(ScreenSet screenSet){
@@ -24,7 +24,6 @@ public class WebCreater {
                 "\n" +
                 "<title>" + screenSet.getWorkName() + "</title>\n"+
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"global.css\" />\n" +
-                "<link rel=\"stylesheet\" type=\"text/css\" href=\"adv.css\" />\n" +
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"blur_css.css\">\n" +
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"jquery.fullPage.css\" />\n" +
                 "\n" +
