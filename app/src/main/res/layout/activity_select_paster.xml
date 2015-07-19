@@ -13,25 +13,35 @@
         android:orientation="vertical"
         android:background="@color/select_photo_background">
 
-        <LinearLayout
-            android:id="@+id/option1_layout"
+
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingEnd="@dimen/select_option_layout_right_padding"
-            android:paddingStart="@dimen/select_option_layout_left_padding"
-            android:orientation="horizontal"
-            android:background="@color/select_photo_background">
+            android:layout_height="@dimen/LinearComponentSize"
+            android:layout_gravity="center_vertical"
+            android:background="#00000000"
+            android:layout_weight="6"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:id="@+id/LinearFilter"
+                android:orientation="horizontal"
+                android:background="#30363A"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <ImageButton
+                    android:id="@+id/paster1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/paster1"
+                    android:onClick="paster1Listener"
+                    />
 
 
 
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/paster1"
-                android:src="@drawable/paster1"
-                android:onClick="paster1Listener"/>
-        </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
 
 
         <Button

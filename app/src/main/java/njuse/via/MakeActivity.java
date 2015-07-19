@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import njuse.via.bl.MakeBL;
 import njuse.via.blservice.MakeBLService;
@@ -41,6 +42,8 @@ public class MakeActivity extends Activity {
 
     public Screen screen;
 
+
+    ArrayList<SingleTouchView> pasters = new ArrayList<SingleTouchView>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -250,6 +253,9 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void saveListener(View view) {
+        for(int i = 0;i<pasters.size();i++){
+            pasters.get(i).setEditable(false);
+        }
         SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
         String date = sDateFormat.format(new java.util.Date());
         String workName="via_"+date;
@@ -317,9 +323,7 @@ public class MakeActivity extends Activity {
             SingleTouchView singleTouchView = new SingleTouchView(MakeActivity.this);
             singleTouchView.setImageDrawable(d);
             mLayout.addView(singleTouchView);
-          /*  stickers.add(singleTouchView);
-            isEdit = true;*/
-
+            pasters.add(singleTouchView);
         }
 
         if (resultCode == 98) {
