@@ -265,7 +265,7 @@ public class MakeActivity extends Activity {
         SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
         String date = sDateFormat.format(new java.util.Date());
         String workName="via_"+date;
-        makeBL.saveWork("web2");
+        makeBL.saveWork(workName);
         Toast.makeText(this,"保存文件成功！",Toast.LENGTH_SHORT).show();
 //        copyFile(R.raw.blur, "blur.js");
 //        copyFile(R.raw.blur_css,"blur_css.css");
