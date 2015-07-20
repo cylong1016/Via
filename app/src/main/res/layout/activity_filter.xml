@@ -41,98 +41,110 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/NoFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/filter_0"
+                    android:layout_marginRight="5dp"
                     android:onClick="NoListener"
                     />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/IceFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/filter_1"
+                    android:layout_marginRight="5dp"
                     android:onClick="IceListener"
                     />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/MoltenFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/filter_2"
+                    android:layout_marginRight="5dp"
                     android:onClick="MoltenListener"
                     />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/ComicFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/filter_3"
+                    android:layout_marginRight="5dp"
                     android:onClick="ComicListener"
                     />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/SoftGlowFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/filter_4"
+                    android:layout_marginRight="5dp"
                     android:onClick="SoftGlowListener"
                     />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/GlowingEdgeFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/filter_5"
+                    android:layout_marginRight="5dp"
                     android:onClick="GlowingEdgeListener"
                     />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/FeatherFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/filter_6"
+                    android:layout_marginRight="5dp"
                     android:onClick="FeatherListener"
                     />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/ZoomBlurFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/filter_7"
+                    android:layout_marginRight="5dp"
                     android:onClick="ZoomBlurListener"
                     />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/LomoFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/filter_8"
+                    android:layout_marginRight="5dp"
                     android:onClick="LomoListener"
                     />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/FilmFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/filter_9"
+                    android:layout_marginRight="5dp"
                     android:onClick="FilmListener"
                     />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/RedToneFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/filter_10"
+                    android:layout_marginRight="5dp"
                     android:onClick="RedToneListener"
                     />
-                <ImageButton
+                <ImageView
                     android:id="@+id/BlueToneFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/filter_11"
+                    android:layout_marginRight="5dp"
                     android:onClick="BlueToneListener"
                     />
 
