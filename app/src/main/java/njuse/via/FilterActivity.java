@@ -28,7 +28,6 @@ import njuse.via.filter.ZoomBlurFilter;
 
 public class FilterActivity extends Activity {
 
-    private String filename = "D://108.jpg";
     private ImageView myImageView;
     private File path;
     private Bitmap bmpDefaultPic = null,bitmap,cropDefault,cropBmp;
