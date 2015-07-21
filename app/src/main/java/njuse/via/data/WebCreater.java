@@ -39,10 +39,6 @@ public class WebCreater {
                 "<!-- <ul id=\"menu\"></ul> -->\n" +
                 "<div id=\"fullpage\">\n" +
                 divCreater(screenSet) +
-                "\t<div class=\"section p8\">\n" +
-                "\t\t<!--<a href=\"#\"><img src=\"images/text8a.png\" class=\"a\" /></a>-->\n" +
-                "\t\t<a href=\"#\"><img src=\"images/text8b.png\" class=\"b\" /></a>\n" +
-                "\t</div>\n" +
                 "\n" +
                 "</div>\n" +
                 "\n" +
