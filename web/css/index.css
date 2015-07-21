@@ -1,0 +1,67 @@
+.game_over{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(19, 19, 19, 0.7);
+
+	z-index: 100;
+}
+
+.game_over .reset_form{
+	width: 80%;
+
+	padding: 30px;
+	margin: 50% auto;
+
+	background: #eee;
+	border-radius: 30px;
+}
+
+.game_over h1{
+	text-align: center;
+	color: #aaa;
+	margin: 0 0 8% 0;
+}
+
+.game_over .reset{
+	width: 40%;
+	margin: 0 auto;
+	padding: 15px;
+	
+	text-align: center;
+	color:#aaa;
+
+	border: 2px solid #aaa;
+	border-radius: 20px;
+
+	cursor: pointer;
+}
+
+/*========================================*/
+/*               ANIMATION                */
+/*========================================*/
+
+@keyframes fade-in {  
+        0% {opacity: 0;}/*初始状态 透明度为0*/  
+        40% {opacity: 0;}/*过渡状态 透明度为0*/  
+        100% {opacity: 1;}/*结束状态 透明度为1*/  
+    }  
+    @-webkit-keyframes fade-in {/*针对webkit内核*/  
+        0% {opacity: 0;}  
+        40% {opacity: 0;}  
+        100% {opacity: 1;}  
+    }  
+
+.active .text p{    
+	animation: fade-in 1.5s;/*动画名称 时间*/  
+	-webkit-animation:fade-in 1.5s;/*针对webkit内核*/  
+    } 
+
+.active .images .sel{
+	/*animation: fade-in 1s;
+	-webkit-animation:fade-in 1s;*/
+}
+
+.game_over{
+	animation: fade-in 1s;
+}
