@@ -105,15 +105,6 @@
                     />
 
                 <ImageView
-                    android:id="@+id/ZoomBlurFilter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_7"
-                    android:layout_marginRight="5dp"
-                    android:onClick="ZoomBlurListener"
-                    />
-
-                <ImageView
                     android:id="@+id/LomoFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

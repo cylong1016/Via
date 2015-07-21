@@ -151,15 +151,15 @@ public class FilterActivity extends Activity {
             cropBmp = filter_Crop.imageProcess().getDstBitmap();
         }
     }
-    public void ZoomBlurListener(View view) {
-        ZoomBlurFilter filter = new ZoomBlurFilter(bmpDefaultPic,20);
-        bitmap = filter.imageProcess().getDstBitmap();
-        iv.setImageBitmap(bitmap);
-        if(isCrop) {
-            ZoomBlurFilter filter_Crop = new ZoomBlurFilter(cropDefault,20);
-            cropBmp = filter_Crop.imageProcess().getDstBitmap();
-        }
-    }
+//    public void ZoomBlurListener(View view) {
+//        ZoomBlurFilter filter = new ZoomBlurFilter(bmpDefaultPic,20);
+//        bitmap = filter.imageProcess().getDstBitmap();
+//        iv.setImageBitmap(bitmap);
+//        if(isCrop) {
+//            ZoomBlurFilter filter_Crop = new ZoomBlurFilter(cropDefault,20);
+//            cropBmp = filter_Crop.imageProcess().getDstBitmap();
+//        }
+//    }
     public void LomoListener(View view) {
         LomoFilter filter = new LomoFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
