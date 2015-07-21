@@ -19,7 +19,7 @@ import njuse.via.R;
  * Created by zucewei on 2015/7/19.
  */
 public class Web_IO {
-    String path= MainActivity.root+"/web_product";
+    String path= PathConfig.WEB;
 
     public Web_IO(){
         File file = new File(path);
