@@ -85,10 +85,6 @@ public class FilterActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * @param view
-     * ��Ч��������ԭͼ
-     */
     public void NoListener(View view) {
         bitmap = bmpDefaultPic;
         iv.setImageBitmap(bitmap);
@@ -197,10 +193,6 @@ public class FilterActivity extends Activity {
         }
     }
 
-    /**
-     * @param view
-     * ȷ���˾�
-     */
     public void ensureFilter(View view) throws IOException{
 //        this.startActivity(intent);
 //        new Thread() { // ��ֹ�л�����

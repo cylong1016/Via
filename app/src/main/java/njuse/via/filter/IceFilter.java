@@ -3,12 +3,12 @@ package njuse.via.filter;
 import android.graphics.Bitmap;
 
 /**
- * @author ÑÇÉªboy
+ * @author äºšç‘Ÿboy
  * QQ 464102961
  */
 public class IceFilter implements ImageFilterInterface {
 
-	private ImageData image = null; // Í¼Æ¬ĞÅÏ¢Àà
+	private ImageData image = null; // å›¾ç‰‡ä¿¡æ¯ç±»
 
 	public IceFilter(Bitmap bmp) {
 		image = new ImageData(bmp);
@@ -20,7 +20,7 @@ public class IceFilter implements ImageFilterInterface {
 		int R, G, B, pixel;
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				R = image.getRComponent(x, y); // »ñÈ¡RGBÈıÔ­É«
+				R = image.getRComponent(x, y); // è·å–RGBä¸‰åŸè‰²
 				G = image.getGComponent(x, y);
 				B = image.getBComponent(x, y);
 

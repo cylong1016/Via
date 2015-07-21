@@ -3,7 +3,7 @@ package njuse.via.filter;
 
 /**
  * 
- * »ìºÏÁ½¸öAndroidImage¶ÔÏó
+ * æ··åˆä¸¤ä¸ªAndroidImageå¯¹è±¡
  * @author Administrator
  *
  */
@@ -165,7 +165,7 @@ public class ImageBlender {
 				        break;
 		            }
 		            case 12:{ //Frame
-		            	if((r2 ==0 && g2 == 0 && r2 ==0)){//Ì½²â±ß¿òÑÕÉ«(r2 > 230 && g2 > 230 && b2 > 230) || 
+		            	if((r2 ==0 && g2 == 0 && r2 ==0)){//æŽ¢æµ‹è¾¹æ¡†é¢œè‰²(r2 > 230 && g2 > 230 && b2 > 230) || 
 		            		r = r1;
 				            g = g1;
 				            b = b1;    

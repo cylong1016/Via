@@ -32,21 +32,21 @@ import android.view.ViewGroup;
 import njuse.via.R;
 
 /**
- * µ¥ÊÖ¶ÔÍ¼Æ¬½øĞĞËõ·Å£¬Ğı×ª£¬Æ½ÒÆ²Ù×÷
+ * å•æ‰‹å¯¹å›¾ç‰‡è¿›è¡Œç¼©æ”¾ï¼Œæ—‹è½¬ï¼Œå¹³ç§»æ“ä½œ
  */
 public class SingleTouchView extends View {
     /**
-     * Í¼Æ¬µÄ×î´óËõ·Å±ÈÀı
+     * å›¾ç‰‡çš„æœ€å¤§ç¼©æ”¾æ¯”ä¾‹
      */
     public static final float MAX_SCALE = 4.0f;
 
     /**
-     * Í¼Æ¬µÄ×îĞ¡Ëõ·Å±ÈÀı
+     * å›¾ç‰‡çš„æœ€å°ç¼©æ”¾æ¯”ä¾‹
      */
     public static final float MIN_SCALE = 0.3f;
 
     /**
-     * ¿ØÖÆËõ·Å£¬Ğı×ªÍ¼±êËùÔÚËÄ¸öµãµÃÎ»ÖÃ
+     * æ§åˆ¶ç¼©æ”¾ï¼Œæ—‹è½¬å›¾æ ‡æ‰€åœ¨å››ä¸ªç‚¹å¾—ä½ç½®
      */
     public static final int LEFT_TOP = 0;
     public static final int RIGHT_TOP = 1;
@@ -54,7 +54,7 @@ public class SingleTouchView extends View {
     public static final int LEFT_BOTTOM = 3;
 
     /**
-     * Ò»Ğ©Ä¬ÈÏµÄ³£Á¿
+     * ä¸€äº›é»˜è®¤çš„å¸¸é‡
      */
     public static final int DEFAULT_FRAME_PADDING = 8;
     public static final int DEFAULT_FRAME_WIDTH = 2;
@@ -69,49 +69,49 @@ public class SingleTouchView extends View {
 
 
     /**
-     * ÓÃÓÚĞı×ªËõ·ÅµÄBitmap
+     * ç”¨äºæ—‹è½¬ç¼©æ”¾çš„Bitmap
      */
     private Bitmap mBitmap;
 
     public Bitmap mBitmap1;
 
     /**
-     * SingleTouchViewµÄÖĞĞÄµã×ø±ê£¬Ïà¶ÔÓÚÆä¸¸Àà²¼¾Ö¶øÑÔµÄ
+     * SingleTouchViewçš„ä¸­å¿ƒç‚¹åæ ‡ï¼Œç›¸å¯¹äºå…¶çˆ¶ç±»å¸ƒå±€è€Œè¨€çš„
      */
     private PointF mCenterPoint = new PointF();
 
     /**
-     * ViewµÄ¿í¶ÈºÍ¸ß¶È£¬Ëæ×ÅÍ¼Æ¬µÄĞı×ª¶ø±ä»¯(²»°üÀ¨¿ØÖÆĞı×ª£¬Ëõ·ÅÍ¼Æ¬µÄ¿í¸ß)
+     * Viewçš„å®½åº¦å’Œé«˜åº¦ï¼Œéšç€å›¾ç‰‡çš„æ—‹è½¬è€Œå˜åŒ–(ä¸åŒ…æ‹¬æ§åˆ¶æ—‹è½¬ï¼Œç¼©æ”¾å›¾ç‰‡çš„å®½é«˜)
      */
     private int mViewWidth, mViewHeight;
 
     /**
-     * Í¼Æ¬µÄĞı×ª½Ç¶È
+     * å›¾ç‰‡çš„æ—‹è½¬è§’åº¦
      */
     private float mDegree = DEFAULT_DEGREE;
 
     /**
-     * Í¼Æ¬µÄËõ·Å±ÈÀı
+     * å›¾ç‰‡çš„ç¼©æ”¾æ¯”ä¾‹
      */
     private float mScale = DEFAULT_SCALE;
 
     /**
-     * ÓÃÓÚËõ·Å£¬Ğı×ª£¬Æ½ÒÆµÄ¾ØÕó
+     * ç”¨äºç¼©æ”¾ï¼Œæ—‹è½¬ï¼Œå¹³ç§»çš„çŸ©é˜µ
      */
     private Matrix matrix = new Matrix();
 
     /**
-     * SingleTouchView¾àÀë¸¸Àà²¼¾ÖµÄ×ó¼ä¾à
+     * SingleTouchViewè·ç¦»çˆ¶ç±»å¸ƒå±€çš„å·¦é—´è·
      */
     private int mViewPaddingLeft;
 
     /**
-     * SingleTouchView¾àÀë¸¸Àà²¼¾ÖµÄÉÏ¼ä¾à
+     * SingleTouchViewè·ç¦»çˆ¶ç±»å¸ƒå±€çš„ä¸Šé—´è·
      */
     private int mViewPaddingTop;
 
     /**
-     * Í¼Æ¬ËÄ¸öµã×ø±ê
+     * å›¾ç‰‡å››ä¸ªç‚¹åæ ‡
      */
     private Point mLTPoint;
     private Point mRTPoint;
@@ -119,67 +119,67 @@ public class SingleTouchView extends View {
     private Point mLBPoint;
 
     /**
-     * ÓÃÓÚËõ·Å£¬Ğı×ªµÄ¿ØÖÆµãµÄ×ø±ê
+     * ç”¨äºç¼©æ”¾ï¼Œæ—‹è½¬çš„æ§åˆ¶ç‚¹çš„åæ ‡
      */
     private Point mControlPoint = new Point();
 
     /**
-     * ÓÃÓÚËõ·Å£¬Ğı×ªµÄÍ¼±ê
+     * ç”¨äºç¼©æ”¾ï¼Œæ—‹è½¬çš„å›¾æ ‡
      */
     private Drawable controlDrawable;
 
     /**
-     * Ëõ·Å£¬Ğı×ªÍ¼±êµÄ¿íºÍ¸ß
+     * ç¼©æ”¾ï¼Œæ—‹è½¬å›¾æ ‡çš„å®½å’Œé«˜
      */
     private int mDrawableWidth, mDrawableHeight;
 
     /**
-     * »­ÍâÎ§¿òµÄPath
+     * ç”»å¤–å›´æ¡†çš„Path
      */
     private Path mPath = new Path();
 
     /**
-     * »­ÍâÎ§¿òµÄ»­±Ê
+     * ç”»å¤–å›´æ¡†çš„ç”»ç¬”
      */
     private Paint mPaint ;
 
     /**
-     * ³õÊ¼×´Ì¬
+     * åˆå§‹çŠ¶æ€
      */
     public static final int STATUS_INIT = 0;
 
     /**
-     * ÍÏ¶¯×´Ì¬
+     * æ‹–åŠ¨çŠ¶æ€
      */
     public static final int STATUS_DRAG = 1;
 
     /**
-     * Ğı×ª»òÕß·Å´ó×´Ì¬
+     * æ—‹è½¬æˆ–è€…æ”¾å¤§çŠ¶æ€
      */
     public static final int STATUS_ROTATE_ZOOM = 2;
 
     /**
-     * µ±Ç°Ëù´¦µÄ×´Ì¬
+     * å½“å‰æ‰€å¤„çš„çŠ¶æ€
      */
     private int mStatus = STATUS_INIT;
 
     /**
-     * Íâ±ß¿òÓëÍ¼Æ¬Ö®¼äµÄ¼ä¾à, µ¥Î»ÊÇdip
+     * å¤–è¾¹æ¡†ä¸å›¾ç‰‡ä¹‹é—´çš„é—´è·, å•ä½æ˜¯dip
      */
     private int framePadding = DEFAULT_FRAME_PADDING;
 
     /**
-     * Íâ±ß¿òÑÕÉ«
+     * å¤–è¾¹æ¡†é¢œè‰²
      */
     private int frameColor = DEFAULT_FRAME_COLOR;
 
     /**
-     * Íâ±ß¿òÏßÌõ´ÖÏ¸, µ¥Î»ÊÇ dip
+     * å¤–è¾¹æ¡†çº¿æ¡ç²—ç»†, å•ä½æ˜¯ dip
      */
     private int frameWidth = DEFAULT_FRAME_WIDTH;
 
     /**
-     * ÊÇ·ñ´¦ÓÚ¿ÉÒÔËõ·Å£¬Æ½ÒÆ£¬Ğı×ª×´Ì¬
+     * æ˜¯å¦å¤„äºå¯ä»¥ç¼©æ”¾ï¼Œå¹³ç§»ï¼Œæ—‹è½¬çŠ¶æ€
      */
     private boolean isEditable = DEFAULT_EDITABLE;
 
@@ -190,11 +190,11 @@ public class SingleTouchView extends View {
     private PointF mCurMovePointF = new PointF();
 
     /**
-     * Í¼Æ¬ÔÚĞı×ªÊ±x·½ÏòµÄÆ«ÒÆÁ¿
+     * å›¾ç‰‡åœ¨æ—‹è½¬æ—¶xæ–¹å‘çš„åç§»é‡
      */
     private int offsetX;
     /**
-     * Í¼Æ¬ÔÚĞı×ªÊ±y·½ÏòµÄÆ«ÒÆÁ¿
+     * å›¾ç‰‡åœ¨æ—‹è½¬æ—¶yæ–¹å‘çš„åç§»é‡
      */
     private int offsetY;
 
@@ -203,7 +203,7 @@ public class SingleTouchView extends View {
     public int xNow1;
     public int yNow1;
     /**
-     * ¿ØÖÆÍ¼±êËùÔÚµÄÎ»ÖÃ£¨±ÈÈç×óÉÏ£¬ÓÒÉÏ£¬×óÏÂ£¬ÓÒÏÂ£©
+     * æ§åˆ¶å›¾æ ‡æ‰€åœ¨çš„ä½ç½®ï¼ˆæ¯”å¦‚å·¦ä¸Šï¼Œå³ä¸Šï¼Œå·¦ä¸‹ï¼Œå³ä¸‹ï¼‰
      */
     private int controlLocation = DEFAULT_CONTROL_LOCATION;
 
@@ -223,7 +223,7 @@ public class SingleTouchView extends View {
     }
 
     /**
-     * »ñÈ¡×Ô¶¨ÒåÊôĞÔ
+     * è·å–è‡ªå®šä¹‰å±æ€§
      * @param attrs
      */
     private void obtainStyledAttributes(AttributeSet attrs){
@@ -274,7 +274,7 @@ public class SingleTouchView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        //»ñÈ¡SingleTouchViewËùÔÚ¸¸²¼¾ÖµÄÖĞĞÄµã
+        //è·å–SingleTouchViewæ‰€åœ¨çˆ¶å¸ƒå±€çš„ä¸­å¿ƒç‚¹
         ViewGroup mViewGroup = (ViewGroup) getParent();
         if(null != mViewGroup){
             int parentWidth = mViewGroup.getWidth();
@@ -285,7 +285,7 @@ public class SingleTouchView extends View {
 
 
     /**
-     * µ÷ÕûViewµÄ´óĞ¡£¬Î»ÖÃ
+     * è°ƒæ•´Viewçš„å¤§å°ï¼Œä½ç½®
      */
     private void adjustLayout(){
         int actualWidth = mViewWidth + mDrawableWidth;
@@ -325,7 +325,7 @@ public class SingleTouchView extends View {
 
 
     /**
-     * ÉèÖÃĞı×ªÍ¼
+     * è®¾ç½®æ—‹è½¬å›¾
      * @param bitmap
      */
     public void setImageBitamp(Bitmap bitmap){
@@ -335,7 +335,7 @@ public class SingleTouchView extends View {
 
 
     /**
-     * ÉèÖÃĞı×ªÍ¼
+     * è®¾ç½®æ—‹è½¬å›¾
      * @param drawable
      */
     public void setImageDrawable(Drawable drawable){
@@ -346,7 +346,7 @@ public class SingleTouchView extends View {
     }
 
     /**
-     * ´ÓDrawableÖĞ»ñÈ¡Bitmap¶ÔÏó
+     * ä»Drawableä¸­è·å–Bitmapå¯¹è±¡
      * @param drawable
      * @return
      */
@@ -379,7 +379,7 @@ public class SingleTouchView extends View {
     }
 
     /**
-     * ¸ù¾İidÉèÖÃĞı×ªÍ¼
+     * æ ¹æ®idè®¾ç½®æ—‹è½¬å›¾
      * @param resId
      */
     public void setImageResource(int resId){
@@ -389,13 +389,13 @@ public class SingleTouchView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        //Ã¿´ÎdrawÖ®Ç°µ÷ÕûViewµÄÎ»ÖÃºÍ´óĞ¡
+        //æ¯æ¬¡drawä¹‹å‰è°ƒæ•´Viewçš„ä½ç½®å’Œå¤§å°
         super.onDraw(canvas);
         if(mBitmap == null) return;
         canvas.drawBitmap(mBitmap, matrix, mPaint);
 
 
-        //´¦ÓÚ¿É±à¼­×´Ì¬²Å»­±ß¿òºÍ¿ØÖÆÍ¼±ê
+        //å¤„äºå¯ç¼–è¾‘çŠ¶æ€æ‰ç”»è¾¹æ¡†å’Œæ§åˆ¶å›¾æ ‡
         if(isEditable){
             mPath.reset();
             mPath.moveTo(mLTPoint.x, mLTPoint.y);
@@ -405,7 +405,7 @@ public class SingleTouchView extends View {
             mPath.lineTo(mLTPoint.x, mLTPoint.y);
             mPath.lineTo(mRTPoint.x, mRTPoint.y);
             canvas.drawPath(mPath, mPaint);
-            //»­Ğı×ª, Ëõ·ÅÍ¼±ê
+            //ç”»æ—‹è½¬, ç¼©æ”¾å›¾æ ‡
 
             controlDrawable.setBounds(mControlPoint.x - mDrawableWidth / 2,
                     mControlPoint.y - mDrawableHeight / 2, mControlPoint.x + mDrawableWidth
@@ -421,7 +421,7 @@ public class SingleTouchView extends View {
 
 
     /**
-     * ÉèÖÃMatrix, Ç¿ÖÆË¢ĞÂ
+     * è®¾ç½®Matrix, å¼ºåˆ¶åˆ·æ–°
      */
     private void transformDraw(){
         if(mBitmap == null) return;
@@ -429,11 +429,11 @@ public class SingleTouchView extends View {
         int bitmapHeight = (int)(mBitmap.getHeight()* mScale);
         computeRect(-framePadding, -framePadding, bitmapWidth + framePadding, bitmapHeight + framePadding, mDegree);
 
-        //ÉèÖÃËõ·Å±ÈÀı
+        //è®¾ç½®ç¼©æ”¾æ¯”ä¾‹
         matrix.setScale(mScale, mScale);
-        //ÈÆ×ÅÍ¼Æ¬ÖĞĞÄ½øĞĞĞı×ª
+        //ç»•ç€å›¾ç‰‡ä¸­å¿ƒè¿›è¡Œæ—‹è½¬
         matrix.postRotate(mDegree % 360, bitmapWidth / 2, bitmapHeight / 2);
-        //ÉèÖÃ»­¸ÃÍ¼Æ¬µÄÆğÊ¼µã
+        //è®¾ç½®ç”»è¯¥å›¾ç‰‡çš„èµ·å§‹ç‚¹
         matrix.postTranslate(offsetX + mDrawableWidth/2, offsetY + mDrawableHeight/2);
 
         adjustLayout();
@@ -462,17 +462,17 @@ public class SingleTouchView extends View {
                     int halfBitmapWidth = mBitmap.getWidth() / 2;
                     int halfBitmapHeight = mBitmap.getHeight() /2 ;
 
-                    //Í¼Æ¬Ä³¸öµãµ½Í¼Æ¬ÖĞĞÄµÄ¾àÀë
+                    //å›¾ç‰‡æŸä¸ªç‚¹åˆ°å›¾ç‰‡ä¸­å¿ƒçš„è·ç¦»
                     float bitmapToCenterDistance = FloatMath.sqrt(halfBitmapWidth * halfBitmapWidth + halfBitmapHeight * halfBitmapHeight);
 
-                    //ÒÆ¶¯µÄµãµ½Í¼Æ¬ÖĞĞÄµÄ¾àÀë
+                    //ç§»åŠ¨çš„ç‚¹åˆ°å›¾ç‰‡ä¸­å¿ƒçš„è·ç¦»
                     float moveToCenterDistance = distance4PointF(mCenterPoint, mCurMovePointF);
 
-                    //¼ÆËãËõ·Å±ÈÀı
+                    //è®¡ç®—ç¼©æ”¾æ¯”ä¾‹
                     scale = moveToCenterDistance / bitmapToCenterDistance;
 
 
-                    //Ëõ·Å±ÈÀıµÄ½çÏŞÅĞ¶Ï
+                    //ç¼©æ”¾æ¯”ä¾‹çš„ç•Œé™åˆ¤æ–­
                     if (scale <= MIN_SCALE) {
                         scale = MIN_SCALE;
                     } else if (scale >= MAX_SCALE) {
@@ -480,7 +480,7 @@ public class SingleTouchView extends View {
                     }
 
 
-                    // ½Ç¶È
+                    // è§’åº¦
                     double a = distance4PointF(mCenterPoint, mPreMovePointF);
                     double b = distance4PointF(mPreMovePointF, mCurMovePointF);
                     double c = distance4PointF(mCenterPoint, mCurMovePointF);
@@ -494,13 +494,13 @@ public class SingleTouchView extends View {
                     double radian = Math.acos(cosb);
                     float newDegree = (float) radianToDegree(radian);
 
-                    //center -> proMoveµÄÏòÁ¿£¬ ÎÒÃÇÊ¹ÓÃPointFÀ´ÊµÏÖ
+                    //center -> proMoveçš„å‘é‡ï¼Œ æˆ‘ä»¬ä½¿ç”¨PointFæ¥å®ç°
                     PointF centerToProMove = new PointF((mPreMovePointF.x - mCenterPoint.x), (mPreMovePointF.y - mCenterPoint.y));
 
-                    //center -> curMove µÄÏòÁ¿
+                    //center -> curMove çš„å‘é‡
                     PointF centerToCurMove = new PointF((mCurMovePointF.x - mCenterPoint.x), (mCurMovePointF.y - mCenterPoint.y));
 
-                    //ÏòÁ¿²æ³Ë½á¹û, Èç¹û½á¹ûÎª¸ºÊı£¬ ±íÊ¾ÎªÄæÊ±Õë£¬ ½á¹ûÎªÕıÊı±íÊ¾Ë³Ê±Õë
+                    //å‘é‡å‰ä¹˜ç»“æœ, å¦‚æœç»“æœä¸ºè´Ÿæ•°ï¼Œ è¡¨ç¤ºä¸ºé€†æ—¶é’ˆï¼Œ ç»“æœä¸ºæ­£æ•°è¡¨ç¤ºé¡ºæ—¶é’ˆ
                     float result = centerToProMove.x * centerToCurMove.y - centerToProMove.y * centerToCurMove.x;
 
                     if (result < 0) {
@@ -513,7 +513,7 @@ public class SingleTouchView extends View {
                     transformDraw();
                 }
                 else if (mStatus == STATUS_DRAG) {
-                    // ĞŞ¸ÄÖĞĞÄµã
+                    // ä¿®æ”¹ä¸­å¿ƒç‚¹
                     mCenterPoint.x += mCurMovePointF.x - mPreMovePointF.x;
                     mCenterPoint.y += mCurMovePointF.y - mPreMovePointF.y;
 
@@ -531,7 +531,7 @@ public class SingleTouchView extends View {
 
 
     /**
-     * »ñÈ¡ËÄ¸öµãºÍViewµÄ´óĞ¡
+     * è·å–å››ä¸ªç‚¹å’ŒViewçš„å¤§å°
      * @param left
      * @param top
      * @param right
@@ -549,21 +549,21 @@ public class SingleTouchView extends View {
         mRBPoint = obtainRoationPoint(cp, rb, degree);
         mLBPoint = obtainRoationPoint(cp, lb, degree);
 
-        //¼ÆËãX×ø±ê×î´óµÄÖµºÍ×îĞ¡µÄÖµ
+        //è®¡ç®—Xåæ ‡æœ€å¤§çš„å€¼å’Œæœ€å°çš„å€¼
         int maxCoordinateX = getMaxValue(mLTPoint.x, mRTPoint.x, mRBPoint.x, mLBPoint.x);
         int minCoordinateX = getMinValue(mLTPoint.x, mRTPoint.x, mRBPoint.x, mLBPoint.x);;
 
         mViewWidth = maxCoordinateX - minCoordinateX ;
 
 
-        //¼ÆËãY×ø±ê×î´óµÄÖµºÍ×îĞ¡µÄÖµ
+        //è®¡ç®—Yåæ ‡æœ€å¤§çš„å€¼å’Œæœ€å°çš„å€¼
         int maxCoordinateY = getMaxValue(mLTPoint.y, mRTPoint.y, mRBPoint.y, mLBPoint.y);
         int minCoordinateY = getMinValue(mLTPoint.y, mRTPoint.y, mRBPoint.y, mLBPoint.y);
 
         mViewHeight = maxCoordinateY - minCoordinateY ;
 
 
-        //ViewÖĞĞÄµãµÄ×ø±ê
+        //Viewä¸­å¿ƒç‚¹çš„åæ ‡
         Point viewCenterPoint = new Point((maxCoordinateX + minCoordinateX) / 2, (maxCoordinateY + minCoordinateY) / 2);
 
         offsetX = mViewWidth / 2 - viewCenterPoint.x;
@@ -574,13 +574,13 @@ public class SingleTouchView extends View {
         int halfDrawableWidth = mDrawableWidth / 2;
         int halfDrawableHeight = mDrawableHeight /2;
 
-        //½«BitmapµÄËÄ¸öµãµÄXµÄ×ø±êÒÆ¶¯offsetX + halfDrawableWidth
+        //å°†Bitmapçš„å››ä¸ªç‚¹çš„Xçš„åæ ‡ç§»åŠ¨offsetX + halfDrawableWidth
         mLTPoint.x += (offsetX + halfDrawableWidth);
         mRTPoint.x += (offsetX + halfDrawableWidth);
         mRBPoint.x += (offsetX + halfDrawableWidth);
         mLBPoint.x += (offsetX + halfDrawableWidth);
 
-        //½«BitmapµÄËÄ¸öµãµÄY×ø±êÒÆ¶¯offsetY + halfDrawableHeight
+        //å°†Bitmapçš„å››ä¸ªç‚¹çš„Yåæ ‡ç§»åŠ¨offsetY + halfDrawableHeight
         mLTPoint.y += (offsetY + halfDrawableHeight);
         mRTPoint.y += (offsetY + halfDrawableHeight);
         mRBPoint.y += (offsetY + halfDrawableHeight);
@@ -591,7 +591,7 @@ public class SingleTouchView extends View {
 
 
     /**
-     * ¸ù¾İÎ»ÖÃÅĞ¶Ï¿ØÖÆÍ¼±ê´¦ÓÚÄÇ¸öµã
+     * æ ¹æ®ä½ç½®åˆ¤æ–­æ§åˆ¶å›¾æ ‡å¤„äºé‚£ä¸ªç‚¹
      * @return
      */
     private Point LocationToPoint(int location){
@@ -610,7 +610,7 @@ public class SingleTouchView extends View {
 
 
     /**
-     * »ñÈ¡±ä³¤²ÎÊı×î´óµÄÖµ
+     * è·å–å˜é•¿å‚æ•°æœ€å¤§çš„å€¼
      * @param array
      * @return
      */
@@ -622,7 +622,7 @@ public class SingleTouchView extends View {
 
 
     /**
-     * »ñÈ¡±ä³¤²ÎÊı×î´óµÄÖµ
+     * è·å–å˜é•¿å‚æ•°æœ€å¤§çš„å€¼
      * @param array
      * @return
      */
@@ -635,62 +635,62 @@ public class SingleTouchView extends View {
 
 
     /**
-     * »ñÈ¡Ğı×ªÄ³¸ö½Ç¶ÈÖ®ºóµÄµã
+     * è·å–æ—‹è½¬æŸä¸ªè§’åº¦ä¹‹åçš„ç‚¹
      * @param source
      * @param degree
      * @return
      */
     public static Point obtainRoationPoint(Point center, Point source, float degree) {
-        //Á½ÕßÖ®¼äµÄ¾àÀë
+        //ä¸¤è€…ä¹‹é—´çš„è·ç¦»
         Point disPoint = new Point();
         disPoint.x = source.x - center.x;
         disPoint.y = source.y - center.y;
 
-        //Ã»Ğı×ªÖ®Ç°µÄ»¡¶È
+        //æ²¡æ—‹è½¬ä¹‹å‰çš„å¼§åº¦
         double originRadian = 0;
 
-        //Ã»Ğı×ªÖ®Ç°µÄ½Ç¶È
+        //æ²¡æ—‹è½¬ä¹‹å‰çš„è§’åº¦
         double originDegree = 0;
 
-        //Ğı×ªÖ®ºóµÄ½Ç¶È
+        //æ—‹è½¬ä¹‹åçš„è§’åº¦
         double resultDegree = 0;
 
-        //Ğı×ªÖ®ºóµÄ»¡¶È
+        //æ—‹è½¬ä¹‹åçš„å¼§åº¦
         double resultRadian = 0;
 
-        //¾­¹ıĞı×ªÖ®ºóµãµÄ×ø±ê
+        //ç»è¿‡æ—‹è½¬ä¹‹åç‚¹çš„åæ ‡
         Point resultPoint = new Point();
 
         double distance = Math.sqrt(disPoint.x * disPoint.x + disPoint.y * disPoint.y);
         if (disPoint.x == 0 && disPoint.y == 0) {
             return center;
-            // µÚÒ»ÏóÏŞ
+            // ç¬¬ä¸€è±¡é™
         } else if (disPoint.x >= 0 && disPoint.y >= 0) {
-            // ¼ÆËãÓëxÕı·½ÏòµÄ¼Ğ½Ç
+            // è®¡ç®—ä¸xæ­£æ–¹å‘çš„å¤¹è§’
             originRadian = Math.asin(disPoint.y / distance);
 
-            // µÚ¶şÏóÏŞ
+            // ç¬¬äºŒè±¡é™
         } else if (disPoint.x < 0 && disPoint.y >= 0) {
-            // ¼ÆËãÓëxÕı·½ÏòµÄ¼Ğ½Ç
+            // è®¡ç®—ä¸xæ­£æ–¹å‘çš„å¤¹è§’
             originRadian = Math.asin(Math.abs(disPoint.x) / distance);
             originRadian = originRadian + Math.PI / 2;
 
-            // µÚÈıÏóÏŞ
+            // ç¬¬ä¸‰è±¡é™
         } else if (disPoint.x < 0 && disPoint.y < 0) {
-            // ¼ÆËãÓëxÕı·½ÏòµÄ¼Ğ½Ç
+            // è®¡ç®—ä¸xæ­£æ–¹å‘çš„å¤¹è§’
             originRadian = Math.asin(Math.abs(disPoint.y) / distance);
             originRadian = originRadian + Math.PI;
         } else if (disPoint.x >= 0 && disPoint.y < 0) {
-            // ¼ÆËãÓëxÕı·½ÏòµÄ¼Ğ½Ç
+            // è®¡ç®—ä¸xæ­£æ–¹å‘çš„å¤¹è§’
             originRadian = Math.asin(disPoint.x / distance);
             originRadian = originRadian + Math.PI * 3 / 2;
         }
 
-        // »¡¶È»»Ëã³É½Ç¶È
+        // å¼§åº¦æ¢ç®—æˆè§’åº¦
         originDegree = radianToDegree(originRadian);
         resultDegree = originDegree + degree;
 
-        // ½Ç¶È×ª»¡¶È
+        // è§’åº¦è½¬å¼§åº¦
         resultRadian = degreeToRadian(resultDegree);
 
         resultPoint.x = (int) Math.round(distance * Math.cos(resultRadian));
@@ -702,7 +702,7 @@ public class SingleTouchView extends View {
     }
 
     /**
-     * »¡¶È»»Ëã³É½Ç¶È
+     * å¼§åº¦æ¢ç®—æˆè§’åº¦
      *
      * @return
      */
@@ -712,7 +712,7 @@ public class SingleTouchView extends View {
 
 
     /**
-     * ½Ç¶È»»Ëã³É»¡¶È
+     * è§’åº¦æ¢ç®—æˆå¼§åº¦
      * @param degree
      * @return
      */
@@ -721,7 +721,7 @@ public class SingleTouchView extends View {
     }
 
     /**
-     * ¸ù¾İµã»÷µÄÎ»ÖÃÅĞ¶ÏÊÇ·ñµãÖĞ¿ØÖÆĞı×ª£¬Ëõ·ÅµÄÍ¼Æ¬£¬ ³õÂÔµÄ¼ÆËã
+     * æ ¹æ®ç‚¹å‡»çš„ä½ç½®åˆ¤æ–­æ˜¯å¦ç‚¹ä¸­æ§åˆ¶æ—‹è½¬ï¼Œç¼©æ”¾çš„å›¾ç‰‡ï¼Œ åˆç•¥çš„è®¡ç®—
      * @param x
      * @param y
      * @return
@@ -730,10 +730,10 @@ public class SingleTouchView extends View {
         PointF touchPoint = new PointF(x, y);
         PointF controlPointF = new PointF(mControlPoint);
 
-        //µã»÷µÄµãµ½¿ØÖÆĞı×ª£¬Ëõ·ÅµãµÄ¾àÀë
+        //ç‚¹å‡»çš„ç‚¹åˆ°æ§åˆ¶æ—‹è½¬ï¼Œç¼©æ”¾ç‚¹çš„è·ç¦»
         float distanceToControl = distance4PointF(touchPoint, controlPointF);
 
-        //Èç¹ûÁ½ÕßÖ®¼äµÄ¾àÀëĞ¡ÓÚ ¿ØÖÆÍ¼±êµÄ¿í¶È£¬¸ß¶ÈµÄ×îĞ¡Öµ£¬ÔòÈÏÎªµãÖĞÁË¿ØÖÆÍ¼±ê
+        //å¦‚æœä¸¤è€…ä¹‹é—´çš„è·ç¦»å°äº æ§åˆ¶å›¾æ ‡çš„å®½åº¦ï¼Œé«˜åº¦çš„æœ€å°å€¼ï¼Œåˆ™è®¤ä¸ºç‚¹ä¸­äº†æ§åˆ¶å›¾æ ‡
         if(distanceToControl < Math.min(mDrawableWidth/2, mDrawableHeight/2)){
             return STATUS_ROTATE_ZOOM;
         }
@@ -748,7 +748,7 @@ public class SingleTouchView extends View {
     }
 
     /**
-     * ÉèÖÃÍ¼Æ¬Ğı×ª½Ç¶È
+     * è®¾ç½®å›¾ç‰‡æ—‹è½¬è§’åº¦
      * @param degree
      */
     public void setImageDegree(float degree) {
@@ -763,7 +763,7 @@ public class SingleTouchView extends View {
     }
 
     /**
-     * ÉèÖÃÍ¼Æ¬Ëõ·Å±ÈÀı
+     * è®¾ç½®å›¾ç‰‡ç¼©æ”¾æ¯”ä¾‹
      * @param scale
      */
     public void setImageScale(float scale) {
@@ -779,7 +779,7 @@ public class SingleTouchView extends View {
     }
 
     /**
-     * ÉèÖÃ¿ØÖÆÍ¼±ê
+     * è®¾ç½®æ§åˆ¶å›¾æ ‡
      * @param drawable
      */
     public void setControlDrawable(Drawable drawable) {
@@ -825,7 +825,7 @@ public class SingleTouchView extends View {
     }
 
     /**
-     * ÉèÖÃ¿ØÖÆÍ¼±êµÄÎ»ÖÃ, ÉèÖÃµÄÖµÖ»ÄÜÑ¡ÔñLEFT_TOP £¬RIGHT_TOP£¬ RIGHT_BOTTOM£¬LEFT_BOTTOM
+     * è®¾ç½®æ§åˆ¶å›¾æ ‡çš„ä½ç½®, è®¾ç½®çš„å€¼åªèƒ½é€‰æ‹©LEFT_TOP ï¼ŒRIGHT_TOPï¼Œ RIGHT_BOTTOMï¼ŒLEFT_BOTTOM
 
      */
     public void setControlLocation(int location) {
@@ -846,7 +846,7 @@ public class SingleTouchView extends View {
     }
 
     /**
-     * ÉèÖÃÍ¼Æ¬ÖĞĞÄµãÎ»ÖÃ£¬Ïà¶ÔÓÚ¸¸²¼¾Ö¶øÑÔ
+     * è®¾ç½®å›¾ç‰‡ä¸­å¿ƒç‚¹ä½ç½®ï¼Œç›¸å¯¹äºçˆ¶å¸ƒå±€è€Œè¨€
      * @param mCenterPoint
      */
     public void setCenterPoint(PointF mCenterPoint) {
@@ -860,7 +860,7 @@ public class SingleTouchView extends View {
     }
 
     /**
-     * ÉèÖÃÊÇ·ñ´¦ÓÚ¿ÉËõ·Å£¬Æ½ÒÆ£¬Ğı×ª×´Ì¬
+     * è®¾ç½®æ˜¯å¦å¤„äºå¯ç¼©æ”¾ï¼Œå¹³ç§»ï¼Œæ—‹è½¬çŠ¶æ€
      * @param isEditable
      */
     public void setEditable(boolean isEditable) {
@@ -869,7 +869,7 @@ public class SingleTouchView extends View {
     }
 
     /**
-     * Á½¸öµãÖ®¼äµÄ¾àÀë
+     * ä¸¤ä¸ªç‚¹ä¹‹é—´çš„è·ç¦»
 
      */
     private float distance4PointF(PointF pf1, PointF pf2) {
@@ -882,23 +882,23 @@ public class SingleTouchView extends View {
         public Bitmap createNewPhoto() {
             transformDraw();
             Bitmap bitmap = Bitmap.createBitmap(mViewWidth*4, mViewHeight*4,
-                    Config.ARGB_8888); // ±³¾°Í¼Æ¬
-            Canvas canvas = new Canvas(bitmap); // ĞÂ½¨»­²¼
+                    Config.ARGB_8888); // èƒŒæ™¯å›¾ç‰‡
+            Canvas canvas = new Canvas(bitmap); // æ–°å»ºç”»å¸ƒ
             int bitmapWidth = (int)(mBitmap.getWidth() * mScale);
             int bitmapHeight = (int)(mBitmap.getHeight()* mScale);
            // computeRect(-framePadding, -framePadding, bitmapWidth + framePadding, bitmapHeight + framePadding, mDegree);
 
-           //ÉèÖÃËõ·Å±ÈÀı
+           //è®¾ç½®ç¼©æ”¾æ¯”ä¾‹
             Matrix matrix1= new Matrix();
             matrix1.setScale(mScale*2, mScale*2);
-            //ÈÆ×ÅÍ¼Æ¬ÖĞĞÄ½øĞĞĞı×ª
+            //ç»•ç€å›¾ç‰‡ä¸­å¿ƒè¿›è¡Œæ—‹è½¬
             matrix1.postRotate(mDegree % 360, bitmapWidth / 2, bitmapHeight / 2);
-            //ÉèÖÃÍ¼Æ¬ÆğÊ¼µã
+            //è®¾ç½®å›¾ç‰‡èµ·å§‹ç‚¹
             matrix1.postTranslate((offsetX + mDrawableWidth/2)*2, (offsetY+ mDrawableHeight/2 )*2);
 
-            canvas.drawBitmap(mBitmap, matrix1, null); // »­Í¼Æ¬
+            canvas.drawBitmap(mBitmap, matrix1, null); // ç”»å›¾ç‰‡
          //   System.out.println(mBitmap1.getWidth()+"........."+mBitmap1.getHeight()+"::::::");
-            canvas.save(Canvas.ALL_SAVE_FLAG); // ±£´æ»­²¼
+            canvas.save(Canvas.ALL_SAVE_FLAG); // ä¿å­˜ç”»å¸ƒ
             canvas.restore();
             return bitmap;
         }

@@ -1,8 +1,7 @@
 package njuse.via.filter;
 
-
 /**
- * É«²É±¥ºÍ¶ÈÌØÐ§
+ * è‰²é‡‡é¥±å’Œåº¦ç‰¹æ•ˆ
  * 
  */
 public class SaturationModifyFilter implements ImageFilterInterface {
@@ -15,7 +14,6 @@ public class SaturationModifyFilter implements ImageFilterInterface {
 	}
 
 	public ImageData imageProcess() {
-		// TODO Auto-generated method stub
 		float saturation = this.SaturationFactor + 1f;
 		float negosaturation = 1f - saturation;
 

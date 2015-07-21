@@ -3,8 +3,8 @@ package njuse.via.filter;
 import android.graphics.Bitmap;
 
 /**
- * Óð»¯Ð§¹û
- * @author ÑÇÉªBoy
+ * ç¾½åŒ–æ•ˆæžœ
+ * @author äºšç‘ŸBoy
  *
  */
 public class FeatherFilter implements ImageFilterInterface {
@@ -30,7 +30,7 @@ public class FeatherFilter implements ImageFilterInterface {
 		int R, G, B;
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				R = image.getRComponent(x, y); // »ñÈ¡RGBÈýÔ­É«
+				R = image.getRComponent(x, y); // èŽ·å–RGBä¸‰åŽŸè‰²
 				G = image.getGComponent(x, y);
 				B = image.getBComponent(x, y);
 

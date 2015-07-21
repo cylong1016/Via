@@ -8,9 +8,9 @@ import java.util.LinkedList;
  */
 public class ScreenSet implements Serializable {
     int num=0;
-    private LinkedList<Screen> screenList = new LinkedList<>(); //作品的每一幕信息
-    private int templateID;                                      //这一套作品使用的模板号
-    private String workName;                                      //制作的作品名称
+    private LinkedList<Screen> screenList = new LinkedList<>();	//作品的每一幕信息
+    private int templateID;	//这一套作品使用的模板号
+    private String workName;	//制作的作品名称
 
 
     public  ScreenSet(int templateID){

@@ -234,6 +234,7 @@ public class MakeActivity extends Activity {
         this.startActivity(intent);
         //设置切换动画，从左边进入，右边退出
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+        this.finish();
     }
 
     /**

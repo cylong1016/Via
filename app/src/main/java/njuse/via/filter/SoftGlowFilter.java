@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 public class SoftGlowFilter implements ImageFilterInterface {
 
 	/**
-	 * ¸ßÁÁ¶Ô±È¶ÈÌØĞ§
+	 * é«˜äº®å¯¹æ¯”åº¦ç‰¹æ•ˆ
 	 */
 	BrightContrastFilter contrastFx; 
 	
@@ -20,12 +20,12 @@ public class SoftGlowFilter implements ImageFilterInterface {
 	public SoftGlowFilter(Bitmap bmp, int nSigma, float nBrightness, float nContrast) {
 		gaussianBlurFx = new GaussianBlurFilter(bmp);
 		gaussianBlurFx.Sigma = nSigma;
-		image = gaussianBlurFx.imageProcess(); // Èá»¯´¦Àí
+		image = gaussianBlurFx.imageProcess(); // æŸ”åŒ–å¤„ç†
 		contrastFx = new BrightContrastFilter(image);
 		contrastFx.BrightnessFactor = nBrightness;
 		contrastFx.ContrastFactor = nContrast;
 		
-		image = contrastFx.imageProcess(); //  ¸ßÁÁ¶Ô±È¶È
+		image = contrastFx.imageProcess(); //  é«˜äº®å¯¹æ¯”åº¦
 	}
 
 	public ImageData imageProcess() {

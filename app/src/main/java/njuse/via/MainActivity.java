@@ -41,11 +41,6 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * ��ʼ������ť�ļ���
-     *
-     * @param view
-     */
     public void makeButtonListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, MakeActivity.class);
@@ -53,11 +48,6 @@ public class MainActivity extends Activity {
         overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
     }
 
-    /**
-     * ��ȡ�İ�ť�ļ���
-     *
-     * @param view
-     */
     public void readButtonListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, ReadActivity.class);
