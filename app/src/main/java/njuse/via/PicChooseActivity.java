@@ -19,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import njuse.via.bl.PicCompress;
+import njuse.via.config.PathConfig;
 
 /**
  * Created by zr on 2015/7/14.
@@ -34,8 +35,8 @@ public class PicChooseActivity extends Activity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String path  = "file:///sdcard/Via/original/";
-        String dirpath = "/sdcard/Via/original";
+        String path  = "file://"+ PathConfig.IMG_ORIGINAL;
+        String dirpath = PathConfig.IMG_ORIGINAL;
         //创建文件夹
         pc = new PicCompress();
         File file = new File(dirpath);
@@ -48,7 +49,7 @@ public class PicChooseActivity extends Activity{
         }
         //确定这一次图片的时间戳
         String time = String.valueOf(System.currentTimeMillis());
-        path = path + "img_"+time+".jpg";
+        path = path + "/img_"+time+".jpg";
         camerauri = Uri.parse(path);
         //String loc = getResources().getString(R.string.pic_location);
         //uri = Uri.parse(path);
@@ -97,7 +98,7 @@ public class PicChooseActivity extends Activity{
                String temp[] = camerauri.toString().split("/");
                 String bitname = temp[temp.length - 1];
                 saveMyBitmap(bitmap, bitname);
-                saveOriginalBitmap(bitmap,bitname);
+                saveOriginalBitmap(bitmap, bitname);
 
                 Intent intent = new Intent();
                 intent.setClass(this, MakeActivity.class);
@@ -145,8 +146,8 @@ public class PicChooseActivity extends Activity{
     }
     private void saveOriginalBitmap(Bitmap mBitmap,String bitName)  {
 
-        File f = new File( "/sdcard/Via/original/"+bitName);
-        File file = new File("/sdcard/Via/original");
+        File f = new File( PathConfig.IMG_ORIGINAL+"/"+bitName);
+        File file = new File(PathConfig.IMG_ORIGINAL);
         FileOutputStream fOut = null;
 
         if(!file.exists()){
@@ -177,9 +178,9 @@ public class PicChooseActivity extends Activity{
     }
     private void saveMyBitmap(Bitmap mBitmap,String bitName)  {
 
-        File f = new File( "/sdcard/Via/copy/"+bitName);
-        File file = new File("/sdcard/Via/copy");
-        uri = "file:///sdcard/Via/copy/"+bitName;
+        File f = new File( PathConfig.IMG_COPY+"/"+bitName);
+        File file = new File(PathConfig.IMG_COPY);
+        uri = "file://"+PathConfig.IMG_COPY+"/"+bitName;
         FileOutputStream fOut = null;
 
         if(!file.exists()){

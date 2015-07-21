@@ -337,8 +337,10 @@ public class MakeActivity extends Activity {
             Bitmap bitmap = decodeUriAsBitmap(Uri.parse(path));
             if (bitmap != null) {
 
-                mImageView.setImageBitmap(bitmap);
-                System.gc();
+                Intent intent = new Intent();
+                intent.setClass(this, CropPicActivity.class);
+                intent.putExtra("path", path);
+                this.startActivityForResult(intent, 0);
             }
 
             screen.setBackGroundURL(path);
