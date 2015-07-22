@@ -11,6 +11,7 @@ import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import njuse.via.config.PathConfig;
 import njuse.via.dataservice.MakeDataService;
 import njuse.via.po.Screen;
 import njuse.via.po.ScreenSet;
@@ -24,7 +25,7 @@ public class MakeData implements MakeDataService {
  *
  * */
 
-    String dirpath =PathConfig.DATA_SER;                // 文件的存储路径
+    String dirpath = PathConfig.DATA_SER;                // 文件的存储路径
     @Override
     public void saveMakeRes(ScreenSet list,String fileName) {
 
