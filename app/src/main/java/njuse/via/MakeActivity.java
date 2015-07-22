@@ -338,10 +338,9 @@ public class MakeActivity extends Activity {
             Bitmap bitmap = decodeUriAsBitmap(Uri.parse(path));
             if (bitmap != null) {
 
-                Intent intent = new Intent();
-                intent.setClass(this, CropPicActivity.class);
-                intent.putExtra("path", path);
-                this.startActivityForResult(intent, 0);
+                mImageView.setImageBitmap(bitmap);
+                System.gc();
+
             }
 
             screen.setBackGroundURL(path);
@@ -356,9 +355,10 @@ public class MakeActivity extends Activity {
             Bitmap bitmap = decodeUriAsBitmap(uri);
 
             if (bitmap != null) {
-                ImageView mImageView = (ImageView) findViewById(R.id.photoView);
-                mImageView.setImageBitmap(bitmap);
-                System.gc();
+                Intent intent = new Intent();
+                intent.setClass(this, CropPicActivity.class);
+                intent.putExtra("path", path);
+                this.startActivityForResult(intent, 0);
             }
         }
 

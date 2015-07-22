@@ -14,6 +14,7 @@ import java.util.Objects;
 
 import njuse.via.MainActivity;
 import njuse.via.R;
+import njuse.via.config.PathConfig;
 
 /**
  * Created by zucewei on 2015/7/19.
