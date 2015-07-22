@@ -183,10 +183,15 @@ public class ClipZoomImageView extends ImageView implements
     }
 
     private float rotation(MotionEvent event) {
-        double delta_x = (event.getX(0) - event.getX(1));
-        double delta_y = (event.getY(0) - event.getY(1));
-        double radians = Math.atan2(delta_y, delta_x);
-        return (float) Math.toDegrees(radians);
+        try {
+            double delta_x = (event.getX(0) - event.getX(1));
+            double delta_y = (event.getY(0) - event.getY(1));
+            double radians = Math.atan2(delta_y, delta_x);
+            return (float) Math.toDegrees(radians);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return oldrotation;
     }
 
     @Override
@@ -446,6 +451,9 @@ public class ClipZoomImageView extends ImageView implements
         return Bitmap.createBitmap(bitmap, mHorizontalPadding,
                 mVerticalPadding, getWidth() - 2 * mHorizontalPadding,
                 getWidth() - 2 * mHorizontalPadding);
+    }
+    public void rotate(){
+
     }
 
     /**

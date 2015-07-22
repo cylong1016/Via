@@ -15,8 +15,20 @@
         android:id="@+id/imageView"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:background="@drawable/actionbar_clip_icon"
         android:onClick="cropPic"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rotate"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/actionbar_clip_icon"
+        android:onClick="rotateClock"
         />
 
 

@@ -85,5 +85,7 @@ public class ClipImageLayout extends RelativeLayout
     {
         return mZoomImageView.clip();
     }
-
+    public void rotate(){
+        mZoomImageView.rotate();
+    }
 }
