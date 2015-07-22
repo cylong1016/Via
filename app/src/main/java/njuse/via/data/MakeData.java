@@ -24,7 +24,7 @@ public class MakeData implements MakeDataService {
  *
  * */
 
-    String dirpath = "/sdcard/Android/Via/product";
+    String dirpath =PathConfig.DATA_SER;                // 文件的存储路径
     @Override
     public void saveMakeRes(ScreenSet list,String fileName) {
 

@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import njuse.via.config.PathConfig;
 import njuse.via.crop.ClipImageLayout;
 import njuse.via.crop.ShowImageActivity;
 
@@ -80,9 +81,9 @@ public class CropPicActivity extends Activity{
         String[] arr = temp.split("/");
         temp = arr[arr.length-1];
         String bitName = temp;
-        File f = new File( "/sdcard/Via/crop/"+bitName);
-        File file = new File("/sdcard/Via/crop");
-        uri = "file:///sdcard/Via/crop/"+bitName;
+        File f = new File( PathConfig.IMG_CROP+"/"+bitName);
+        File file = new File(PathConfig.IMG_CROP);
+        uri = "file://"+PathConfig.IMG_CROP+"/"+bitName;
         FileOutputStream fOut = null;
 
         if(!file.exists()){

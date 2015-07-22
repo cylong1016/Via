@@ -3,9 +3,9 @@ package njuse.via.filter;
 import android.graphics.Bitmap;
 
 /**
- * ¸ßÁÁ¶Ô±È¶ÈÌØÐ§
+ * é«˜äº®å¯¹æ¯”åº¦ç‰¹æ•ˆ
  * 
- * @author ÑÇÉªboy
+ * @author äºšç‘Ÿboy
  * 
  */
 public class BrightContrastFilter implements ImageFilterInterface {
@@ -28,7 +28,7 @@ public class BrightContrastFilter implements ImageFilterInterface {
 	}
 
 	/**
-	 * ¸ßÁÁ¶Ô±È¶ÈÌØÐ§
+	 * é«˜äº®å¯¹æ¯”åº¦ç‰¹æ•ˆ
 	 */
 	public ImageData imageProcess() {
 		int width = image.getWidth();

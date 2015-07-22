@@ -10,7 +10,7 @@ import njuse.via.paster.SingleTouchView;
 
 
 /**
- * Created by Administrator on 2015/7/19 0019.
+ * Created by Administrator on 2015/7/19 0019
  */
 public class PasterActivity extends Activity {
 

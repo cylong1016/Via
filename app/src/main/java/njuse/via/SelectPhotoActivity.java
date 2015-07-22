@@ -15,10 +15,6 @@ public class SelectPhotoActivity extends Activity {
         setContentView(R.layout.activity_select_photo);
     }
 
-    /**
-     * ���հ�ť����
-     * @param view
-     */
     public void takePhotoListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this,PicChooseActivity.class);
@@ -26,10 +22,6 @@ public class SelectPhotoActivity extends Activity {
         startActivityForResult(intent, 10);
     }
 
-    /**
-     * �����ѡ��ť����
-     * @param view
-     */
     public void pickPhotoListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this,PicChooseActivity.class);
@@ -37,10 +29,6 @@ public class SelectPhotoActivity extends Activity {
         startActivityForResult(intent, 11);
     }
 
-    /**
-     * ����ť�ĵ������
-     * @param view
-     */
     public void cancelBtnListener(View view) {
         this.finish();
     }

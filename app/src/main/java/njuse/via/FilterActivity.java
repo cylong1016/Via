@@ -28,7 +28,6 @@ import njuse.via.filter.ZoomBlurFilter;
 
 public class FilterActivity extends Activity {
 
-    private String filename = "D://108.jpg";
     private ImageView myImageView;
     private File path;
     private Bitmap bmpDefaultPic = null,bitmap,cropDefault,cropBmp;
@@ -85,10 +84,6 @@ public class FilterActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * @param view
-     * ��Ч��������ԭͼ
-     */
     public void NoListener(View view) {
         bitmap = bmpDefaultPic;
         iv.setImageBitmap(bitmap);
@@ -151,15 +146,15 @@ public class FilterActivity extends Activity {
             cropBmp = filter_Crop.imageProcess().getDstBitmap();
         }
     }
-    public void ZoomBlurListener(View view) {
-        ZoomBlurFilter filter = new ZoomBlurFilter(bmpDefaultPic,20);
-        bitmap = filter.imageProcess().getDstBitmap();
-        iv.setImageBitmap(bitmap);
-        if(isCrop) {
-            ZoomBlurFilter filter_Crop = new ZoomBlurFilter(cropDefault,20);
-            cropBmp = filter_Crop.imageProcess().getDstBitmap();
-        }
-    }
+//    public void ZoomBlurListener(View view) {
+//        ZoomBlurFilter filter = new ZoomBlurFilter(bmpDefaultPic,20);
+//        bitmap = filter.imageProcess().getDstBitmap();
+//        iv.setImageBitmap(bitmap);
+//        if(isCrop) {
+//            ZoomBlurFilter filter_Crop = new ZoomBlurFilter(cropDefault,20);
+//            cropBmp = filter_Crop.imageProcess().getDstBitmap();
+//        }
+//    }
     public void LomoListener(View view) {
         LomoFilter filter = new LomoFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
@@ -197,10 +192,6 @@ public class FilterActivity extends Activity {
         }
     }
 
-    /**
-     * @param view
-     * ȷ���˾�
-     */
     public void ensureFilter(View view) throws IOException{
 //        this.startActivity(intent);
 //        new Thread() { // ��ֹ�л�����

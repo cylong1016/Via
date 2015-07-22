@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 public class NoiseFilter implements ImageFilterInterface {
 
-	private ImageData image = null; // Õº∆¨–≈œ¢¿‡
+	private ImageData image = null;
 	public float Intensity = 0.2f;
 
 	public NoiseFilter(Bitmap bmp) {

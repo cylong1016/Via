@@ -22,7 +22,7 @@ import java.io.InputStream;
 
 public class ImageUtil {
 
-	// ·Å´óËõĞ¡Í¼Æ¬
+	// æ”¾å¤§ç¼©å°å›¾ç‰‡
 	public static Bitmap zoomBitmap(Bitmap bitmap, int w, int h) {
 		int width = bitmap.getWidth();
 		int height = bitmap.getHeight();
@@ -34,7 +34,7 @@ public class ImageUtil {
 		return newbmp;
 	}
 
-	// ½«Drawable×ª»¯ÎªBitmap
+	// å°†Drawableè½¬åŒ–ä¸ºBitmap
 	public static Bitmap drawableToBitmap(Drawable drawable) {
 		int width = drawable.getIntrinsicWidth();
 		int height = drawable.getIntrinsicHeight();
@@ -47,7 +47,7 @@ public class ImageUtil {
 
 	}
 
-	// »ñµÃÔ²½ÇÍ¼Æ¬µÄ·½·¨
+	// è·å¾—åœ†è§’å›¾ç‰‡çš„æ–¹æ³•
 	public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, float roundPx) {
 
 		Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
@@ -69,7 +69,7 @@ public class ImageUtil {
 		return output;
 	}
 	
-	// »ñµÃ´øµ¹Ó°µÄÍ¼Æ¬·½·¨
+	// è·å¾—å¸¦å€’å½±çš„å›¾ç‰‡æ–¹æ³•
 		public static Bitmap createReflectionImageWithOrigin(Bitmap bitmap) {
 			final int reflectionGap = 4;
 			int width = bitmap.getWidth();
@@ -102,7 +102,7 @@ public class ImageUtil {
 		}
 
 		/**
-		 * ¶ÁÈ¡×ÊÔ´Í¼Æ¬
+		 * è¯»å–èµ„æºå›¾ç‰‡
 		 * 
 		 * @param context
 		 * @param resId
@@ -113,13 +113,13 @@ public class ImageUtil {
 			opt.inPreferredConfig = Config.RGB_565;
 			opt.inPurgeable = true;
 			opt.inInputShareable = true;
-			// »ñÈ¡×ÊÔ´Í¼Æ¬
+			// è·å–èµ„æºå›¾ç‰‡
 			InputStream is = context.getResources().openRawResource(resId);
 			return BitmapFactory.decodeStream(is, null, opt);
 		}
 
 		/**
-		 * ´Ósd¿¨¶ÁÈ¡Í¼Æ¬
+		 * ä»sdå¡è¯»å–å›¾ç‰‡
 		 * 
 		 * @param path
 		 * @return
@@ -132,7 +132,7 @@ public class ImageUtil {
 		}
 		
 		/**
-		 * Í¼Æ¬»Ò¶È»¯
+		 * å›¾ç‰‡ç°åº¦åŒ–
 		 * @param bmpOriginal
 		 * @return
 		 */
@@ -145,7 +145,7 @@ public class ImageUtil {
 			Canvas c = new Canvas(bmpGrayscale);
 			Paint paint = new Paint();
 			ColorMatrix cm = new ColorMatrix();
-			cm.setSaturation(0); // »ÒÉ«
+			cm.setSaturation(0); // ç°è‰²
 			ColorMatrixColorFilter f = new ColorMatrixColorFilter(cm);
 			paint.setColorFilter(f);
 			c.drawBitmap(bmpOriginal, 0, 0, paint);

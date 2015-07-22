@@ -3,9 +3,9 @@ package njuse.via.filter;
 import android.graphics.Bitmap;
 
 /**
- * ÕÕÁÁ±ßÔµ
+ * ç…§äº®è¾¹ç¼˜
  * 
- * @author ÑÇÉªBoy
+ * @author äºšç‘ŸBoy
  * 
  */
 public class GlowingEdgeFilter implements ImageFilterInterface {
@@ -18,8 +18,8 @@ public class GlowingEdgeFilter implements ImageFilterInterface {
 	public ImageData imageProcess() {
 		int width = image.getWidth();
 		int height = image.getHeight();
-		// Í¼ÏñÊµ¼Ê´¦ÀíÇøÓò
-		// ²»¿¼ÂÇ×îÓÒ 1 ÁĞ£¬ºÍ×îÏÂ 1 ĞĞ
+		// å›¾åƒå®é™…å¤„ç†åŒºåŸŸ
+		// ä¸è€ƒè™‘æœ€å³ 1 åˆ—ï¼Œå’Œæœ€ä¸‹ 1 è¡Œ
 		int rectTop = 0;
 		int rectBottom = height - 1;
 		int rectLeft = 0;

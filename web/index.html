@@ -1,0 +1,155 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>手机网站测试</title>
+
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/adv.css" />
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+
+<link rel="stylesheet" type="text/css" href="css/full_page.css" />
+<link rel="stylesheet" type="text/css" href="css/blur_css.css" />
+
+<script type="text/javascript" src="js/jquery_min.js"></script>
+<script type="text/javascript" src="js/jquery_easing.js"></script>
+<script type="text/javascript" src="js/jquery_full_page_min.js"></script>
+<script type="text/javascript" src="js/blur.js"></script>
+</head>
+<body>
+
+<style>
+.u-arrow{width:23px;height:auto;margin-left:-12px;position:absolute;}
+</style>
+
+<!-- <ul id="menu"></ul> -->
+<!-- <div class="game_over">
+	<h1>Game Over</h1>
+	<div class='reset'>重新开始</div>
+</div> -->
+<div id="fullpage">
+
+	<div class="section hasSel">
+		
+		<img class="bg blur" src="images/1.jpg"/>
+		<div class="type t3"></div>
+		<div class="type t2"></div>
+		<div class="type t1">
+			<div class="images">
+				<img src="images/1.jpg"/>
+				<div class="sel">
+					<div id="right" class="answer">A.今天好天气</div>
+					<div class="answer">B.今天好天气</div>
+					<div class="answer">C.下雨</div>
+				</div>
+			</div>
+			<div class="text">
+				<p>今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气</p>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="section">
+		<img class="bg blur" src="images/2.jpg"/>
+		<div class="type t3"></div>
+		<div class="type t2"></div>
+		<div class="type t1">
+			<div class="images">
+				<img src="images/2.jpg"/>
+			</div>
+			<div class="text">
+				<p>今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="section hasSel">
+		<img class="bg blur" src="images/1.jpg"/>
+		<div class="type t3"></div>
+		<div class="type t2"></div>
+		<div class="type t1">
+			<div class="images">
+				<img src="images/1.jpg"/>
+				<div class="sel">
+					<div id="right" class="answer">A.今天好天气</div>
+					<div class="answer">B.今天好天气</div>
+					<div class="answer">C.下雨</div>
+				</div>
+			</div>
+			<div class="text">
+				<p>今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+		<img class="bg blur" src="images/2.jpg"/>
+		<div class="type t3"></div>
+		<div class="type t2"></div>
+		<div class="type t1">
+			<div class="images">
+				<img src="images/2.jpg"/>
+			</div>
+			<div class="text">
+				<p>今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+		<img class="bg blur" src="images/1.jpg"/>
+		<div class="type t3"></div>
+		<div class="type t2"></div>
+		<div class="type t1">
+			<div class="images">
+				<img src="images/1.jpg"/>
+			</div>
+			<div class="text">
+				<p>今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+		<img class="bg blur" src="images/2.jpg"/>
+		<div class="type t3"></div>
+		<div class="type t2"></div>
+		<div class="type t1">
+			<div class="images">
+				<img src="images/2.jpg"/>
+			</div>
+			<div class="text">
+				<p>今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气今天好天气</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="section p8">
+		<!--<a href="#"><img src="images/text8a.png" class="a" /></a>-->
+		<a href="#"><img src="images/text8b.png" class="b" /></a>
+	</div>
+
+	<div class="section p9">
+		<div class="bg"></div>
+		<a href="javascript:;" class="ico"><span class="a1"></span><span class="a2"></span></a>
+		<img src="images/text9.png" class="a" />
+		<a href="#"><img src="images/logo2.png" class="b" /></a>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+	$('#fullpage').fullpage({
+		scrollingSpeed:500,
+		easing:'',
+		sectionsColor: ['', '', ''],
+		navigation:0,
+		slidesNavigation: true,
+		loopHorizontal:0
+	});
+});
+</script>
+</body>
+</html>

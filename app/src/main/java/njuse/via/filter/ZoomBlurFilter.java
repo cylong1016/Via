@@ -4,9 +4,9 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 /**
- * Ëõ·ÅÄ£ºý
+ * ç¼©æ”¾æ¨¡ç³Š
  * 
- * @author ÑÇÉªBoy
+ * @author äºšç‘ŸBoy
  * 
  */
 public class ZoomBlurFilter implements ImageFilterInterface {
@@ -131,9 +131,7 @@ public class ZoomBlurFilter implements ImageFilterInterface {
 					}
 					image.setPixelColor(x, y, image.safeColor(sr / sa), image.safeColor(sg / sa),
 							image.safeColor(sb / sa));
-//					Log.i("x", x+"");
 				}
-//				Log.i("y", y+"");
 			}
 			threadID++;
 		}

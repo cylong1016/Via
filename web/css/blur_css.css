@@ -71,10 +71,11 @@
 	width: 90%;
 	height: 16%;
 	left: 5%;
-	font-size: small;
 	line-height: 1.5em;
 	/*border: 1px dashed #000;*/
-	bottom: 11%;
+
+	bottom: 4%;
+
 	overflow: hidden;
 }
 
@@ -91,14 +92,16 @@
 	width: 100%;
 	height: 100px;
 	background: rgba(53, 53, 53, 0.60);
+
+	display: none;
 }
 
 .answer{
 	position: relative;
 	top: 20%;
-	margin: 60px;
+	margin: 20px 60px;
 	padding:15px;
-	font-size: small;
+
 	border: 2px solid #fff;
 	border-radius: 25px;
 
@@ -108,30 +111,69 @@
 	cursor: pointer;
 }
 
-.game_over{
-	height: 100%;
-	width: 100%;
-	background: #aaa;
+.sel:first-child{
+	margin: 60px;
 }
 
-.game_over h1{
-	text-align: center;
-	margin: 50% 0 8% 0;
+
+/*========================================*/
+/*                 SIZE                   */
+/*========================================*/
+
+
+/*----------  bigger than 800     ----------*/
+
+@media screen and (min-width: 800px){
+	body{
+		font-size: 30px;
+		}
+	.bg{
+		top: -15%;
+		left:-50%;
+	}
+	.type{
+		height: 70%;
+	}
+
+	.answer{
+		margin: 50px 100px;
+	}
 }
 
-.game_over .reset{
-	width: 40%;
-	margin: 0 auto;
-	padding: 15px;
-	
-	text-align: center;
-	color:#fff;
+/*----------  bigger than 700     ----------*/
 
-	border: 2px solid #fff;
-	border-radius: 20px;
-
-	cursor: pointer;
+@media screen and (min-width: 700px){
+	body{
+		font-size: 30px;
+	}
+	.bg{
+		top: -15%;
+		left:-50%;
+	}
+	.type{
+		height: 70%;
+	}
+	.text p{
+		-webkit-margin-before: 0em;
+  		-webkit-margin-after: 2em;
+        -webkit-margin-start: 0px;
+  		-webkit-margin-end: 0px;
 }
+	}
+}
+
+/*---------  bigger than 600*800  ----------*/
+
+@media screen and (min-height: 801px ) and (min-width: 601px){
+	body{
+		font-size: 30px;
+	}
+	.text{
+		bottom:10%;
+	}
+}
+
+/*---------  smaller than 600*800  ----------*/
 
 @media screen and (max-height: 800px) and (max-width: 600px){
 	.type{
@@ -156,11 +198,3 @@
 	}
 }
 
-@media screen and (min-height: 801px ) and (min-width: 601px){
-	body{
-		font-size: 30px;
-	}
-	.text{
-		bottom:10%;
-	}
-}

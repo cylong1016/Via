@@ -3,7 +3,7 @@ package njuse.via.filter;
 import android.graphics.Bitmap;
 
 public class VignetteFilter implements ImageFilterInterface {
-	private ImageData image = null; // Õº∆¨–≈œ¢¿‡
+	private ImageData image = null;
 	public float Size = 0.5f;
 
 	public VignetteFilter(Bitmap bmp) {

@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import njuse.via.filter.ImageBlender.BlendMode;
 
 /**
- * 电影特效
+ * 鐢靛奖鐗规晥
  * @author ycmo
  *
  */

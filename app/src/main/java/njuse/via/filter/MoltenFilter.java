@@ -3,17 +3,17 @@ package njuse.via.filter;
 import android.graphics.Bitmap;
 
 /**
- * ÈÛÖı
+ * ç†”é“¸
  */
 public class MoltenFilter implements ImageFilterInterface{
-	private ImageData image = null; // Í¼Æ¬ĞÅÏ¢Àà
+	private ImageData image = null; // å›¾ç‰‡ä¿¡æ¯ç±»
 
 	public MoltenFilter(Bitmap bmp) {
 		image = new ImageData(bmp);
 	}
 
 	/**
-	 * ÈÛÖı
+	 * ç†”é“¸
 	 */
 	public ImageData imageProcess() {
 		int width = image.getWidth();
@@ -21,7 +21,7 @@ public class MoltenFilter implements ImageFilterInterface{
 		int R, G, B, pixel;
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				R = image.getRComponent(x, y); // »ñÈ¡RGBÈıÔ­É«
+				R = image.getRComponent(x, y); // è·å–RGBä¸‰åŸè‰²
 				G = image.getGComponent(x, y);
 				B = image.getBComponent(x, y);
 
