@@ -29,6 +29,7 @@ import java.util.ArrayList;
 
 import njuse.via.bl.MakeBL;
 import njuse.via.blservice.MakeBLService;
+import njuse.via.config.PathConfig;
 import njuse.via.paster.SingleTouchView;
 import njuse.via.po.Option;
 import njuse.via.po.Screen;
@@ -48,7 +49,7 @@ public class MakeActivity extends Activity {
     public Screen screen;
 
 
-    ArrayList<SingleTouchView> pasters = new ArrayList<SingleTouchView>();
+    ArrayList<SingleTouchView> pasters = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -290,7 +291,7 @@ public class MakeActivity extends Activity {
         AssetFileDescriptor fd = getResources().openRawResourceFd(R.raw.blur);
 
         try {
-            fs = new FileOutputStream(MainActivity.root+"/web_product/"+name);
+            fs = new FileOutputStream(PathConfig.WEB + name);
             inStream = fd.createInputStream();
         } catch (IOException e) {
             e.printStackTrace();
