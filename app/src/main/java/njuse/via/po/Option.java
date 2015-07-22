@@ -82,7 +82,11 @@ public class Option implements Serializable {
         return 0;   ///当没有正确选项的情况下就返回 0
     }
 
-//    @Override
+    public LinkedList<OptionItem> getOptionList() {
+        return optionList;
+    }
+
+    //    @Override
 //    public int describeContents() {
 //        return 0;
 //    }
