@@ -1,14 +1,12 @@
 package njuse.via;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import java.io.File;
 
 /**
  * 读取制作测作品
@@ -22,6 +20,10 @@ public class ReadActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read);
+        initProjectList(); // 初始化已经制作的项目列表
+    }
+
+    private void initProjectList() {
         layout = (LinearLayout) findViewById(R.id.read_layout);
         for (int i = 0; i < 5; i++) {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -30,24 +32,22 @@ public class ReadActivity extends Activity {
             );
             int mergin = (int)getResources().getDimension(R.dimen.read_list_margin);
             params.setMargins(mergin, mergin, mergin, mergin);
-            final ImageButton imageView = new ImageButton(this);
-            imageView.setImageResource(R.drawable.cat);
-            imageView.setOnTouchListener(new View.OnTouchListener() {
-                                             @Override
-                                             public boolean onTouch(View v, MotionEvent event) {
-                                                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                                                     imageView.setBackgroundColor(Color.rgb(127, 127, 127));
-                                                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                                                     imageView.setBackgroundColor(Color.TRANSPARENT);
-                                                 }
-                                                 return false;
-                                             }
-                                         }
-            );
+            final ImageView imageView = new ImageView(this);
+            imageView.setImageResource(R.drawable.abc);
+            imageView.setBackgroundColor(Color.BLUE);
+            imageView.setBackgroundResource(R.drawable.icon_selector);
             layout.addView(imageView, params);
         }
     }
 
-
+    private String[] readFile(String path) {
+        File dir = new File(path);
+        File[] dirList = dir.listFiles();
+        String[] dirNames = new String[dirList.length];
+        for (int i = 0; i < dirList.length; i++) {
+            dirNames[i] = dirList[i].getName();
+        }
+        return dirNames;
+    }
 
 }

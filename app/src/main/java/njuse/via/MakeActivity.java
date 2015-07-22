@@ -10,11 +10,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +29,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.Context;
+import android.content.DialogInterface;
 
 import njuse.via.bl.MakeBL;
 import njuse.via.blservice.MakeBLService;
@@ -38,7 +47,15 @@ import njuse.via.po.Screen;
  * Created by cylong on 2015-07-09
  */
 public class MakeActivity extends Activity {
+    //----------------故事版的变量
+    private LinearLayout mGallery;
+    private LayoutInflater mInflater;
+    private int isselect = 0;
+    private ArrayList<Integer> preInt;
+    private ArrayList<ImageButton> preButton;
+    private int buttonlength = 6;
 
+    //-----------------
     private int screenWidth;
     private int screenHeight;
     private int statusBarHeight;
@@ -54,6 +71,7 @@ public class MakeActivity extends Activity {
         getScreenInfo(); // 获得屏幕信息
         initPhotoViewLoc();
         screen = makeBL.getNewScreen();
+        initPreview();
     }
 
 
@@ -76,6 +94,31 @@ public class MakeActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /*
+    初始化故事板界面
+     */
+    private void initPreview(){
+        mInflater = LayoutInflater.from(this);
+        PreListener plisten = new PreListener();
+        preButton = new ArrayList<ImageButton>();
+        mGallery = (LinearLayout) findViewById(R.id.id_gallery);
+        for(int i = 0;i<buttonlength;i++) {
+            RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(80,80);
+            param.addRule(RelativeLayout.CENTER_HORIZONTAL, 1);
+            param.addRule(RelativeLayout.CENTER_VERTICAL,1);
+            View v = mInflater.inflate(R.layout.activity_preview_item, mGallery, false);
+            ImageButton img = (ImageButton) v.findViewById(R.id.id_index_gallery_item_image);
+            img.setId(i);
+            img.setOnClickListener(plisten);
+            if(isselect!=i) {
+
+                img.setLayoutParams(param);
+            }
+            preButton.add(img);
+            mGallery.addView(v);
+        }
     }
 
     private void getScreenInfo() {
@@ -178,7 +221,17 @@ public class MakeActivity extends Activity {
 
     public void previewListener(View view) {
         previewOn = !previewOn;
-        TextView preview = (TextView) findViewById(R.id.preview); // 获取预览图组件
+        //---------------------------------------------------------new code
+//        mGallery = (LinearLayout) findViewById(R.id.id_gallery);
+//
+//        for(int i = 0;i<6;i++) {
+//            View v = mInflater.inflate(R.layout.activity_preview_item, mGallery, false);
+//            ImageButton img = (ImageButton) findViewById(R.id.id_index_gallery_item_image);
+//            mGallery.addView(v);
+//        }
+
+        //---------------------------------------------------------
+        HorizontalScrollView preview = (HorizontalScrollView) findViewById(R.id.preview); // 获取预览图组件
         ImageView expend = (ImageView) findViewById(R.id.expand); // 获取扩大按钮图片
 
         RelativeLayout.LayoutParams preParams =
@@ -250,6 +303,18 @@ public class MakeActivity extends Activity {
         }
     }
 
+    private  void saveWork(EditText editText){
+        if (editText.getText().toString()==null|editText.getText().toString().length()==0){
+            Toast.makeText(this, "请输入文件名！  "+editText.getText().toString(),Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
+        String date = sDateFormat.format(new java.util.Date());
+        String workName = editText.getText().toString() +"_"+ date;
+        makeBL.saveWork(workName);
+        Toast.makeText(this, "保存文件成功！", Toast.LENGTH_SHORT).show();
+    }
     /**
      * 保存按钮监听
      *
@@ -257,11 +322,25 @@ public class MakeActivity extends Activity {
      */
     public void saveListener(View view) {
         screen.setText(((EditText) findViewById(R.id.explain)).getText().toString());
-        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
-        String date = sDateFormat.format(new java.util.Date());
-        String workName = "via_" + date;
-        makeBL.saveWork(workName);
-        Toast.makeText(this, "保存文件成功！", Toast.LENGTH_SHORT).show();
+
+        final EditText editText=new EditText(this);
+        //editText.setOnClickListener();
+        Builder dialog=new AlertDialog.Builder(this);
+
+        dialog.setTitle("请输入保存的文件名！").
+                setIcon(android.R.drawable.ic_dialog_info).setView(
+                editText).setPositiveButton("确定",  new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                saveWork(editText);
+
+            }}).setNegativeButton("取消", null).show();
+
+
+
+       // makeBL.saveWork(workName);
+
 //        copyFile(R.raw.blur, "blur.js");
 //        copyFile(R.raw.blur_css,"blur_css.css");
 //        copyFile(R.raw.global,"global.css");
@@ -269,10 +348,10 @@ public class MakeActivity extends Activity {
 //        copyFile(R.raw.jquery_fullpage,"jquery.full_page.css");
 //        copyFile(R.raw.jquery_1_8_3_min,"jquery.1.8.3.min.js");
 //        copyFile(R.raw.jquery_fullpage_min,"jquery.full_page.min.js");
-        Intent intent = new Intent();
+        /*Intent intent = new Intent();
         intent.setClass(this, ShowActivity.class);
         intent.putExtra("html", workName);
-        startActivity(intent);
+        startActivity(intent);*/
     }
 
     public void copyFile(int id, String name) {
@@ -338,8 +417,6 @@ public class MakeActivity extends Activity {
             screen.setBackGroundURL(path);
         }
         if (resultCode == 2) {
-            //Log.e("back", "back to make");
-//            screen.setBackGroundURL(data.getStringExtra("bitmap"));
             String path = data.getStringExtra("path");
             screen.setBackGroundURL(path);
 
@@ -437,5 +514,40 @@ public class MakeActivity extends Activity {
 
 
 
+    /*缩略图的监听
+
+     */
+    class PreListener implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            ImageButton button = (ImageButton)v;
+            if(isselect==button.getId()){
+
+            }
+            else{
+                /*
+                *设置imagebutton大小变化，显示选中的那个
+                **/
+                RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(80,80);
+                param.addRule(RelativeLayout.CENTER_HORIZONTAL, 1);
+                param.addRule(RelativeLayout.CENTER_VERTICAL, 1);
+
+                int wid = preButton.get(isselect).getWidth();
+                int hei = preButton.get(isselect).getHeight();
+                preButton.get(isselect).setLayoutParams(param);
+
+                isselect=button.getId();
+
+                RelativeLayout.LayoutParams param2 = new RelativeLayout.LayoutParams(wid,hei);
+                param2.addRule(RelativeLayout.CENTER_HORIZONTAL, 1);
+                param2.addRule(RelativeLayout.CENTER_VERTICAL, 1);
+
+                preButton.get(isselect).setLayoutParams(param2);
+                /*
+                设置当前界面的更新
+                */
+            }
+        }
+    }
 }
 

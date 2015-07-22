@@ -8,7 +8,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 /**
- * Created by Lf on 2015/7/19
+ * 显示制作好生成的网页
+ * Created by cylong on 2015-07-09
  */
 public class ShowActivity extends Activity {
 

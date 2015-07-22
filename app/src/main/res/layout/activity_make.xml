@@ -103,12 +103,19 @@
             android:background="@drawable/text_border"
             android:layout_alignBottom="@+id/template" />
 
-        <TextView
-            android:id="@+id/preview"
-            android:layout_width="match_parent"
+        <HorizontalScrollView
+            android:id = "@+id/preview"
             android:layout_height="@dimen/previewBarHeight"
-            android:background="#00FF00"
-            android:text="这里可以预览" />
+            android:layout_width="match_parent"
+            android:background="@android:color/black">
+            <LinearLayout
+                android:id="@+id/id_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal" >
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <ImageView
             android:id="@+id/expand"

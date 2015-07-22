@@ -23,7 +23,7 @@ package njuse.via.filter.newFilter;
  * @author daizhj
  *
  */
-public class BrightContrastFilter implements IImageFilter {
+public class NewBrightContrastFilter implements IImageFilter {
 
 	 /// <summary>
     /// The brightness factor.
