@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.PointF;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -33,6 +34,14 @@ public class ClipZoomImageView extends ImageView implements
      */
     private float initScale = 1.0f;
     private boolean once = true;
+    private float oldrotation = 0;
+
+    private static final int NONE = 0;
+    private static final int DRAG = 1;
+    private static final int ZOOM = 2;
+    int mode = NONE;
+
+    PointF mid = new PointF();
 
     /**
      * 用于存放矩阵的9个值
@@ -69,6 +78,7 @@ public class ClipZoomImageView extends ImageView implements
         super(context, attrs);
 
         setScaleType(ScaleType.MATRIX);
+
         mGestureDetector = new GestureDetector(context,
                 new GestureDetector.SimpleOnGestureListener()
                 {
@@ -96,6 +106,7 @@ public class ClipZoomImageView extends ImageView implements
                     }
                 });
         mScaleGestureDetector = new ScaleGestureDetector(context, this);
+
         this.setOnTouchListener(this);
     }
 
@@ -163,6 +174,19 @@ public class ClipZoomImageView extends ImageView implements
             }
 
         }
+    }
+
+    private void midPoint(PointF point, MotionEvent event) {
+        float x = event.getX(0) + event.getX(1);
+        float y = event.getY(0) + event.getY(1);
+        point.set(x / 2, y / 2);
+    }
+
+    private float rotation(MotionEvent event) {
+        double delta_x = (event.getX(0) - event.getX(1));
+        double delta_y = (event.getY(0) - event.getY(1));
+        double radians = Math.atan2(delta_y, delta_x);
+        return (float) Math.toDegrees(radians);
     }
 
     @Override
@@ -236,6 +260,7 @@ public class ClipZoomImageView extends ImageView implements
     public boolean onTouch(View v, MotionEvent event)
     {
 
+
         if (mGestureDetector.onTouchEvent(event))
             return true;
         mScaleGestureDetector.onTouchEvent(event);
@@ -265,37 +290,51 @@ public class ClipZoomImageView extends ImageView implements
         lastPointerCount = pointerCount;
         switch (event.getAction())
         {
+            case MotionEvent.ACTION_DOWN:
+                mode = DRAG;
+                break;
+
+            case MotionEvent.ACTION_POINTER_DOWN:
+                mode = ZOOM;
+                //float rotation = rotation(event)-oldrotation;
+                oldrotation = rotation(event);
+                midPoint(mid,event);
+
             case MotionEvent.ACTION_MOVE:
-                float dx = x - mLastX;
-                float dy = y - mLastY;
 
-                if (!isCanDrag)
-                {
-                    isCanDrag = isCanDrag(dx, dy);
-                }
-                if (isCanDrag)
-                {
-                    if (getDrawable() != null)
-                    {
+                if(mode==DRAG) {
+                    float dx = x - mLastX;
+                    float dy = y - mLastY;
 
-                        RectF rectF = getMatrixRectF();
-                        // 如果宽度小于屏幕宽度，则禁止左右移动
-                        if (rectF.width() <= getWidth() - mHorizontalPadding * 2)
-                        {
-                            dx = 0;
-                        }
-                        // 如果高度小雨屏幕高度，则禁止上下移动
-                        if (rectF.height() <= getHeight() - mVerticalPadding * 2)
-                        {
-                            dy = 0;
-                        }
-                        mScaleMatrix.postTranslate(dx, dy);
-                        checkBorder();
-                        setImageMatrix(mScaleMatrix);
+                    if (!isCanDrag) {
+                        isCanDrag = isCanDrag(dx, dy);
                     }
+                    if (isCanDrag) {
+                        if (getDrawable() != null) {
+
+                            RectF rectF = getMatrixRectF();
+                            // 如果宽度小于屏幕宽度，则禁止左右移动
+                            if (rectF.width() <= getWidth() - mHorizontalPadding * 2) {
+                                dx = 0;
+                            }
+                            // 如果高度小雨屏幕高度，则禁止上下移动
+                            if (rectF.height() <= getHeight() - mVerticalPadding * 2) {
+                                dy = 0;
+                            }
+                            mScaleMatrix.postTranslate(dx, dy);
+                            checkBorder();
+                            setImageMatrix(mScaleMatrix);
+                        }
+                    }
+                    mLastX = x;
+                    mLastY = y;
                 }
-                mLastX = x;
-                mLastY = y;
+                else  if(mode==ZOOM){
+                    float rotation = rotation(event)-oldrotation;
+                    mScaleMatrix.postRotate(rotation,mid.x,mid.y);
+                    checkBorder();
+                    setImageMatrix(mScaleMatrix);
+                }
                 break;
 
             case MotionEvent.ACTION_UP:
@@ -468,5 +507,6 @@ public class ClipZoomImageView extends ImageView implements
     {
         this.mHorizontalPadding = mHorizontalPadding;
     }
+
 
 }
