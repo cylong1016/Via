@@ -11,49 +11,45 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-
+/**
+ * 读取制作测作品
+ * Created by cylong on 2015-07-09
+ */
 public class ReadActivity extends Activity {
 
-    LinearLayout layout;
+    private LinearLayout layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read);
         layout = (LinearLayout) findViewById(R.id.read_layout);
-        TextView tx = new TextView(this);
-        tx.setText("我是动态添加的");
-        layout.addView(tx, 0);
-        for(int i = 0 ;i < 5; i ++) {
-            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
+        for (int i = 0; i < 5; i++) {
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
-            p.setMargins(10,10,0,0);
-            final ImageButton mImageView = new ImageButton(this);
-//            File path = Environment.getExternalStorageDirectory(); //���SDCardĿ¼
-//            Bitmap bm = BitmapFactory.decodeFile(path + "/Pictures/108.jpg", null);
-            Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.filter);
-            mImageView.setImageBitmap(bm);
-            mImageView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    if(event.getAction()==MotionEvent.ACTION_DOWN)
-                    {
-                        mImageView.setBackgroundColor(Color.rgb(127, 127, 127));
-                    }
-                    else if(event.getAction()==MotionEvent.ACTION_UP)
-                    {
-                        mImageView.setBackgroundColor(Color.TRANSPARENT);
-                    }
-                    return false;
-                     }
-                }
-                );
-                layout.addView(mImageView,p);
-            }
+            int mergin = (int)getResources().getDimension(R.dimen.read_list_margin);
+            params.setMargins(mergin, mergin, mergin, mergin);
+            final ImageButton imageView = new ImageButton(this);
+            Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.cat);
+            imageView.setImageBitmap(bm);
+            imageView.setOnTouchListener(new View.OnTouchListener() {
+                                             @Override
+                                             public boolean onTouch(View v, MotionEvent event) {
+                                                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                                                     imageView.setBackgroundColor(Color.rgb(127, 127, 127));
+                                                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                                                     imageView.setBackgroundColor(Color.TRANSPARENT);
+                                                 }
+                                                 return false;
+                                             }
+                                         }
+            );
+            layout.addView(imageView, params);
         }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

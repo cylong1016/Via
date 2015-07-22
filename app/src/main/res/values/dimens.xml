@@ -27,4 +27,7 @@
 
     <!-- 文本与边框的间距 -->
     <dimen name="text_mergin">8dp</dimen>
+
+    <!-- 显示作品列表的边距 -->
+    <dimen name="read_list_margin">40px</dimen>
 </resources>
