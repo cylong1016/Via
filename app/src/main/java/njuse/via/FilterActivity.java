@@ -21,9 +21,10 @@ import njuse.via.filter.FeatherFilter;
 import njuse.via.filter.FilmFilter;
 import njuse.via.filter.GlowingEdgeFilter;
 import njuse.via.filter.IceFilter;
-import njuse.via.filter.LomoFilter;
 import njuse.via.filter.MoltenFilter;
 import njuse.via.filter.SoftGlowFilter;
+import njuse.via.filter.newFilter.Image;
+import njuse.via.filter.newFilter.MirrorFilter;
 
 public class FilterActivity extends Activity {
 
@@ -155,12 +156,23 @@ public class FilterActivity extends Activity {
 //        }
 //    }
     public void LomoListener(View view) {
-        LomoFilter filter = new LomoFilter(bmpDefaultPic);
-        bitmap = filter.imageProcess().getDstBitmap();
-        iv.setImageBitmap(bitmap);
+//        LomoFilter filter = new LomoFilter(bmpDefaultPic);
+//        bitmap = filter.imageProcess().getDstBitmap();
+//        iv.setImageBitmap(bitmap);
+
+        MirrorFilter filter = new MirrorFilter(false);
+        Image img = new Image(bmpDefaultPic);
+        img = filter.process(img);
+        img.copyPixelsFromBuffer();
+        iv.setImageBitmap(img.getImage());
         if(isCrop) {
-            LomoFilter filter_Crop = new LomoFilter(cropDefault);
-            cropBmp = filter_Crop.imageProcess().getDstBitmap();
+            MirrorFilter filter_Crop = new MirrorFilter(false);
+            Image img_crop = new Image(cropDefault);
+            img_crop = filter_Crop.process(img_crop);
+            img_crop.copyPixelsFromBuffer();
+            cropBmp = img_crop.getImage();
+//            LomoFilter filter_Crop = new LomoFilter(cropDefault);
+//            cropBmp = filter_Crop.imageProcess().getDstBitmap();
         }
     }
     public void FilmListener(View view) {
