@@ -11,20 +11,19 @@ import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import njuse.via.config.PathConfig;
 import njuse.via.dataservice.MakeDataService;
 import njuse.via.po.Screen;
 import njuse.via.po.ScreenSet;
 
 /**
  * Created by wzce on 2015-07-15 0010
+ * 文件对象序列化和反序列化
  */
 public class MakeData implements MakeDataService {
-/**
- * 文件对象序列化和反序列化
- *
- * */
 
-    String dirpath =PathConfig.DATA_SER;                // 文件的存储路径
+
+    String dirpath = PathConfig.DATA_SER;                // 文件的存储路径
     @Override
     public void saveMakeRes(ScreenSet list,String fileName) {
 
