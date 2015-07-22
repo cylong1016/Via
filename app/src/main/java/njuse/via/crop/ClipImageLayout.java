@@ -13,7 +13,7 @@ import njuse.via.MakeActivity;
 import njuse.via.R;
 
 /**
- * Created by lenovo on 2015/7/17.
+ * Created by lenovo on 2015/7/17
  */
 public class ClipImageLayout extends RelativeLayout
 {
@@ -85,5 +85,7 @@ public class ClipImageLayout extends RelativeLayout
     {
         return mZoomImageView.clip();
     }
-
+    public void rotate(){
+        mZoomImageView.rotate();
+    }
 }

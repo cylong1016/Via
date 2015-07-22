@@ -73,6 +73,9 @@ public class CropPicActivity extends Activity{
         finish();
     }
 
+    public void rotateClock(View v){
+        mClipImageLayout.rotate();
+    }
 
     private void saveMyBitmap(Bitmap mBitmap)  {
         //Log.e("myuri",bitName);
