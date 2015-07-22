@@ -91,13 +91,14 @@ public class PasterActivity extends Activity {
         if( src == null ) {
             return null;
         }
-        int w = src.getWidth();
-        int h = src.getHeight();
-        int left = iv.getPaddingLeft();
-        int top = iv.getPaddingTop();
-
-        float xScale = w/iv.getWidth();
-        float yScale = h/iv.getHeight();
+        int actualWidth = src.getWidth();
+        int actualHeight = src.getHeight();
+        int ivWidth = iv.getWidth();
+        int ivHeight = iv.getHeight();
+        float scale = (float)actualWidth/ivWidth;
+        System.out.println(scale);
+        float margain = (ivHeight-actualHeight/scale)/2;
+        System.out.println("margain = "+margain);
         ArrayList<Bitmap> maps = new ArrayList<>();
         ArrayList<PointF> points = new ArrayList<>();
         for(int i = 0 ;i<pasters.size();i++) {
@@ -107,19 +108,19 @@ public class PasterActivity extends Activity {
             }
         }
         for(int i = 0;i<points.size();i++){
-            PointF point = new PointF((points.get(i).x-left)*xScale,(points.get(i).y-top)*yScale);
+            PointF point = new PointF((points.get(i).x)*scale,(points.get(i).y-margain)*scale);
             points.get(i).set(point);
         }
 
 
         //create the new blank bitmap
-        Bitmap newb = Bitmap.createBitmap( w, h, Bitmap.Config.ARGB_8888 );//创建一个新的和SRC长度宽度一样的位图
+        Bitmap newb = Bitmap.createBitmap( actualWidth, actualHeight, Bitmap.Config.ARGB_8888 );//创建�?个新的和SRC长度宽度�?样的位图
         Canvas cv = new Canvas( newb );
         //draw src into
-        cv.drawBitmap( src, 0, 0, null );//在 0，0坐标开始画入src
+        cv.drawBitmap( src, 0, 0, null );//�? 0�?0坐标�?始画入src
         //draw pasters into
         for(int i = 0;i<maps.size();i++) {
-            cv.drawBitmap(maps.get(i), points.get(i).x, points.get(i).y, null);//在src上覆盖图片
+            cv.drawBitmap(maps.get(i), points.get(i).x, points.get(i).y, null);//在src上覆盖图�?
         }
         //save all clip
         cv.save(Canvas.ALL_SAVE_FLAG);//保存
