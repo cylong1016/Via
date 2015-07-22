@@ -2,6 +2,7 @@ package njuse.via.crop;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.AttributeSet;
@@ -86,6 +87,6 @@ public class ClipImageLayout extends RelativeLayout
         return mZoomImageView.clip();
     }
     public void rotate(){
-        mZoomImageView.rotate();
+       mZoomImageView.rotate();
     }
 }

@@ -453,7 +453,8 @@ public class ClipZoomImageView extends ImageView implements
                 getWidth() - 2 * mHorizontalPadding);
     }
     public void rotate(){
-
+        mScaleMatrix.postRotate(10,getWidth()/2,getHeight()/2);
+        setImageMatrix(mScaleMatrix);
     }
 
     /**
