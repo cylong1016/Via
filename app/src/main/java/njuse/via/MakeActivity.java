@@ -3,7 +3,6 @@ package njuse.via;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -384,7 +383,6 @@ public class MakeActivity extends Activity {
      */
     public void setImgAfterFilter() {
         Bitmap bitmap = decodeUriAsBitmap(Uri.parse(screen.getBackGroundURL()));
-        ;
         ImageView mImageView = (ImageView) findViewById(R.id.photoView);
         if (bitmap != null) {
             mImageView.setImageBitmap(bitmap);

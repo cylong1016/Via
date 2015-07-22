@@ -24,7 +24,6 @@ import njuse.via.filter.IceFilter;
 import njuse.via.filter.LomoFilter;
 import njuse.via.filter.MoltenFilter;
 import njuse.via.filter.SoftGlowFilter;
-import njuse.via.filter.ZoomBlurFilter;
 
 public class FilterActivity extends Activity {
 
@@ -169,7 +168,7 @@ public class FilterActivity extends Activity {
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
         if(isCrop) {
-            FilmFilter filter_Crop = new FilmFilter(bmpDefaultPic,20);
+            FilmFilter filter_Crop = new FilmFilter(cropDefault,20);
             cropBmp = filter_Crop.imageProcess().getDstBitmap();
         }
     }
@@ -178,7 +177,7 @@ public class FilterActivity extends Activity {
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
         if(isCrop) {
-            ColorToneFilter filter_Crop = new ColorToneFilter(bmpDefaultPic,0xFF0000,192);
+            ColorToneFilter filter_Crop = new ColorToneFilter(cropDefault,0xFF0000,192);
             cropBmp = filter_Crop.imageProcess().getDstBitmap();
         }
     }
@@ -187,7 +186,7 @@ public class FilterActivity extends Activity {
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
         if(isCrop) {
-            ColorToneFilter filter_Crop = new ColorToneFilter(bmpDefaultPic,0x0000FF,192);
+            ColorToneFilter filter_Crop = new ColorToneFilter(cropDefault,0x0000FF,192);
             cropBmp = filter_Crop.imageProcess().getDstBitmap();
         }
     }
