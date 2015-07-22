@@ -53,6 +53,13 @@
                     android:src="@mipmap/paster1"
                     android:onClick="pasterListener"
                     />
+                <ImageButton
+                    android:id="@+id/paster2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/paster2"
+                    android:onClick="pasterListener"
+                    />
 
 
 

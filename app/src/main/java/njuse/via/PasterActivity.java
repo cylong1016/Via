@@ -29,18 +29,13 @@ import njuse.via.paster.SingleTouchView;
 public class PasterActivity extends Activity {
     ArrayList<SingleTouchView> pasters = new ArrayList<SingleTouchView>();
     private ImageView iv;
-    private Bitmap bmpDefaultPic = null,bitmap,cropDefault,cropBmp;
+    private Bitmap bmpDefaultPic = null,bitmap;
     private String url;//原图的图片，original
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_paster);
         iv = (ImageView)findViewById(R.id.PastePhoto);
         url = getIntent().getStringExtra("path").substring(7);
-
-        //System.out.println(url);
-        cropDefault = BitmapFactory.decodeFile(url);
-        cropBmp = cropDefault;
-
         bmpDefaultPic = BitmapFactory.decodeFile(url);
         bitmap = bmpDefaultPic;
         iv.setImageBitmap(bmpDefaultPic);
@@ -61,7 +56,6 @@ public class PasterActivity extends Activity {
 
         ImageView mImageView = (ImageView) findViewById(R.id.PastePhoto);
         RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
-        //  final Drawable d = getResources().getDrawable(R.drawable.paster1);
         SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this);
         singleTouchView.setImageDrawable(view.getDrawable());
         mLayout.addView(singleTouchView);
@@ -96,12 +90,6 @@ public class PasterActivity extends Activity {
 
 
     public Bitmap createNewPhoto(){
-        /*
-
-得到iv的宽高
-
-
-*/
         int left = iv.getPaddingLeft();
         int top = iv.getPaddingTop();
 
@@ -123,7 +111,6 @@ public class PasterActivity extends Activity {
         }
         int w = src.getWidth();
         int h = src.getHeight();
-//        System.out.println(w+"原图宽高"+h);
 
         //create the new blank bitmap
         Bitmap newb = Bitmap.createBitmap( w, h, Bitmap.Config.ARGB_8888 );//创建一个新的和SRC长度宽度一样的位图
@@ -132,8 +119,6 @@ public class PasterActivity extends Activity {
         cv.drawBitmap( src, 0, 0, null );//在 0，0坐标开始画入src
         //draw pasters into
         for(int i = 0;i<maps.size();i++) {
-
-//            System.out.println(maps.get(i).getHeight()+ "tietu"+maps.get(i).getWidth());
             cv.drawBitmap(maps.get(i), points.get(i).x, points.get(i).y, null);//在src上覆盖图片
         }
         //save all clip

@@ -964,37 +964,10 @@ public class SingleTouchView extends View {
         return FloatMath.sqrt(disX * disX + disY * disY);
     }
 
-    /*
-        public Bitmap createNewPhoto() {
-            transformDraw();
-            Bitmap bitmap = Bitmap.createBitmap(mViewWidth*4, mViewHeight*4,
-                    Config.ARGB_8888); // 背景图片
-            Canvas canvas = new Canvas(bitmap); // 新建画布
-            int bitmapWidth = (int)(mBitmap.getWidth() * mScale);
-            int bitmapHeight = (int)(mBitmap.getHeight()* mScale);
-           // computeRect(-framePadding, -framePadding, bitmapWidth + framePadding, bitmapHeight + framePadding, mDegree);
-
-           //设置缩放比例
-            Matrix matrix1= new Matrix();
-            matrix1.setScale(mScale*2, mScale*2);
-            //绕着图片中心进行旋转
-            matrix1.postRotate(mDegree % 360, bitmapWidth / 2, bitmapHeight / 2);
-            //设置图片起始点
-            matrix1.postTranslate((offsetX + mDrawableWidth/2)*2, (offsetY+ mDrawableHeight/2 )*2);
-
-            canvas.drawBitmap(mBitmap, matrix1, null); // 画图片
-         //   System.out.println(mBitmap1.getWidth()+"........."+mBitmap1.getHeight()+"::::::");
-            canvas.save(Canvas.ALL_SAVE_FLAG); // 保存画布
-            canvas.restore();
-            return bitmap;
-        }
-    */
     public Bitmap createNewPhoto(){
         setDrawingCacheEnabled(true);
         buildDrawingCache();
         Bitmap pic =  getDrawingCache();
-        //  setDrawingCacheEnabled(false);
-//        System.out.println(pic.getHeight()+"贴图宽高"+pic.getWidth());
         return pic;
     }
 
