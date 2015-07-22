@@ -79,8 +79,7 @@
         <activity
             android:name=".PasterActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_activity_paster"
-            android:theme="@style/ActivityPopup">
+            android:label="@string/title_activity_paster">
 
         </activity>
     </application>

@@ -33,7 +33,7 @@
 
     <string name="true_option">√.</string>
     <string name="false_option">X.</string>
-
+    <string name="confirm">confirm</string>
     <string name="hello_world">Hello world!</string>
 
     <string name="img_path_error">Image path error</string>

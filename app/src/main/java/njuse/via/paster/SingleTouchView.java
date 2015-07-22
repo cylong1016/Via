@@ -29,6 +29,8 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import njuse.via.MainActivity;
 import njuse.via.R;
 
 /**
@@ -61,7 +63,8 @@ public class SingleTouchView extends View {
     public static final int DEFAULT_FRAME_COLOR = Color.WHITE;
     public static final float DEFAULT_SCALE = 1.0f;
     public static final float DEFAULT_DEGREE = 0;
-    public static final int DEFAULT_CONTROL_LOCATION = RIGHT_TOP;
+    public static final int DEFAULT_CONTROL_LOCATION = RIGHT_BOTTOM;
+    public static final int DEFAULT_DELETE_LOCATION = LEFT_TOP;
     public static final boolean DEFAULT_EDITABLE = true;
     public static final int DEFAULT_OTHER_DRAWABLE_WIDTH = 50;
     public static final int DEFAULT_OTHER_DRAWABLE_HEIGHT = 50;
@@ -122,6 +125,7 @@ public class SingleTouchView extends View {
      * 用于缩放，旋转的控制点的坐标
      */
     private Point mControlPoint = new Point();
+    private Point mDeletePoint = new Point();
 
     /**
      * 用于缩放，旋转的图标
@@ -129,9 +133,20 @@ public class SingleTouchView extends View {
     private Drawable controlDrawable;
 
     /**
+     * 用于删除的图标
+     */
+    private Drawable deleteDrawable;
+
+
+    /**
      * 缩放，旋转图标的宽和高
      */
     private int mDrawableWidth, mDrawableHeight;
+
+    /**
+     * 删除图标的宽和高
+     */
+    private int mDeleteWidth, mDeleteHeight;
 
     /**
      * 画外围框的Path
@@ -157,6 +172,11 @@ public class SingleTouchView extends View {
      * 旋转或者放大状态
      */
     public static final int STATUS_ROTATE_ZOOM = 2;
+
+    /**
+     * 删除状态
+     */
+    public static final int STATUS_DELETE = 3;
 
     /**
      * 当前所处的状态
@@ -207,6 +227,11 @@ public class SingleTouchView extends View {
      */
     private int controlLocation = DEFAULT_CONTROL_LOCATION;
 
+    /**
+     * 删除图标所在的位置（比如左上，右上，左下，右下）
+     */
+    private int deleteLocation = DEFAULT_DELETE_LOCATION;
+
 
     public SingleTouchView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -220,8 +245,44 @@ public class SingleTouchView extends View {
         super(context, attrs, defStyle);
         obtainStyledAttributes(attrs);
         init();
+    /*    SingleTouchView.this.setOnFocusChangeListener( new OnFocusChangeListener() {
+
+            public void onFocusChange(View v, boolean hasFocus) {
+                SingleTouchView view = (SingleTouchView)v;
+                if (hasFocus) {
+                    view.setEditable(true);
+                    System.out.println("得到焦点");
+                } else {
+                    view.setEditable(false);
+                    System.out.println("失去焦点");
+                }
+            }
+        });*/
+        setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                SingleTouchView view = (SingleTouchView) v;
+                view.setEditable(true);
+            }
+
+        });
+
     }
 
+   /* class OnFocusChangeListenerImp implements OnFocusChangeListener {
+
+        public void onFocusChange(View v, boolean hasFocus) {
+            SingleTouchView view = (SingleTouchView)v;
+            if (hasFocus) {
+                view.setEditable(true);
+                System.out.println("得到焦点");
+            } else {
+                view.setEditable(false);
+                System.out.println("失去焦点");
+            }
+        }
+    }*/
     /**
      * 获取自定义属性
      * @param attrs
@@ -245,6 +306,8 @@ public class SingleTouchView extends View {
         mDegree = mTypedArray.getFloat(R.styleable.SingleTouchView_degree, DEFAULT_DEGREE);
         controlDrawable = mTypedArray.getDrawable(R.styleable.SingleTouchView_controlDrawable);
         controlLocation = mTypedArray.getInt(R.styleable.SingleTouchView_controlLocation, DEFAULT_CONTROL_LOCATION);
+        deleteDrawable = mTypedArray.getDrawable(R.styleable.SingleTouchView_controlDrawable);
+        deleteLocation = mTypedArray.getInt(R.styleable.SingleTouchView_deleteLocation, DEFAULT_DELETE_LOCATION);
         isEditable = mTypedArray.getBoolean(R.styleable.SingleTouchView_editable, DEFAULT_EDITABLE);
 
         mTypedArray.recycle();
@@ -262,9 +325,15 @@ public class SingleTouchView extends View {
         if(controlDrawable == null){
             controlDrawable = getContext().getResources().getDrawable(R.mipmap.st_rotate_icon);
         }
+        if(deleteDrawable == null){
+            deleteDrawable = getContext().getResources().getDrawable(R.mipmap.remove);
+        }
 
         mDrawableWidth = controlDrawable.getIntrinsicWidth();
         mDrawableHeight = controlDrawable.getIntrinsicHeight();
+
+        mDeleteWidth = deleteDrawable.getIntrinsicWidth();
+        mDeleteHeight = deleteDrawable.getIntrinsicHeight();
 
         transformDraw();
     }
@@ -411,6 +480,11 @@ public class SingleTouchView extends View {
                     mControlPoint.y - mDrawableHeight / 2, mControlPoint.x + mDrawableWidth
                             / 2, mControlPoint.y + mDrawableHeight / 2);
             controlDrawable.draw(canvas);
+
+            deleteDrawable.setBounds(mDeletePoint.x - mDeleteWidth / 2,
+                    mDeletePoint.y - mDeleteHeight / 2, mDeletePoint.x + mDeleteWidth
+                            / 2, mDeletePoint.y + mDeleteHeight / 2);
+            deleteDrawable.draw(canvas);
         }
 
         adjustLayout();
@@ -452,6 +526,11 @@ public class SingleTouchView extends View {
 
                 break;
             case MotionEvent.ACTION_UP:
+                if (mStatus == STATUS_DELETE) {
+                    setEditable(false);
+                    setVisibility(View.GONE);
+
+                }
                 mStatus = STATUS_INIT;
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -587,6 +666,7 @@ public class SingleTouchView extends View {
         mLBPoint.y += (offsetY + halfDrawableHeight);
 
         mControlPoint = LocationToPoint(controlLocation);
+        mDeletePoint = LocationToPoint(deleteLocation);
     }
 
 
@@ -729,9 +809,15 @@ public class SingleTouchView extends View {
     private int JudgeStatus(float x, float y){
         PointF touchPoint = new PointF(x, y);
         PointF controlPointF = new PointF(mControlPoint);
+        PointF deletePointF = new PointF(mDeletePoint);
 
         //点击的点到控制旋转，缩放点的距离
         float distanceToControl = distance4PointF(touchPoint, controlPointF);
+        float distanceToDelete = distance4PointF(touchPoint, deletePointF);
+
+        if(distanceToDelete < Math.min(mDeleteWidth/2, mDeleteHeight/2)){
+            return STATUS_DELETE;
+        }
 
         //如果两者之间的距离小于 控制图标的宽度，高度的最小值，则认为点中了控制图标
         if(distanceToControl < Math.min(mDrawableWidth/2, mDrawableHeight/2)){
@@ -903,12 +989,12 @@ public class SingleTouchView extends View {
             return bitmap;
         }
     */
-    public Bitmap createNewPhoto1(){
+    public Bitmap createNewPhoto(){
         setDrawingCacheEnabled(true);
         buildDrawingCache();
         Bitmap pic =  getDrawingCache();
         //  setDrawingCacheEnabled(false);
-//        System.out.println(pic.getHeight()+"________"+pic.getWidth());
+//        System.out.println(pic.getHeight()+"贴图宽高"+pic.getWidth());
         return pic;
     }
 
