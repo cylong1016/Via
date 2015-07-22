@@ -364,7 +364,7 @@ public class MakeActivity extends Activity {
         if (resultCode == 3) {
             ImageView mImageView = (ImageView) findViewById(R.id.photoView);
             RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
-            final Drawable d = getResources().getDrawable(R.drawable.paster1);
+            final Drawable d = getResources().getDrawable(R.mipmap.paster1);
             SingleTouchView singleTouchView = new SingleTouchView(MakeActivity.this);
             singleTouchView.setImageDrawable(d);
             mLayout.addView(singleTouchView);
