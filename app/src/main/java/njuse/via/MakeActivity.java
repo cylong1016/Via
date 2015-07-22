@@ -46,7 +46,6 @@ public class MakeActivity extends Activity {
 
     public Screen screen;
 
-    ArrayList<SingleTouchView> pasters = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -258,9 +257,6 @@ public class MakeActivity extends Activity {
      */
     public void saveListener(View view) {
         screen.setText(((EditText) findViewById(R.id.explain)).getText().toString());
-        for (int i = 0; i < pasters.size(); i++) {
-            pasters.get(i).setEditable(false);
-        }
         SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
         String date = sDateFormat.format(new java.util.Date());
         String workName = "via_" + date;
@@ -359,13 +355,7 @@ public class MakeActivity extends Activity {
         }
 
         if (resultCode == 3) {
-            ImageView mImageView = (ImageView) findViewById(R.id.photoView);
-            RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
-            final Drawable d = getResources().getDrawable(R.mipmap.paster1);
-            SingleTouchView singleTouchView = new SingleTouchView(MakeActivity.this);
-            singleTouchView.setImageDrawable(d);
-            mLayout.addView(singleTouchView);
-            pasters.add(singleTouchView);
+            setImgAfterFilter();
         }
 
         if (resultCode == 98) {
@@ -407,9 +397,14 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void pasterListener(View view) {
-        Intent intent = new Intent();
-        intent.setClass(this, PasterActivity.class);
-        this.startActivityForResult(intent, 3);
+        if(screen.getBackGroundURL()!=null) {
+            Intent intent = new Intent();
+            intent.setClass(this, PasterActivity.class);
+            intent.putExtra("path", screen.getBackGroundURL());
+            this.startActivityForResult(intent, 3);
+        }else{
+            Toast.makeText(this,"没有导入图片",Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
@@ -432,7 +427,6 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void newScreenListener(View view) {
-        removeAllpasters();
         EditText edit = (EditText) findViewById(R.id.explain);
         String text = edit.getText().toString(); // 获得用户输入的文本
         screen.setText(text);
@@ -441,15 +435,7 @@ public class MakeActivity extends Activity {
         initScreen();
     }
 
-    public void removeAllpasters() {
-        ImageView mImageView = (ImageView) findViewById(R.id.photoView);
-        RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
-        for (int i = 0; i < pasters.size(); i++) {
-            mLayout.removeView(pasters.get(i));
-        }
-        pasters.clear();
 
-    }
 
 }
 

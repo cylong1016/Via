@@ -908,7 +908,7 @@ public class SingleTouchView extends View {
         buildDrawingCache();
         Bitmap pic =  getDrawingCache();
         //  setDrawingCacheEnabled(false);
-        System.out.println(pic.getHeight()+"________"+pic.getWidth());
+//        System.out.println(pic.getHeight()+"________"+pic.getWidth());
         return pic;
     }
 
