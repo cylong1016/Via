@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="5dp"
         android:scaleType="centerCrop"
-        android:background="@drawable/cat"/>
+        android:background="@mipmap/filter_0"/>
 
 
 </RelativeLayout>
