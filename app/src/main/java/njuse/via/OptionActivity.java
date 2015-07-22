@@ -52,6 +52,9 @@ public class OptionActivity extends Activity {
         if(op==null){
             button_show_number=2;
             true_id=but1.getId();
+
+            but1.setText(strToBut(but1.getText().toString(),but1));
+            but2.setText(strToBut(but2.getText().toString(),but2));
         }else {
 
             button_show_number = op.getItemLength();
@@ -77,10 +80,10 @@ public class OptionActivity extends Activity {
 
             OptionItem item;
             switch(button_show_number){
-                case 4:item=op.getOptionItem(3);but4.setText(item.getText());
-                case 3:item=op.getOptionItem(2);but3.setText(item.getText());
-                case 2:item=op.getOptionItem(1);but2.setText(item.getText());
-                case 1:item=op.getOptionItem(0);but1.setText(item.getText());
+                case 4:item=op.getOptionItem(3);but4.setText(strToBut(item.getText(), but4));
+                case 3:item=op.getOptionItem(2);but3.setText(strToBut(item.getText(),but3));
+                case 2:item=op.getOptionItem(1);but2.setText(strToBut(item.getText(),but2));
+                case 1:item=op.getOptionItem(0);but1.setText(strToBut(item.getText(),but1));
             }
         }
 
@@ -129,7 +132,7 @@ public class OptionActivity extends Activity {
                 }else{
                     boo=false;
                 }
-                opItem=new OptionItem(but.getText().toString(),boo);
+                opItem=new OptionItem(butToStr(but),boo);
                 op.insert(0,opItem);
             case 3:
                 but=(Button) findViewById(R.id.btn_option3);
@@ -138,7 +141,7 @@ public class OptionActivity extends Activity {
                 }else{
                     boo=false;
                 }
-                opItem=new OptionItem(but.getText().toString(),boo);
+                opItem=new OptionItem(butToStr(but),boo);
                 op.insert(0,opItem);
             case 2:
                 but=(Button) findViewById(R.id.btn_option2);
@@ -147,7 +150,7 @@ public class OptionActivity extends Activity {
                 }else{
                     boo=false;
                 }
-                opItem=new OptionItem(but.getText().toString(),boo);
+                opItem=new OptionItem(butToStr(but),boo);
                 op.insert(0,opItem);
             case 1:
                 but=(Button) findViewById(R.id.btn_option1);
@@ -156,7 +159,7 @@ public class OptionActivity extends Activity {
                 }else{
                     boo=false;
                 }
-                opItem=new OptionItem(but.getText().toString(),boo);
+                opItem=new OptionItem(butToStr(but),boo);
                 op.insert(0,opItem);
                 break;
             case 0:
@@ -167,8 +170,20 @@ public class OptionActivity extends Activity {
         Bundle b=new Bundle();
         b.putSerializable("roption",op);
         intent.putExtras(b);
-        setResult(98,intent);
+        setResult(98, intent);
         super.finish();
+    }
+
+    public String butToStr(Button but){
+        return but.getText().subSequence(2, but.getText().length()).toString();
+    }
+
+    public String strToBut(String str,Button but){
+        if(but.getId()==true_id){
+            return getString(R.string.true_option)+str;
+        }else{
+            return getString(R.string.false_option)+str;
+        }
     }
 
     public void delOptionListener(View view){
@@ -259,7 +274,7 @@ public class OptionActivity extends Activity {
                 EditText edt1=(EditText) findViewById(R.id.edt_option1);
                 edt1.setVisibility(View.GONE);
                 Button but1=(Button) findViewById(R.id.btn_option1);
-                but1.setText(edt1.getText());
+                but1.setText(strToBut(edt1.getText().toString(), but1));
                 but1.setVisibility(View.VISIBLE);
                 ImageView img1=(ImageView) findViewById(R.id.btn_option1_del1);
                 img1.setVisibility(View.VISIBLE);
@@ -268,7 +283,7 @@ public class OptionActivity extends Activity {
                 EditText edt2=(EditText) findViewById(R.id.edt_option2);
                 edt2.setVisibility(View.GONE);
                 Button but2=(Button) findViewById(R.id.btn_option2);
-                but2.setText(edt2.getText());
+                but2.setText(strToBut(edt2.getText().toString(), but2));
                 but2.setVisibility(View.VISIBLE);
                 ImageView img2=(ImageView) findViewById(R.id.btn_option1_del2);
                 img2.setVisibility(View.VISIBLE);
@@ -277,7 +292,7 @@ public class OptionActivity extends Activity {
                 EditText edt3=(EditText) findViewById(R.id.edt_option3);
                 edt3.setVisibility(View.GONE);
                 Button but3=(Button) findViewById(R.id.btn_option3);
-                but3.setText(edt3.getText());
+                but3.setText(strToBut(edt3.getText().toString(), but3));
                 but3.setVisibility(View.VISIBLE);
                 ImageView img3=(ImageView) findViewById(R.id.btn_option1_del3);
                 img3.setVisibility(View.VISIBLE);
@@ -286,7 +301,7 @@ public class OptionActivity extends Activity {
                 EditText edt4=(EditText) findViewById(R.id.edt_option4);
                 edt4.setVisibility(View.GONE);
                 Button but4=(Button) findViewById(R.id.btn_option4);
-                but4.setText(edt4.getText());
+                but4.setText(strToBut(edt4.getText().toString(), but4));
                 but4.setVisibility(View.VISIBLE);
                 ImageView img4=(ImageView) findViewById(R.id.btn_option1_del4);
                 img4.setVisibility(View.VISIBLE);
@@ -302,25 +317,25 @@ public class OptionActivity extends Activity {
         switch(button_show_number){
             case 1:
                 Button but1=(Button)findViewById(R.id.btn_option1);
-                but1.setText(R.string.new_option);
+                but1.setText(strToBut(getString(R.string.new_option),but1));
                 but1.setBackgroundResource(R.drawable.btn_selector);
                 findViewById(R.id.option1_layout).setVisibility(View.VISIBLE);
                 break;
             case 2:
                 Button but2=(Button)findViewById(R.id.btn_option2);
-                but2.setText(R.string.new_option);
+                but2.setText(strToBut(getString(R.string.new_option), but2));
                 but2.setBackgroundResource(R.drawable.btn_selector);
                 findViewById(R.id.option2_layout).setVisibility(View.VISIBLE);
                 break;
             case 3:
                 Button but3=(Button)findViewById(R.id.btn_option3);
-                but3.setText(R.string.new_option);
+                but3.setText(strToBut(getString(R.string.new_option),but3));
                 but3.setBackgroundResource(R.drawable.btn_selector);
                 findViewById(R.id.option3_layout).setVisibility(View.VISIBLE);
                 break;
             case 4:
                 Button but4=(Button)findViewById(R.id.btn_option4);
-                but4.setText(R.string.new_option);
+                but4.setText(strToBut(getString(R.string.new_option),but4));
                 but4.setBackgroundResource(R.drawable.btn_selector);
                 findViewById(R.id.option4_layout).setVisibility(View.VISIBLE);
                 break;
@@ -342,7 +357,7 @@ public class OptionActivity extends Activity {
             switch (view.getId()){
                 case R.id.btn_option1:
                     EditText edt1=(EditText) findViewById(R.id.edt_option1);
-                    edt1.setText(but.getText());
+                    edt1.setText(butToStr(but));
                     edt1.setVisibility(View.VISIBLE);
                     ImageView del1=(ImageView) findViewById(R.id.btn_option1_del1);
                     del1.setVisibility(View.GONE);
@@ -354,7 +369,7 @@ public class OptionActivity extends Activity {
                     break;
                 case R.id.btn_option2:
                     EditText edt2=(EditText)findViewById(R.id.edt_option2);
-                    edt2.setText(but.getText());
+                    edt2.setText(butToStr(but));
                     edt2.setVisibility(View.VISIBLE);
                     ImageView del2=(ImageView) findViewById(R.id.btn_option1_del2);
                     del2.setVisibility(View.GONE);
@@ -366,7 +381,7 @@ public class OptionActivity extends Activity {
                     break;
                 case R.id.btn_option3:
                     EditText edt3=(EditText)findViewById(R.id.edt_option3);
-                    edt3.setText(but.getText());
+                    edt3.setText(butToStr(but));
                     edt3.setVisibility(View.VISIBLE);
                     ImageView del3=(ImageView) findViewById(R.id.btn_option1_del3);
                     del3.setVisibility(View.GONE);
@@ -378,7 +393,7 @@ public class OptionActivity extends Activity {
                     break;
                 case R.id.btn_option4:
                     EditText edt4=(EditText)findViewById(R.id.edt_option4);
-                    edt4.setText(but.getText());
+                    edt4.setText(butToStr(but));
                     edt4.setVisibility(View.VISIBLE);
                     ImageView del4=(ImageView) findViewById(R.id.btn_option1_del4);
                     del4.setVisibility(View.GONE);
@@ -426,7 +441,7 @@ public class OptionActivity extends Activity {
             ent.setVisibility(View.GONE);
             but=(Button) findViewById(R.id.btn_option1);
             but.setVisibility(View.VISIBLE);
-            but.setText(edt1.getText());
+            but.setText(strToBut(edt1.getText().toString(), but));
             del=(ImageView) findViewById(R.id.btn_option1_del1);
             del.setVisibility(View.VISIBLE);
         }
@@ -436,7 +451,7 @@ public class OptionActivity extends Activity {
             ent.setVisibility(View.GONE);
             but=(Button) findViewById(R.id.btn_option2);
             but.setVisibility(View.VISIBLE);
-            but.setText(edt2.getText());
+            but.setText(strToBut(edt2.getText().toString(), but));
             del=(ImageView) findViewById(R.id.btn_option1_del2);
             del.setVisibility(View.VISIBLE);
         }
@@ -446,7 +461,7 @@ public class OptionActivity extends Activity {
             ent.setVisibility(View.GONE);
             but=(Button) findViewById(R.id.btn_option3);
             but.setVisibility(View.VISIBLE);
-            but.setText(edt3.getText());
+            but.setText(strToBut(edt3.getText().toString(), but));
             del=(ImageView) findViewById(R.id.btn_option1_del3);
             del.setVisibility(View.VISIBLE);
         }
@@ -456,7 +471,7 @@ public class OptionActivity extends Activity {
             ent.setVisibility(View.GONE);
             but=(Button) findViewById(R.id.btn_option4);
             but.setVisibility(View.VISIBLE);
-            but.setText(edt4.getText());
+            but.setText(strToBut(edt4.getText().toString(), but));
             del=(ImageView) findViewById(R.id.btn_option1_del4);
             del.setVisibility(View.VISIBLE);
         }
