@@ -30,6 +30,11 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.Context;
+import android.content.DialogInterface;
+
 import njuse.via.bl.MakeBL;
 import njuse.via.blservice.MakeBLService;
 import njuse.via.config.PathConfig;
@@ -298,6 +303,23 @@ public class MakeActivity extends Activity {
         }
     }
 
+    private  void saveWork(EditText editText){
+        if (editText.getText().toString()==null|editText.getText().toString().length()==0){
+            Toast.makeText(this, "请输入文件名！  "+editText.getText().toString(),Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
+        String date = sDateFormat.format(new java.util.Date());
+        String workName = editText.getText().toString() +"_"+ date;
+        makeBL.saveWork(workName);
+        Toast.makeText(this, "保存文件成功！", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent();
+        intent.setClass(this, ShowActivity.class);
+        intent.putExtra("html", workName);
+        startActivity(intent);
+    }
     /**
      * 保存按钮监听
      *
@@ -305,11 +327,26 @@ public class MakeActivity extends Activity {
      */
     public void saveListener(View view) {
         screen.setText(((EditText) findViewById(R.id.explain)).getText().toString());
-        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
-        String date = sDateFormat.format(new java.util.Date());
-        String workName = "via_" + date;
-        makeBL.saveWork(workName);
-        Toast.makeText(this, "保存文件成功！", Toast.LENGTH_SHORT).show();
+
+
+        final EditText editText=new EditText(this);
+        //editText.setOnClickListener();
+        Builder dialog=new AlertDialog.Builder(this);
+
+        dialog.setTitle("请输入保存的文件名！").
+                setIcon(android.R.drawable.ic_dialog_info).setView(
+                editText).setPositiveButton("确定",  new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                saveWork(editText);
+
+            }}).setNegativeButton("取消", null).show();
+
+
+
+       // makeBL.saveWork(workName);
+
 //        copyFile(R.raw.blur, "blur.js");
 //        copyFile(R.raw.blur_css,"blur_css.css");
 //        copyFile(R.raw.global,"global.css");
@@ -317,10 +354,10 @@ public class MakeActivity extends Activity {
 //        copyFile(R.raw.jquery_fullpage,"jquery.full_page.css");
 //        copyFile(R.raw.jquery_1_8_3_min,"jquery.1.8.3.min.js");
 //        copyFile(R.raw.jquery_fullpage_min,"jquery.full_page.min.js");
-        Intent intent = new Intent();
+        /*Intent intent = new Intent();
         intent.setClass(this, ShowActivity.class);
         intent.putExtra("html", workName);
-        startActivity(intent);
+        startActivity(intent);*/
     }
 
     public void copyFile(int id, String name) {

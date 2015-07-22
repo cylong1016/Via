@@ -27,7 +27,7 @@ public class MakeData implements MakeDataService {
     public void saveMakeRes(ScreenSet list,String fileName) {
 
         //当文件夹不存在时创建文件夹
-        String path = PathConfig.WEB+"/"+fileName;
+        String path = PathConfig.WEB_PROJECT+"/"+fileName;
         File file = new File(dirpath);
        creatFile(path);                         //创建存放产物的文件夹
         list.setWorkName(fileName);             //设置文件名
@@ -36,7 +36,7 @@ public class MakeData implements MakeDataService {
         String ser_path=dirpath+"/"+fileName+".out";
         serialize2SDcard(list,ser_path);
 
-
+        copy_picture(list,path);
 
     }
 
@@ -60,6 +60,7 @@ public class MakeData implements MakeDataService {
             File fromFile=new File(list.get(i).getBackGroundURL());
             File toFile=new File(path+"/"+str+num+".jpg");
             copy.copyfile(fromFile,toFile,true);
+            System.out.println("要复制的图片路径：  "+list.get(i).getBackGroundURL());
             num++;
         }
     }
