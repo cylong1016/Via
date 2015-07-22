@@ -23,7 +23,7 @@ package njuse.via.filter.newFilter;
  * @author daizhj
  *
  */
-public class FeatherFilter  implements IImageFilter{
+public class NewFeatherFilter implements IImageFilter{
 
 	/// <summary>
     /// Should be in the range [0, 10].

@@ -23,8 +23,19 @@ import njuse.via.filter.GlowingEdgeFilter;
 import njuse.via.filter.IceFilter;
 import njuse.via.filter.MoltenFilter;
 import njuse.via.filter.SoftGlowFilter;
+import njuse.via.filter.newFilter.BigBrotherFilter;
+import njuse.via.filter.newFilter.BlackWhiteFilter;
+import njuse.via.filter.newFilter.ColorQuantizeFilter;
+import njuse.via.filter.newFilter.IImageFilter;
 import njuse.via.filter.newFilter.Image;
+import njuse.via.filter.newFilter.InvertFilter;
 import njuse.via.filter.newFilter.MirrorFilter;
+import njuse.via.filter.newFilter.NewBrightContrastFilter;
+import njuse.via.filter.newFilter.NewFeatherFilter;
+import njuse.via.filter.newFilter.ReflectionFilter;
+import njuse.via.filter.newFilter.SaturationModifyFilter;
+import njuse.via.filter.newFilter.ThresholdFilter;
+import njuse.via.filter.newFilter.TintFilter;
 
 public class FilterActivity extends Activity {
 
@@ -87,64 +98,50 @@ public class FilterActivity extends Activity {
     public void NoListener(View view) {
         bitmap = bmpDefaultPic;
         iv.setImageBitmap(bitmap);
-        if(isCrop) {
-            cropBmp = cropDefault;
-        }
+        cropBmp = cropDefault;
     }
 
     public void IceListener(View view) {
         IceFilter filter = new IceFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
-        if(isCrop) {
-            IceFilter filter_Crop = new IceFilter(cropDefault);
-            cropBmp = filter_Crop.imageProcess().getDstBitmap();
-        }
+        IceFilter filter_Crop = new IceFilter(cropDefault);
+        cropBmp = filter_Crop.imageProcess().getDstBitmap();
     }
     public void MoltenListener(View view) {
         MoltenFilter filter = new MoltenFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
-        if(isCrop) {
-            MoltenFilter filter_Crop = new MoltenFilter(cropDefault);
-            cropBmp = filter_Crop.imageProcess().getDstBitmap();
-        }
+        MoltenFilter filter_Crop = new MoltenFilter(cropDefault);
+        cropBmp = filter_Crop.imageProcess().getDstBitmap();
     }
     public void ComicListener(View view) {
         ComicFilter filter = new ComicFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
-        if(isCrop) {
-            ComicFilter filter_Crop = new ComicFilter(cropDefault);
-            cropBmp = filter_Crop.imageProcess().getDstBitmap();
-        }
+        ComicFilter filter_Crop = new ComicFilter(cropDefault);
+        cropBmp = filter_Crop.imageProcess().getDstBitmap();
     }
     public void SoftGlowListener(View view) {
         SoftGlowFilter filter = new SoftGlowFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
-        if(isCrop) {
-            SoftGlowFilter filter_Crop = new SoftGlowFilter(cropDefault);
-            cropBmp = filter_Crop.imageProcess().getDstBitmap();
-        }
+        SoftGlowFilter filter_Crop = new SoftGlowFilter(cropDefault);
+        cropBmp = filter_Crop.imageProcess().getDstBitmap();
     }
     public void GlowingEdgeListener(View view) {
         GlowingEdgeFilter filter = new GlowingEdgeFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
-        if(isCrop) {
-            GlowingEdgeFilter filter_Crop = new GlowingEdgeFilter(cropDefault);
-            cropBmp = filter_Crop.imageProcess().getDstBitmap();
-        }
+        GlowingEdgeFilter filter_Crop = new GlowingEdgeFilter(cropDefault);
+        cropBmp = filter_Crop.imageProcess().getDstBitmap();
     }
     public void FeatherListener(View view) {
         FeatherFilter filter= new FeatherFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
-        if(isCrop) {
-            FeatherFilter filter_Crop = new FeatherFilter(cropDefault);
-            cropBmp = filter_Crop.imageProcess().getDstBitmap();
-        }
+        FeatherFilter filter_Crop = new FeatherFilter(cropDefault);
+        cropBmp = filter_Crop.imageProcess().getDstBitmap();
     }
 //    public void ZoomBlurListener(View view) {
 //        ZoomBlurFilter filter = new ZoomBlurFilter(bmpDefaultPic,20);
@@ -171,38 +168,100 @@ public class FilterActivity extends Activity {
             img_crop = filter_Crop.process(img_crop);
             img_crop.copyPixelsFromBuffer();
             cropBmp = img_crop.getImage();
-//            LomoFilter filter_Crop = new LomoFilter(cropDefault);
-//            cropBmp = filter_Crop.imageProcess().getDstBitmap();
         }
     }
     public void FilmListener(View view) {
         FilmFilter filter = new FilmFilter(bmpDefaultPic,20);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
-        if(isCrop) {
-            FilmFilter filter_Crop = new FilmFilter(cropDefault,20);
-            cropBmp = filter_Crop.imageProcess().getDstBitmap();
-        }
+        FilmFilter filter_Crop = new FilmFilter(cropDefault,20);
+        cropBmp = filter_Crop.imageProcess().getDstBitmap();
     }
     public void RedToneListener(View view) {
         ColorToneFilter filter = new ColorToneFilter(bmpDefaultPic,0xFF0000,192);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
-        if(isCrop) {
-            ColorToneFilter filter_Crop = new ColorToneFilter(cropDefault,0xFF0000,192);
-            cropBmp = filter_Crop.imageProcess().getDstBitmap();
-        }
+        ColorToneFilter filter_Crop = new ColorToneFilter(cropDefault,0xFF0000,192);
+        cropBmp = filter_Crop.imageProcess().getDstBitmap();
     }
     public void BlueToneListener(View view) {
         ColorToneFilter filter = new ColorToneFilter(bmpDefaultPic,0x0000FF,192);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
-        if(isCrop) {
-            ColorToneFilter filter_Crop = new ColorToneFilter(cropDefault,0x0000FF,192);
-            cropBmp = filter_Crop.imageProcess().getDstBitmap();
-        }
+        ColorToneFilter filter_Crop = new ColorToneFilter(cropDefault,0x0000FF,192);
+        cropBmp = filter_Crop.imageProcess().getDstBitmap();
     }
 
+    public void BrightListener(View view){
+        NewBrightContrastFilter filter = new NewBrightContrastFilter();
+        setImgFilter(filter);
+        setCropFilter(filter);
+    }
+
+    public void setImgFilter(IImageFilter imageFilter){
+        Image img = new Image(bmpDefaultPic);
+        img = imageFilter.process(img);
+        img.copyPixelsFromBuffer();
+        iv.setImageBitmap(img.getImage());
+    }
+
+    public void setCropFilter(IImageFilter imageFilter){
+        Image img_crop = new Image(cropDefault);
+        img_crop = imageFilter.process(img_crop);
+        img_crop.copyPixelsFromBuffer();
+        cropBmp = img_crop.getImage();
+    }
+
+    public void SatListener(View view){
+        SaturationModifyFilter filter = new SaturationModifyFilter();
+        setImgFilter(filter);
+        setCropFilter(filter);
+    }
+    public void ReflectListener1(View view){
+        ReflectionFilter filter = new ReflectionFilter(true);
+        setImgFilter(filter);
+        setCropFilter(filter);
+    }
+    public void ReflectListener2(View view){
+        ReflectionFilter filter = new ReflectionFilter(false);
+        setImgFilter(filter);
+        setCropFilter(filter);
+    }
+    public void TintListener(View view){
+        TintFilter filter = new TintFilter();
+        setImgFilter(filter);
+        setCropFilter(filter);
+    }
+    public void BigBrotherListener(View view){
+        BigBrotherFilter filter = new BigBrotherFilter();
+        setImgFilter(filter);
+        setCropFilter(filter);
+    }
+    public void ColorListener(View view){
+        ColorQuantizeFilter filter = new ColorQuantizeFilter();
+        setImgFilter(filter);
+        setCropFilter(filter);
+    }
+    public void NewFeatherListener(View view){
+        NewFeatherFilter filter = new NewFeatherFilter();
+        setImgFilter(filter);
+        setCropFilter(filter);
+    }
+    public void InvertListener(View view){
+        InvertFilter filter = new InvertFilter();
+        setImgFilter(filter);
+        setCropFilter(filter);
+    }
+    public void BlackWhiteListener(View view){
+        BlackWhiteFilter filter = new BlackWhiteFilter();
+        setImgFilter(filter);
+        setCropFilter(filter);
+    }
+    public void ThreListener(View view){
+        ThresholdFilter filter = new ThresholdFilter();
+        setImgFilter(filter);
+        setCropFilter(filter);
+    }
     public void ensureFilter(View view) throws IOException{
 //        this.startActivity(intent);
 //        new Thread() { // ��ֹ�л�����
