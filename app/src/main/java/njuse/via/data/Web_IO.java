@@ -11,9 +11,9 @@ import njuse.via.config.PathConfig;
  * Created by zucewei on 2015/7/19
  */
 public class Web_IO {
-    String path = PathConfig.WEB;
 
-    public Web_IO() {
+
+    public Web_IO(String path) {
         File file = new File(path);
         if (!file.exists()) {
             try {
@@ -24,8 +24,8 @@ public class Web_IO {
         }
     }
 
-    public void write_file(String name, String text) {
-        String fileName = path + "/" + name;
+    public void write_file(String fpath,String name, String text) {
+        String fileName = fpath + "/" + name;
 
         try {
             FileOutputStream fout = new FileOutputStream(fileName);

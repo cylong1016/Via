@@ -9,8 +9,8 @@ import njuse.via.po.ScreenSet;
  * Created by zucewei on 2015/7/19.
  */
 public class WebCreater {
-    public static void createHTML(ScreenSet screenSet){
-        ForFileWriter(createWeb(screenSet),screenSet.getWorkName()+".html");
+    public static void createHTML(String path,ScreenSet screenSet){
+        ForFileWriter(path,createWeb(screenSet),screenSet.getWorkName()+".html");
     }
 
     public static String createWeb(ScreenSet screenSet){
@@ -82,8 +82,8 @@ public class WebCreater {
         return str;
     }
 
-    public static void ForFileWriter(String string,String fileName) {
-        Web_IO io=new Web_IO();
-        io.write_file(fileName,string);
+    public static void ForFileWriter(String path,String content,String fileName) {
+        Web_IO io=new Web_IO(path);
+        io.write_file(path,fileName,content);
     }
 }

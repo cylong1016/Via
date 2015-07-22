@@ -27,20 +27,41 @@ public class MakeData implements MakeDataService {
     public void saveMakeRes(ScreenSet list,String fileName) {
 
         //当文件夹不存在时创建文件夹
+        String path = PathConfig.WEB+"/"+fileName;
         File file = new File(dirpath);
-        if(!file.exists()){
+       creatFile(path);                         //创建存放产物的文件夹
+        list.setWorkName(fileName);             //设置文件名
+
+        WebCreater.createHTML(path,list);            //同时生成html文件，保存在"/sdcard/Via/web"路径下
+        String ser_path=dirpath+"/"+fileName+".out";
+        serialize2SDcard(list,ser_path);
+
+
+
+    }
+
+    private void creatFile(String fileName){
+        File file = new File(fileName);
+        if (!file.exists()) {
             try {
                 file.mkdirs();
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
 
-        list.setWorkName(fileName);
-        WebCreater.createHTML(list);            //同时生成html文件，保存在"/sdcard/Via/web"路径下
-        String path=dirpath+"/"+fileName+".out";
-        serialize2SDcard(list,path);
-
+    private void copy_picture(ScreenSet set,String path){
+        int num=1;
+        String str="picture_";
+        FileCopy copy=new FileCopy();
+        LinkedList<Screen> list=set.getScreenList();
+        for (int i=0;i<list.size();i++){
+            File fromFile=new File(list.get(i).getBackGroundURL());
+            File toFile=new File(path+"/"+str+num+".jpg");
+            copy.copyfile(fromFile,toFile,true);
+            num++;
+        }
     }
 
     @Override    //读取已经完成的作品
