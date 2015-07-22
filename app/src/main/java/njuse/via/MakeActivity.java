@@ -40,14 +40,12 @@ import njuse.via.po.Screen;
  */
 public class MakeActivity extends Activity {
 
-
     private int screenWidth;
     private int screenHeight;
     private int statusBarHeight;
     private MakeBLService makeBL = new MakeBL();
 
     public Screen screen;
-
 
     ArrayList<SingleTouchView> pasters = new ArrayList<>();
 
@@ -57,7 +55,7 @@ public class MakeActivity extends Activity {
         setContentView(R.layout.activity_make);
         getScreenInfo(); // 获得屏幕信息
         initPhotoViewLoc();
-        screen=makeBL.getNewScreen();
+        screen = makeBL.getNewScreen();
     }
 
 
@@ -118,7 +116,7 @@ public class MakeActivity extends Activity {
         int explainW;
         int explainH;
 
-        if(magniscaleW < magniscaleH) { // 图片相对于显示图片的view较宽
+        if (magniscaleW < magniscaleH) { // 图片相对于显示图片的view较宽
             double temp = (photoHeight - imgH * magniscaleW) / 2;
             viewX = (int) (magniscaleW * 66.0);
             viewY = (int) (61.0 * magniscaleW + temp + dpTopx(28));
@@ -152,14 +150,14 @@ public class MakeActivity extends Activity {
         explainEdit.setLayoutParams(paramsEdit);
     }
 
-    public void initScreen(){
-        EditText edit=(EditText) findViewById(R.id.explain);
+    public void initScreen() {
+        EditText edit = (EditText) findViewById(R.id.explain);
         String text = screen.getText();
         edit.setText(text);
-        ImageView img=(ImageView) findViewById(R.id.photoView);
-        if(screen.getBackGroundURL()!=null){
+        ImageView img = (ImageView) findViewById(R.id.photoView);
+        if (screen.getBackGroundURL() != null) {
             img.setImageURI(Uri.parse(screen.getBackGroundURL()));
-        }else{
+        } else {
             img.setImageResource(R.mipmap.make_background);
         }
     }
@@ -244,13 +242,13 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void filterListener(View view) {
-        if(screen.getBackGroundURL()!=null) {
+        if (screen.getBackGroundURL() != null) {
             Intent intent = new Intent();
             intent.setClass(this, FilterActivity.class);
             intent.putExtra("path", screen.getBackGroundURL());
             this.startActivityForResult(intent, 16);
-        }else{
-            Toast.makeText(this,"没有导入图片",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "没有导入图片", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -261,14 +259,14 @@ public class MakeActivity extends Activity {
      */
     public void saveListener(View view) {
         screen.setText(((EditText) findViewById(R.id.explain)).getText().toString());
-        for(int i = 0;i<pasters.size();i++){
+        for (int i = 0; i < pasters.size(); i++) {
             pasters.get(i).setEditable(false);
         }
         SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
         String date = sDateFormat.format(new java.util.Date());
-        String workName="via_"+date;
+        String workName = "via_" + date;
         makeBL.saveWork(workName);
-        Toast.makeText(this,"保存文件成功！",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "保存文件成功！", Toast.LENGTH_SHORT).show();
 //        copyFile(R.raw.blur, "blur.js");
 //        copyFile(R.raw.blur_css,"blur_css.css");
 //        copyFile(R.raw.global,"global.css");
@@ -276,17 +274,17 @@ public class MakeActivity extends Activity {
 //        copyFile(R.raw.jquery_fullpage,"jquery.full_page.css");
 //        copyFile(R.raw.jquery_1_8_3_min,"jquery.1.8.3.min.js");
 //        copyFile(R.raw.jquery_fullpage_min,"jquery.full_page.min.js");
-        Intent intent =new Intent();
-        intent.setClass(this,ShowActivity.class);
-        intent.putExtra("html",workName);
+        Intent intent = new Intent();
+        intent.setClass(this, ShowActivity.class);
+        intent.putExtra("html", workName);
         startActivity(intent);
     }
 
-    public void copyFile(int id,String name){
+    public void copyFile(int id, String name) {
         int byteread = 0;
         byte[] buf = new byte[4096];
         FileInputStream inStream = null;
-        FileOutputStream fs=null;
+        FileOutputStream fs = null;
 
         AssetFileDescriptor fd = getResources().openRawResourceFd(R.raw.blur);
 
@@ -298,8 +296,7 @@ public class MakeActivity extends Activity {
         }
 
         try {
-            while((byteread = inStream.read(buf)) != -1)
-            {
+            while ((byteread = inStream.read(buf)) != -1) {
                 fs.write(buf, 0, byteread);
             }
         } catch (IOException e) {
@@ -313,18 +310,18 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void cropListener(View view) {
-        if(screen.getBackGroundURL()!=null) {
-            String path = screen.getBackGroundURL().replace("crop","copy");
+        if (screen.getBackGroundURL() != null) {
+            String path = screen.getBackGroundURL().replace("crop", "copy");
             if (path != null) {
                 Intent intent = new Intent();
                 intent.setClass(this, CropPicActivity.class);
                 intent.putExtra("path", path);
                 this.startActivityForResult(intent, 0);
             } else {
-                Toast.makeText(this, "图片路径错误", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.img_path_error), Toast.LENGTH_SHORT).show();
             }
-        }else {
-            Toast.makeText(this, "没有导入图片", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, getString(R.string.no_photo), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -352,7 +349,7 @@ public class MakeActivity extends Activity {
             String path = data.getStringExtra("path");
             screen.setBackGroundURL(path);
 
-           Uri uri = Uri.parse(path);
+            Uri uri = Uri.parse(path);
             Bitmap bitmap = decodeUriAsBitmap(uri);
 
             if (bitmap != null) {
@@ -376,7 +373,7 @@ public class MakeActivity extends Activity {
             Bundle b = data.getExtras();
             screen.setOption((Option) b.get("roption"));
         }
-        if(resultCode == 16) {
+        if (resultCode == 16) {
             setImgAfterFilter();
         }
 
@@ -385,10 +382,11 @@ public class MakeActivity extends Activity {
     /*
     滤镜结束之后调用这个方法
      */
-    public void setImgAfterFilter(){
-        Bitmap bitmap = decodeUriAsBitmap(Uri.parse(screen.getBackGroundURL()));;
+    public void setImgAfterFilter() {
+        Bitmap bitmap = decodeUriAsBitmap(Uri.parse(screen.getBackGroundURL()));
+        ;
         ImageView mImageView = (ImageView) findViewById(R.id.photoView);
-        if(bitmap!=null) {
+        if (bitmap != null) {
             mImageView.setImageBitmap(bitmap);
         }
     }
@@ -407,6 +405,7 @@ public class MakeActivity extends Activity {
 
     /**
      * 贴图按钮监听
+     *
      * @param view
      */
     public void pasterListener(View view) {
@@ -417,19 +416,21 @@ public class MakeActivity extends Activity {
 
     /**
      * 选项按钮监听
+     *
      * @param view
      */
     public void selectListener(View view) {
         Intent intent = new Intent();
         intent.setClass(this, OptionActivity.class);
-        Bundle b=new Bundle();
-        b.putSerializable("option",screen.getOption());
+        Bundle b = new Bundle();
+        b.putSerializable("option", screen.getOption());
         intent.putExtras(b);
         this.startActivityForResult(intent, 98);
     }
 
     /**
      * 新增 一幕监听
+     *
      * @param view
      */
     public void newScreenListener(View view) {
@@ -442,10 +443,10 @@ public class MakeActivity extends Activity {
         initScreen();
     }
 
-    public void removeAllpasters(){
+    public void removeAllpasters() {
         ImageView mImageView = (ImageView) findViewById(R.id.photoView);
         RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
-        for(int i = 0;i<pasters.size();i++){
+        for (int i = 0; i < pasters.size(); i++) {
             mLayout.removeView(pasters.get(i));
         }
         pasters.clear();

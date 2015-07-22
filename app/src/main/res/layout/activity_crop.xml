@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#aaaaaa"   >
+    android:background="#aaaaaa">
 
     <njuse.via.crop.ClipImageLayout
         android:id="@+id/id_clipImageLayout"
@@ -10,14 +10,13 @@
         android:layout_height="fill_parent" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/actionbar_clip_icon"
-        android:onClick="cropPic"
-        />
+        android:background="@mipmap/actionbar_clip_icon"
+        android:onClick="cropPic" />
 
 
 </RelativeLayout>

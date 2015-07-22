@@ -32,4 +32,7 @@
     <string name="option_add">+</string>
 
     <string name="hello_world">Hello world!</string>
+
+    <string name="img_path_error">Image path error</string>
+    <string name="no_photo">No Photo</string>
 </resources>

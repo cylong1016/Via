@@ -37,7 +37,7 @@ public class MakeData implements MakeDataService {
         }
 
         list.setWorkName(fileName);
-        WebCreater.createHTML(list);            //同时生成html文件，保存在"/sdcard/Android/Via/web_product"路径下
+        WebCreater.createHTML(list);            //同时生成html文件，保存在"/sdcard/Via/web"路径下
         String path=dirpath+"/"+fileName+".out";
         serialize2SDcard(list,path);
 

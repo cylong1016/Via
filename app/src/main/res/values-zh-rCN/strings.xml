@@ -17,4 +17,7 @@
     <string name="new_option">新选项</string>
     <string name="del_err_inf">此幕为关键幕，无法删除</string>
     <string name="option_add">+</string>
+
+    <string name="img_path_error">图片路径错误</string>
+    <string name="no_photo">没有导入图片</string>
 </resources>
