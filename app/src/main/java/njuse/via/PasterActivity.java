@@ -49,7 +49,7 @@ public class PasterActivity extends Activity {
     }
 
     public void pasterListener(View v){
-        ImageButton view = (ImageButton)v;
+        ImageView view = (ImageView)v;
 
         ImageView mImageView = (ImageView) findViewById(R.id.PastePhoto);
         RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
