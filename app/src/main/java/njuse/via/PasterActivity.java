@@ -90,9 +90,17 @@ public class PasterActivity extends Activity {
 
 
     public Bitmap createNewPhoto(){
+        Bitmap src = bitmap;
+        if( src == null ) {
+            return null;
+        }
+        int w = src.getWidth();
+        int h = src.getHeight();
         int left = iv.getPaddingLeft();
         int top = iv.getPaddingTop();
 
+        float xScale = w/iv.getWidth();
+        float yScale = h/iv.getHeight();
         ArrayList<Bitmap> maps = new ArrayList<Bitmap>();
         ArrayList<PointF> points = new ArrayList<PointF>();
         for(int i = 0 ;i<pasters.size();i++) {
@@ -102,15 +110,10 @@ public class PasterActivity extends Activity {
             }
         }
         for(int i = 0;i<points.size();i++){
-            PointF point = new PointF(points.get(i).x-left,points.get(i).y-top);
+            PointF point = new PointF((points.get(i).x-left)*xScale,(points.get(i).y-top)*yScale);
             points.get(i).set(point);
         }
-        Bitmap src = bitmap;
-        if( src == null ) {
-            return null;
-        }
-        int w = src.getWidth();
-        int h = src.getHeight();
+
 
         //create the new blank bitmap
         Bitmap newb = Bitmap.createBitmap( w, h, Bitmap.Config.ARGB_8888 );//创建一个新的和SRC长度宽度一样的位图
