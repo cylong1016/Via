@@ -410,10 +410,15 @@ public class OptionActivity extends Activity {
         public boolean onLongClick(View view) {
             if(true_id!=0){
                 Button but1=(Button) findViewById(true_id);but1.setBackgroundResource(R.drawable.btn_selector);
+                String str1=butToStr(but1);
+                true_id=view.getId();
+                but1.setText(strToBut(str1,but1));
             }
             Button but2=(Button) view;
             but2.setBackgroundResource(R.drawable.btn_choose_selector);
+            String str2=butToStr(but2);
             true_id=view.getId();
+            but2.setText(strToBut(str2,but2));
             return true;
         }
     }
