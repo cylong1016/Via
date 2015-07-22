@@ -260,7 +260,7 @@ public class SingleTouchView extends View {
         mPaint.setStyle(Style.STROKE);
 
         if(controlDrawable == null){
-            controlDrawable = getContext().getResources().getDrawable(R.drawable.st_rotate_icon);
+            controlDrawable = getContext().getResources().getDrawable(R.mipmap.st_rotate_icon);
         }
 
         mDrawableWidth = controlDrawable.getIntrinsicWidth();
