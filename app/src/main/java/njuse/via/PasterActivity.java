@@ -6,8 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.PointF;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -22,15 +20,14 @@ import java.util.ArrayList;
 
 import njuse.via.paster.SingleTouchView;
 
-
 /**
- * Created by Administrator on 2015/7/19 0019.
+ * Created by Administrator on 2015/7/19 0019
  */
 public class PasterActivity extends Activity {
-    ArrayList<SingleTouchView> pasters = new ArrayList<SingleTouchView>();
+    ArrayList<SingleTouchView> pasters = new ArrayList<>();
     private ImageView iv;
     private Bitmap bmpDefaultPic = null,bitmap;
-    private String url;//Ô­Í¼µÄÍ¼Æ¬£¬original
+    private String url;//åŽŸå›¾çš„å›¾ç‰‡ï¼Œoriginal
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_paster);
@@ -101,8 +98,8 @@ public class PasterActivity extends Activity {
 
         float xScale = w/iv.getWidth();
         float yScale = h/iv.getHeight();
-        ArrayList<Bitmap> maps = new ArrayList<Bitmap>();
-        ArrayList<PointF> points = new ArrayList<PointF>();
+        ArrayList<Bitmap> maps = new ArrayList<>();
+        ArrayList<PointF> points = new ArrayList<>();
         for(int i = 0 ;i<pasters.size();i++) {
             if(pasters.get(i).getVisibility()!=View.GONE) {
                 maps.add(pasters.get(i).createNewPhoto());
@@ -116,18 +113,18 @@ public class PasterActivity extends Activity {
 
 
         //create the new blank bitmap
-        Bitmap newb = Bitmap.createBitmap( w, h, Bitmap.Config.ARGB_8888 );//´´½¨Ò»¸öÐÂµÄºÍSRC³¤¶È¿í¶ÈÒ»ÑùµÄÎ»Í¼
+        Bitmap newb = Bitmap.createBitmap( w, h, Bitmap.Config.ARGB_8888 );//åˆ›å»ºä¸€ä¸ªæ–°çš„å’ŒSRCé•¿åº¦å®½åº¦ä¸€æ ·çš„ä½å›¾
         Canvas cv = new Canvas( newb );
         //draw src into
-        cv.drawBitmap( src, 0, 0, null );//ÔÚ 0£¬0×ø±ê¿ªÊ¼»­Èësrc
+        cv.drawBitmap( src, 0, 0, null );//åœ¨ 0ï¼Œ0åæ ‡å¼€å§‹ç”»å…¥src
         //draw pasters into
         for(int i = 0;i<maps.size();i++) {
-            cv.drawBitmap(maps.get(i), points.get(i).x, points.get(i).y, null);//ÔÚsrcÉÏ¸²¸ÇÍ¼Æ¬
+            cv.drawBitmap(maps.get(i), points.get(i).x, points.get(i).y, null);//åœ¨srcä¸Šè¦†ç›–å›¾ç‰‡
         }
         //save all clip
-        cv.save(Canvas.ALL_SAVE_FLAG);//±£´æ
+        cv.save(Canvas.ALL_SAVE_FLAG);//ä¿å­˜
         //store
-        cv.restore();//´æ´¢
+        cv.restore();//å­˜å‚¨
         return newb;
     }
 
@@ -153,10 +150,6 @@ public class PasterActivity extends Activity {
             e.printStackTrace();
         }
     }
-
-
-
-
 
 }
 
