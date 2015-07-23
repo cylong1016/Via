@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,22 +18,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import njuse.via.filter.ColorToneFilter;
-import njuse.via.filter.ComicFilter;
 import njuse.via.filter.FeatherFilter;
 import njuse.via.filter.FilmFilter;
-import njuse.via.filter.GlowingEdgeFilter;
 import njuse.via.filter.IceFilter;
-import njuse.via.filter.MoltenFilter;
-import njuse.via.filter.SoftGlowFilter;
-import njuse.via.filter.newFilter.BigBrotherFilter;
 import njuse.via.filter.newFilter.BlackWhiteFilter;
 import njuse.via.filter.newFilter.ColorQuantizeFilter;
 import njuse.via.filter.newFilter.IImageFilter;
 import njuse.via.filter.newFilter.Image;
 import njuse.via.filter.newFilter.InvertFilter;
 import njuse.via.filter.newFilter.MirrorFilter;
-import njuse.via.filter.newFilter.NewBrightContrastFilter;
-import njuse.via.filter.newFilter.NewFeatherFilter;
 import njuse.via.filter.newFilter.ReflectionFilter;
 import njuse.via.filter.newFilter.SaturationModifyFilter;
 import njuse.via.filter.newFilter.ThresholdFilter;
@@ -43,6 +38,7 @@ public class FilterActivity extends Activity {
     private ImageView iv;
     private String url;//原图的图片，original
     private boolean isCrop = false;
+    private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,7 +46,7 @@ public class FilterActivity extends Activity {
         setContentView(R.layout.activity_filter);
         iv = (ImageView)findViewById(R.id.photo);
         url = getIntent().getStringExtra("path").substring(7);
-
+        textView = (TextView) findViewById(R.id.runtime);
 
         if(url.contains("crop")) {
             cropDefault = BitmapFactory.decodeFile(url);
@@ -106,34 +102,20 @@ public class FilterActivity extends Activity {
         IceFilter filter_Crop = new IceFilter(cropDefault);
         cropBmp = filter_Crop.imageProcess().getDstBitmap();
     }
-    public void MoltenListener(View view) {
-        MoltenFilter filter = new MoltenFilter(bmpDefaultPic);
-        bitmap = filter.imageProcess().getDstBitmap();
-        iv.setImageBitmap(bitmap);
-        MoltenFilter filter_Crop = new MoltenFilter(cropDefault);
-        cropBmp = filter_Crop.imageProcess().getDstBitmap();
-    }
-    public void ComicListener(View view) {
-        ComicFilter filter = new ComicFilter(bmpDefaultPic);
-        bitmap = filter.imageProcess().getDstBitmap();
-        iv.setImageBitmap(bitmap);
-        ComicFilter filter_Crop = new ComicFilter(cropDefault);
-        cropBmp = filter_Crop.imageProcess().getDstBitmap();
-    }
-    public void SoftGlowListener(View view) {
-        SoftGlowFilter filter = new SoftGlowFilter(bmpDefaultPic);
-        bitmap = filter.imageProcess().getDstBitmap();
-        iv.setImageBitmap(bitmap);
-        SoftGlowFilter filter_Crop = new SoftGlowFilter(cropDefault);
-        cropBmp = filter_Crop.imageProcess().getDstBitmap();
-    }
-    public void GlowingEdgeListener(View view) {
-        GlowingEdgeFilter filter = new GlowingEdgeFilter(bmpDefaultPic);
-        bitmap = filter.imageProcess().getDstBitmap();
-        iv.setImageBitmap(bitmap);
-        GlowingEdgeFilter filter_Crop = new GlowingEdgeFilter(cropDefault);
-        cropBmp = filter_Crop.imageProcess().getDstBitmap();
-    }
+//    public void SoftGlowListener(View view) {
+//        SoftGlowFilter filter = new SoftGlowFilter(bmpDefaultPic);
+//        bitmap = filter.imageProcess().getDstBitmap();
+//        iv.setImageBitmap(bitmap);
+//        SoftGlowFilter filter_Crop = new SoftGlowFilter(cropDefault);
+//        cropBmp = filter_Crop.imageProcess().getDstBitmap();
+//    }
+//    public void GlowingEdgeListener(View view) {
+//        GlowingEdgeFilter filter = new GlowingEdgeFilter(bmpDefaultPic);
+//        bitmap = filter.imageProcess().getDstBitmap();
+//        iv.setImageBitmap(bitmap);
+//        GlowingEdgeFilter filter_Crop = new GlowingEdgeFilter(cropDefault);
+//        cropBmp = filter_Crop.imageProcess().getDstBitmap();
+//    }
     public void FeatherListener(View view) {
         FeatherFilter filter= new FeatherFilter(bmpDefaultPic);
         bitmap = filter.imageProcess().getDstBitmap();
@@ -176,25 +158,12 @@ public class FilterActivity extends Activity {
         FilmFilter filter_Crop = new FilmFilter(cropDefault,20);
         cropBmp = filter_Crop.imageProcess().getDstBitmap();
     }
-    public void RedToneListener(View view) {
-        ColorToneFilter filter = new ColorToneFilter(bmpDefaultPic,0xFF0000,192);
-        bitmap = filter.imageProcess().getDstBitmap();
-        iv.setImageBitmap(bitmap);
-        ColorToneFilter filter_Crop = new ColorToneFilter(cropDefault,0xFF0000,192);
-        cropBmp = filter_Crop.imageProcess().getDstBitmap();
-    }
     public void BlueToneListener(View view) {
         ColorToneFilter filter = new ColorToneFilter(bmpDefaultPic,0x0000FF,192);
         bitmap = filter.imageProcess().getDstBitmap();
         iv.setImageBitmap(bitmap);
         ColorToneFilter filter_Crop = new ColorToneFilter(cropDefault,0x0000FF,192);
         cropBmp = filter_Crop.imageProcess().getDstBitmap();
-    }
-
-    public void BrightListener(View view){
-        NewBrightContrastFilter filter = new NewBrightContrastFilter();
-        setImgFilter(filter);
-        setCropFilter(filter);
     }
 
     public void setImgFilter(IImageFilter imageFilter){
@@ -214,53 +183,33 @@ public class FilterActivity extends Activity {
 
     public void SatListener(View view){
         SaturationModifyFilter filter = new SaturationModifyFilter();
-        setImgFilter(filter);
-        setCropFilter(filter);
+        new processImageTask(FilterActivity.this, filter).execute();
     }
-//    public void ReflectListener1(View view){
-//        ReflectionFilter filter = new ReflectionFilter(true);
-//        setImgFilter(filter);
-//        setCropFilter(filter);
-//    }
     public void ReflectListener2(View view){
         ReflectionFilter filter = new ReflectionFilter(false);
-        setImgFilter(filter);
-        setCropFilter(filter);
+        new processImageTask(FilterActivity.this, filter).execute();
     }
     public void TintListener(View view){
         TintFilter filter = new TintFilter();
-        setImgFilter(filter);
-        setCropFilter(filter);
-    }
-    public void BigBrotherListener(View view){
-        BigBrotherFilter filter = new BigBrotherFilter();
-        setImgFilter(filter);
-        setCropFilter(filter);
+        new processImageTask(FilterActivity.this, filter).execute();
     }
     public void ColorListener(View view){
         ColorQuantizeFilter filter = new ColorQuantizeFilter();
-        setImgFilter(filter);
-        setCropFilter(filter);
-    }
-    public void NewFeatherListener(View view){
-        NewFeatherFilter filter = new NewFeatherFilter();
-        setImgFilter(filter);
-        setCropFilter(filter);
+        new processImageTask(FilterActivity.this, filter).execute();
     }
     public void InvertListener(View view){
         InvertFilter filter = new InvertFilter();
-        setImgFilter(filter);
-        setCropFilter(filter);
+        new processImageTask(FilterActivity.this, filter).execute();
     }
     public void BlackWhiteListener(View view){
         BlackWhiteFilter filter = new BlackWhiteFilter();
-        setImgFilter(filter);
-        setCropFilter(filter);
+        new processImageTask(FilterActivity.this, filter).execute();
     }
     public void ThreListener(View view){
         ThresholdFilter filter = new ThresholdFilter();
         setImgFilter(filter);
         setCropFilter(filter);
+        new processImageTask(FilterActivity.this, filter).execute();
     }
     public void ensureFilter(View view) throws IOException{
 //        this.startActivity(intent);
@@ -305,6 +254,54 @@ public class FilterActivity extends Activity {
             fOut.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public class processImageTask extends AsyncTask<Void, Void, Bitmap> {
+        private IImageFilter filter;
+        private Activity activity = null;
+        public processImageTask(Activity activity, IImageFilter imageFilter) {
+            this.filter = imageFilter;
+            this.activity = activity;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            // TODO Auto-generated method stub
+            super.onPreExecute();
+            textView.setVisibility(View.VISIBLE);
+        }
+
+        public Bitmap doInBackground(Void... params) {
+            Image img = null;
+            try
+            {
+                setImgFilter(filter);
+                setCropFilter(filter);
+            }
+            catch(Exception e){
+                if (img != null && img.destImage.isRecycled()) {
+                    img.destImage.recycle();
+                    img.destImage = null;
+                    System.gc(); // 提醒系统及时回收
+                }
+            }
+            finally{
+                if (img != null && img.image.isRecycled()) {
+                    img.image.recycle();
+                    img.image = null;
+                    System.gc(); // 提醒系统及时回收
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            if (result != null){
+                super.onPostExecute(result);
+            }
+            textView.setVisibility(View.GONE);
         }
     }
 
