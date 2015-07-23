@@ -275,7 +275,6 @@ public class MakeActivity extends Activity {
 
     /**
      * 返回主菜单监听
-     *
      * @param view
      */
     public void backToMainListener(View view) {
