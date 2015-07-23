@@ -28,7 +28,8 @@ public class ReadActivity extends Activity {
 
     private void initProjectList() {
         layout = (LinearLayout) findViewById(R.id.read_layout);
-        for (int i = 0; i < 5; i++) {
+        String[] dirNames = readFile(PathConfig.WEB_PROJECT);
+        for (int i = 0; i < dirNames.length; i++) {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
