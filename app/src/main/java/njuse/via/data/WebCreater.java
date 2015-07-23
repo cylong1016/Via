@@ -23,14 +23,15 @@ public class WebCreater {
                 "\t  maximum-scale=1.0,user-scalable=no,minimal-ui\"/>\n" +
                 "\n" +
                 "<title>" + screenSet.getWorkName() + "</title>\n"+
-                "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/global.css\" />\n" +
-                "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/blur_css.css\">\n" +
-                "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/jquery_full_page.css\" />\n" +
+                "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/global.css\" />\n" +
+                "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/blur_css.css\">\n" +
+                "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/index.css\">\n" +
+                "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/jquery_full_page.css\" />\n" +
                 "\n" +
-                "<script type=\"text/javascript\" src=\"../js/jquery_min.js\"></script>\n" +
-                "<script type=\"text/javascript\" src=\"../js/jquery_easing.js\"></script>\n" +
-                "<script type=\"text/javascript\" src=\"../js/jquery_full_page_min.js\"></script>\n" +
-                "<script type=\"text/javascript\" src=\"../js/blur.js\"></script>\n" +
+                "<script type=\"text/javascript\" src=\"../../js/jquery_min.js\"></script>\n" +
+                "<script type=\"text/javascript\" src=\"../../js/jquery_easing.js\"></script>\n" +
+                "<script type=\"text/javascript\" src=\"../../js/jquery_full_page_min.js\"></script>\n" +
+                "<script type=\"text/javascript\" src=\"../../js/blur.js\"></script>\n" +
                 "</head>\n"+"<body>\n" +
                 "\n" +
                 "<style>\n" +

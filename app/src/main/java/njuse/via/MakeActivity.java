@@ -98,7 +98,6 @@ public class MakeActivity extends Activity {
      * by cylong
      */
     private void createJSAndCSSFile() {
-        copyFileFromRaw(R.raw.adv, "adv.css", PathConfig.WEB_CSS);
         copyFileFromRaw(R.raw.blur_css, "blur_css.css", PathConfig.WEB_CSS);
         copyFileFromRaw(R.raw.full_page, "full_page.css", PathConfig.WEB_CSS);
         copyFileFromRaw(R.raw.global, "global.css", PathConfig.WEB_CSS);
