@@ -20,4 +20,25 @@
 
     <string name="img_path_error">图片路径错误</string>
     <string name="no_photo">没有导入图片</string>
+
+    <string name="No">原图</string>
+    <string name="Ice">冰冻</string>
+    <string name="Molten">熔铸</string>
+    <string name="Comic">连环画</string>
+    <string name="SoftGlow">柔光</string>
+    <string name="GlowingEdge">照亮边缘</string>
+    <string name="Feather">羽化</string>
+    <string name="mirror">镜像</string>
+    <string name="film">电影</string>
+    <string name="RedTone">红色</string>
+    <string name="BlueTone">蓝色</string>
+    <string name="Bright">高亮对比</string>
+    <string name="Saturation">饱和</string>
+    <string name="Reflect">对称</string>
+    <string name="Tint">色度</string>
+    <string name="BigBrother">自动校正</string>
+    <string name="Color">颜色量化</string>
+    <string name="Invert">反色</string>
+    <string name="BlackWhite">黑白</string>
+    <string name="Threshold">阈值</string>
 </resources>
