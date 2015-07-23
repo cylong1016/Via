@@ -34,14 +34,15 @@ public class MakeData implements MakeDataService {
 
         String path = PathConfig.WEB_PROJECT+"/"+fileName+"_"+date;
         File file = new File(dirpath);
-        creatNewFile(path);                         //创建存放产物的文件夹
-        list.setWorkName(fileName);             //设置文件名
+        creatNewFile(path);                //创建存放产物的文件夹
 
-        WebCreater.createHTML(path,list);            //同时生成html文件，保存在"/sdcard/Via/web"路径下
+        list.setWorkName(fileName);                   //设置文件名
+        copy_picture(list, path);
+        WebCreater.createHTML(path, list);            //同时生成html文件，保存在"/sdcard/Via/web"路径下
         String ser_path=dirpath+"/"+fileName+".out";
        // serialize2SDcard(list,ser_path);
 
-        copy_picture(list,path);
+
 
     }
 
@@ -57,22 +58,18 @@ public class MakeData implements MakeDataService {
     }
 
     private void copy_picture(ScreenSet set,String path){
-        System.out.println("要保存图片到的路径名是*-----------  "+path);
         int num=1;
         String str="picture_";
-//        FileCopy copy=new FileCopy();
         LinkedList<Screen> list=set.getScreenList();
-        for (int i=0;i<list.size();i++){
-            System.out.println("要复制的图片路径：  "+list.get(i).getBackGroundURL());
-            String toPath="file:/"+path+"/"+str+num+".jpg";
+     for (int i=0;i<list.size();i++){
+            String toPath=path+"/"+str+num+".jpg";
 
-            System.out.println("复制文件的目的地址："+toPath);
-//            File fromFile=new File(list.get(i).getBackGroundURL());
-            File fromFile=new File("/sdcard/Via/copy/172693.jpg");
-            File toFile=new File("/sdcard/Via/web/project/1.jpg");
-            FileCopy.copyfile(fromFile,toFile,true);
+            String ss[]=list.get(i).getBackGroundURL().split("///");
+            File fromFile=new File(ss[1]);
+            File toFile=new File(toPath);
+         FileCopy.copyfile(fromFile,toFile,true);
+          list.get(i).setBackGroundURL(str+num);
             num++;
-            System.out.println("-----------------------------复制完一份----------------------------------");
         }
     }
 
