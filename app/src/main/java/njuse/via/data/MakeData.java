@@ -24,29 +24,29 @@ import njuse.via.po.ScreenSet;
 public class MakeData implements MakeDataService {
 
     String dirpath = PathConfig.DATA_SER;                // 文件的存储路径
+
     @Override
-    public void saveMakeRes(ScreenSet list,String fileName) {
+    public void saveMakeRes(ScreenSet list, String fileName) {
 
         //当文件夹不存在时创建文件夹
         SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
         String date = sDateFormat.format(new java.util.Date());
-       // String pathName=f
+        // String pathName=f
 
-        String path = PathConfig.WEB_PROJECT+"/"+fileName+"_"+date;
+        String path = PathConfig.WEB_PROJECT + "/" + fileName + "_" + date;
         File file = new File(dirpath);
         creatNewFile(path);                //创建存放产物的文件夹
 
         list.setWorkName(fileName);                   //设置文件名
         copy_picture(list, path);
         WebCreater.createHTML(path, list);            //同时生成html文件，保存在"/sdcard/Via/web"路径下
-        String ser_path=dirpath+"/"+fileName+".out";
-       // serialize2SDcard(list,ser_path);
-
+        String ser_path = dirpath + "/" + fileName + ".out";
+        // serialize2SDcard(list,ser_path);
 
 
     }
 
-    private void creatNewFile(String fileName){
+    private void creatNewFile(String fileName) {
         File file = new File(fileName);
         if (!file.exists()) {
             try {
@@ -57,48 +57,48 @@ public class MakeData implements MakeDataService {
         }
     }
 
-    private void copy_picture(ScreenSet set,String path){
-        int num=1;
-        String str="picture_";
-        LinkedList<Screen> list=set.getScreenList();
+    private void copy_picture(ScreenSet set, String path) {
+        int num = 1;
+        String str = "picture_";
+        LinkedList<Screen> list = set.getScreenList();
         File fromFile;
-     for (int i=0;i<list.size();i++){
-            String toPath=path+"/"+str+num+".jpg";
-             if( list.get(i).getBackGroundURL()!=null) {
-                 String ss[] = list.get(i).getBackGroundURL().split("///");
-                 fromFile = new File(ss[1]);
-             }else{
-                  fromFile = new File(PathConfig.WEB+"null.jpg");
-             }
-            File toFile=new File(toPath);
-         FileCopy.copyfile(fromFile,toFile,true);
-          list.get(i).setBackGroundURL(str+num);
+        for (int i = 0; i < list.size(); i++) {
+            String toPath = path + "/" + str + num + ".jpg";
+            if (list.get(i).getBackGroundURL() != null) {
+                String ss[] = list.get(i).getBackGroundURL().split("///");
+                fromFile = new File(ss[1]);
+            } else {
+                fromFile = new File(PathConfig.WEB + "null.jpg");
+            }
+            File toFile = new File(toPath);
+            FileCopy.copyfile(fromFile, toFile, true);
+            list.get(i).setBackGroundURL(str + num);
             num++;
         }
     }
 
     @Override    //读取已经完成的作品
     public ScreenSet readMakeRes(String fileName) {
-        String file=dirpath+"/"+fileName+".out";
-        ScreenSet  set=(ScreenSet)getObjectFromSDcard(file);
+        String file = dirpath + "/" + fileName + ".out";
+        ScreenSet set = (ScreenSet) getObjectFromSDcard(file);
         return set;
     }
 
     @Override
     public ArrayList<ScreenSet> readAllMakeRes() {
 
-        File file=new File(dirpath);
-        File[] files=file.listFiles();
-        ArrayList<ScreenSet> list=new ArrayList<>();
-        for(File f1:files){
-            String fileName=dirpath+"/"+f1.getName();
-            list.add((ScreenSet)getObjectFromSDcard(fileName));
+        File file = new File(dirpath);
+        File[] files = file.listFiles();
+        ArrayList<ScreenSet> list = new ArrayList<>();
+        for (File f1 : files) {
+            String fileName = dirpath + "/" + f1.getName();
+            list.add((ScreenSet) getObjectFromSDcard(fileName));
         }
         return list;
     }
 
 
-    private void serialize2SDcard(Object target,String file){
+    private void serialize2SDcard(Object target, String file) {
             /*
             *
             * 将对象序列化并保存
@@ -120,7 +120,7 @@ public class MakeData implements MakeDataService {
             System.out.println("序列化时并没有找到文件！！！！");
         } catch (IOException e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             try {
                 fos.close();
                 o.close();
@@ -132,13 +132,12 @@ public class MakeData implements MakeDataService {
     }
 
 
-
-    private Object getObjectFromSDcard(String file){
+    private Object getObjectFromSDcard(String file) {
         /*
         * 读取序列化对象
         * */
 
-        if(! new File(file).exists()){
+        if (!new File(file).exists()) {
             System.out.println("序列化文件不存在！");
             return null;
         }
@@ -160,7 +159,7 @@ public class MakeData implements MakeDataService {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             try {
                 fis.close();
                 in.close();
