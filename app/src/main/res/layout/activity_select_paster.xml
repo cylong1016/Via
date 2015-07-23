@@ -17,17 +17,21 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:gravity="center"
             android:layout_weight="30">
 
+            <RelativeLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
             <ImageView
                 android:id="@+id/PastePhoto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_centerInParent="true"/>
 
-
-                />
-
+            </RelativeLayout>
         </RelativeLayout>
 
         <HorizontalScrollView
@@ -72,36 +76,40 @@
             android:background="#30363A"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical">
-
-            <Button
+            >
+            <LinearLayout
+                android:orientation="horizontal"
+                android:background="#30363A"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+            <ImageView
                 android:id="@+id/btn_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginBottom="15dp"
-
+                android:src="@mipmap/cancel"
                 android:layout_marginTop="15dp"
-                android:padding="10dp"
-                android:text="@string/cancel"
-                android:textStyle="bold"
-                android:background="@drawable/btn_selector"
-                android:textColor="@color/white"
                 android:onClick="cancelPasterBtnListener"/>
+            </LinearLayout>
 
-            <Button
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:background="#30363A"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
+            <ImageView
                 android:id="@+id/btn_ensure"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginBottom="15dp"
-
+                android:src="@mipmap/confirm"
                 android:layout_marginTop="15dp"
-                android:padding="10dp"
-                android:text="@string/confirm"
-                android:textStyle="bold"
-                android:background="@drawable/btn_selector"
-                android:textColor="@color/white"
                 android:onClick="confirmPasterBtnListener"/>
-
+            </LinearLayout>
         </LinearLayout>
 
 

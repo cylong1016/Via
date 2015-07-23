@@ -23,10 +23,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -36,6 +38,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 
 import njuse.via.bl.MakeBL;
+import njuse.via.bl.PicCompress;
 import njuse.via.blservice.MakeBLService;
 import njuse.via.config.PathConfig;
 import njuse.via.paster.SingleTouchView;
@@ -53,8 +56,8 @@ public class MakeActivity extends Activity {
     private int isselect = 0;
     private ArrayList<Integer> preInt;
     private ArrayList<ImageButton> preButton;
-    private int buttonlength = 6;
-
+    private int buttonlength = 1;
+    private PicCompress pc;
     //-----------------
     private int screenWidth;
     private int screenHeight;
@@ -68,10 +71,12 @@ public class MakeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make);
+        pc = new PicCompress();
         getScreenInfo(); // 获得屏幕信息
         initPhotoViewLoc();
         screen = makeBL.getNewScreen();
         initPreview();
+        createJSAndCSSFile();
     }
 
 
@@ -96,21 +101,61 @@ public class MakeActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * 把raw中的css和js文件复制到手机sdcard中
+     * by cylong
+     */
+    private void createJSAndCSSFile() {
+        copyFileFromRaw(R.raw.adv, "adv.css", PathConfig.WEB_CSS);
+        copyFileFromRaw(R.raw.blur_css, "blur_css.css", PathConfig.WEB_CSS);
+        copyFileFromRaw(R.raw.full_page, "full_page.css", PathConfig.WEB_CSS);
+        copyFileFromRaw(R.raw.global, "global.css", PathConfig.WEB_CSS);
+        copyFileFromRaw(R.raw.index, "index.css", PathConfig.WEB_CSS);
+        copyFileFromRaw(R.raw.blur, "blur.js", PathConfig.WEB_JS);
+        copyFileFromRaw(R.raw.jquery_easing, "jquery_easing.js", PathConfig.WEB_JS);
+        copyFileFromRaw(R.raw.jquery_full_page_min, "jquery_full_page_min.js", PathConfig.WEB_JS);
+        copyFileFromRaw(R.raw.jquery_min, "jquery_min.js", PathConfig.WEB_JS);
+    }
+
+    public void copyFileFromRaw(int id, String fileName, String dirPath) {
+        String filePath = dirPath + "/" + fileName;// 文件路径
+        File dir = new File(dirPath);// 目录路径
+        if (!dir.exists()) {// 如果不存在，则创建路径名
+            dir.mkdirs();   // 创建该路径名，返回true则表示创建成功
+        }
+        // 目录存在，则将apk中raw中的需要的文档复制到该目录下
+        try {
+            File file = new File(filePath);
+            InputStream ins = getResources().openRawResource(id);// 通过raw得到数据资源
+            FileOutputStream fos = new FileOutputStream(file);
+            byte[] buffer = new byte[8192];
+            int count = 0;// 循环写出
+            while ((count = ins.read(buffer)) > 0) {
+                fos.write(buffer, 0, count);
+            }
+            fos.close();// 关闭流
+            ins.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     /*
     初始化故事板界面
      */
     private void initPreview(){
         mInflater = LayoutInflater.from(this);
         PreListener plisten = new PreListener();
-        preButton = new ArrayList<ImageButton>();
+        preButton = new ArrayList<>();
         mGallery = (LinearLayout) findViewById(R.id.id_gallery);
         for(int i = 0;i<buttonlength;i++) {
             RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(80,80);
             param.addRule(RelativeLayout.CENTER_HORIZONTAL, 1);
-            param.addRule(RelativeLayout.CENTER_VERTICAL,1);
+            param.addRule(RelativeLayout.CENTER_VERTICAL,1);//布局居中
             View v = mInflater.inflate(R.layout.activity_preview_item, mGallery, false);
             ImageButton img = (ImageButton) v.findViewById(R.id.id_index_gallery_item_image);
-            img.setId(i);
+            img.setId(screen.getID());
             img.setOnClickListener(plisten);
             if(isselect!=i) {
 
@@ -119,6 +164,11 @@ public class MakeActivity extends Activity {
             preButton.add(img);
             mGallery.addView(v);
         }
+    }
+
+    private  void setPreviewImg(Bitmap bitmap){
+        bitmap = pc.compressPre(bitmap);
+        preButton.get(isselect).setImageBitmap(bitmap);
     }
 
     private void getScreenInfo() {
@@ -275,7 +325,6 @@ public class MakeActivity extends Activity {
 
     /**
      * 返回主菜单监听
-     *
      * @param view
      */
     public void backToMainListener(View view) {
@@ -305,15 +354,13 @@ public class MakeActivity extends Activity {
 
     private  void saveWork(EditText editText){
         if (editText.getText().toString()==null|editText.getText().toString().length()==0){
-            Toast.makeText(this, "请输入文件名！  "+editText.getText().toString(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_inputName+editText.getText().toString(),Toast.LENGTH_SHORT).show();
             return;
         }
 
-        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
-        String date = sDateFormat.format(new java.util.Date());
-        String workName = editText.getText().toString() +"_"+ date;
+        String workName = editText.getText().toString();
         makeBL.saveWork(workName);
-        Toast.makeText(this, "保存文件成功！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.save_success, Toast.LENGTH_SHORT).show();
     }
     /**
      * 保存按钮监听
@@ -324,58 +371,18 @@ public class MakeActivity extends Activity {
         screen.setText(((EditText) findViewById(R.id.explain)).getText().toString());
 
         final EditText editText=new EditText(this);
-        //editText.setOnClickListener();
         Builder dialog=new AlertDialog.Builder(this);
 
-        dialog.setTitle("请输入保存的文件名！").
+        dialog.setTitle(R.string.input_dialog).
                 setIcon(android.R.drawable.ic_dialog_info).setView(
-                editText).setPositiveButton("确定",  new DialogInterface.OnClickListener(){
+                editText).setPositiveButton(R.string.confirm,  new DialogInterface.OnClickListener(){
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 saveWork(editText);
 
-            }}).setNegativeButton("取消", null).show();
+            }}).setNegativeButton(R.string.cancel, null).show();
 
-
-
-       // makeBL.saveWork(workName);
-
-//        copyFile(R.raw.blur, "blur.js");
-//        copyFile(R.raw.blur_css,"blur_css.css");
-//        copyFile(R.raw.global,"global.css");
-//        copyFile(R.raw.jquery_easing_1_3,"jquery.easing.1.3.js");
-//        copyFile(R.raw.jquery_fullpage,"jquery.full_page.css");
-//        copyFile(R.raw.jquery_1_8_3_min,"jquery.1.8.3.min.js");
-//        copyFile(R.raw.jquery_fullpage_min,"jquery.full_page.min.js");
-        /*Intent intent = new Intent();
-        intent.setClass(this, ShowActivity.class);
-        intent.putExtra("html", workName);
-        startActivity(intent);*/
-    }
-
-    public void copyFile(int id, String name) {
-        int byteread = 0;
-        byte[] buf = new byte[4096];
-        FileInputStream inStream = null;
-        FileOutputStream fs = null;
-
-        AssetFileDescriptor fd = getResources().openRawResourceFd(R.raw.blur);
-
-        try {
-            fs = new FileOutputStream(PathConfig.WEB + name);
-            inStream = fd.createInputStream();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            while ((byteread = inStream.read(buf)) != -1) {
-                fs.write(buf, 0, byteread);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -410,6 +417,7 @@ public class MakeActivity extends Activity {
             if (bitmap != null) {
 
                 mImageView.setImageBitmap(bitmap);
+                setPreviewImg(bitmap);
                 System.gc();
 
             }
@@ -480,7 +488,7 @@ public class MakeActivity extends Activity {
             intent.putExtra("path", screen.getBackGroundURL());
             this.startActivityForResult(intent, 3);
         }else{
-            Toast.makeText(this,"没有导入图片",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,R.string.no_photo,Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -511,6 +519,18 @@ public class MakeActivity extends Activity {
         screen = makeBL.getNewScreen();
         initScreen();
     }
+
+
+    /*
+    缩略图的添加
+     */
+    private void addPreview(){
+
+    }
+    private void deletePreview(){
+        mGallery.removeView(preButton.get(isselect));
+    }
+
 
 
 
@@ -546,6 +566,10 @@ public class MakeActivity extends Activity {
                 /*
                 设置当前界面的更新
                 */
+                ImageView imageView = (ImageView)findViewById(R.id.photoView);
+                int screenid = preButton.get(isselect).getId();
+                //screen = makeBL.get
+                //imageView.setImageBitmap();
             }
         }
     }

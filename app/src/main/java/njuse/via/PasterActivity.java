@@ -96,7 +96,6 @@ public class PasterActivity extends Activity {
         int ivWidth = iv.getWidth();
         int ivHeight = iv.getHeight();
         float scale = (float)actualWidth/ivWidth;
-        System.out.println(scale);
         float margain = (ivHeight-actualHeight/scale)/2;
         System.out.println("margain = "+margain);
         ArrayList<Bitmap> maps = new ArrayList<>();

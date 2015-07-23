@@ -59,4 +59,8 @@
     <string name="Invert">Invert</string>
     <string name="BlackWhite">BlackWhite</string>
     <string name="Threshold">Threshold</string>
+
+    <string name="save_success">Save success</string>
+    <string name="no_inputName">No input file name!</string>
+    <string name="input_dialog">Input file name please!</string>
 </resources>

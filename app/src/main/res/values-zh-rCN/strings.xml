@@ -41,4 +41,8 @@
     <string name="Invert">反色</string>
     <string name="BlackWhite">黑白</string>
     <string name="Threshold">阈值</string>
+
+    <string name="save_success">保存文件成功！</string>
+    <string name="no_inputName">请输入文件名！</string>
+    <string name="input_dialog">请输入保存的文件名</string>
 </resources>

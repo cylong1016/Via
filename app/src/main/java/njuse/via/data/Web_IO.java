@@ -12,7 +12,6 @@ import njuse.via.config.PathConfig;
  */
 public class Web_IO {
 
-
     public Web_IO(String path) {
         File file = new File(path);
         if (!file.exists()) {
@@ -24,7 +23,7 @@ public class Web_IO {
         }
     }
 
-    public void write_file(String fpath,String name, String text) {
+    public void write_file(String fpath, String name, String text) {
         String fileName = fpath + "/" + name;
 
         try {

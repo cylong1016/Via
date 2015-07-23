@@ -74,4 +74,5 @@ public interface MakeBLService{
 
     public  Screen getNewScreen();                          //获取一个新的幕，并添加到当前的作品中
 
+    public Screen getScreenByID(int screen_id);                          // 根据幕的id获取幕
 }

@@ -38,9 +38,10 @@ public class ScreenSet implements Serializable {
     }
 
     public Screen getNewScreen(){
-        num++;
+
         Screen screen=new Screen(num);
         screenList.add(screen);
+        num++;
         return screen;
     }
 
@@ -85,4 +86,14 @@ public class ScreenSet implements Serializable {
         return null;
     }
 
+    public Screen getScrrenByID(int id){
+        int max=screenList.size();
+        for(int i=0;i<max;i++){
+            if(screenList.get(i).getID()==id){
+                return screenList.get(i);
+            }
+        }
+        return null;
+
+    }
 }

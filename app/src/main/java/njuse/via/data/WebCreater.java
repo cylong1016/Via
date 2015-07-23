@@ -6,7 +6,7 @@ import njuse.via.po.Screen;
 import njuse.via.po.ScreenSet;
 
 /**
- * Created by zucewei on 2015/7/19.
+ * Created by zucewei on 2015/7/19
  */
 public class WebCreater {
     public static void createHTML(String path,ScreenSet screenSet){
@@ -23,14 +23,14 @@ public class WebCreater {
                 "\t  maximum-scale=1.0,user-scalable=no,minimal-ui\"/>\n" +
                 "\n" +
                 "<title>" + screenSet.getWorkName() + "</title>\n"+
-                "<link rel=\"stylesheet\" type=\"text/css\" href=\"global.css\" />\n" +
-                "<link rel=\"stylesheet\" type=\"text/css\" href=\"blur_css.css\">\n" +
-                "<link rel=\"stylesheet\" type=\"text/css\" href=\"jquery.full_page.css\" />\n" +
+                "<link rel=\"stylesheet\" type=\"text/css\" href=\"..\\global.css\" />\n" +
+                "<link rel=\"stylesheet\" type=\"text/css\" href=\"..\\blur_css.css\">\n" +
+                "<link rel=\"stylesheet\" type=\"text/css\" href=\"..\\jquery_full_page.css\" />\n" +
                 "\n" +
-                "<script type=\"text/javascript\" src=\"jquery-1.8.3.min.js\"></script>\n" +
-                "<script type=\"text/javascript\" src=\"jquery.easing.1.3.js\"></script>\n" +
-                "<script type=\"text/javascript\" src=\"jquery.fullPage.min.js\"></script>\n" +
-                "<script type=\"text/javascript\" src=\"blur.js\"></script>\n" +
+                "<script type=\"text/javascript\" src=\"..\\jquery_min.js\"></script>\n" +
+                "<script type=\"text/javascript\" src=\"..\\jquery_easing.js\"></script>\n" +
+                "<script type=\"text/javascript\" src=\"..\\jquery_full_page_min.js\"></script>\n" +
+                "<script type=\"text/javascript\" src=\"..\\blur.js\"></script>\n" +
                 "</head>\n"+"<body>\n" +
                 "\n" +
                 "<style>\n" +
