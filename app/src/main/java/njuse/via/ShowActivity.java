@@ -18,12 +18,12 @@ public class ShowActivity extends Activity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         this.setContentView(R.layout.activity_show);
-        String webName = intent.getStringExtra("html");
+        String url = intent.getStringExtra("url");
         WebView myWebView = (WebView) findViewById(R.id.webView);
-        myWebView.loadUrl("file:///sdcard/Via/web_product/" + webName + ".html");
+        myWebView.loadUrl(url);
         WebSettings webSetting = myWebView.getSettings();
         webSetting.setJavaScriptEnabled(true);
-        myWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+        webSetting.setCacheMode(WebSettings.LOAD_NO_CACHE);
 
         //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
         myWebView.setWebViewClient(new WebViewClient() {

@@ -1,7 +1,6 @@
 package njuse.via;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.io.File;
+
+import njuse.via.config.PathConfig;
 
 /**
  * 读取制作测作品
@@ -32,11 +33,12 @@ public class ReadActivity extends Activity {
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
-            int mergin = (int)getResources().getDimension(R.dimen.read_list_margin);
+            int mergin = (int) getResources().getDimension(R.dimen.read_list_margin);
             params.setMargins(mergin, mergin, mergin, mergin);
             ImageView imageView = new ImageView(this);
             imageView.setImageResource(R.drawable.abc);
             imageView.setId(i);
+            imageView.setOnClickListener(clickListener);
             layout.addView(imageView, params);
         }
     }
@@ -46,6 +48,12 @@ public class ReadActivity extends Activity {
         @Override
         public void onClick(View v) {
             int id = v.getId();
+            String[] dirNames = readFile(PathConfig.WEB_PROJECT);
+            String projectPath = PathConfig.WEB_PROJECT + dirNames[id];
+            String htmlPath = projectPath + dirNames[id].split("-")[0];
+            Intent intent = new Intent();
+            intent.setClass(ReadActivity.this, ShowActivity.class);
+            intent.putExtra("url", htmlPath);
         }
     };
 
@@ -61,6 +69,7 @@ public class ReadActivity extends Activity {
 
     /**
      * 返回主菜单监听
+     *
      * @param view
      */
     public void backListener(View view) {
