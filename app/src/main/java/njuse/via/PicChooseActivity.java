@@ -30,6 +30,7 @@ public class PicChooseActivity extends Activity{
     private static final int ALBUM = 0;
     private static final int CAMERA = 1;
     private static final int CROP_PIC = 2;
+    private String type = "jpeg";
     PicCompress pc;
 
     @Override
@@ -93,12 +94,12 @@ public class PicChooseActivity extends Activity{
             switch(requestCode) {
             case CAMERA:
                 Bitmap bitmap = decodeUriAsBitmap(camerauri);
-                bitmap = pc.comp(bitmap);
+                bitmap = pc.comp(bitmap, Bitmap.CompressFormat.JPEG);
 
                String temp[] = camerauri.toString().split("/");
                 String bitname = temp[temp.length - 1];
-                saveMyBitmap(bitmap, bitname);
-                saveOriginalBitmap(bitmap, bitname);
+                saveMyBitmap(bitmap, bitname, Bitmap.CompressFormat.JPEG);
+                saveOriginalBitmap(bitmap, bitname, Bitmap.CompressFormat.JPEG);
 
                 Intent intent = new Intent();
                 intent.setClass(this, MakeActivity.class);
@@ -117,15 +118,27 @@ public class PicChooseActivity extends Activity{
 
 
                 Bitmap bitmap1 = decodeUriAsBitmap(tempuri);
-                bitmap1 = pc.comp(bitmap1);
                 //bitmap1.compress(Bitmap.CompressFormat.JPEG, 100, bao);
                 //byte[] datas2 = bao.toByteArray();
 
 
                 String temp1[] = tempuri.toString().split("/");
-                bitname = temp1[temp1.length - 1].replace("%3A", "_") + ".jpg";
-                saveOriginalBitmap(bitmap1,bitname);
-                saveMyBitmap(bitmap1, bitname);
+                bitname = temp1[temp1.length - 1].replace("%3A", "_");
+                String[] temptype = bitname.split(".");
+                type = temptype[temptype.length-1];
+                switch(type){
+                    case "jpg":
+                        bitmap1 = pc.comp(bitmap1, Bitmap.CompressFormat.JPEG);
+                        saveOriginalBitmap(bitmap1,bitname, Bitmap.CompressFormat.JPEG);
+                        saveMyBitmap(bitmap1, bitname, Bitmap.CompressFormat.JPEG);
+                        break;
+                    case "png":
+                        bitmap1 = pc.comp(bitmap1, Bitmap.CompressFormat.PNG);
+                        saveOriginalBitmap(bitmap1,bitname, Bitmap.CompressFormat.PNG);
+                        saveMyBitmap(bitmap1, bitname, Bitmap.CompressFormat.PNG);
+                        break;
+                }
+
 
 
                 Intent inte = new Intent();
@@ -144,7 +157,7 @@ public class PicChooseActivity extends Activity{
         }
         }
     }
-    private void saveOriginalBitmap(Bitmap mBitmap,String bitName)  {
+    private void saveOriginalBitmap(Bitmap mBitmap,String bitName,Bitmap.CompressFormat format)  {
 
         File f = new File( PathConfig.IMG_ORIGINAL+"/"+bitName);
         File file = new File(PathConfig.IMG_ORIGINAL);
@@ -164,7 +177,7 @@ public class PicChooseActivity extends Activity{
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+        mBitmap.compress(format, 100, fOut);
         try {
             fOut.flush();
         } catch (IOException e) {
@@ -176,7 +189,7 @@ public class PicChooseActivity extends Activity{
             e.printStackTrace();
         }
     }
-    private void saveMyBitmap(Bitmap mBitmap,String bitName)  {
+    private void saveMyBitmap(Bitmap mBitmap,String bitName,Bitmap.CompressFormat format)  {
 
         File f = new File( PathConfig.IMG_COPY+"/"+bitName);
         File file = new File(PathConfig.IMG_COPY);
@@ -197,7 +210,7 @@ public class PicChooseActivity extends Activity{
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+        mBitmap.compress(format, 100, fOut);
         try {
             fOut.flush();
         } catch (IOException e) {

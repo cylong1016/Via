@@ -179,8 +179,8 @@ public class MakeActivity extends Activity {
 
     }
 
-    private  void setPreviewImg(Bitmap bitmap){
-        bitmap = pc.compressPre(bitmap);
+    private  void setPreviewImg(Bitmap bitmap,Bitmap.CompressFormat format){
+        bitmap = pc.compressPre(bitmap,format);
         for(int i = 0;i<preButton.size();i++) {
             if(preButton.get(i).getId()==isselect) {
                 preButton.get(i).setImageBitmap(bitmap);
@@ -434,9 +434,18 @@ public class MakeActivity extends Activity {
             String path = data.getStringExtra("bitmap");
             Bitmap bitmap = decodeUriAsBitmap(Uri.parse(path));
             if (bitmap != null) {
-
+                String[] temptype = path.split(".");
+                String type = temptype[temptype.length-1];
+                Bitmap.CompressFormat format = Bitmap.CompressFormat.JPEG;
+                switch(type){
+                    case "jpg":
+                        break;
+                    case "png":
+                        format = Bitmap.CompressFormat.PNG;
+                        break;
+                }
                 mImageView.setImageBitmap(bitmap);
-                setPreviewImg(bitmap);
+                setPreviewImg(bitmap,format);
                 System.gc();
 
             }

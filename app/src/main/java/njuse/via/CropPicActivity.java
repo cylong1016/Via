@@ -62,9 +62,19 @@ public class CropPicActivity extends Activity{
 
 
     public void cropPic(View v){
+        String[] temptype = picPath.split(".");
+        String type = temptype[temptype.length-1];
+        Bitmap.CompressFormat format = Bitmap.CompressFormat.JPEG;
+        switch (type){
+            case "jpg":
+                break;
+            case "png":
+                format = Bitmap.CompressFormat.PNG;
+                break;
+        }
         Bitmap bitmap = mClipImageLayout.clip();
 
-        saveMyBitmap(bitmap);
+        saveMyBitmap(bitmap,format);
 
 
         Intent intent = new Intent();
@@ -77,7 +87,7 @@ public class CropPicActivity extends Activity{
         mClipImageLayout.rotate();
     }
 
-    private void saveMyBitmap(Bitmap mBitmap)  {
+    private void saveMyBitmap(Bitmap mBitmap,Bitmap.CompressFormat format)  {
         //Log.e("myuri",bitName);
         String temp = picPath;
 
@@ -101,7 +111,7 @@ public class CropPicActivity extends Activity{
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+        mBitmap.compress(format, 100, fOut);
         try {
             fOut.flush();
         } catch (IOException e) {
