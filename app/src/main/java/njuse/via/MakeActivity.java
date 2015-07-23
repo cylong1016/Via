@@ -299,7 +299,7 @@ public class MakeActivity extends Activity {
             intent.putExtra("path", screen.getBackGroundURL());
             this.startActivityForResult(intent, 16);
         } else {
-            Toast.makeText(this, "没有导入图片", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.no_photo), Toast.LENGTH_SHORT).show();
         }
     }
 
