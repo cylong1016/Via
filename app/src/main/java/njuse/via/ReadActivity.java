@@ -1,8 +1,10 @@
 package njuse.via;
 
 import android.app.Activity;
-import android.graphics.Color;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -32,13 +34,20 @@ public class ReadActivity extends Activity {
             );
             int mergin = (int)getResources().getDimension(R.dimen.read_list_margin);
             params.setMargins(mergin, mergin, mergin, mergin);
-            final ImageView imageView = new ImageView(this);
+            ImageView imageView = new ImageView(this);
             imageView.setImageResource(R.drawable.abc);
-            imageView.setBackgroundColor(Color.BLUE);
-            imageView.setBackgroundResource(R.drawable.icon_selector);
+            imageView.setId(i);
             layout.addView(imageView, params);
         }
     }
+
+    private ImageView.OnClickListener clickListener = new ImageView.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            int id = v.getId();
+        }
+    };
 
     private String[] readFile(String path) {
         File dir = new File(path);
@@ -48,6 +57,19 @@ public class ReadActivity extends Activity {
             dirNames[i] = dirList[i].getName();
         }
         return dirNames;
+    }
+
+    /**
+     * 返回主菜单监听
+     * @param view
+     */
+    public void backListener(View view) {
+        Intent intent = new Intent();
+        intent.setClass(this, MainActivity.class);
+        this.startActivity(intent);
+        //设置切换动画，从左边进入，右边退出
+        overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+        this.finish();
     }
 
 }

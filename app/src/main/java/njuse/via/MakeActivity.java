@@ -275,7 +275,6 @@ public class MakeActivity extends Activity {
 
     /**
      * 返回主菜单监听
-     *
      * @param view
      */
     public void backToMainListener(View view) {
@@ -299,7 +298,7 @@ public class MakeActivity extends Activity {
             intent.putExtra("path", screen.getBackGroundURL());
             this.startActivityForResult(intent, 16);
         } else {
-            Toast.makeText(this, "没有导入图片", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.no_photo), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -314,11 +313,6 @@ public class MakeActivity extends Activity {
         String workName = editText.getText().toString() +"_"+ date;
         makeBL.saveWork(workName);
         Toast.makeText(this,R.string.save_success, Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent();
-        intent.setClass(this, ShowActivity.class);
-        intent.putExtra("html", workName);
-        startActivity(intent);
     }
     /**
      * 保存按钮监听
@@ -327,7 +321,6 @@ public class MakeActivity extends Activity {
      */
     public void saveListener(View view) {
         screen.setText(((EditText) findViewById(R.id.explain)).getText().toString());
-
 
         final EditText editText=new EditText(this);
         //editText.setOnClickListener();
@@ -345,7 +338,7 @@ public class MakeActivity extends Activity {
 
 
 
-       // makeBL.saveWork(workName);
+        // makeBL.saveWork(workName);
 
 //        copyFile(R.raw.blur, "blur.js");
 //        copyFile(R.raw.blur_css,"blur_css.css");
@@ -423,8 +416,6 @@ public class MakeActivity extends Activity {
             screen.setBackGroundURL(path);
         }
         if (resultCode == 2) {
-            //Log.e("back", "back to make");
-//            screen.setBackGroundURL(data.getStringExtra("bitmap"));
             String path = data.getStringExtra("path");
             screen.setBackGroundURL(path);
 
@@ -488,7 +479,7 @@ public class MakeActivity extends Activity {
             intent.putExtra("path", screen.getBackGroundURL());
             this.startActivityForResult(intent, 3);
         }else{
-            Toast.makeText(this,"没有导入图片",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,R.string.no_photo,Toast.LENGTH_SHORT).show();
         }
     }
 

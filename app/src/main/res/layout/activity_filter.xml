@@ -140,6 +140,92 @@
                     android:layout_marginRight="5dp"
                     android:onClick="BlueToneListener"
                     />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/filter_0"
+                    android:layout_marginRight="5dp"
+                    android:onClick="BrightListener"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/filter_1"
+                    android:layout_marginRight="5dp"
+                    android:onClick="SatListener"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/filter_2"
+                    android:layout_marginRight="5dp"
+                    android:onClick="ReflectListener1"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/filter_3"
+                    android:layout_marginRight="5dp"
+                    android:onClick="ReflectListener2"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/filter_4"
+                    android:layout_marginRight="5dp"
+                    android:onClick="TintListener"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/filter_5"
+                    android:layout_marginRight="5dp"
+                    android:onClick="BigBrotherListener"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/filter_6"
+                    android:layout_marginRight="5dp"
+                    android:onClick="ColorListener"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/filter_8"
+                    android:layout_marginRight="5dp"
+                    android:onClick="NewFeatherListener"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/filter_9"
+                    android:layout_marginRight="5dp"
+                    android:onClick="InvertListener"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/filter_10"
+                    android:layout_marginRight="5dp"
+                    android:onClick="BlackWhiteListener"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/filter_11"
+                    android:layout_marginRight="5dp"
+                    android:onClick="ThreListener"
+                    />
 
             </LinearLayout>
         </HorizontalScrollView>
