@@ -161,7 +161,8 @@ public class FilterActivity extends Activity {
         Image img = new Image(bmpDefaultPic);
         img = filter.process(img);
         img.copyPixelsFromBuffer();
-        iv.setImageBitmap(img.getImage());
+        bitmap = img.getImage();
+        iv.setImageBitmap(bitmap);
         if(isCrop) {
             MirrorFilter filter_Crop = new MirrorFilter(false);
             Image img_crop = new Image(cropDefault);
@@ -202,6 +203,7 @@ public class FilterActivity extends Activity {
         Image img = new Image(bmpDefaultPic);
         img = imageFilter.process(img);
         img.copyPixelsFromBuffer();
+        bitmap = img.getImage();
         iv.setImageBitmap(img.getImage());
     }
 
@@ -269,7 +271,7 @@ public class FilterActivity extends Activity {
 //
 //            }
 //        }.start();
-//        setR0esult(RESULT_CANCELED, null);
+//        setResult(RESULT_CANCELED, null);
         try {
             saveMyBitmap("copy",bitmap);
             if(isCrop) {
