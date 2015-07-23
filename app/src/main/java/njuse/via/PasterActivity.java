@@ -114,6 +114,7 @@ public class PasterActivity extends Activity {
 
 
         //create the new blank bitmap
+        Bitmap newb = Bitmap.createBitmap( actualWidth, actualHeight, Bitmap.Config.ARGB_8888 );
         Canvas cv = new Canvas( newb );
         //draw src into
         cv.drawBitmap( src, 0, 0, null );
