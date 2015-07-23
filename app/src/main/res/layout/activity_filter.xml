@@ -1,232 +1,357 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/entirety"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_centerVertical="true"
     android:layout_centerHorizontal="true"
-    android:id="@+id/entirety">
+    android:layout_centerVertical="true"
+    android:orientation="vertical">
 
     <RelativeLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="@dimen/LinearComponentSize"
-        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft = "true"
-        android:layout_weight="30">
+        android:layout_centerVertical="true"
+        android:layout_weight="30"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/photo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft = "true"
-            android:onClick="ensureFilter"
-            />
+            android:onClick="ensureFilter" />
 
     </RelativeLayout>
 
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/LinearComponentSize"
-            android:layout_gravity="center_vertical"
-            android:background="#00000000"
-            android:layout_weight="6"
-            android:scrollbars="none" >
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/LinearComponentSize"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="6"
+        android:background="#00000000"
+        android:scrollbars="none">
 
-            <LinearLayout
-                android:id="@+id/LinearFilter"
-                android:orientation="horizontal"
-                android:background="#30363A"
-                android:layout_width="@dimen/LinearComponentSize"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical">
+        <LinearLayout
+            android:id="@+id/LinearFilter"
+            android:layout_width="@dimen/LinearComponentSize"
+            android:layout_height="match_parent"
+            android:background="#30363A"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/NoFilter"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_0"
                     android:layout_marginRight="5dp"
                     android:onClick="NoListener"
-                    />
+                    android:src="@mipmap/filter_0" />
 
-                <ImageView
-                    android:id="@+id/IceFilter"
+                <TextView
+                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_1"
-                    android:layout_marginRight="5dp"
-                    android:onClick="IceListener"
-                    />
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/No"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/MoltenFilter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_2"
-                    android:layout_marginRight="5dp"
-                    android:onClick="MoltenListener"
-                    />
+                android:id="@+id/SoftGlowFilter"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:onClick="SoftGlowListener"
+                android:src="@mipmap/filter_4" />
 
-                <ImageView
-                    android:id="@+id/ComicFilter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_3"
-                    android:layout_marginRight="5dp"
-                    android:onClick="ComicListener"
-                    />
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/SoftGlow"
+                android:textColor="@color/white" />
+            </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/SoftGlowFilter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_4"
-                    android:layout_marginRight="5dp"
-                    android:onClick="SoftGlowListener"
-                    />
-
-                <ImageView
-                    android:id="@+id/GlowingEdgeFilter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_5"
-                    android:layout_marginRight="5dp"
-                    android:onClick="GlowingEdgeListener"
-                    />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/FeatherFilter"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_6"
                     android:layout_marginRight="5dp"
                     android:onClick="FeatherListener"
-                    />
+                    android:src="@mipmap/filter_6" />
 
-                <ImageView
-                    android:id="@+id/LomoFilter"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_8"
-                    android:layout_marginRight="5dp"
-                    android:onClick="LomoListener"
-                    />
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/Feather"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/FilmFilter"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_9"
                     android:layout_marginRight="5dp"
                     android:onClick="FilmListener"
-                    />
+                    android:src="@mipmap/filter_8" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/film"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/RedToneFilter"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_10"
-                    android:layout_marginRight="5dp"
-                    android:onClick="RedToneListener"
-                    />
-                <ImageView
-                    android:id="@+id/BlueToneFilter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_11"
-                    android:layout_marginRight="5dp"
-                    android:onClick="BlueToneListener"
-                    />
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_0"
-                    android:layout_marginRight="5dp"
-                    android:onClick="BrightListener"
-                    />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_1"
                     android:layout_marginRight="5dp"
                     android:onClick="SatListener"
-                    />
+                    android:src="@mipmap/filter_12" />
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_2"
-                    android:layout_marginRight="5dp"
-                    android:onClick="ReflectListener1"
-                    />
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/Saturation"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_3"
-                    android:layout_marginRight="5dp"
-                    android:onClick="ReflectListener2"
-                    />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_4"
-                    android:layout_marginRight="5dp"
-                    android:onClick="TintListener"
-                    />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_5"
-                    android:layout_marginRight="5dp"
-                    android:onClick="BigBrotherListener"
-                    />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_6"
-                    android:layout_marginRight="5dp"
-                    android:onClick="ColorListener"
-                    />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_8"
-                    android:layout_marginRight="5dp"
-                    android:onClick="NewFeatherListener"
-                    />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_9"
-                    android:layout_marginRight="5dp"
-                    android:onClick="InvertListener"
-                    />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_10"
                     android:layout_marginRight="5dp"
                     android:onClick="BlackWhiteListener"
-                    />
-                <ImageView
+                    android:src="@mipmap/filter_18" />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/filter_11"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/BlackWhite"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/LomoFilter"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:onClick="LomoListener"
+                    android:src="@mipmap/filter_7" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/mirror"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:onClick="ReflectListener2"
+                    android:src="@mipmap/filter_13" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/Reflect"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:onClick="TintListener"
+                    android:src="@mipmap/filter_14" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/Tint"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:onClick="ColorListener"
+                    android:src="@mipmap/filter_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/Color"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:onClick="InvertListener"
+                    android:src="@mipmap/filter_17" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/Invert"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:onClick="ThreListener"
-                    />
+                    android:src="@mipmap/filter_19" />
 
-            </LinearLayout>
-        </HorizontalScrollView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/Threshold"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/BlueToneFilter"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:onClick="BlueToneListener"
+                    android:src="@mipmap/filter_10" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/BlueTone"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/IceFilter"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:onClick="IceListener"
+                    android:src="@mipmap/filter_1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/Ice"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/GlowingEdgeFilter"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:onClick="GlowingEdgeListener"
+                    android:src="@mipmap/filter_5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/GlowingEdge"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
 </LinearLayout>
