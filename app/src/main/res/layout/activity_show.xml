@@ -17,6 +17,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/icon_selector"
+                android:onClick="backToListListener"
                 android:src="@mipmap/icon_back" />
 
         </LinearLayout>

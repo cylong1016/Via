@@ -3,6 +3,8 @@ package njuse.via;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -20,7 +22,7 @@ public class ShowActivity extends Activity {
         this.setContentView(R.layout.activity_show);
         String url = intent.getStringExtra("url");
         WebView myWebView = (WebView) findViewById(R.id.webView);
-        myWebView.loadUrl(url);
+        myWebView.loadUrl("file://" + url);
         WebSettings webSetting = myWebView.getSettings();
         webSetting.setJavaScriptEnabled(true);
         webSetting.setCacheMode(WebSettings.LOAD_NO_CACHE);
@@ -35,6 +37,15 @@ public class ShowActivity extends Activity {
                 return true;
             }
         });
+    }
+
+    public void backToListListener(View view) {
+        Intent intent = new Intent();
+        intent.setClass(this, ReadActivity.class);
+        this.startActivity(intent);
+        //设置切换动画，从左边进入，右边退出
+        overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+        this.finish();
     }
 
 }

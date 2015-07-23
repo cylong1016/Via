@@ -19,16 +19,17 @@ import njuse.via.crop.ClipImageLayout;
 import njuse.via.crop.ShowImageActivity;
 
 /**
- * Created by zr on 2015/7/17.
+ * Created by zr on 2015/7/17
  */
-public class CropPicActivity extends Activity{
+public class CropPicActivity extends Activity {
     public static String picPath = null;
     private ClipImageLayout mClipImageLayout;
     private String uri = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        picPath = getIntent().getStringExtra("path").replace("crop","copy");
+        picPath = getIntent().getStringExtra("path").replace("crop", "copy");
         setContentView(R.layout.activity_crop);
         mClipImageLayout = (ClipImageLayout) findViewById(R.id.id_clipImageLayout);
 
@@ -65,7 +66,7 @@ public class CropPicActivity extends Activity{
         String[] temptype = picPath.split(".");
         String type = temptype[temptype.length-1];
         Bitmap.CompressFormat format = Bitmap.CompressFormat.JPEG;
-        switch (type){
+        switch (type) {
             case "jpg":
                 break;
             case "png":
@@ -79,30 +80,29 @@ public class CropPicActivity extends Activity{
 
         Intent intent = new Intent();
         intent.putExtra("bitmap", uri);
-        setResult(1,intent);
+        setResult(1, intent);
         finish();
     }
 
-    public void rotateClock(View v){
+    public void rotateClock(View v) {
         mClipImageLayout.rotate();
     }
 
     private void saveMyBitmap(Bitmap mBitmap,Bitmap.CompressFormat format)  {
-        //Log.e("myuri",bitName);
         String temp = picPath;
 
         String[] arr = temp.split("/");
-        temp = arr[arr.length-1];
+        temp = arr[arr.length - 1];
         String bitName = temp;
-        File f = new File( PathConfig.IMG_CROP+"/"+bitName);
+        File f = new File(PathConfig.IMG_CROP + "/" + bitName);
         File file = new File(PathConfig.IMG_CROP);
-        uri = "file://"+PathConfig.IMG_CROP+"/"+bitName;
+        uri = "file://" + PathConfig.IMG_CROP + "/" + bitName;
         FileOutputStream fOut = null;
 
-        if(!file.exists()){
+        if (!file.exists()) {
             try {
                 file.mkdirs();
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

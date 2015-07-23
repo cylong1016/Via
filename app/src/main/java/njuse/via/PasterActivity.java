@@ -27,12 +27,13 @@ import njuse.via.paster.SingleTouchView;
 public class PasterActivity extends Activity {
     ArrayList<SingleTouchView> pasters = new ArrayList<>();
     private ImageView iv;
-    private Bitmap bmpDefaultPic = null,bitmap;
+    private Bitmap bmpDefaultPic = null, bitmap;
     private String url;//原图的图片，original
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_paster);
-        iv = (ImageView)findViewById(R.id.PastePhoto);
+        iv = (ImageView) findViewById(R.id.PastePhoto);
         url = getIntent().getStringExtra("path").substring(7);
         bmpDefaultPic = BitmapFactory.decodeFile(url);
         bitmap = bmpDefaultPic;
@@ -49,8 +50,8 @@ public class PasterActivity extends Activity {
         });
     }
 
-    public void pasterListener(View v){
-        ImageView view = (ImageView)v;
+    public void pasterListener(View v) {
+        ImageView view = (ImageView) v;
         RelativeLayout mLayout = (RelativeLayout) iv.getParent();
         SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this);
         singleTouchView.setImageDrawable(view.getDrawable());
@@ -64,7 +65,7 @@ public class PasterActivity extends Activity {
 
     public void confirmPasterBtnListener(View view) {
 
-        for(int i = 0;i<pasters.size();i++){
+        for (int i = 0; i < pasters.size(); i++) {
             pasters.get(i).setEditable(false);
         }
 
@@ -77,46 +78,45 @@ public class PasterActivity extends Activity {
             e.printStackTrace();
         }
         Intent intent = new Intent();
-        setResult(3,intent);
+        setResult(3, intent);
         intent.setClass(this, MakeActivity.class);
         finish();
 
     }
 
 
-
-    public Bitmap createNewPhoto(){
+    public Bitmap createNewPhoto() {
         Bitmap src = bitmap;
-        if( src == null ) {
+        if (src == null) {
             return null;
         }
         int actualWidth = src.getWidth();
         int actualHeight = src.getHeight();
         int ivWidth = iv.getWidth();
         int ivHeight = iv.getHeight();
-        float scale = (float)actualWidth/ivWidth;
-        float margain = (ivHeight-actualHeight/scale)/2;
+        float scale = (float) actualWidth / ivWidth;
+        float margain = (ivHeight - actualHeight / scale) / 2;
         ArrayList<Bitmap> maps = new ArrayList<>();
         ArrayList<PointF> points = new ArrayList<>();
-        for(int i = 0 ;i<pasters.size();i++) {
-            if(pasters.get(i).getVisibility()!=View.GONE) {
+        for (int i = 0; i < pasters.size(); i++) {
+            if (pasters.get(i).getVisibility() != View.GONE) {
                 maps.add(pasters.get(i).createNewPhoto());
                 points.add(pasters.get(i).getLocation());
             }
         }
-        for(int i = 0;i<points.size();i++){
-            PointF point = new PointF((points.get(i).x)*scale,(points.get(i).y-margain)*scale);
+        for (int i = 0; i < points.size(); i++) {
+            PointF point = new PointF((points.get(i).x) * scale, (points.get(i).y - margain) * scale);
             points.get(i).set(point);
         }
 
 
         //create the new blank bitmap
-        Bitmap newb = Bitmap.createBitmap( actualWidth, actualHeight, Bitmap.Config.ARGB_8888 );
-        Canvas cv = new Canvas( newb );
+        Bitmap newb = Bitmap.createBitmap(actualWidth, actualHeight, Bitmap.Config.ARGB_8888);
+        Canvas cv = new Canvas(newb);
         //draw src into
-        cv.drawBitmap( src, 0, 0, null );
+        cv.drawBitmap(src, 0, 0, null);
         //draw pasters into
-        for(int i = 0;i<maps.size();i++) {
+        for (int i = 0; i < maps.size(); i++) {
             cv.drawBitmap(maps.get(i), points.get(i).x, points.get(i).y, null);
         }
         //save all clip

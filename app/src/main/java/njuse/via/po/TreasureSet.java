@@ -18,4 +18,13 @@ public class TreasureSet {
             }
         }
     }
+
+    public Treasure getTreasure(int id){
+        for(int i=0;i<treasuresList.size();i++){
+            if(treasuresList.get(i).getID()==id){
+                return  treasuresList.get(i);
+            }
+        }
+        return null;
+    }
 }

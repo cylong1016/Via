@@ -23,6 +23,15 @@
             android:layout_alignParentStart="true"
             android:onClick="ensureFilter" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="图片渲染中……"
+            android:id="@+id/runtime"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
     </RelativeLayout>
 
 
@@ -61,69 +70,6 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:text="@string/No"
-                    android:textColor="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-                <ImageView
-                android:id="@+id/SoftGlowFilter"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:onClick="SoftGlowListener"
-                android:src="@mipmap/filter_4" />
-
-                <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:text="@string/SoftGlow"
-                android:textColor="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/FeatherFilter"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:onClick="FeatherListener"
-                    android:src="@mipmap/filter_6" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/Feather"
-                    android:textColor="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/FilmFilter"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:onClick="FilmListener"
-                    android:src="@mipmap/filter_8" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/film"
                     android:textColor="@color/white" />
             </RelativeLayout>
 
@@ -287,70 +233,6 @@
                     android:text="@string/Threshold"
                     android:textColor="@color/white" />
             </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/BlueToneFilter"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:onClick="BlueToneListener"
-                    android:src="@mipmap/filter_10" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/BlueTone"
-                    android:textColor="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/IceFilter"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:onClick="IceListener"
-                    android:src="@mipmap/filter_1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/Ice"
-                    android:textColor="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/GlowingEdgeFilter"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:onClick="GlowingEdgeListener"
-                    android:src="@mipmap/filter_5" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/GlowingEdge"
-                    android:textColor="@color/white" />
-            </RelativeLayout>
-
 
         </LinearLayout>
     </HorizontalScrollView>
