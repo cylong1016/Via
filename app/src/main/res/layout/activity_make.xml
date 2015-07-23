@@ -113,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
             </LinearLayout>
         </HorizontalScrollView>
 
@@ -202,10 +202,10 @@
                 android:id="@+id/newScreen"
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/icon_new"
+                android:src="@mipmap/option_delete"
                 android:background="@drawable/icon_selector"
                 android:layout_weight="1"
-                android:onClick="newScreenListener"/>
+                android:onClick="deleteScreenListener"/>
 
         </LinearLayout>
     </LinearLayout>

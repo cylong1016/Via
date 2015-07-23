@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -50,9 +51,7 @@ public class PasterActivity extends Activity {
 
     public void pasterListener(View v){
         ImageView view = (ImageView)v;
-
-        ImageView mImageView = (ImageView) findViewById(R.id.PastePhoto);
-        RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
+        RelativeLayout mLayout = (RelativeLayout) iv.getParent();
         SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this);
         singleTouchView.setImageDrawable(view.getDrawable());
         mLayout.addView(singleTouchView);
@@ -97,7 +96,6 @@ public class PasterActivity extends Activity {
         int ivHeight = iv.getHeight();
         float scale = (float)actualWidth/ivWidth;
         float margain = (ivHeight-actualHeight/scale)/2;
-        System.out.println("margain = "+margain);
         ArrayList<Bitmap> maps = new ArrayList<>();
         ArrayList<PointF> points = new ArrayList<>();
         for(int i = 0 ;i<pasters.size();i++) {

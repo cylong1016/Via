@@ -1,6 +1,9 @@
 package njuse.via;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -25,10 +29,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
-
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
 
 import njuse.via.bl.MakeBL;
 import njuse.via.bl.PicCompress;
@@ -50,6 +50,7 @@ public class MakeActivity extends Activity {
     private ArrayList<ImageButton> preButton;
     private int buttonlength = 1;
     private PicCompress pc;
+    private PreListener plisten;
     //-----------------
     private int screenWidth;
     private int screenHeight;
@@ -57,7 +58,6 @@ public class MakeActivity extends Activity {
     private MakeBLService makeBL = new MakeBL();
 
     public Screen screen;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,31 +137,46 @@ public class MakeActivity extends Activity {
     /*
     初始化故事板界面
      */
-    private void initPreview(){
+    private void initPreview() {
         mInflater = LayoutInflater.from(this);
-        PreListener plisten = new PreListener();
+        plisten = new PreListener();
         preButton = new ArrayList<>();
         mGallery = (LinearLayout) findViewById(R.id.id_gallery);
-        for(int i = 0;i<buttonlength;i++) {
-            RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(80,80);
-            param.addRule(RelativeLayout.CENTER_HORIZONTAL, 1);
-            param.addRule(RelativeLayout.CENTER_VERTICAL,1);//布局居中
-            View v = mInflater.inflate(R.layout.activity_preview_item, mGallery, false);
-            ImageButton img = (ImageButton) v.findViewById(R.id.id_index_gallery_item_image);
-            img.setId(screen.getID());
-            img.setOnClickListener(plisten);
-            if(isselect!=i) {
+        /*
+        初始化第一幕的缩略图
+        **/
+        RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(80, 80);
+        param.addRule(RelativeLayout.CENTER_HORIZONTAL, 1);
+        param.addRule(RelativeLayout.CENTER_VERTICAL, 1);//布局居中
+        View v = mInflater.inflate(R.layout.activity_preview_item, mGallery, false);
 
-                img.setLayoutParams(param);
-            }
-            preButton.add(img);
-            mGallery.addView(v);
-        }
+            /*
+        初始化新建按钮
+         */
+        View v2 = mInflater.inflate(R.layout.activity_preview_item, mGallery, false);
+        ImageButton newsc = (ImageButton) v2.findViewById(R.id.id_index_gallery_item_image);
+        newsc.setId(-1);
+        newsc.setBackgroundResource(R.mipmap.icon_new);
+        newsc.setOnClickListener(plisten);
+
+
+        ImageButton img = (ImageButton) v.findViewById(R.id.id_index_gallery_item_image);
+        img.setId(screen.getID());
+        img.setOnClickListener(plisten);
+        preButton.add(img);
+        preButton.add(newsc);
+        mGallery.addView(v);
+        mGallery.addView(v2);
+
     }
 
-    private  void setPreviewImg(Bitmap bitmap){
+    private void setPreviewImg(Bitmap bitmap) {
         bitmap = pc.compressPre(bitmap);
-        preButton.get(isselect).setImageBitmap(bitmap);
+        for (int i = 0; i < preButton.size(); i++) {
+            if (preButton.get(i).getId() == isselect) {
+                preButton.get(i).setImageBitmap(bitmap);
+            }
+        }
     }
 
     private void getScreenInfo() {
@@ -275,6 +290,7 @@ public class MakeActivity extends Activity {
 
         //---------------------------------------------------------
         HorizontalScrollView preview = (HorizontalScrollView) findViewById(R.id.preview); // 获取预览图组件
+        //preview.getBackground().setAlpha(50);
         ImageView expend = (ImageView) findViewById(R.id.expand); // 获取扩大按钮图片
 
         RelativeLayout.LayoutParams preParams =
@@ -318,6 +334,7 @@ public class MakeActivity extends Activity {
 
     /**
      * 返回主菜单监听
+     *
      * @param view
      */
     public void backToMainListener(View view) {
@@ -345,9 +362,9 @@ public class MakeActivity extends Activity {
         }
     }
 
-    private  void saveWork(EditText editText){
-        if (editText.getText().toString()==null|editText.getText().toString().length()==0){
-            Toast.makeText(this, R.string.no_inputName+editText.getText().toString(),Toast.LENGTH_SHORT).show();
+    private void saveWork(EditText editText) {
+        if (editText.getText().toString() == null | editText.getText().toString().length() == 0) {
+            Toast.makeText(this, R.string.no_inputName + editText.getText().toString(), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -355,6 +372,7 @@ public class MakeActivity extends Activity {
         makeBL.saveWork(workName);
         Toast.makeText(this, R.string.save_success, Toast.LENGTH_SHORT).show();
     }
+
     /**
      * 保存按钮监听
      *
@@ -363,18 +381,19 @@ public class MakeActivity extends Activity {
     public void saveListener(View view) {
         screen.setText(((EditText) findViewById(R.id.explain)).getText().toString());
 
-        final EditText editText=new EditText(this);
-        Builder dialog=new AlertDialog.Builder(this);
+        final EditText editText = new EditText(this);
+        Builder dialog = new AlertDialog.Builder(this);
 
         dialog.setTitle(R.string.input_dialog).
                 setIcon(android.R.drawable.ic_dialog_info).setView(
-                editText).setPositiveButton(R.string.confirm,  new DialogInterface.OnClickListener(){
+                editText).setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 saveWork(editText);
 
-            }}).setNegativeButton(R.string.cancel, null).show();
+            }
+        }).setNegativeButton(R.string.cancel, null).show();
 
     }
 
@@ -475,13 +494,13 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void pasterListener(View view) {
-        if(screen.getBackGroundURL()!=null) {
+        if (screen.getBackGroundURL() != null) {
             Intent intent = new Intent();
             intent.setClass(this, PasterActivity.class);
             intent.putExtra("path", screen.getBackGroundURL());
             this.startActivityForResult(intent, 3);
-        }else{
-            Toast.makeText(this,R.string.no_photo,Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, R.string.no_photo, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -504,65 +523,185 @@ public class MakeActivity extends Activity {
      *
      * @param view
      */
-    public void newScreenListener(View view) {
-        EditText edit = (EditText) findViewById(R.id.explain);
-        String text = edit.getText().toString(); // 获得用户输入的文本
-        screen.setText(text);
-        // 新建一幕
-        screen = makeBL.getNewScreen();
-        initScreen();
+    public void deleteScreenListener(View view) {
+//        EditText edit = (EditText) findViewById(R.id.explain);
+//        String text = edit.getText().toString(); // 获得用户输入的文本
+//        screen.setText(text);
+//        Log.e("mytext", text);
+//        // 新建一幕
+//        screen = makeBL.getNewScreen();
+//        initScreen();
+//        addPreview();
+        deletePreview();
+
     }
 
 
     /*
     缩略图的添加
      */
-    private void addPreview(){
+    private void addPreview() {
+
+        for (int i = 0; i < preButton.size(); i++) {
+            if (preButton.get(i).getId() == -1) {
+                preButton.remove(i);
+                mGallery.removeViewAt(i);
+            }
+        }
+
+        View v = mInflater.inflate(R.layout.activity_preview_item, mGallery, false);
+        ImageButton img = (ImageButton) v.findViewById(R.id.id_index_gallery_item_image);
+        img.setId(screen.getID());
+        img.setOnClickListener(plisten);
+        /*
+        把之前选中的图片变小
+         */
+        RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(80, 80);
+        param.addRule(RelativeLayout.CENTER_HORIZONTAL, 1);
+        param.addRule(RelativeLayout.CENTER_VERTICAL, 1);
+        for (int i = 0; i < preButton.size(); i++) {
+            if (preButton.get(i).getId() == isselect) {
+                preButton.get(i).setLayoutParams(param);
+            }
+        }
+        isselect = screen.getID();
+
+        preButton.add(img);
+        mGallery.addView(v);
+
+
+        View v2 = mInflater.inflate(R.layout.activity_preview_item, mGallery, false);
+        ImageButton newsc = (ImageButton) v2.findViewById(R.id.id_index_gallery_item_image);
+        newsc.setId(-1);
+        newsc.setBackgroundResource(R.mipmap.icon_new);
+        newsc.setOnClickListener(plisten);
+        preButton.add(newsc);
+        mGallery.addView(v2);
+    }
+
+    /*
+    删除当前选中的幕
+    */
+    private void deletePreview() {
+        ImageView imageView = (ImageView) findViewById(R.id.photoView);
+        TextView textView = (TextView) findViewById(R.id.explain);
+        for (int i = 0; i < preButton.size(); i++) {
+            if (preButton.get(i).getId() == isselect) {
+                int wid = preButton.get(i).getWidth();
+                int hei = preButton.get(i).getHeight();
+
+                preButton.remove(i);
+                makeBL.remove(screen);
+                mGallery.removeViewAt(i);
+                int tempi = i;
+                /*
+                如果只剩一张图片就再新建一次
+                 */
+                if (preButton.size() == 1) {
+                    EditText edit = (EditText) findViewById(R.id.explain);
+                    String text = edit.getText().toString(); // 获得用户输入的文本
+                    screen.setText(text);
+                    Log.e("mytext", text);
+                    // 新建一幕
+                    screen = makeBL.getNewScreen();
+                    initScreen();
+                    addPreview();
+                    break;
+                }
+                /*
+                如果删除最后一张则跳到之前一张，否则跳到之后一张
+                 */
+                if (i != preButton.size() - 1) {
+                    isselect = preButton.get(i).getId();
+                } else {
+                    tempi = tempi - 1;
+                    isselect = preButton.get(tempi).getId();
+                }
+
+                /*
+                设置当前的isselect
+                 */
+                RelativeLayout.LayoutParams param2 = new RelativeLayout.LayoutParams(wid, hei);
+                param2.addRule(RelativeLayout.CENTER_HORIZONTAL, 1);
+                param2.addRule(RelativeLayout.CENTER_VERTICAL, 1);
+                preButton.get(tempi).setLayoutParams(param2);
+
+
+                screen = makeBL.getScreenByID(isselect);
+                if (screen.getBackGroundURL() != null) {
+                    Uri uri = Uri.parse(screen.getBackGroundURL());
+                    imageView.setImageBitmap(decodeUriAsBitmap(uri));
+                } else {
+                    imageView.setImageResource(R.mipmap.make_background);
+                }
+                textView.setText(screen.getText());
+
+
+                break;
+            }
+        }
 
     }
-    private void deletePreview(){
-        mGallery.removeView(preButton.get(isselect));
-    }
-
-
-
 
     /*缩略图的监听
 
      */
-    class PreListener implements View.OnClickListener{
+    class PreListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            ImageButton button = (ImageButton)v;
-            if(isselect==button.getId()){
+            ImageButton button = (ImageButton) v;
+            if (isselect == button.getId()) {
 
-            }
-            else{
+            } else if (button.getId() == -1) {
+                EditText edit = (EditText) findViewById(R.id.explain);
+                String text = edit.getText().toString(); // 获得用户输入的文本
+                screen.setText(text);
+                Log.e("mytext", text);
+                // 新建一幕
+                screen = makeBL.getNewScreen();
+                initScreen();
+                addPreview();
+            } else {
+                ImageView imageView = (ImageView) findViewById(R.id.photoView);
+                TextView textView = (TextView) findViewById(R.id.explain);
                 /*
                 *设置imagebutton大小变化，显示选中的那个
                 **/
-                RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(80,80);
+                RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(80, 80);
                 param.addRule(RelativeLayout.CENTER_HORIZONTAL, 1);
                 param.addRule(RelativeLayout.CENTER_VERTICAL, 1);
 
-                int wid = preButton.get(isselect).getWidth();
-                int hei = preButton.get(isselect).getHeight();
-                preButton.get(isselect).setLayoutParams(param);
+                int wid = 0;
+                int hei = 0;
+                for (int i = 0; i < preButton.size(); i++) {
+                    if (preButton.get(i).getId() == isselect) {
+                        wid = preButton.get(i).getWidth();
+                        hei = preButton.get(i).getHeight();
+                        preButton.get(i).setLayoutParams(param);
+                    }
+                }
+                /*把文字存入screen中*/
+                screen = makeBL.getScreenByID(isselect);
+                screen.setText(textView.getText().toString());
+                //-----
+                isselect = button.getId();
 
-                isselect=button.getId();
-
-                RelativeLayout.LayoutParams param2 = new RelativeLayout.LayoutParams(wid,hei);
+                RelativeLayout.LayoutParams param2 = new RelativeLayout.LayoutParams(wid, hei);
                 param2.addRule(RelativeLayout.CENTER_HORIZONTAL, 1);
                 param2.addRule(RelativeLayout.CENTER_VERTICAL, 1);
-
-                preButton.get(isselect).setLayoutParams(param2);
+                button.setLayoutParams(param2);
                 /*
                 设置当前界面的更新
                 */
-                ImageView imageView = (ImageView)findViewById(R.id.photoView);
-                int screenid = preButton.get(isselect).getId();
-                //screen = makeBL.get
-                //imageView.setImageBitmap();
+                screen = makeBL.getScreenByID(isselect);
+                if (screen.getBackGroundURL() != null) {
+                    Uri uri = Uri.parse(screen.getBackGroundURL());
+                    imageView.setImageBitmap(decodeUriAsBitmap(uri));
+                } else {
+                    imageView.setImageResource(R.mipmap.make_background);
+                }
+                textView.setText(screen.getText());
+
             }
         }
     }
