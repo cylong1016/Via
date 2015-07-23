@@ -36,6 +36,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 
 import njuse.via.bl.MakeBL;
+import njuse.via.bl.PicCompress;
 import njuse.via.blservice.MakeBLService;
 import njuse.via.config.PathConfig;
 import njuse.via.paster.SingleTouchView;
@@ -53,8 +54,8 @@ public class MakeActivity extends Activity {
     private int isselect = 0;
     private ArrayList<Integer> preInt;
     private ArrayList<ImageButton> preButton;
-    private int buttonlength = 6;
-
+    private int buttonlength = 1;
+    private PicCompress pc;
     //-----------------
     private int screenWidth;
     private int screenHeight;
@@ -68,6 +69,7 @@ public class MakeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make);
+        pc = new PicCompress();
         getScreenInfo(); // 获得屏幕信息
         initPhotoViewLoc();
         screen = makeBL.getNewScreen();
@@ -107,10 +109,10 @@ public class MakeActivity extends Activity {
         for(int i = 0;i<buttonlength;i++) {
             RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(80,80);
             param.addRule(RelativeLayout.CENTER_HORIZONTAL, 1);
-            param.addRule(RelativeLayout.CENTER_VERTICAL,1);
+            param.addRule(RelativeLayout.CENTER_VERTICAL,1);//布局居中
             View v = mInflater.inflate(R.layout.activity_preview_item, mGallery, false);
             ImageButton img = (ImageButton) v.findViewById(R.id.id_index_gallery_item_image);
-            img.setId(i);
+            img.setId(screen.getID());
             img.setOnClickListener(plisten);
             if(isselect!=i) {
 
@@ -119,6 +121,11 @@ public class MakeActivity extends Activity {
             preButton.add(img);
             mGallery.addView(v);
         }
+    }
+
+    private  void setPreviewImg(Bitmap bitmap){
+        bitmap = pc.compressPre(bitmap);
+        preButton.get(isselect).setImageBitmap(bitmap);
     }
 
     private void getScreenInfo() {
@@ -407,6 +414,7 @@ public class MakeActivity extends Activity {
             if (bitmap != null) {
 
                 mImageView.setImageBitmap(bitmap);
+                setPreviewImg(bitmap);
                 System.gc();
 
             }
@@ -510,6 +518,18 @@ public class MakeActivity extends Activity {
     }
 
 
+    /*
+    缩略图的添加
+     */
+    private void addPreview(){
+
+    }
+    private void deletePreview(){
+        mGallery.removeView(preButton.get(isselect));
+    }
+
+
+
 
     /*缩略图的监听
 
@@ -543,6 +563,10 @@ public class MakeActivity extends Activity {
                 /*
                 设置当前界面的更新
                 */
+                ImageView imageView = (ImageView)findViewById(R.id.photoView);
+                int screenid = preButton.get(isselect).getId();
+                //screen = makeBL.get
+                //imageView.setImageBitmap();
             }
         }
     }
