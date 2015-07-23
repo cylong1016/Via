@@ -305,7 +305,7 @@ public class MakeActivity extends Activity {
 
     private  void saveWork(EditText editText){
         if (editText.getText().toString()==null|editText.getText().toString().length()==0){
-            Toast.makeText(this, "请输入文件名！  "+editText.getText().toString(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_inputName+editText.getText().toString(),Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -313,7 +313,7 @@ public class MakeActivity extends Activity {
         String date = sDateFormat.format(new java.util.Date());
         String workName = editText.getText().toString() +"_"+ date;
         makeBL.saveWork(workName);
-        Toast.makeText(this, "保存文件成功！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,R.string.save_success, Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent();
         intent.setClass(this, ShowActivity.class);
@@ -333,15 +333,15 @@ public class MakeActivity extends Activity {
         //editText.setOnClickListener();
         Builder dialog=new AlertDialog.Builder(this);
 
-        dialog.setTitle("请输入保存的文件名！").
+        dialog.setTitle(R.string.input_dialog).
                 setIcon(android.R.drawable.ic_dialog_info).setView(
-                editText).setPositiveButton("确定",  new DialogInterface.OnClickListener(){
+                editText).setPositiveButton(R.string.confirm,  new DialogInterface.OnClickListener(){
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 saveWork(editText);
 
-            }}).setNegativeButton("取消", null).show();
+            }}).setNegativeButton(R.string.cancel, null).show();
 
 
 

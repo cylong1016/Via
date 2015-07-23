@@ -29,18 +29,18 @@ public class MakeData implements MakeDataService {
         //当文件夹不存在时创建文件夹
         String path = PathConfig.WEB_PROJECT+"/"+fileName;
         File file = new File(dirpath);
-       creatFile(path);                         //创建存放产物的文件夹
+        creatNewFile(path);                         //创建存放产物的文件夹
         list.setWorkName(fileName);             //设置文件名
 
         WebCreater.createHTML(path,list);            //同时生成html文件，保存在"/sdcard/Via/web"路径下
         String ser_path=dirpath+"/"+fileName+".out";
-        serialize2SDcard(list,ser_path);
+       // serialize2SDcard(list,ser_path);
 
         copy_picture(list,path);
 
     }
 
-    private void creatFile(String fileName){
+    private void creatNewFile(String fileName){
         File file = new File(fileName);
         if (!file.exists()) {
             try {
@@ -52,16 +52,21 @@ public class MakeData implements MakeDataService {
     }
 
     private void copy_picture(ScreenSet set,String path){
+        System.out.println("要保存图片到的路径名是*-----------  "+path);
         int num=1;
         String str="picture_";
-        FileCopy copy=new FileCopy();
+//        FileCopy copy=new FileCopy();
         LinkedList<Screen> list=set.getScreenList();
         for (int i=0;i<list.size();i++){
-            File fromFile=new File(list.get(i).getBackGroundURL());
-            File toFile=new File(path+"/"+str+num+".jpg");
-            copy.copyfile(fromFile,toFile,true);
             System.out.println("要复制的图片路径：  "+list.get(i).getBackGroundURL());
+            String toPath="file:/"+path+"/"+str+num+".jpg";
+
+            System.out.println("复制文件的目的地址："+toPath);
+            File fromFile=new File(list.get(i).getBackGroundURL());
+            File toFile=new File(toPath);
+            FileCopy.copyfile(fromFile,toFile,true);
             num++;
+            System.out.println("-----------------------------复制完一份----------------------------------");
         }
     }
 
