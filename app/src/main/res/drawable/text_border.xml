@@ -16,4 +16,9 @@
     <!-- 圆角 -->
     <corners android:radius="@dimen/radius" />
 
+    <gradient
+        android:angle="270"
+        android:endColor="#00000000"
+        android:startColor="#00000000" />
+
 </shape>

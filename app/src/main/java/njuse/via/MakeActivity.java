@@ -2,10 +2,8 @@ package njuse.via;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -20,28 +18,22 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.content.Context;
 import android.content.DialogInterface;
 
 import njuse.via.bl.MakeBL;
 import njuse.via.bl.PicCompress;
 import njuse.via.blservice.MakeBLService;
 import njuse.via.config.PathConfig;
-import njuse.via.paster.SingleTouchView;
 import njuse.via.po.Option;
 import njuse.via.po.Screen;
 
@@ -115,6 +107,7 @@ public class MakeActivity extends Activity {
         copyFileFromRaw(R.raw.jquery_easing, "jquery_easing.js", PathConfig.WEB_JS);
         copyFileFromRaw(R.raw.jquery_full_page_min, "jquery_full_page_min.js", PathConfig.WEB_JS);
         copyFileFromRaw(R.raw.jquery_min, "jquery_min.js", PathConfig.WEB_JS);
+        copyFileFromRaw(R.raw.no_photo, "no_photo.jpg", PathConfig.WEB);
     }
 
     public void copyFileFromRaw(int id, String fileName, String dirPath) {
