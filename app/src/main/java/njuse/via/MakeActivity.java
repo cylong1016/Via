@@ -23,10 +23,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -74,6 +76,7 @@ public class MakeActivity extends Activity {
         initPhotoViewLoc();
         screen = makeBL.getNewScreen();
         initPreview();
+        createJSAndCSSFile();
     }
 
 
@@ -98,13 +101,53 @@ public class MakeActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * 把raw中的css和js文件复制到手机sdcard中
+     * by cylong
+     */
+    private void createJSAndCSSFile() {
+        copyFileFromRaw(R.raw.adv, "adv.css", PathConfig.WEB_CSS);
+        copyFileFromRaw(R.raw.blur_css, "blur_css.css", PathConfig.WEB_CSS);
+        copyFileFromRaw(R.raw.full_page, "full_page.css", PathConfig.WEB_CSS);
+        copyFileFromRaw(R.raw.global, "global.css", PathConfig.WEB_CSS);
+        copyFileFromRaw(R.raw.index, "index.css", PathConfig.WEB_CSS);
+        copyFileFromRaw(R.raw.blur, "blur.js", PathConfig.WEB_JS);
+        copyFileFromRaw(R.raw.jquery_easing, "jquery_easing.js", PathConfig.WEB_JS);
+        copyFileFromRaw(R.raw.jquery_full_page_min, "jquery_full_page_min.js", PathConfig.WEB_JS);
+        copyFileFromRaw(R.raw.jquery_min, "jquery_min.js", PathConfig.WEB_JS);
+    }
+
+    public void copyFileFromRaw(int id, String fileName, String dirPath) {
+        String filePath = dirPath + "/" + fileName;// 文件路径
+        File dir = new File(dirPath);// 目录路径
+        if (!dir.exists()) {// 如果不存在，则创建路径名
+            dir.mkdirs();   // 创建该路径名，返回true则表示创建成功
+        }
+        // 目录存在，则将apk中raw中的需要的文档复制到该目录下
+        try {
+            File file = new File(filePath);
+            InputStream ins = getResources().openRawResource(id);// 通过raw得到数据资源
+            FileOutputStream fos = new FileOutputStream(file);
+            byte[] buffer = new byte[8192];
+            int count = 0;// 循环写出
+            while ((count = ins.read(buffer)) > 0) {
+                fos.write(buffer, 0, count);
+            }
+            fos.close();// 关闭流
+            ins.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     /*
     初始化故事板界面
      */
     private void initPreview(){
         mInflater = LayoutInflater.from(this);
         PreListener plisten = new PreListener();
-        preButton = new ArrayList<ImageButton>();
+        preButton = new ArrayList<>();
         mGallery = (LinearLayout) findViewById(R.id.id_gallery);
         for(int i = 0;i<buttonlength;i++) {
             RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(80,80);
@@ -317,7 +360,7 @@ public class MakeActivity extends Activity {
 
         String workName = editText.getText().toString();
         makeBL.saveWork(workName);
-        Toast.makeText(this,R.string.save_success, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.save_success, Toast.LENGTH_SHORT).show();
     }
     /**
      * 保存按钮监听
@@ -328,7 +371,6 @@ public class MakeActivity extends Activity {
         screen.setText(((EditText) findViewById(R.id.explain)).getText().toString());
 
         final EditText editText=new EditText(this);
-        //editText.setOnClickListener();
         Builder dialog=new AlertDialog.Builder(this);
 
         dialog.setTitle(R.string.input_dialog).
@@ -341,45 +383,6 @@ public class MakeActivity extends Activity {
 
             }}).setNegativeButton(R.string.cancel, null).show();
 
-
-
-        // makeBL.saveWork(workName);
-
-//        copyFile(R.raw.blur, "blur.js");
-//        copyFile(R.raw.blur_css,"blur_css.css");
-//        copyFile(R.raw.global,"global.css");
-//        copyFile(R.raw.jquery_easing_1_3,"jquery.easing.1.3.js");
-//        copyFile(R.raw.jquery_fullpage,"jquery.full_page.css");
-//        copyFile(R.raw.jquery_1_8_3_min,"jquery.1.8.3.min.js");
-//        copyFile(R.raw.jquery_fullpage_min,"jquery.full_page.min.js");
-        /*Intent intent = new Intent();
-        intent.setClass(this, ShowActivity.class);
-        intent.putExtra("html", workName);
-        startActivity(intent);*/
-    }
-
-    public void copyFile(int id, String name) {
-        int byteread = 0;
-        byte[] buf = new byte[4096];
-        FileInputStream inStream = null;
-        FileOutputStream fs = null;
-
-        AssetFileDescriptor fd = getResources().openRawResourceFd(R.raw.blur);
-
-        try {
-            fs = new FileOutputStream(PathConfig.WEB + name);
-            inStream = fd.createInputStream();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            while ((byteread = inStream.read(buf)) != -1) {
-                fs.write(buf, 0, byteread);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
