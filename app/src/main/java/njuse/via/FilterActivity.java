@@ -39,8 +39,6 @@ import njuse.via.filter.newFilter.TintFilter;
 
 public class FilterActivity extends Activity {
 
-    private ImageView myImageView;
-    private File path;
     private Bitmap bmpDefaultPic = null,bitmap,cropDefault,cropBmp;
     private ImageView iv;
     private String url;//原图的图片，original
@@ -219,11 +217,11 @@ public class FilterActivity extends Activity {
         setImgFilter(filter);
         setCropFilter(filter);
     }
-    public void ReflectListener1(View view){
-        ReflectionFilter filter = new ReflectionFilter(true);
-        setImgFilter(filter);
-        setCropFilter(filter);
-    }
+//    public void ReflectListener1(View view){
+//        ReflectionFilter filter = new ReflectionFilter(true);
+//        setImgFilter(filter);
+//        setCropFilter(filter);
+//    }
     public void ReflectListener2(View view){
         ReflectionFilter filter = new ReflectionFilter(false);
         setImgFilter(filter);

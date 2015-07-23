@@ -39,6 +39,27 @@
     <string name="img_path_error">Image path error</string>
     <string name="no_photo">No Photo</string>
 
+    <string name="No">No_filter</string>
+    <string name="Ice">Ice</string>
+    <string name="Molten">Molten</string>
+    <string name="Comic">Comic</string>
+    <string name="SoftGlow">SoftGlow</string>
+    <string name="GlowingEdge">GlowingEdge</string>
+    <string name="Feather">Feather</string>
+    <string name="mirror">mirror</string>
+    <string name="film">film</string>
+    <string name="RedTone">RedTone</string>
+    <string name="BlueTone">BlueTone</string>
+    <string name="Bright">Bright</string>
+    <string name="Saturation">Saturation</string>
+    <string name="Reflect">Reflect</string>
+    <string name="Tint">Tint</string>
+    <string name="BigBrother">BigBrother</string>
+    <string name="Color">Color</string>
+    <string name="Invert">Invert</string>
+    <string name="BlackWhite">BlackWhite</string>
+    <string name="Threshold">Threshold</string>
+
     <string name="save_success">Save success</string>
     <string name="no_inputName">No input file name!</string>
     <string name="input_dialog">Input file name please!</string>
