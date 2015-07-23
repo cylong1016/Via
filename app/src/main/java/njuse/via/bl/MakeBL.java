@@ -73,4 +73,9 @@ public class MakeBL implements MakeBLService {
         return screenList.getNewScreen();
     }
 
+    @Override
+    public Screen getScreenByID(int screen_id) {
+        return screenList.getScrrenByID(screen_id);
+    }
+
 }

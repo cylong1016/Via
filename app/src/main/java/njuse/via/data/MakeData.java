@@ -68,8 +68,8 @@ public class MakeData implements MakeDataService {
 
             System.out.println("复制文件的目的地址："+toPath);
 //            File fromFile=new File(list.get(i).getBackGroundURL());
-            File fromFile=new File("/sdcard/Via/copy/172695.jpg");
-            File toFile=new File(toPath);
+            File fromFile=new File("/sdcard/Via/copy/172693.jpg");
+            File toFile=new File("/sdcard/Via/web/project/1.jpg");
             FileCopy.copyfile(fromFile,toFile,true);
             num++;
             System.out.println("-----------------------------复制完一份----------------------------------");
