@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -27,7 +28,11 @@ public class MakeData implements MakeDataService {
     public void saveMakeRes(ScreenSet list,String fileName) {
 
         //当文件夹不存在时创建文件夹
-        String path = PathConfig.WEB_PROJECT+"/"+fileName;
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
+        String date = sDateFormat.format(new java.util.Date());
+       // String pathName=f
+
+        String path = PathConfig.WEB_PROJECT+"/"+fileName+"_"+date;
         File file = new File(dirpath);
         creatNewFile(path);                         //创建存放产物的文件夹
         list.setWorkName(fileName);             //设置文件名
@@ -62,7 +67,8 @@ public class MakeData implements MakeDataService {
             String toPath="file:/"+path+"/"+str+num+".jpg";
 
             System.out.println("复制文件的目的地址："+toPath);
-            File fromFile=new File(list.get(i).getBackGroundURL());
+//            File fromFile=new File(list.get(i).getBackGroundURL());
+            File fromFile=new File("/sdcard/Via/copy/172695.jpg");
             File toFile=new File(toPath);
             FileCopy.copyfile(fromFile,toFile,true);
             num++;

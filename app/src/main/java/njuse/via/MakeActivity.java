@@ -308,9 +308,7 @@ public class MakeActivity extends Activity {
             return;
         }
 
-        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
-        String date = sDateFormat.format(new java.util.Date());
-        String workName = editText.getText().toString() +"_"+ date;
+        String workName = editText.getText().toString();
         makeBL.saveWork(workName);
         Toast.makeText(this,R.string.save_success, Toast.LENGTH_SHORT).show();
     }
