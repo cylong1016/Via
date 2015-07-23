@@ -25,7 +25,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@mipmap/actionbar_clip_icon"
+        android:background="@mipmap/st_rotate_icon"
         android:onClick="rotateClock" />
 
 

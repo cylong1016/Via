@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="5dp"
         android:scaleType="centerCrop"
-        android:background="@mipmap/filter_0"/>
+        android:background="@android:color/darker_gray"/>
 
 
 </RelativeLayout>
