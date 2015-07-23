@@ -18,9 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import njuse.via.filter.ColorToneFilter;
-import njuse.via.filter.FeatherFilter;
 import njuse.via.filter.FilmFilter;
-import njuse.via.filter.IceFilter;
 import njuse.via.filter.newFilter.BlackWhiteFilter;
 import njuse.via.filter.newFilter.ColorQuantizeFilter;
 import njuse.via.filter.newFilter.IImageFilter;
@@ -47,6 +45,7 @@ public class FilterActivity extends Activity {
         iv = (ImageView)findViewById(R.id.photo);
         url = getIntent().getStringExtra("path").substring(7);
         textView = (TextView) findViewById(R.id.runtime);
+        textView.setVisibility(View.GONE);
 
         if(url.contains("crop")) {
             cropDefault = BitmapFactory.decodeFile(url);
@@ -95,34 +94,20 @@ public class FilterActivity extends Activity {
         cropBmp = cropDefault;
     }
 
-    public void IceListener(View view) {
-        IceFilter filter = new IceFilter(bmpDefaultPic);
-        bitmap = filter.imageProcess().getDstBitmap();
-        iv.setImageBitmap(bitmap);
-        IceFilter filter_Crop = new IceFilter(cropDefault);
-        cropBmp = filter_Crop.imageProcess().getDstBitmap();
-    }
-//    public void SoftGlowListener(View view) {
-//        SoftGlowFilter filter = new SoftGlowFilter(bmpDefaultPic);
+//    public void IceListener(View view) {
+//        IceFilter filter = new IceFilter(bmpDefaultPic);
 //        bitmap = filter.imageProcess().getDstBitmap();
 //        iv.setImageBitmap(bitmap);
-//        SoftGlowFilter filter_Crop = new SoftGlowFilter(cropDefault);
+//        IceFilter filter_Crop = new IceFilter(cropDefault);
 //        cropBmp = filter_Crop.imageProcess().getDstBitmap();
 //    }
-//    public void GlowingEdgeListener(View view) {
-//        GlowingEdgeFilter filter = new GlowingEdgeFilter(bmpDefaultPic);
+//    public void FeatherListener(View view) {
+//        FeatherFilter filter= new FeatherFilter(bmpDefaultPic);
 //        bitmap = filter.imageProcess().getDstBitmap();
 //        iv.setImageBitmap(bitmap);
-//        GlowingEdgeFilter filter_Crop = new GlowingEdgeFilter(cropDefault);
+//        FeatherFilter filter_Crop = new FeatherFilter(cropDefault);
 //        cropBmp = filter_Crop.imageProcess().getDstBitmap();
 //    }
-    public void FeatherListener(View view) {
-        FeatherFilter filter= new FeatherFilter(bmpDefaultPic);
-        bitmap = filter.imageProcess().getDstBitmap();
-        iv.setImageBitmap(bitmap);
-        FeatherFilter filter_Crop = new FeatherFilter(cropDefault);
-        cropBmp = filter_Crop.imageProcess().getDstBitmap();
-    }
 //    public void ZoomBlurListener(View view) {
 //        ZoomBlurFilter filter = new ZoomBlurFilter(bmpDefaultPic,20);
 //        bitmap = filter.imageProcess().getDstBitmap();
