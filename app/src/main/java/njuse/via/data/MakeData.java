@@ -61,11 +61,15 @@ public class MakeData implements MakeDataService {
         int num=1;
         String str="picture_";
         LinkedList<Screen> list=set.getScreenList();
+        File fromFile;
      for (int i=0;i<list.size();i++){
             String toPath=path+"/"+str+num+".jpg";
-
-            String ss[]=list.get(i).getBackGroundURL().split("///");
-            File fromFile=new File(ss[1]);
+             if( list.get(i).getBackGroundURL()!=null) {
+                 String ss[] = list.get(i).getBackGroundURL().split("///");
+                 fromFile = new File(ss[1]);
+             }else{
+                  fromFile = new File(PathConfig.WEB+"null.jpg");
+             }
             File toFile=new File(toPath);
          FileCopy.copyfile(fromFile,toFile,true);
           list.get(i).setBackGroundURL(str+num);

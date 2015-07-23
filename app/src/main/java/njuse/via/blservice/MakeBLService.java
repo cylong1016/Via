@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import njuse.via.po.Screen;
 import njuse.via.po.ScreenSet;
+import njuse.via.po.TreasureSet;
 
 /**
  * 制作时候的操作
@@ -75,4 +76,6 @@ public interface MakeBLService{
     public  Screen getNewScreen();                          //获取一个新的幕，并添加到当前的作品中
 
     public Screen getScreenByID(int screen_id);                          // 根据幕的id获取幕
+
+//    public void setTreasure(TreasureSet set);
 }
