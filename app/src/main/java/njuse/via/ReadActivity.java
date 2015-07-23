@@ -51,7 +51,7 @@ public class ReadActivity extends Activity {
             int id = v.getId();
             String[] dirNames = readFile(PathConfig.WEB_PROJECT);
             String projectPath = PathConfig.WEB_PROJECT + "/" + dirNames[id];
-            String htmlPath = projectPath + "/" +dirNames[id].split("_")[0] + ".html";
+            String htmlPath = projectPath + "/" + dirNames[id].split("_")[0] + ".html";
             Intent intent = new Intent();
             intent.setClass(ReadActivity.this, ShowActivity.class);
             intent.putExtra("url", htmlPath);

@@ -17,14 +17,14 @@ public class SelectPhotoActivity extends Activity {
 
     public void takePhotoListener(View view) {
         Intent intent = new Intent();
-        intent.setClass(this,PicChooseActivity.class);
+        intent.setClass(this, PicChooseActivity.class);
         intent.putExtra("type", "camera");
         startActivityForResult(intent, 10);
     }
 
     public void pickPhotoListener(View view) {
         Intent intent = new Intent();
-        intent.setClass(this,PicChooseActivity.class);
+        intent.setClass(this, PicChooseActivity.class);
         intent.putExtra("type", "album");
         startActivityForResult(intent, 11);
     }
@@ -36,16 +36,16 @@ public class SelectPhotoActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==10){
+        if (resultCode == 10) {
             Intent intent = new Intent();
-            intent.putExtra("path",data.getStringExtra("path"));
-            setResult(2,intent);
+            intent.putExtra("path", data.getStringExtra("path"));
+            setResult(2, intent);
             finish();
         }
-        if(resultCode==11){
+        if (resultCode == 11) {
             Intent intent = new Intent();
-            intent.putExtra("path",data.getStringExtra("path"));
-            setResult(2,intent);
+            intent.putExtra("path", data.getStringExtra("path"));
+            setResult(2, intent);
             finish();
         }
     }
