@@ -27,6 +27,8 @@ public class Screen implements Serializable {
 
     private Option option;
 
+    private TreasureSet treasureSet;
+
     public Screen(){}
     public  Screen(int id){
             this.ID=id;
@@ -84,5 +86,13 @@ public class Screen implements Serializable {
         }else{
             return  option;
         }
+    }
+
+    public TreasureSet getTreasureSet() {
+        return treasureSet;
+    }
+
+    public void setScreenEnum(ScreenEnum screenEnum) {
+        this.screenEnum = screenEnum;
     }
 }
