@@ -290,6 +290,7 @@ public class MakeActivity extends Activity {
 
         //---------------------------------------------------------
         HorizontalScrollView preview = (HorizontalScrollView) findViewById(R.id.preview); // 获取预览图组件
+        preview.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
         //preview.getBackground().setAlpha(50);
         ImageView expend = (ImageView) findViewById(R.id.expand); // 获取扩大按钮图片
 
