@@ -89,6 +89,9 @@ public class Screen implements Serializable {
     }
 
     public TreasureSet getTreasureSet() {
+        if(treasureSet==null){
+            treasureSet=new TreasureSet();
+        }
         return treasureSet;
     }
 

@@ -22,6 +22,7 @@ public class TreasureSet {
 
     public Treasure getNewTreasure(){
         Treasure treasure=new Treasure(num);
+        treasuresList.add(treasure);
         num++;
         return treasure;
     }
@@ -34,4 +35,9 @@ public class TreasureSet {
         }
         return null;
     }
+
+    public ArrayList<Treasure> getTreasuresList(){
+        return treasuresList;
+    }
+
 }

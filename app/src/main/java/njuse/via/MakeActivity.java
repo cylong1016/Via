@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -34,8 +35,11 @@ import njuse.via.bl.MakeBL;
 import njuse.via.bl.PicCompress;
 import njuse.via.blservice.MakeBLService;
 import njuse.via.config.PathConfig;
+import njuse.via.paster.TreasureView;
 import njuse.via.po.Option;
 import njuse.via.po.Screen;
+import njuse.via.po.Treasure;
+import njuse.via.po.TreasureSet;
 
 /**
  * 制作界面
@@ -58,6 +62,10 @@ public class MakeActivity extends Activity {
     private MakeBLService makeBL = new MakeBL();
 
     public Screen screen;
+
+    //----------------这里是宝藏的变量
+    public ArrayList<TreasureView> treaviewset=new ArrayList<TreasureView>();
+    //--------------------------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -248,11 +256,13 @@ public class MakeActivity extends Activity {
     }
 
     public void initScreen() {
+        cleanTreasure();
         EditText edit = (EditText) findViewById(R.id.explain);
         String text = screen.getText();
         edit.setText(text);
         ImageView img = (ImageView) findViewById(R.id.photoView);
         if (screen.getBackGroundURL() != null) {
+            initTreasure();
             img.setImageURI(Uri.parse(screen.getBackGroundURL()));
         } else {
             img.setImageResource(R.mipmap.make_background);
@@ -385,6 +395,7 @@ public class MakeActivity extends Activity {
      */
     public void saveListener(View view) {
         screen.setText(((EditText) findViewById(R.id.explain)).getText().toString());
+        arrangeTreasure();
 
         final EditText editText = new EditText(this);
         Builder dialog = new AlertDialog.Builder(this);
@@ -542,7 +553,86 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void treasureListener(View view) {
+        if(screen.getBackGroundURL() != null){
+            ImageView mImageView=(ImageView) findViewById(R.id.photoView);
+            RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
+            TreasureView treasureView = new TreasureView(MakeActivity.this);
+            treasureView.setImageDrawable(getResources().getDrawable(R.drawable.smallbackground));
+            mLayout.addView(treasureView);
 
+            treaviewset.add(treasureView);
+
+            PointF p=treasureView.getCenPointPer();
+            TreasureSet set=screen.getTreasureSet();
+            Treasure trea=set.getNewTreasure();
+            trea.setX(p.x);
+            trea.setY(p.y);
+
+            treasureView.id=trea.getID();
+
+        }else{
+            Toast.makeText(this, R.string.no_photo, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void initTreasure(){
+        treaviewset=new ArrayList<TreasureView>();
+
+        if(screen.getBackGroundURL()!=null){
+            TreasureSet set=screen.getTreasureSet();
+            ArrayList<Treasure> array=set.getTreasuresList();
+            ImageView mImageView=(ImageView) findViewById(R.id.photoView);
+            RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
+
+            for(int i=0;i<array.size();i++){
+                PointF p=new PointF((float)array.get(i).getX(),(float)array.get(i).getY());
+                TreasureView treasureView = new TreasureView(MakeActivity.this,p,0);
+                treasureView.setImageDrawable(getResources().getDrawable(R.drawable.smallbackground));
+                mLayout.addView(treasureView);
+
+                treasureView.id=array.get(i).getID();
+
+                treaviewset.add(treasureView);
+            }
+        }
+
+    }
+
+    public void arrangeTreasure(){
+        if(screen.getBackGroundURL()!=null){
+//            ImageView img=(ImageView) findViewById(R.id.photoView);
+//            RelativeLayout mlayout=(RelativeLayout) img.getParent();
+                TreasureSet set=screen.getTreasureSet();
+            for(int i=0;i<treaviewset.size();i++){
+                if(treaviewset.get(i).getVisibility()==View.GONE||treaviewset.get(i).getVisibility()==View.INVISIBLE){
+                    set.deletTreasure(treaviewset.get(i).id);
+                }else{
+                    Treasure lin=set.getTreasure(treaviewset.get(i).id);
+                    PointF mCen=treaviewset.get(i).getCenPointPer();
+                    if(lin==null){
+                        Log.e("lin","isNull");
+                    }
+                    if(mCen==null){
+                        Log.e("lin","mCen is Null");
+                    }
+                    lin.setX(mCen.x);
+                    lin.setY(mCen.y);
+                }
+                RelativeLayout mlayout=(RelativeLayout) treaviewset.get(i).getParent();
+                mlayout.removeView(treaviewset.get(i));
+            }
+        }
+        treaviewset=new ArrayList<TreasureView>();
+    }
+
+    public void cleanTreasure(){
+        if(screen.getBackGroundURL()!=null){
+            for(int i=0;i<treaviewset.size();i++){
+                RelativeLayout mlayout=(RelativeLayout) treaviewset.get(i).getParent();
+                mlayout.removeView(treaviewset.get(i));
+            }
+        }
+        treaviewset=new ArrayList<TreasureView>();
     }
 
 
@@ -594,12 +684,14 @@ public class MakeActivity extends Activity {
     private void deletePreview() {
         ImageView imageView = (ImageView) findViewById(R.id.photoView);
         TextView textView = (TextView) findViewById(R.id.explain);
+        cleanTreasure();
         for (int i = 0; i < preButton.size(); i++) {
             if (preButton.get(i).getId() == isselect) {
                 int wid = preButton.get(i).getWidth();
                 int hei = preButton.get(i).getHeight();
 
                 preButton.remove(i);
+
                 makeBL.remove(screen);
                 mGallery.removeViewAt(i);
                 int tempi = i;
@@ -637,7 +729,9 @@ public class MakeActivity extends Activity {
 
 
                 screen = makeBL.getScreenByID(isselect);
+
                 if (screen.getBackGroundURL() != null) {
+                    initTreasure();
                     Uri uri = Uri.parse(screen.getBackGroundURL());
                     imageView.setImageBitmap(decodeUriAsBitmap(uri));
                 } else {
@@ -658,10 +752,12 @@ public class MakeActivity extends Activity {
     class PreListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+
             ImageButton button = (ImageButton) v;
             if (isselect == button.getId()) {
 
             } else if (button.getId() == -1) {
+                arrangeTreasure();               //保存宝藏
                 EditText edit = (EditText) findViewById(R.id.explain);
                 String text = edit.getText().toString(); // 获得用户输入的文本
                 screen.setText(text);
@@ -671,6 +767,7 @@ public class MakeActivity extends Activity {
                 initScreen();
                 addPreview();
             } else {
+                arrangeTreasure();               //保存宝藏
                 ImageView imageView = (ImageView) findViewById(R.id.photoView);
                 TextView textView = (TextView) findViewById(R.id.explain);
                 /*
@@ -704,6 +801,7 @@ public class MakeActivity extends Activity {
                 */
                 screen = makeBL.getScreenByID(isselect);
                 if (screen.getBackGroundURL() != null) {
+                    initTreasure();
                     Uri uri = Uri.parse(screen.getBackGroundURL());
                     imageView.setImageBitmap(decodeUriAsBitmap(uri));
                 } else {
