@@ -25,11 +25,11 @@
                 android:layout_width="360dp"
                 android:layout_height="360dp"
                 >
-            <ImageView
-                android:id="@+id/PastePhoto"
-                android:layout_width="360dp"
-                android:layout_height="360dp"
-                />
+                <ImageView
+                    android:id="@+id/PastePhoto"
+                    android:layout_width="360dp"
+                    android:layout_height="360dp"
+                    />
 
             </RelativeLayout>
         </RelativeLayout>
@@ -56,7 +56,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@mipmap/paster1"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:onClick="pasterListener"
                     />
                 <ImageView
@@ -64,7 +65,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@mipmap/paster2"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="10dp"
                     android:onClick="pasterListener"
                     />
 
@@ -87,31 +88,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left">
-            <ImageView
-                android:id="@+id/btn_cancel"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginBottom="15dp"
-                android:src="@mipmap/cancel"
-                android:layout_marginTop="15dp"
-                android:onClick="cancelPasterBtnListener"/>
+                <ImageView
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:src="@mipmap/cancel"
+                    android:layout_marginTop="15dp"
+                    android:onClick="cancelPasterBtnListener"/>
             </LinearLayout>
 
             <LinearLayout
-                    android:orientation="horizontal"
-                    android:background="#30363A"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right">
-            <ImageView
-                android:id="@+id/btn_ensure"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginBottom="15dp"
-                android:src="@mipmap/confirm"
-                android:layout_marginTop="15dp"
-                android:onClick="confirmPasterBtnListener"/>
+                android:orientation="horizontal"
+                android:background="#30363A"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+                <ImageView
+                    android:id="@+id/btn_ensure"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:src="@mipmap/confirm"
+                    android:layout_marginTop="15dp"
+                    android:onClick="confirmPasterBtnListener"/>
             </LinearLayout>
         </LinearLayout>
 

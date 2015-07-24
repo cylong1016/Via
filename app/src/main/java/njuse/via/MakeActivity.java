@@ -427,7 +427,7 @@ public class MakeActivity extends Activity {
             String path = data.getStringExtra("bitmap");
             Bitmap bitmap = decodeUriAsBitmap(Uri.parse(path));
             if (bitmap != null) {
-                String[] temptype = path.split(".");
+                String[] temptype = path.split("\\.");
                 String type = temptype[temptype.length-1];
                 Bitmap.CompressFormat format = Bitmap.CompressFormat.JPEG;
                 switch(type){

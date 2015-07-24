@@ -62,17 +62,37 @@ public class MakeData implements MakeDataService {
         String str = "picture_";
         LinkedList<Screen> list = set.getScreenList();
         File fromFile;
-        for (int i = 0; i < list.size(); i++) {
-            String toPath = path + "/" + str + num + ".jpg";
-            if (list.get(i).getBackGroundURL() != null) {
-                String ss[] = list.get(i).getBackGroundURL().split("///");
-                fromFile = new File(ss[1]);
-            } else {
-                fromFile = new File(PathConfig.WEB + "null.jpg");
-            }
-            File toFile = new File(toPath);
-            FileCopy.copyfile(fromFile, toFile, true);
-            list.get(i).setBackGroundURL(str + num);
+
+     for (int i=0;i<list.size();i++){
+
+         if(list.get(i).getBackGroundURL()==null&&(list.get(i).getText()==null|list.get(i).getText().length()==0)){
+             list.remove(i);
+             continue;
+         }
+            String picture_name="";
+            String toPath=path+"/"+str+num+".jpg";
+             if( list.get(i).getBackGroundURL()!=null) {
+                 String ss[] = list.get(i).getBackGroundURL().split("///");
+                 if(ss.length<2){
+                     set.remove(i);
+                     continue;
+                 }
+                 fromFile = new File(ss[1]);
+                 String s[]=ss[1].split("\\.");
+                 if(s.length<2){
+                     toPath = path + "/" + str + num;
+                     picture_name=str + num;
+                 }else {
+                     toPath = path + "/" + str + num + s[1];
+                     picture_name=str + num + s[1];
+                 }
+             }else{
+                  fromFile = new File(PathConfig.WEB+"null.jpg");
+                 picture_name=str + num +".jpg";
+             }
+            File toFile=new File(toPath);
+         FileCopy.copyfile(fromFile,toFile,true);
+          list.get(i).setBackGroundURL(picture_name);
             num++;
         }
     }

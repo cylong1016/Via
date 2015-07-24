@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.view.View;
@@ -46,18 +47,39 @@ public class PasterActivity extends Activity {
                     pasters.get(i).setEditable(false);
                 }
             }
-
         });
     }
 
-    public void pasterListener(View v) {
-        ImageView view = (ImageView) v;
-        RelativeLayout mLayout = (RelativeLayout) iv.getParent();
-        SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this);
-        singleTouchView.setImageDrawable(view.getDrawable());
-        mLayout.addView(singleTouchView);
-        pasters.add(singleTouchView);
-    }
+    public void pasterListener(View v){
+        /*ArrayList<int[]> locations = new ArrayList<>();
+        for(int i = 0;i<pasters.size();i++){
+            if(pasters.get(i).getVisibility()!=View.GONE) {
+                locations.add(pasters.get(i).saveLocation());
+            }
+        }*/
+        ImageView view = (ImageView)v;
+            RelativeLayout mLayout = (RelativeLayout) iv.getParent();
+            SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this);
+            singleTouchView.setImageDrawable(view.getDrawable());
+            mLayout.addView(singleTouchView);
+
+     /*   int j = -1;
+        for(int i = 0;i<pasters.size();i++){
+            if(pasters.get(i).getVisibility()!=View.GONE) {
+                j++;
+//                pasters.get(i).setLocation(locations.get(j));
+                mLayout.removeView(pasters.get(i));
+                RelativeLayout.LayoutParams para =new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
+                para.leftMargin = locations.get(j)[0];
+                para.topMargin = locations.get(j)[1];
+                pasters.get(i).setLayoutParams(para);
+                mLayout.addView(pasters.get(i),para);
+                System.out.println("fafasfdsfasdf" + locations.get(j)[0]);
+            }
+        }
+        */
+            pasters.add(singleTouchView);
+        }
 
     public void cancelPasterBtnListener(View view) {
         this.finish();
@@ -94,8 +116,7 @@ public class PasterActivity extends Activity {
         int actualHeight = src.getHeight();
         int ivWidth = iv.getWidth();
         int ivHeight = iv.getHeight();
-        float scale = (float) actualWidth / ivWidth;
-        float margain = (ivHeight - actualHeight / scale) / 2;
+        float scale = (float)actualWidth/ivWidth;
         ArrayList<Bitmap> maps = new ArrayList<>();
         ArrayList<PointF> points = new ArrayList<>();
         for (int i = 0; i < pasters.size(); i++) {
@@ -104,50 +125,58 @@ public class PasterActivity extends Activity {
                 points.add(pasters.get(i).getLocation());
             }
         }
-        for (int i = 0; i < points.size(); i++) {
-            PointF point = new PointF((points.get(i).x) * scale, (points.get(i).y - margain) * scale);
-            points.get(i).set(point);
-        }
+
+        for(int i = 0;i<points.size();i++){
+            PointF point = new PointF((points.get(i).x)*scale,(points.get(i).y)*scale);
+                points.get(i).set(point);
+            }
 
 
-        //create the new blank bitmap
-        Bitmap newb = Bitmap.createBitmap(actualWidth, actualHeight, Bitmap.Config.ARGB_8888);
-        Canvas cv = new Canvas(newb);
-        //draw src into
-        cv.drawBitmap(src, 0, 0, null);
-        //draw pasters into
-        for (int i = 0; i < maps.size(); i++) {
-            cv.drawBitmap(maps.get(i), points.get(i).x, points.get(i).y, null);
+            //create the new blank bitmap
+            Bitmap newb = Bitmap.createBitmap(actualWidth, actualHeight, Bitmap.Config.ARGB_8888);
+            Canvas cv = new Canvas(newb);
+            //draw src into
+            cv.drawBitmap(src, 0, 0, null);
+            //draw pasters into
+            for(int i = 0;i<maps.size();i++) {
+                cv.drawBitmap(resizeBmp(maps.get(i), scale), points.get(i).x, points.get(i).y, null);
+                System.out.println(maps.get(i).getWidth());
+                }
+                //save all clip
+                cv.save(Canvas.ALL_SAVE_FLAG);//保存
+                //store
+                cv.restore();//存储
+                return newb;
+            }
+
+        public void saveMyBitmap(Bitmap bmpTemp) throws IOException {
+            String copyURL = url;
+            File f = new File(copyURL);
+            f.createNewFile();
+            FileOutputStream fOut = null;
+            try {
+                fOut = new FileOutputStream(f);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            bmpTemp.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+            try {
+                fOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                fOut.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        //save all clip
-        cv.save(Canvas.ALL_SAVE_FLAG);//保存
-        //store
-        cv.restore();//存储
-        return newb;
+
+        private static Bitmap resizeBmp(Bitmap bitmap,float scale) {
+            Matrix matrix = new Matrix();
+            matrix.postScale(scale, scale); //长和宽放大缩小的比例
+            Bitmap resizeBmp = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
+            return resizeBmp;
+        }
     }
-
-    public void saveMyBitmap(Bitmap bmpTemp) throws IOException {
-        String copyURL = url;
-        File f = new File(copyURL);
-        f.createNewFile();
-        FileOutputStream fOut = null;
-        try {
-            fOut = new FileOutputStream(f);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        bmpTemp.compress(Bitmap.CompressFormat.PNG, 100, fOut);
-        try {
-            fOut.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            fOut.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-}
 

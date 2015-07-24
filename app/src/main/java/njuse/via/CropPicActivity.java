@@ -63,7 +63,7 @@ public class CropPicActivity extends Activity {
 
 
     public void cropPic(View v){
-        String[] temptype = picPath.split(".");
+        String[] temptype = picPath.split("\\.");
         String type = temptype[temptype.length-1];
         Bitmap.CompressFormat format = Bitmap.CompressFormat.JPEG;
         switch (type) {
