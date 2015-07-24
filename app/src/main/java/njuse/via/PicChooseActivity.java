@@ -112,6 +112,7 @@ public class PicChooseActivity extends Activity {
             case ALBUM:
                 //cutpicture(uri,300,300,CROP_PIC);
                 Uri tempuri = data.getData();
+                Log.e("myuri",tempuri.toString());
                 Bitmap bitmap1 = decodeUriAsBitmap(tempuri);
 
 
@@ -120,18 +121,21 @@ public class PicChooseActivity extends Activity {
                 bitname = temp1[temp1.length - 1].replace("%3A", "_");
                 String[] temptype = bitname.split("\\.");
                 type = temptype[temptype.length-1];
+                Bitmap.CompressFormat format = Bitmap.CompressFormat.JPEG;
                 switch(type){
                     case "jpg":
-                        bitmap1 = pc.comp(bitmap1, Bitmap.CompressFormat.JPEG);
-                        saveOriginalBitmap(bitmap1,bitname, Bitmap.CompressFormat.JPEG);
-                        saveMyBitmap(bitmap1, bitname, Bitmap.CompressFormat.JPEG);
                         break;
                     case "png":
-                        bitmap1 = pc.comp(bitmap1, Bitmap.CompressFormat.PNG);
-                        saveOriginalBitmap(bitmap1,bitname, Bitmap.CompressFormat.PNG);
-                        saveMyBitmap(bitmap1, bitname, Bitmap.CompressFormat.PNG);
+                       format = Bitmap.CompressFormat.PNG;
+                        break;
+                    default:
+                        bitname = bitname+".jpg";
                         break;
                 }
+
+                bitmap1 = pc.comp(bitmap1, format);
+                saveOriginalBitmap(bitmap1,bitname, format);
+                saveMyBitmap(bitmap1, bitname, format);
 
                 Intent inte = new Intent();
                 inte.setClass(this, MakeActivity.class);
