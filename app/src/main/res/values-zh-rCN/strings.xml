@@ -42,6 +42,15 @@
     <string name="BlackWhite">黑白</string>
     <string name="Threshold">阈值</string>
 
+    <string name="Brick">积木</string>
+    <string name="Edge">边缘</string>
+    <string name="Gamma">伽马</string>
+    <string name="Light">光照</string>
+    <string name="Noise">噪声</string>
+    <string name="Border">Lomo</string>
+    <string name="Video">录像</string>
+    <string name="YCB">YCB</string>
+
     <string name="save_success">保存文件成功！</string>
     <string name="no_inputName">请输入文件名！</string>
     <string name="input_dialog">请输入保存的文件名</string>

@@ -30,7 +30,8 @@
             android:id="@+id/runtime"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            />
 
     </RelativeLayout>
 
@@ -110,27 +111,6 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:text="@string/BlackWhite"
-                    android:textColor="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/LomoFilter"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:onClick="LomoListener"
-                    android:src="@mipmap/filter_7" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/mirror"
                     android:textColor="@color/white" />
             </RelativeLayout>
 
@@ -250,7 +230,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/No"
+                    android:text="@string/Brick"
                     android:textColor="@color/white" />
             </RelativeLayout>
 
@@ -270,7 +250,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/Saturation"
+                    android:text="@string/Bright"
                     android:textColor="@color/white" />
             </RelativeLayout>
 
@@ -290,7 +270,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/BlackWhite"
+                    android:text="@string/Edge"
                     android:textColor="@color/white" />
             </RelativeLayout>
 
@@ -310,7 +290,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/mirror"
+                    android:text="@string/Feather"
                     android:textColor="@color/white" />
             </RelativeLayout>
 
@@ -330,7 +310,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/Reflect"
+                    android:text="@string/Gamma"
                     android:textColor="@color/white" />
             </RelativeLayout>
 
@@ -350,7 +330,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/Tint"
+                    android:text="@string/Light"
                     android:textColor="@color/white" />
             </RelativeLayout>
 
@@ -370,7 +350,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/Color"
+                    android:text="@string/Noise"
                     android:textColor="@color/white" />
             </RelativeLayout>
 
@@ -390,7 +370,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/Invert"
+                    android:text="@string/Border"
                     android:textColor="@color/white" />
             </RelativeLayout>
 
@@ -410,7 +390,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/Threshold"
+                    android:text="@string/Video"
                     android:textColor="@color/white" />
             </RelativeLayout>
 
@@ -430,7 +410,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/Threshold"
+                    android:text="@string/YCB"
                     android:textColor="@color/white" />
             </RelativeLayout>
 
