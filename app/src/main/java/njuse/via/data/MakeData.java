@@ -24,12 +24,12 @@ import njuse.via.po.ScreenSet;
 public class MakeData implements MakeDataService {
 
     String dirpath = PathConfig.DATA_SER;                // 文件的存储路径
+    public static SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
 
     @Override
     public void saveMakeRes(ScreenSet list, String fileName) {
 
         //当文件夹不存在时创建文件夹
-        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
         String date = sDateFormat.format(new java.util.Date());
         // String pathName=f
 
