@@ -222,26 +222,6 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
-                    android:onClick="BrickListener"
-                    android:src="@mipmap/filter_0" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/Brick"
-                    android:textColor="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
                     android:onClick="BrightContrastListener"
                     android:src="@mipmap/filter_12" />
 
