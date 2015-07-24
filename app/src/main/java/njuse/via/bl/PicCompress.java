@@ -15,10 +15,10 @@ import java.io.ByteArrayOutputStream;
  */
 public class PicCompress {
 
-    public Bitmap compressImage(Bitmap image) {
+    public Bitmap compressImage(Bitmap image,Bitmap.CompressFormat format) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        image.compress(format, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         int options = 80;
         String time = String.valueOf(System.currentTimeMillis());
         Log.e("start",time);
@@ -27,7 +27,7 @@ public class PicCompress {
         while (baos.toByteArray().length / 1024 > 100) {  //循环判断如果压缩后图片是否大于100kb,大于继续压缩
             baos.reset();//重置baos即清空baos
             //System.out.println("mylength:" + baos.toByteArray().length);
-            image.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
+            image.compress(format, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
             options -= 10;//每次都减少10
             if(options<=0){
                 break;
@@ -45,16 +45,16 @@ public class PicCompress {
         return bitmap;
     }
 
-    public Bitmap comp(Bitmap image) {
+    public Bitmap comp(Bitmap image,Bitmap.CompressFormat format) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        image.compress(format, 100, baos);
 
         Log.e("mylength",":"+baos.toByteArray().length/1024);
 
         if( baos.toByteArray().length / 1024>1024) {//判断如果图片大于1M,进行压缩避免在生成图片（BitmapFactory.decodeStream）时溢出
             baos.reset();//重置baos即清空baos
-            image.compress(Bitmap.CompressFormat.JPEG, 50, baos);//这里压缩50%，把压缩后的数据存放到baos中
+            image.compress(format, 50, baos);//这里压缩50%，把压缩后的数据存放到baos中
         }
         Log.e("nowlength",":"+baos.toByteArray().length/1024);
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());
@@ -82,13 +82,13 @@ public class PicCompress {
         //重新读入图片，注意此时已经把options.inJustDecodeBounds 设回false了
         isBm = new ByteArrayInputStream(baos.toByteArray());
         bitmap = BitmapFactory.decodeStream(isBm, null, newOpts);
-        return compressImage(bitmap);//压缩好比例大小后再进行质量压缩
+        return compressImage(bitmap,format);//压缩好比例大小后再进行质量压缩
     }
 
-    public Bitmap compressPre(Bitmap image) {
+    public Bitmap compressPre(Bitmap image,Bitmap.CompressFormat format) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 10, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        image.compress(format, 10, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
 
         BitmapFactory.Options option = new BitmapFactory.Options();
         option.inSampleSize = 16;
