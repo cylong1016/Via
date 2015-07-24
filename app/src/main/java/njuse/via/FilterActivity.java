@@ -17,8 +17,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import njuse.via.filter.ColorToneFilter;
-import njuse.via.filter.FilmFilter;
 import njuse.via.filter.newFilter.BlackWhiteFilter;
 import njuse.via.filter.newFilter.ColorQuantizeFilter;
 import njuse.via.filter.newFilter.IImageFilter;
@@ -95,34 +93,8 @@ public class FilterActivity extends Activity {
         cropBmp = cropDefault;
     }
 
-    //    public void IceListener(View view) {
-//        IceFilter filter = new IceFilter(bmpDefaultPic);
-//        bitmap = filter.imageProcess().getDstBitmap();
-//        iv.setImageBitmap(bitmap);
-//        IceFilter filter_Crop = new IceFilter(cropDefault);
-//        cropBmp = filter_Crop.imageProcess().getDstBitmap();
-//    }
-//    public void FeatherListener(View view) {
-//        FeatherFilter filter= new FeatherFilter(bmpDefaultPic);
-//        bitmap = filter.imageProcess().getDstBitmap();
-//        iv.setImageBitmap(bitmap);
-//        FeatherFilter filter_Crop = new FeatherFilter(cropDefault);
-//        cropBmp = filter_Crop.imageProcess().getDstBitmap();
-//    }
-//    public void ZoomBlurListener(View view) {
-//        ZoomBlurFilter filter = new ZoomBlurFilter(bmpDefaultPic,20);
-//        bitmap = filter.imageProcess().getDstBitmap();
-//        iv.setImageBitmap(bitmap);
-//        if(isCrop) {
-//            ZoomBlurFilter filter_Crop = new ZoomBlurFilter(cropDefault,20);
-//            cropBmp = filter_Crop.imageProcess().getDstBitmap();
-//        }
-//    }
-    public void LomoListener(View view) {
-//        LomoFilter filter = new LomoFilter(bmpDefaultPic);
-//        bitmap = filter.imageProcess().getDstBitmap();
-//        iv.setImageBitmap(bitmap);
 
+    public void LomoListener(View view) {
         MirrorFilter filter = new MirrorFilter(false);
         Image img = new Image(bmpDefaultPic);
         img = filter.process(img);
@@ -136,22 +108,6 @@ public class FilterActivity extends Activity {
             img_crop.copyPixelsFromBuffer();
             cropBmp = img_crop.getImage();
         }
-    }
-
-    public void FilmListener(View view) {
-        FilmFilter filter = new FilmFilter(bmpDefaultPic, 20);
-        bitmap = filter.imageProcess().getDstBitmap();
-        iv.setImageBitmap(bitmap);
-        FilmFilter filter_Crop = new FilmFilter(cropDefault, 20);
-        cropBmp = filter_Crop.imageProcess().getDstBitmap();
-    }
-
-    public void BlueToneListener(View view) {
-        ColorToneFilter filter = new ColorToneFilter(bmpDefaultPic, 0x0000FF, 192);
-        bitmap = filter.imageProcess().getDstBitmap();
-        iv.setImageBitmap(bitmap);
-        ColorToneFilter filter_Crop = new ColorToneFilter(cropDefault, 0x0000FF, 192);
-        cropBmp = filter_Crop.imageProcess().getDstBitmap();
     }
 
     public void setImgFilter(IImageFilter imageFilter) {
@@ -207,12 +163,6 @@ public class FilterActivity extends Activity {
     }
 
     public void ensureFilter(View view) throws IOException {
-//        this.startActivity(intent);
-//        new Thread() { // ��ֹ�л�����
-//            public void run() {
-//
-//            }
-//        }.start();
 //        setResult(RESULT_CANCELED, null);
         try {
             saveMyBitmap("copy", bitmap);
