@@ -18,15 +18,25 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import njuse.via.filter.newFilter.BlackWhiteFilter;
+import njuse.via.filter.newFilter.BrickFilter;
+import njuse.via.filter.newFilter.BrightContrastFilter;
 import njuse.via.filter.newFilter.ColorQuantizeFilter;
+import njuse.via.filter.newFilter.EdgeFilter;
+import njuse.via.filter.newFilter.FeatherFilter;
+import njuse.via.filter.newFilter.GammaFilter;
 import njuse.via.filter.newFilter.IImageFilter;
 import njuse.via.filter.newFilter.Image;
 import njuse.via.filter.newFilter.InvertFilter;
+import njuse.via.filter.newFilter.LightFilter;
 import njuse.via.filter.newFilter.MirrorFilter;
+import njuse.via.filter.newFilter.NoiseFilter;
+import njuse.via.filter.newFilter.PaintBorderFilter;
 import njuse.via.filter.newFilter.ReflectionFilter;
 import njuse.via.filter.newFilter.SaturationModifyFilter;
 import njuse.via.filter.newFilter.ThresholdFilter;
 import njuse.via.filter.newFilter.TintFilter;
+import njuse.via.filter.newFilter.VideoFilter;
+import njuse.via.filter.newFilter.YCBCrLinearFilter;
 
 public class FilterActivity extends Activity {
 
@@ -130,6 +140,13 @@ public class FilterActivity extends Activity {
         new processImageTask(FilterActivity.this, filter).execute();
     }
 
+    public void ThreListener(View view) {
+        ThresholdFilter filter = new ThresholdFilter();
+        setImgFilter(filter);
+        setCropFilter(filter);
+        new processImageTask(FilterActivity.this, filter).execute();
+    }
+
     public void ReflectListener2(View view) {
         ReflectionFilter filter = new ReflectionFilter(false);
         new processImageTask(FilterActivity.this, filter).execute();
@@ -155,12 +172,57 @@ public class FilterActivity extends Activity {
         new processImageTask(FilterActivity.this, filter).execute();
     }
 
-    public void ThreListener(View view) {
-        ThresholdFilter filter = new ThresholdFilter();
-        setImgFilter(filter);
-        setCropFilter(filter);
+    public void BrickListener(View view) {
+        BrickFilter filter = new BrickFilter();
         new processImageTask(FilterActivity.this, filter).execute();
     }
+
+    public void BrightContrastListener(View view) {
+        BrightContrastFilter filter = new BrightContrastFilter();
+        new processImageTask(FilterActivity.this, filter).execute();
+    }
+
+    public void EdgeListener(View view) {
+        EdgeFilter filter = new EdgeFilter();
+        new processImageTask(FilterActivity.this, filter).execute();
+    }
+
+    public void FeatherListener(View view) {
+        FeatherFilter filter = new FeatherFilter();
+        new processImageTask(FilterActivity.this, filter).execute();
+    }
+
+    public void GammaListener(View view) {
+        GammaFilter filter = new GammaFilter(50);
+        new processImageTask(FilterActivity.this, filter).execute();
+    }
+
+    public void LightListener(View view) {
+        LightFilter filter = new LightFilter();
+        new processImageTask(FilterActivity.this, filter).execute();
+    }
+
+    public void NoiseListener(View view) {
+        NoiseFilter filter = new NoiseFilter();
+        new processImageTask(FilterActivity.this, filter).execute();
+    }
+
+    public void PaintBorderListener(View view) {
+        PaintBorderFilter filter = new PaintBorderFilter(0xFF0000);
+        new processImageTask(FilterActivity.this, filter).execute();
+    }
+
+    public void VideoListener(View view) {
+        VideoFilter filter = new VideoFilter(VideoFilter.VIDEO_TYPE.VIDEO_STAGGERED);
+        new processImageTask(FilterActivity.this, filter).execute();
+    }
+
+    public void YCBListener(View view) {
+        YCBCrLinearFilter filter = new YCBCrLinearFilter(new YCBCrLinearFilter.Range(-0.276f, 0.163f), new YCBCrLinearFilter.Range(-0.202f, 0.5f));
+        new processImageTask(FilterActivity.this, filter).execute();
+    }
+
+
 
     public void ensureFilter(View view) throws IOException {
 //        setResult(RESULT_CANCELED, null);
