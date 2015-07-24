@@ -168,10 +168,10 @@ public class MakeActivity extends Activity {
 
     }
 
-    private  void setPreviewImg(Bitmap bitmap,Bitmap.CompressFormat format){
+    private void setPreviewImg(Bitmap bitmap, Bitmap.CompressFormat format) {
         bitmap = pc.compressPre(bitmap, format);
-        for(int i = 0;i<preButton.size();i++) {
-            if(preButton.get(i).getId()==isselect) {
+        for (int i = 0; i < preButton.size(); i++) {
+            if (preButton.get(i).getId() == isselect) {
                 preButton.get(i).setImageBitmap(bitmap);
             }
         }
@@ -427,9 +427,9 @@ public class MakeActivity extends Activity {
             Bitmap bitmap = decodeUriAsBitmap(Uri.parse(path));
             if (bitmap != null) {
                 String[] temptype = path.split("\\.");
-                String type = temptype[temptype.length-1];
+                String type = temptype[temptype.length - 1];
                 Bitmap.CompressFormat format = Bitmap.CompressFormat.JPEG;
-                switch(type){
+                switch (type) {
                     case "jpg":
                         break;
                     case "png":
@@ -437,7 +437,7 @@ public class MakeActivity extends Activity {
                         break;
                 }
                 mImageView.setImageBitmap(bitmap);
-                setPreviewImg(bitmap,format);
+                setPreviewImg(bitmap, format);
                 System.gc();
 
             }
@@ -526,21 +526,16 @@ public class MakeActivity extends Activity {
         this.startActivityForResult(intent, 98);
     }
 
+    public void deleteScreenListener(View view) {
+        deletePreview();
+
+    }
+
     /**
-     * 新增 一幕监听
-     *
+     * 添加宝藏监听
      * @param view
      */
-    public void deleteScreenListener(View view) {
-//        EditText edit = (EditText) findViewById(R.id.explain);
-//        String text = edit.getText().toString(); // 获得用户输入的文本
-//        screen.setText(text);
-//        Log.e("mytext", text);
-//        // 新建一幕
-//        screen = makeBL.getNewScreen();
-//        initScreen();
-//        addPreview();
-        deletePreview();
+    public void treasureListener(View view) {
 
     }
 

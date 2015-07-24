@@ -193,6 +193,15 @@
                 android:layout_weight="1"
                 android:onClick="selectListener"/>
 
+            <ImageView
+                android:id="@+id/treasure"
+                android:layout_width="@dimen/LinearComponentSize"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_add_sel"
+                android:background="@drawable/icon_selector"
+                android:layout_weight="1"
+                android:onClick="treasureListener"/>
+
         </LinearLayout>
 
         <LinearLayout
