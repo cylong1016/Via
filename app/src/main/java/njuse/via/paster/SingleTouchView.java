@@ -245,19 +245,7 @@ public class SingleTouchView extends View {
         super(context, attrs, defStyle);
         obtainStyledAttributes(attrs);
         init();
-    /*    SingleTouchView.this.setOnFocusChangeListener( new OnFocusChangeListener() {
 
-            public void onFocusChange(View v, boolean hasFocus) {
-                SingleTouchView view = (SingleTouchView)v;
-                if (hasFocus) {
-                    view.setEditable(true);
-                    System.out.println("得到焦点");
-                } else {
-                    view.setEditable(false);
-                    System.out.println("失去焦点");
-                }
-            }
-        });*/
         setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -270,19 +258,6 @@ public class SingleTouchView extends View {
 
     }
 
-   /* class OnFocusChangeListenerImp implements OnFocusChangeListener {
-
-        public void onFocusChange(View v, boolean hasFocus) {
-            SingleTouchView view = (SingleTouchView)v;
-            if (hasFocus) {
-                view.setEditable(true);
-                System.out.println("得到焦点");
-            } else {
-                view.setEditable(false);
-                System.out.println("失去焦点");
-            }
-        }
-    }*/
     /**
      * 获取自定义属性
      * @param attrs
@@ -377,11 +352,27 @@ public class SingleTouchView extends View {
         layout(newPaddingLeft, newPaddingTop, newPaddingLeft + actualWidth, newPaddingTop + actualHeight);
 
     }
-
-    public PointF getLocation(){
+    public int[] saveLocation(){
         int actualWidth = mViewWidth + mDrawableWidth;
         int actualHeight = mViewHeight + mDrawableHeight;
 
+        int newPaddingLeft = (int) (mCenterPoint.x - actualWidth /2);
+        int newPaddingTop = (int) (mCenterPoint.y - actualHeight/2);
+        xNow = newPaddingLeft;
+        yNow = newPaddingTop;
+        xNow1 = newPaddingLeft + actualWidth;
+        yNow1 = newPaddingTop + actualHeight;
+        int[] location = {xNow,yNow,xNow1,yNow1};
+        return location;
+    }
+
+    public void setLocation(int[] location){
+        layout(location[0], location[1], location[2], location[3]);
+    }
+
+    public PointF getLocation(){
+        int actualWidth = mViewWidth+ mDrawableWidth;
+        int actualHeight = mViewHeight+mDrawableHeight;
         int newPaddingLeft = (int) (mCenterPoint.x - actualWidth /2);
         int newPaddingTop = (int) (mCenterPoint.y - actualHeight/2);
         xNow = newPaddingLeft;
