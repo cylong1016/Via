@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import njuse.via.config.CommonConfig;
 import njuse.via.config.PathConfig;
 import njuse.via.dataservice.MakeDataService;
 import njuse.via.po.Screen;
@@ -24,13 +25,12 @@ import njuse.via.po.ScreenSet;
 public class MakeData implements MakeDataService {
 
     String dirpath = PathConfig.DATA_SER;                // 文件的存储路径
-    public static SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
 
     @Override
     public void saveMakeRes(ScreenSet list, String fileName) {
 
         //当文件夹不存在时创建文件夹
-        String date = sDateFormat.format(new java.util.Date());
+        String date = CommonConfig.sDateFormat.format(new java.util.Date());
         // String pathName=f
 
         String path = PathConfig.WEB_PROJECT + "/" + fileName + "_" + date;
