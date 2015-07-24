@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * Created by zucewei on 2015/7/23.
  */
 public class TreasureSet {
+    int num=0;
     ArrayList<Treasure> treasuresList=new ArrayList<>();
     public void addTreasure(Treasure t){
         treasuresList.add(t);
@@ -17,6 +18,12 @@ public class TreasureSet {
                 return;
             }
         }
+    }
+
+    public Treasure getNewTreasure(){
+        Treasure treasure=new Treasure(num);
+        num++;
+        return treasure;
     }
 
     public Treasure getTreasure(int id){
