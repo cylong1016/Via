@@ -118,7 +118,7 @@ public class PicChooseActivity extends Activity {
 
                 String temp1[] = tempuri.toString().split("/");
                 bitname = temp1[temp1.length - 1].replace("%3A", "_");
-                String[] temptype = bitname.split(".");
+                String[] temptype = bitname.split("\\.");
                 type = temptype[temptype.length-1];
                 switch(type){
                     case "jpg":
