@@ -370,6 +370,12 @@ public class MakeActivity extends Activity {
         String workName = editText.getText().toString();
         makeBL.saveWork(workName);
         Toast.makeText(this, R.string.save_success, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent();
+        intent.setClass(this, MainActivity.class);
+        this.startActivity(intent);
+        //设置切换动画，从左边进入，右边退出
+        overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+        this.finish();
     }
 
     /**
