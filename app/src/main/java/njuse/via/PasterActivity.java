@@ -51,27 +51,12 @@ public class PasterActivity extends Activity {
     }
 
     public void pasterListener(View v){
-   /*     ArrayList<PointF> locations = new ArrayList<>();
-        for(int i = 0;i<pasters.size();i++){
-            if(pasters.get(i).getVisibility()!=View.GONE) {
-                locations.add(pasters.get(i).getCenterPoint());
-            }
-        }*/
         ImageView view = (ImageView)v;
         RelativeLayout mLayout = (RelativeLayout) iv.getParent();
         SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this,new PointF(360,360),0);
         singleTouchView.setImageDrawable(view.getDrawable());
         mLayout.addView(singleTouchView);
-/*
-        int j = -1;
-        for(int i = 0;i<pasters.size();i++){
-            if(pasters.get(i).getVisibility()!=View.GONE) {
-                j++;
-                pasters.get(i).setCenterPoint(locations.get(j));
-            }
-        }*/
-
-            pasters.add(singleTouchView);
+        pasters.add(singleTouchView);
         }
 
     public void cancelPasterBtnListener(View view) {
