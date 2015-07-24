@@ -30,7 +30,6 @@ public class PasterActivity extends Activity {
     private ImageView iv;
     private Bitmap bmpDefaultPic = null, bitmap;
     private String url;//原图的图片，original
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_paster);
@@ -48,36 +47,30 @@ public class PasterActivity extends Activity {
                 }
             }
         });
+
     }
 
     public void pasterListener(View v){
-        /*ArrayList<int[]> locations = new ArrayList<>();
+   /*     ArrayList<PointF> locations = new ArrayList<>();
         for(int i = 0;i<pasters.size();i++){
             if(pasters.get(i).getVisibility()!=View.GONE) {
-                locations.add(pasters.get(i).saveLocation());
+                locations.add(pasters.get(i).getCenterPoint());
             }
         }*/
         ImageView view = (ImageView)v;
-            RelativeLayout mLayout = (RelativeLayout) iv.getParent();
-            SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this);
-            singleTouchView.setImageDrawable(view.getDrawable());
-            mLayout.addView(singleTouchView);
-
-     /*   int j = -1;
+        RelativeLayout mLayout = (RelativeLayout) iv.getParent();
+        SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this,new PointF(360,360),0);
+        singleTouchView.setImageDrawable(view.getDrawable());
+        mLayout.addView(singleTouchView);
+/*
+        int j = -1;
         for(int i = 0;i<pasters.size();i++){
             if(pasters.get(i).getVisibility()!=View.GONE) {
                 j++;
-//                pasters.get(i).setLocation(locations.get(j));
-                mLayout.removeView(pasters.get(i));
-                RelativeLayout.LayoutParams para =new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
-                para.leftMargin = locations.get(j)[0];
-                para.topMargin = locations.get(j)[1];
-                pasters.get(i).setLayoutParams(para);
-                mLayout.addView(pasters.get(i),para);
-                System.out.println("fafasfdsfasdf" + locations.get(j)[0]);
+                pasters.get(i).setCenterPoint(locations.get(j));
             }
-        }
-        */
+        }*/
+
             pasters.add(singleTouchView);
         }
 
@@ -115,7 +108,6 @@ public class PasterActivity extends Activity {
         int actualWidth = src.getWidth();
         int actualHeight = src.getHeight();
         int ivWidth = iv.getWidth();
-        int ivHeight = iv.getHeight();
         float scale = (float)actualWidth/ivWidth;
         ArrayList<Bitmap> maps = new ArrayList<>();
         ArrayList<PointF> points = new ArrayList<>();

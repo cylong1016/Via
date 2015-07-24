@@ -82,7 +82,7 @@ public class SingleTouchView extends View {
      * SingleTouchView的中心点坐标，相对于其父类布局而言的
      */
     private PointF mCenterPoint = new PointF();
-
+    public boolean hasSetCen=false;
     /**
      * View的宽度和高度，随着图片的旋转而变化(不包括控制旋转，缩放图片的宽高)
      */
@@ -241,6 +241,12 @@ public class SingleTouchView extends View {
         this(context, null);
     }
 
+    public SingleTouchView(Context context, PointF p,int x) {
+        this(context,null);
+        hasSetCen=true;
+        mCenterPoint=p;
+    }
+
     public SingleTouchView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         obtainStyledAttributes(attrs);
@@ -320,7 +326,7 @@ public class SingleTouchView extends View {
 
         //获取SingleTouchView所在父布局的中心点
         ViewGroup mViewGroup = (ViewGroup) getParent();
-        if(null != mViewGroup){
+        if(null != mViewGroup&&!hasSetCen){
             int parentWidth = mViewGroup.getWidth();
             int parentHeight = mViewGroup.getHeight();
             mCenterPoint.set(parentWidth/2, parentHeight/2);
