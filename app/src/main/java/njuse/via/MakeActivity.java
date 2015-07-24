@@ -158,7 +158,6 @@ public class MakeActivity extends Activity {
         newsc.setBackgroundResource(R.mipmap.icon_new);
         newsc.setOnClickListener(plisten);
 
-
         ImageButton img = (ImageButton) v.findViewById(R.id.id_index_gallery_item_image);
         img.setId(screen.getID());
         img.setOnClickListener(plisten);
@@ -170,7 +169,7 @@ public class MakeActivity extends Activity {
     }
 
     private  void setPreviewImg(Bitmap bitmap,Bitmap.CompressFormat format){
-        bitmap = pc.compressPre(bitmap,format);
+        bitmap = pc.compressPre(bitmap, format);
         for(int i = 0;i<preButton.size();i++) {
             if(preButton.get(i).getId()==isselect) {
                 preButton.get(i).setImageBitmap(bitmap);
@@ -195,7 +194,7 @@ public class MakeActivity extends Activity {
      * 初始化中间放图片和文字的的组件位置
      */
     public void initPhotoViewLoc() {
-        ImageView photoView = (ImageView) findViewById(R.id.photoView); // 显示图片的view
+        RelativeLayout photoRelative = (RelativeLayout) findViewById(R.id.photoRelative); // 显示图片的布局
         EditText explainEdit = (EditText) findViewById(R.id.explain); // 获得输入文字的组件
         double imgH = 850.0;
         double imgW = 720.0;
@@ -241,7 +240,7 @@ public class MakeActivity extends Activity {
         // 设置放置图片view的位置
         RelativeLayout.LayoutParams paramsView = new RelativeLayout.LayoutParams(viewW, viewH);
         paramsView.setMargins(viewX, viewY, 0, 0);
-        photoView.setLayoutParams(paramsView);
+        photoRelative.setLayoutParams(paramsView);
         // 设置文字输入框的位置
         RelativeLayout.LayoutParams paramsEdit = new RelativeLayout.LayoutParams(explainW, explainH);
         paramsEdit.setMargins(explainX, explainY, 0, 0);
