@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,12 +49,12 @@ import njuse.via.po.TreasureSet;
  */
 public class MakeActivity extends Activity {
     //----------------故事版的变量
+    private HorizontalScrollView preview;
     private LinearLayout mGallery;
     private LayoutInflater mInflater;
     private int isselect = 0;
     private ArrayList<Integer> preInt;
     private ArrayList<ImageButton> preButton;
-    private int buttonlength = 1;
     private PicCompress pc;
     private PreListener plisten;
     //-----------------
@@ -298,7 +299,7 @@ public class MakeActivity extends Activity {
 //        }
 
         //---------------------------------------------------------
-        HorizontalScrollView preview = (HorizontalScrollView) findViewById(R.id.preview); // 获取预览图组件
+        preview = (HorizontalScrollView) findViewById(R.id.preview); // 获取预览图组件
         preview.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
         //preview.getBackground().setAlpha(50);
         ImageView expend = (ImageView) findViewById(R.id.expand); // 获取扩大按钮图片
@@ -692,6 +693,15 @@ public class MakeActivity extends Activity {
         newsc.setOnClickListener(plisten);
         preButton.add(newsc);
         mGallery.addView(v2);
+        Log.e("height", mGallery.getChildCount() + ";");
+        int postion = (mGallery.getChildCount()-5)*144;
+        //mGallery.scrollTo(postion,0);
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                preview.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+            }
+        });
     }
 
     /*
