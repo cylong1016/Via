@@ -33,7 +33,7 @@ public class MakeData implements MakeDataService {
         String date = CommonConfig.sDateFormat.format(new java.util.Date());
         // String pathName=f
 
-        String path = PathConfig.WEB_PROJECT + "/" + fileName + "_" + date;
+        String path = date+ "_" + PathConfig.WEB_PROJECT + "/" + fileName ;
         File file = new File(dirpath);
         creatNewFile(path);                //创建存放产物的文件夹
 
