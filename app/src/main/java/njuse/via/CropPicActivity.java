@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import njuse.via.bl.PicCompress;
 import njuse.via.config.PathConfig;
 import njuse.via.crop.ClipImageLayout;
 import njuse.via.crop.ShowImageActivity;
@@ -74,6 +75,8 @@ public class CropPicActivity extends Activity {
                 break;
         }
         Bitmap bitmap = mClipImageLayout.clip();
+        PicCompress pc = new PicCompress();
+        bitmap = pc.comp(bitmap,format);
 
         saveMyBitmap(bitmap,format);
 

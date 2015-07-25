@@ -18,7 +18,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import njuse.via.filter.newFilter.BlackWhiteFilter;
-import njuse.via.filter.newFilter.BrickFilter;
 import njuse.via.filter.newFilter.BrightContrastFilter;
 import njuse.via.filter.newFilter.ColorQuantizeFilter;
 import njuse.via.filter.newFilter.EdgeFilter;
@@ -28,12 +27,7 @@ import njuse.via.filter.newFilter.IImageFilter;
 import njuse.via.filter.newFilter.Image;
 import njuse.via.filter.newFilter.InvertFilter;
 import njuse.via.filter.newFilter.LightFilter;
-import njuse.via.filter.newFilter.MirrorFilter;
-import njuse.via.filter.newFilter.NoiseFilter;
-import njuse.via.filter.newFilter.PaintBorderFilter;
-import njuse.via.filter.newFilter.ReflectionFilter;
 import njuse.via.filter.newFilter.SaturationModifyFilter;
-import njuse.via.filter.newFilter.ThresholdFilter;
 import njuse.via.filter.newFilter.TintFilter;
 import njuse.via.filter.newFilter.VideoFilter;
 import njuse.via.filter.newFilter.YCBCrLinearFilter;
@@ -67,12 +61,6 @@ public class FilterActivity extends Activity {
         bmpDefaultPic = BitmapFactory.decodeFile(url);
         bitmap = bmpDefaultPic;
         iv.setImageBitmap(bmpDefaultPic);
-//        File path = Environment.getExternalStorageDirectory();
-
-//        LinearLayout layout = (LinearLayout) findViewById(R.id.entirety);
-//        TextView tx = new TextView(this);
-//        tx.setText(url+" "+path);
-//        layout.addView(tx, 0);
     }
 
     @Override
@@ -103,52 +91,21 @@ public class FilterActivity extends Activity {
         cropBmp = cropDefault;
     }
 
-
-    public void LomoListener(View view) {
-        MirrorFilter filter = new MirrorFilter(false);
-        Image img = new Image(bmpDefaultPic);
-        img = filter.process(img);
-        img.copyPixelsFromBuffer();
-        bitmap = img.getImage();
-        iv.setImageBitmap(bitmap);
-        if (isCrop) {
-            MirrorFilter filter_Crop = new MirrorFilter(false);
-            Image img_crop = new Image(cropDefault);
-            img_crop = filter_Crop.process(img_crop);
-            img_crop.copyPixelsFromBuffer();
-            cropBmp = img_crop.getImage();
-        }
-    }
-
+    Image img,img_crop;
     public void setImgFilter(IImageFilter imageFilter) {
-        Image img = new Image(bmpDefaultPic);
+        img = new Image(bmpDefaultPic);
         img = imageFilter.process(img);
         img.copyPixelsFromBuffer();
         bitmap = img.getImage();
-        iv.setImageBitmap(img.getImage());
-    }
-
-    public void setCropFilter(IImageFilter imageFilter) {
-        Image img_crop = new Image(cropDefault);
+        img_crop = new Image(cropDefault);
         img_crop = imageFilter.process(img_crop);
         img_crop.copyPixelsFromBuffer();
         cropBmp = img_crop.getImage();
+        iv.setImageBitmap(img.getImage());
     }
 
     public void SatListener(View view) {
         SaturationModifyFilter filter = new SaturationModifyFilter();
-        new processImageTask(FilterActivity.this, filter).execute();
-    }
-
-    public void ThreListener(View view) {
-        ThresholdFilter filter = new ThresholdFilter();
-        setImgFilter(filter);
-        setCropFilter(filter);
-        new processImageTask(FilterActivity.this, filter).execute();
-    }
-
-    public void ReflectListener2(View view) {
-        ReflectionFilter filter = new ReflectionFilter(false);
         new processImageTask(FilterActivity.this, filter).execute();
     }
 
@@ -169,11 +126,6 @@ public class FilterActivity extends Activity {
 
     public void BlackWhiteListener(View view) {
         BlackWhiteFilter filter = new BlackWhiteFilter();
-        new processImageTask(FilterActivity.this, filter).execute();
-    }
-
-    public void BrickListener(View view) {
-        BrickFilter filter = new BrickFilter();
         new processImageTask(FilterActivity.this, filter).execute();
     }
 
@@ -202,16 +154,6 @@ public class FilterActivity extends Activity {
         new processImageTask(FilterActivity.this, filter).execute();
     }
 
-    public void NoiseListener(View view) {
-        NoiseFilter filter = new NoiseFilter();
-        new processImageTask(FilterActivity.this, filter).execute();
-    }
-
-    public void PaintBorderListener(View view) {
-        PaintBorderFilter filter = new PaintBorderFilter(0xFF0000);
-        new processImageTask(FilterActivity.this, filter).execute();
-    }
-
     public void VideoListener(View view) {
         VideoFilter filter = new VideoFilter(VideoFilter.VIDEO_TYPE.VIDEO_STAGGERED);
         new processImageTask(FilterActivity.this, filter).execute();
@@ -225,7 +167,6 @@ public class FilterActivity extends Activity {
 
 
     public void ensureFilter(View view) throws IOException {
-//        setResult(RESULT_CANCELED, null);
         try {
             saveMyBitmap("copy", bitmap);
             if (isCrop) {
@@ -281,10 +222,8 @@ public class FilterActivity extends Activity {
         }
 
         public Bitmap doInBackground(Void... params) {
-            Image img = null;
             try {
                 setImgFilter(filter);
-                setCropFilter(filter);
             } catch (Exception e) {
                 if (img != null && img.destImage.isRecycled()) {
                     img.destImage.recycle();
@@ -292,10 +231,10 @@ public class FilterActivity extends Activity {
                     System.gc(); // 提醒系统及时回收
                 }
             } finally {
-                if (img != null && img.image.isRecycled()) {
+                if (img != null &&  img.image.isRecycled()) {
                     img.image.recycle();
                     img.image = null;
-                    System.gc(); // 提醒系统及时回收
+                    System.gc(); //
                 }
             }
             return null;
@@ -309,5 +248,6 @@ public class FilterActivity extends Activity {
             textView.setVisibility(View.GONE);
         }
     }
+
 
 }

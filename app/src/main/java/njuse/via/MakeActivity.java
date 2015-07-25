@@ -497,6 +497,7 @@ public class MakeActivity extends Activity {
      */
     public void setImgAfterFilter() {
         Bitmap bitmap = decodeUriAsBitmap(Uri.parse(screen.getBackGroundURL()));
+        Log.i("scurl",screen.getBackGroundURL());
         ImageView mImageView = (ImageView) findViewById(R.id.photoView);
         if (bitmap != null) {
             mImageView.setImageBitmap(bitmap);
