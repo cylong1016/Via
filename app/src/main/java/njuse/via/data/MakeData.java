@@ -84,7 +84,7 @@ public class MakeData implements MakeDataService {
                      picture_name=str + num;
                  }else {
                      toPath = path + "/" + str + num + s[1];
-                     picture_name=str + num + s[1];
+                     picture_name=str + num + "."+s[1];
                  }
              }else{
                   fromFile = new File(PathConfig.WEB+"no_photo.jpg");
