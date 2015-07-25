@@ -501,9 +501,9 @@ public class TreasureView extends View {
             canvas.drawPath(mPath, mPaint);
             //画旋转, 缩放图标
 
-            controlDrawable.setBounds(mControlPoint.x - mDrawableWidth / 2,
-                    mControlPoint.y - mDrawableHeight / 2, mControlPoint.x + mDrawableWidth
-                            / 2, mControlPoint.y + mDrawableHeight / 2);
+//            controlDrawable.setBounds(mControlPoint.x - mDrawableWidth / 2,
+//                    mControlPoint.y - mDrawableHeight / 2, mControlPoint.x + mDrawableWidth
+//                            / 2, mControlPoint.y + mDrawableHeight / 2);
 //            controlDrawable.draw(canvas);
 
             deleteDrawable.setBounds(mDeletePoint.x - mDeleteWidth / 2,
@@ -720,7 +720,7 @@ public class TreasureView extends View {
         mRBPoint.y += (offsetY + halfDrawableHeight);
         mLBPoint.y += (offsetY + halfDrawableHeight);
 
-        mControlPoint = LocationToPoint(controlLocation);
+//        mControlPoint = LocationToPoint(controlLocation);
         mDeletePoint = LocationToPoint(deleteLocation);
     }
 

@@ -72,4 +72,6 @@
     <string name="save_success">Save success</string>
     <string name="no_inputName">No input file name!</string>
     <string name="input_dialog">Input file name please!</string>
+
+    <string name="max_treasure">The amount of treasure has reached its maximum.</string>
 </resources>

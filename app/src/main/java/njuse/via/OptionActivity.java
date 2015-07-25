@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import java.util.LinkedList;
 
+import njuse.via.config.CommonConfig;
 import njuse.via.po.Option;
 import njuse.via.po.OptionItem;
 
@@ -27,7 +28,7 @@ import njuse.via.po.OptionItem;
 public class OptionActivity extends Activity {
 
     int button_show_number;
-    int button_max_number = 4;
+    int button_max_number = CommonConfig.maxOptionNumber;
     int true_id;
 
     @Override

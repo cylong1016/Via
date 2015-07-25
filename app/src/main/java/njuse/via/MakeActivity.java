@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import njuse.via.bl.MakeBL;
 import njuse.via.bl.PicCompress;
 import njuse.via.blservice.MakeBLService;
+import njuse.via.config.CommonConfig;
 import njuse.via.config.PathConfig;
 import njuse.via.paster.TreasureView;
 import njuse.via.po.Option;
@@ -554,25 +555,40 @@ public class MakeActivity extends Activity {
      */
     public void treasureListener(View view) {
         if(screen.getBackGroundURL() != null){
-            ImageView mImageView=(ImageView) findViewById(R.id.photoView);
-            RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
-            TreasureView treasureView = new TreasureView(MakeActivity.this);
-            treasureView.setImageDrawable(getResources().getDrawable(R.drawable.smallbackground));
-            mLayout.addView(treasureView);
 
-            treaviewset.add(treasureView);
+            if(countTreasure()< CommonConfig.maxTreasureNumber) {
+                ImageView mImageView = (ImageView) findViewById(R.id.photoView);
+                RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
+                TreasureView treasureView = new TreasureView(MakeActivity.this);
+                treasureView.setImageDrawable(getResources().getDrawable(R.drawable.smallbackground));
+                mLayout.addView(treasureView);
 
-            PointF p=treasureView.getCenPointPer();
-            TreasureSet set=screen.getTreasureSet();
-            Treasure trea=set.getNewTreasure();
-            trea.setX(p.x);
-            trea.setY(p.y);
+                treaviewset.add(treasureView);
 
-            treasureView.id=trea.getID();
+                PointF p = treasureView.getCenPointPer();
+                TreasureSet set = screen.getTreasureSet();
+                Treasure trea = set.getNewTreasure();
+                trea.setX(p.x);
+                trea.setY(p.y);
+
+                treasureView.id = trea.getID();
+            }else{
+                Toast.makeText(this, R.string.max_treasure, Toast.LENGTH_SHORT).show();
+            }
 
         }else{
             Toast.makeText(this, R.string.no_photo, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public int countTreasure(){
+        int num=0;
+        for(int i=0;i<treaviewset.size();i++){
+            if(treaviewset.get(i).getVisibility()==View.VISIBLE){
+                num++;
+            }
+        }
+        return num;
     }
 
     public void initTreasure(){

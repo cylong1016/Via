@@ -7,4 +7,6 @@ import java.text.SimpleDateFormat;
  */
 public class CommonConfig {
     public static SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+    public static int maxTreasureNumber=3;
+    public static int maxOptionNumber=4;        //这个值需要<=4&&>=2
 }

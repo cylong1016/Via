@@ -54,4 +54,6 @@
     <string name="save_success">保存文件成功！</string>
     <string name="no_inputName">请输入文件名！</string>
     <string name="input_dialog">请输入保存的文件名</string>
+
+    <string name="max_treasure">宝藏数量已达到最大值</string>
 </resources>
