@@ -213,7 +213,7 @@
             android:layout_weight="1">
 
             <ImageView
-                android:id="@+id/newScreen"
+                android:id="@+id/deleteScreen"
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/option_delete"

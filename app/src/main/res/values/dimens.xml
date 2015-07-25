@@ -29,5 +29,5 @@
     <dimen name="text_mergin">8dp</dimen>
 
     <!-- 显示作品列表的边距 -->
-    <dimen name="read_list_margin">0px</dimen>
+    <dimen name="read_list_margin">5px</dimen>
 </resources>

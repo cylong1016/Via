@@ -13,4 +13,7 @@
     <!-- 按钮按下的背景 -->
     <color name="btn_down_background">#19FFFFFF</color>
 
+    <!-- 读取界面标题的TextView背景 -->
+    <color name="text_background">#A030363A</color>
+
 </resources>
