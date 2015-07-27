@@ -82,11 +82,20 @@
 	position: absolute;
 
 	width: 12%;
-	top: 50%;
-	left: 50%;
+
 
 	opacity: 0;
 
+}
+
+#diamond_1{
+	top: 50%;
+	left: 50%;
+}
+
+#diamond_2{
+	top: 20%;
+	left: 50%;
 }
 
 .images .treasure span{
