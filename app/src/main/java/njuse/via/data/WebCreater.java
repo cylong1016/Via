@@ -27,7 +27,7 @@ public class WebCreater {
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/global.css\" />\n" +
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/blur_css.css\">\n" +
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/index.css\">\n" +
-                "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/jquery_full_page.css\" />\n" +
+                "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/full_page.css\" />\n" +
                 "\n" +
                 "<script type=\"text/javascript\" src=\"../../js/jquery_min.js\"></script>\n" +
                 "<script type=\"text/javascript\" src=\"../../js/jquery_easing.js\"></script>\n" +
