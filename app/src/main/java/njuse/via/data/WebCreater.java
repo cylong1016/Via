@@ -46,7 +46,7 @@ public class WebCreater {
                 "\n" +
                 "<script type=\"text/javascript\">\n" +
                 "\n" +
-                "$(document).ready(function () {\n" +
+                "$(document).ready(function(){\n" +
                 "\t$('#fullpage').fullpage({\n" +
                 "\t\tscrollingSpeed:500,\n" +
                 "\t\teasing:'',\n" +
@@ -65,7 +65,7 @@ public class WebCreater {
     private static String divCreater(ScreenSet screenSet){
         String str = "";
         LinkedList<Screen> screenList = screenSet.getScreenList();
-        for(int i = 0; i < screenList.size(); i++){
+        for(int i = screenList.size()-1; i >=0; i--){
             Screen screen = screenList.get(i);
             ScreenEnum e = screen.getScreenEnum();
 
