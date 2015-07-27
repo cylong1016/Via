@@ -65,7 +65,7 @@ public class WebCreater {
     private static String divCreater(ScreenSet screenSet){
         String str = "";
         LinkedList<Screen> screenList = screenSet.getScreenList();
-        for(int i = screenList.size()-1; i >=0; i--){
+        for(int i = 0; i < screenList.size(); i++){
             Screen screen = screenList.get(i);
             ScreenEnum e = screen.getScreenEnum();
 
@@ -94,10 +94,10 @@ public class WebCreater {
                 Option op = screen.getOption();
                 for (int j = 0; j<op.getItemLength(); j++){
                     str = str + "<div class=\"answer";
-                    if (op.getOptionItem(i).getValue()){
+                    if (op.getOptionItem(j).getValue()){
                         str = str + " correct";
                     }
-                    str = str + "\">" + op.getOptionItem(i).getText() +
+                    str = str + "\">" + op.getOptionItem(j).getText() +
                     "</div>";
                 }
                 str = str + "</div>";
