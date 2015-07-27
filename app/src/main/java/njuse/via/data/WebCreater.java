@@ -80,6 +80,9 @@ public class WebCreater {
 //            else if(e == ScreenEnum.NORMAL){
 //                str = str + " hasTreasure\">\n";
 //            }
+            else{
+                str = str + ">\n";
+            }
             str = str +
                     "\t\t<img class=\"bg blur\" src=\""+screen.getBackGroundURL()+"\"/>\n" +
                     "\t\t<div class=\"type t3\"></div>\n" +
