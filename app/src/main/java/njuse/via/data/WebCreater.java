@@ -81,7 +81,7 @@ public class WebCreater {
 //                str = str + " hasTreasure\">\n";
 //            }
             else{
-                str = str + ">\n";
+                str = str + "\">\n";
             }
             str = str +
                     "\t\t<img class=\"bg blur\" src=\""+screen.getBackGroundURL()+"\"/>\n" +
