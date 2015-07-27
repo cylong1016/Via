@@ -21,6 +21,7 @@
     <string name="Camera">camera</string>
     <string name="album">album</string>
     <string name="cancel">cancel</string>
+    <string name="back">back</string>
     <string name="title_activity_filter">FilterActivity</string>
 
     <string name="option1">Option 1</string>
@@ -74,4 +75,8 @@
     <string name="input_dialog">Input file name please!</string>
 
     <string name="max_treasure">The amount of treasure has reached its maximum.</string>
+
+    <string name="not_option_screen">This screen is not a NORMAL screen or a OPTION screen</string>
+    <string name="not_treasure_screen">This screen is not a NORMAL screen or a TREASURE screen</string>
+
 </resources>

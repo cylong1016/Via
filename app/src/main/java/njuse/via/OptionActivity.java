@@ -1,7 +1,9 @@
 package njuse.via;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -212,29 +214,33 @@ public class OptionActivity extends Activity {
         switch (note) {
             case R.id.btn_option1_del1:
                 if (true_id == but1.getId()) {
-                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
-                            Toast.LENGTH_SHORT).show();
+                    dialog();
+//                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
+//                            Toast.LENGTH_SHORT).show();
                     return;
                 }
                 break;
             case R.id.btn_option1_del2:
                 if (true_id == but2.getId()) {
-                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
-                            Toast.LENGTH_SHORT).show();
+                    dialog();
+//                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
+//                            Toast.LENGTH_SHORT).show();
                     return;
                 }
                 break;
             case R.id.btn_option1_del3:
                 if (true_id == but3.getId()) {
-                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
-                            Toast.LENGTH_SHORT).show();
+                    dialog();
+//                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
+//                            Toast.LENGTH_SHORT).show();
                     return;
                 }
                 break;
             case R.id.btn_option1_del4:
                 if (true_id == but4.getId()) {
-                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
-                            Toast.LENGTH_SHORT).show();
+                    dialog();
+//                    Toast.makeText(getApplicationContext(), R.string.del_err_inf,
+//                            Toast.LENGTH_SHORT).show();
                     return;
                 }
                 break;
@@ -504,6 +510,27 @@ public class OptionActivity extends Activity {
         }
 
     }
+
+    protected void dialog() {
+              AlertDialog.Builder builder = new AlertDialog.Builder(OptionActivity.this);
+              builder.setMessage("此选项为正确选项，删除此选项将会删除整个选项模块，是否确认删除？");
+              builder.setTitle("警告");
+              builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       dialog.dismiss();
+                       button_show_number=0;
+                       cancelOptionBtnListener(null);
+                       }
+                  });
+              builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                       }
+                  });
+              builder.create().show();
+             }
 
     private class setOnFocusChangeListener implements View.OnFocusChangeListener {
 

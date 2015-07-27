@@ -40,6 +40,7 @@ import njuse.via.config.PathConfig;
 import njuse.via.paster.TreasureView;
 import njuse.via.po.Option;
 import njuse.via.po.Screen;
+import njuse.via.po.ScreenEnum;
 import njuse.via.po.Treasure;
 import njuse.via.po.TreasureSet;
 
@@ -396,6 +397,7 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void saveListener(View view) {
+        refreshTreasure();
         screen.setText(((EditText) findViewById(R.id.explain)).getText().toString());
         arrangeTreasure();
 
@@ -538,17 +540,21 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void selectListener(View view) {
-        Intent intent = new Intent();
-        intent.setClass(this, OptionActivity.class);
-        Bundle b = new Bundle();
-        b.putSerializable("option", screen.getOption());
-        intent.putExtras(b);
-        this.startActivityForResult(intent, 98);
+        refreshTreasure();
+        if(screen.getScreenEnum()==ScreenEnum.NORMAL||screen.getScreenEnum()==ScreenEnum.OPTION) {
+            Intent intent = new Intent();
+            intent.setClass(this, OptionActivity.class);
+            Bundle b = new Bundle();
+            b.putSerializable("option", screen.getOption());
+            intent.putExtras(b);
+            this.startActivityForResult(intent, 98);
+        }else{
+            Toast.makeText(this, R.string.not_option_screen, Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void deleteScreenListener(View view) {
         deletePreview();
-
     }
 
     /**
@@ -556,30 +562,34 @@ public class MakeActivity extends Activity {
      * @param view
      */
     public void treasureListener(View view) {
-        if(screen.getBackGroundURL() != null){
+        if(screen.getScreenEnum()==ScreenEnum.NORMAL||screen.getScreenEnum()==ScreenEnum.TREASURE) {
+            if (screen.getBackGroundURL() != null) {
+                screen.setScreenEnum(ScreenEnum.TREASURE);
+                if (countTreasure() < CommonConfig.maxTreasureNumber) {
+                    ImageView mImageView = (ImageView) findViewById(R.id.photoView);
+                    RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
+                    TreasureView treasureView = new TreasureView(MakeActivity.this);
+                    treasureView.setImageDrawable(getResources().getDrawable(R.drawable.smallbackground));
+                    mLayout.addView(treasureView);
 
-            if(countTreasure()< CommonConfig.maxTreasureNumber) {
-                ImageView mImageView = (ImageView) findViewById(R.id.photoView);
-                RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
-                TreasureView treasureView = new TreasureView(MakeActivity.this);
-                treasureView.setImageDrawable(getResources().getDrawable(R.drawable.smallbackground));
-                mLayout.addView(treasureView);
+                    treaviewset.add(treasureView);
 
-                treaviewset.add(treasureView);
+                    PointF p = treasureView.getCenPointPer();
+                    TreasureSet set = screen.getTreasureSet();
+                    Treasure trea = set.getNewTreasure();
+                    trea.setX(p.x);
+                    trea.setY(p.y);
 
-                PointF p = treasureView.getCenPointPer();
-                TreasureSet set = screen.getTreasureSet();
-                Treasure trea = set.getNewTreasure();
-                trea.setX(p.x);
-                trea.setY(p.y);
+                    treasureView.id = trea.getID();
+                } else {
+                    Toast.makeText(this, R.string.max_treasure, Toast.LENGTH_SHORT).show();
+                }
 
-                treasureView.id = trea.getID();
-            }else{
-                Toast.makeText(this, R.string.max_treasure, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, R.string.no_photo, Toast.LENGTH_SHORT).show();
             }
-
         }else{
-            Toast.makeText(this, R.string.no_photo, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.not_treasure_screen, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -627,12 +637,6 @@ public class MakeActivity extends Activity {
                 }else{
                     Treasure lin=set.getTreasure(treaviewset.get(i).id);
                     PointF mCen=treaviewset.get(i).getCenPointPer();
-                    if(lin==null){
-                        Log.e("lin","isNull");
-                    }
-                    if(mCen==null){
-                        Log.e("lin","mCen is Null");
-                    }
                     lin.setX(mCen.x);
                     lin.setY(mCen.y);
                 }
@@ -641,6 +645,17 @@ public class MakeActivity extends Activity {
             }
         }
         treaviewset=new ArrayList<TreasureView>();
+    }
+
+    public void refreshTreasure(){
+        int num=countTreasure();
+        if(num<=0){
+            if(screen.getScreenEnum()==ScreenEnum.TREASURE){
+                screen.setScreenEnum(ScreenEnum.NORMAL);
+            }
+        }else{
+            screen.setScreenEnum(ScreenEnum.TREASURE);
+        }
     }
 
     public void cleanTreasure(){
