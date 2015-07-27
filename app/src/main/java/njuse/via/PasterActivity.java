@@ -66,6 +66,14 @@ public class PasterActivity extends Activity {
         pasters.add(singleTouchView);
     }
 
+    public void pasterListener3(View v){
+        RelativeLayout mLayout = (RelativeLayout) iv.getParent();
+        SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this,new PointF(360,360),0);
+        singleTouchView.setImageResource(R.mipmap.paster3);
+        mLayout.addView(singleTouchView);
+        pasters.add(singleTouchView);
+    }
+
     public void cancelPasterBtnListener(View view) {
         this.finish();
     }

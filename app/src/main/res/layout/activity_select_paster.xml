@@ -68,6 +68,14 @@
                     android:layout_marginRight="10dp"
                     android:onClick="pasterListener2"
                     />
+                <ImageView
+                    android:id="@+id/paster3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/paster_icon3"
+                    android:layout_marginRight="10dp"
+                    android:onClick="pasterListener3"
+                    />
 
 
 
