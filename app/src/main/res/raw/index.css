@@ -1,10 +1,13 @@
+
+/*----------  GAME OVER   ----------*/
+
 .game_over{
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	background: rgba(19, 19, 19, 0.7);
 
-	z-index: 100;
+	z-index: 110;
 }
 
 .game_over .reset_form{
@@ -27,7 +30,7 @@
 	width: 40%;
 	margin: 0 auto;
 	padding: 15px;
-	
+
 	text-align: center;
 	color:#aaa;
 
@@ -37,25 +40,90 @@
 	cursor: pointer;
 }
 
+/*----------  SELECTIONS   ----------*/
+
+.sel{
+	position: absolute;
+	width: 100%;
+	height: 100px;
+	background: rgba(53, 53, 53, 0.60);
+
+	display: none;
+}
+
+.answer{
+	position: relative;
+	top: 20%;
+	margin: 20px 60px;
+	padding:15px;
+
+	border: 2px solid #fff;
+	border-radius: 25px;
+
+	color: #fff;
+	text-align: center;
+
+	cursor: pointer;
+}
+
+.sel:first-child{
+	margin: 60px;
+}
+
+/*----------  TREASURE   ----------*/
+
+.images .treasure{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+.images .treasure img{
+	position: absolute;
+
+	width: 12%;
+	top: 50%;
+	left: 50%;
+
+	opacity: 0;
+
+}
+
+.images .treasure span{
+	position: absolute;
+	text-align: center;
+	bottom: -16%;
+
+	padding: 10px 30px;
+
+	color: #eeeeee;
+	background: rgba(51, 51, 51, 1);
+
+	border-radius: 20px;
+
+	z-index: 100;
+	display: none;
+}
+
 /*========================================*/
 /*               ANIMATION                */
 /*========================================*/
 
-@keyframes fade-in {  
-        0% {opacity: 0;}/*初始状态 透明度为0*/  
-        40% {opacity: 0;}/*过渡状态 透明度为0*/  
-        100% {opacity: 1;}/*结束状态 透明度为1*/  
-    }  
-    @-webkit-keyframes fade-in {/*针对webkit内核*/  
-        0% {opacity: 0;}  
-        40% {opacity: 0;}  
-        100% {opacity: 1;}  
-    }  
+@keyframes fade-in {
+        0% {opacity: 0;}/*初始状态 透明度为0*/
+        40% {opacity: 0;}/*过渡状态 透明度为0*/
+        100% {opacity: 1;}/*结束状态 透明度为1*/
+    }
+    @-webkit-keyframes fade-in {/*针对webkit内核*/
+        0% {opacity: 0;}
+        40% {opacity: 0;}
+        100% {opacity: 1;}
+    }
 
-.active .text p{    
-	animation: fade-in 1.5s;/*动画名称 时间*/  
-	-webkit-animation:fade-in 1.5s;/*针对webkit内核*/  
-    } 
+.active .text p{
+	animation: fade-in 1.5s;/*动画名称 时间*/
+	-webkit-animation:fade-in 1.5s;/*针对webkit内核*/
+    }
 
 .active .images .sel{
 	/*animation: fade-in 1s;

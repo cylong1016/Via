@@ -69,7 +69,7 @@
 	width: 90%;
 	height: 16%;
 	left: 5%;
-	line-height: 1.5em;
+	line-height: 1.3em;
 	/*border: 1px dashed #000;*/
 
 	bottom: 4%;
@@ -113,7 +113,6 @@
 	margin: 60px;
 }
 
-
 /*========================================*/
 /*                 SIZE                   */
 /*========================================*/
@@ -152,13 +151,13 @@
 		height: 70%;
 	}
 	.text p{
-		-webkit-margin-before: 0em;
-  		-webkit-margin-after: 2em;
+		-webkit-margin-before: 1em;
+  		-webkit-margin-after: 1em;
         -webkit-margin-start: 0px;
   		-webkit-margin-end: 0px;
-}
 	}
 }
+
 
 /*---------  bigger than 600*800  ----------*/
 
@@ -195,4 +194,3 @@
 		height: 10%;
 	}
 }
-

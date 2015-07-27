@@ -517,8 +517,8 @@
 		a.fn.fullpage.moveSectionDown = function() {
 			var b = a(".fp-section.active").next(".fp-section");
 			b.length || !c.loopBottom && !c.continuousVertical || (b = a(".fp-section").first());
-			b.length && k(b, null, !1)
-			addSel();
+			b.length && k(b, null, !1);
+			hasGame();
 		};
 		a.fn.fullpage.moveTo = function(b, c) {
 			var e = "",

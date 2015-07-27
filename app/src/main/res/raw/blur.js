@@ -1,31 +1,36 @@
+
 window.onload=function(){              //not DOM
 
 	// $(".sel").hide();
 
 	var h = $(".images img").height();
 	$(".sel").height(h);
+	$(".treasure").height(h);
+	$(".treasure").width(h);
 
-	addSel();				// 添加选项
-	setAnswer();
+	hasGame();
+
 }
 
-function setAnswer () {
-	var answer_num = $(".active .sel").children().length;
-	var answer_length = $(".answer").height();
-	// alert(answer_length);
+function hasGame(){
+	if(hasSel()){
+		return;
+	}
+	hasTreasure();
 }
 
-function addSel(){
+
+function hasSel(){
 
 	if (!$(".active").hasClass("hasSel")) {
 		$(".active").click(function(){
 			$.fn.fullpage.moveSectionDown();
 		})
-		return;
+		return false;
 	}
 	else{
 		// 禁止向下滑
-		$.fn.fullpage.setAllowScrolling(!1);
+		forbidScolling();
 	}
 
 	$(".hasSel").click(function(){
@@ -34,14 +39,16 @@ function addSel(){
 		$(".hasSel").unbind("click");
 	})
 
+	return true;
+
 }
 
 function jump(){
-	$(".active .answer").click(function(e){
-			var ev=e || event;  
-			var id=ev.target.id;//获取鼠标按下对应的对象的id   
-			if (id == "right") {
-				$.fn.fullpage.setAllowScrolling(!0);
+	$(".active .answer").click(function(){
+			//var ev=e || event;
+			//var id=ev.target.id;//获取鼠标按下对应的对象的id
+			if($(this).hasClass("correct")){
+				allowScrolling();
 				$(".active").removeClass("hasSel");
 				$(".active .sel").animate({opacity:'0.0'},function(){
 					$(".active .sel").remove();
@@ -50,7 +57,6 @@ function jump(){
 				
 			}
 			else{
-				// $(".section").remove();
 				addGameOver();
 			}
 		})
@@ -71,8 +77,104 @@ function addGameOver(){
 
 }
 
+function hasTreasure(){
+
+	$(".active").unbind("click");
+	if (!$(".active").hasClass("hasTreasure")) {
+		$(".active").click(function(){
+			$.fn.fullpage.moveSectionDown();
+		})
+		return;
+	}
+	else{
+		forbidScolling();
+	}
+
+	$(".hasTreasure").click(function(){
+
+		showSelector(".active .treasure span");
+		$(this).unbind("click");
+
+		setTip()
+
+	})
+
+}
+
+function setTip(){
+	var imgX = $(".active .treasure").offset().left;
+	var imgY = $(".active .treasure").offset().top;
+	h = $(".images img").height();
+	var treasureH = $(".active .images .treasure img").height();
+
+	var treasureLeft = $(".active .images .treasure img").offset().left;
+	var treasureTop =  $(".active .images .treasure img").offset().top;
+
+	var remain = $(".active .treasure span i").text();
+
+	$(".active .treasure").click(function(ev){
+		e = event || ev;
+
+		var scaleL = e.clientX - treasureLeft;
+		var scaleT = e.clientY - treasureTop;
+
+		var end = false;
+
+		// find
+		if((scaleL <= treasureH)&&(scaleT <= treasureH)&&(scaleL>0) &&(scaleT > 0) ) {
+			showSelector(".active .images .treasure img");
+			$(".active .treasure span").text("找到了！");
+			end = true;
+
+		}
+		else{ // not find
+			remain--;
+			if(remain != 0){
+				$(".active .treasure span i").text(remain);
+			}
+			else{
+				$(".active .treasure span").text("很可惜没有找到噢");
+				end = true;
+
+			}
+		}
+
+		if(end){
+			$(".active .treasure").unbind("click");
+			allowScrolling();
+			setTimeout("hideSelector('.active .images .treasure span')", 1000);
+			setTimeout("bindActiveClick()", 1000);
+		}
+
+
+	})
+}
+
 function showSelector(selector){
 	var $e = $(selector);
-	$e.css({"display": "block", "opacity": "0"})
+	$e.css({"z-index":"100", "display": "block", "opacity": "0"})
 		.stop().animate({opacity: "1"});
+}
+
+// 关闭某个选择器
+function hideSelector(selector){
+	var $e = $(selector)
+	$e.stop().animate({opacity: "0"}, 400, function(){
+		$(this).css("display", "none");
+	});
+}
+
+function allowScrolling(){
+	$.fn.fullpage.setAllowScrolling(!0);
+}
+
+function forbidScolling(){
+	$.fn.fullpage.setAllowScrolling(!1);
+}
+
+function bindActiveClick(){
+	$(".active").unbind("click");
+	$(".active").click(function(){
+		$.fn.fullpage.moveSectionDown();
+	})
 }
