@@ -50,14 +50,21 @@ public class PasterActivity extends Activity {
 
     }
 
-    public void pasterListener(View v){
-        ImageView view = (ImageView)v;
+    public void pasterListener1(View v){
         RelativeLayout mLayout = (RelativeLayout) iv.getParent();
         SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this,new PointF(360,360),0);
-        singleTouchView.setImageDrawable(view.getDrawable());
+        singleTouchView.setImageResource(R.mipmap.paster1);
         mLayout.addView(singleTouchView);
         pasters.add(singleTouchView);
         }
+
+    public void pasterListener2(View v){
+        RelativeLayout mLayout = (RelativeLayout) iv.getParent();
+        SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this,new PointF(360,360),0);
+        singleTouchView.setImageResource(R.mipmap.paster2);
+        mLayout.addView(singleTouchView);
+        pasters.add(singleTouchView);
+    }
 
     public void cancelPasterBtnListener(View view) {
         this.finish();

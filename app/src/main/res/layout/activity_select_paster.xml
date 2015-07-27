@@ -36,7 +36,7 @@
 
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/LinearComponentSize"
+            android:layout_height="70dp"
             android:layout_gravity="center_vertical"
             android:background="#00000000"
             android:layout_weight="6"
@@ -46,7 +46,7 @@
             <LinearLayout
                 android:id="@+id/LinearPasters"
                 android:orientation="horizontal"
-                android:background="#30363A"
+                android:background="#FFFFFF"
                 android:layout_width="@dimen/LinearComponentSize"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical">
@@ -55,18 +55,18 @@
                     android:id="@+id/paster1"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@mipmap/paster1"
+                    android:src="@mipmap/paster_icon1"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:onClick="pasterListener"
+                    android:onClick="pasterListener1"
                     />
                 <ImageView
                     android:id="@+id/paster2"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@mipmap/paster2"
+                    android:src="@mipmap/paster_icon2"
                     android:layout_marginRight="10dp"
-                    android:onClick="pasterListener"
+                    android:onClick="pasterListener2"
                     />
 
 
