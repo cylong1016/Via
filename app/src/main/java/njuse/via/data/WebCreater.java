@@ -2,7 +2,9 @@ package njuse.via.data;
 
 import java.util.LinkedList;
 
+import njuse.via.po.Option;
 import njuse.via.po.Screen;
+import njuse.via.po.ScreenEnum;
 import njuse.via.po.ScreenSet;
 
 /**
@@ -14,8 +16,7 @@ public class WebCreater {
     }
 
     public static String createWeb(ScreenSet screenSet){
-        String string = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n" +
-                "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n" +
+        String string = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\">\n" +
                 "<head>\n" +
                 "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n" +
                 "<meta name=\"viewport\"\n" +
@@ -32,13 +33,13 @@ public class WebCreater {
                 "<script type=\"text/javascript\" src=\"../../js/jquery_easing.js\"></script>\n" +
                 "<script type=\"text/javascript\" src=\"../../js/jquery_full_page_min.js\"></script>\n" +
                 "<script type=\"text/javascript\" src=\"../../js/blur.js\"></script>\n" +
-                "</head>\n"+"<body>\n" +
+                "</head>\n" +
+                "<body>\n" +
                 "\n" +
                 "<style>\n" +
                 ".u-arrow{width:23px;height:auto;margin-left:-12px;position:absolute;}\n" +
                 "</style>\n" +
-                "<!-- <ul id=\"menu\"></ul> -->\n" +
-                "<div id=\"fullpage\">\n" +
+                "<div id=\"fullpage\">" +
                 divCreater(screenSet) +
                 "\n" +
                 "</div>\n" +
@@ -66,12 +67,43 @@ public class WebCreater {
         LinkedList<Screen> screenList = screenSet.getScreenList();
         for(int i = 0; i < screenList.size(); i++){
             Screen screen = screenList.get(i);
+            ScreenEnum e = screen.getScreenEnum();
+
+            boolean isOption = (e==ScreenEnum.OPTION)?true:false;
+//            boolean isTreasure = (e==ScreenEnum.NORMAL)?true:false;
+
             str = str +"\n" +
-                    "\t<div class=\"section\">\n" +
+                    "\t<div class=\"section ";
+            if (isOption){
+                str = str + " hasSel\">\n";
+            }
+//            else if(e == ScreenEnum.NORMAL){
+//                str = str + " hasTreasure\">\n";
+//            }
+            str = str +
                     "\t\t<img class=\"bg blur\" src=\""+screen.getBackGroundURL()+"\"/>\n" +
+                    "\t\t<div class=\"type t3\"></div>\n" +
+                    "\t\t<div class=\"type t2\"></div>\n" +
                     "\t\t<div class=\"type t1\">\n" +
                     "\t\t\t<div class=\"images\">\n" +
-                    "\t\t\t\t<img src=\""+screen.getBackGroundURL()+"\"/>\n" +
+                    "\t\t\t\t<img src=\""+screen.getBackGroundURL()+"\"/>\n";
+
+            if(isOption){
+                str = str +
+                        "<div class=\"sel\">";
+                Option op = screen.getOption();
+                for (int j = 0; j<op.getItemLength(); j++){
+                    str = str + "<div class=\"answer";
+                    if (op.getOptionItem(i).getValue()){
+                        str = str + " correct";
+                    }
+                    str = str + "\">" + op.getOptionItem(i).getText() +
+                    "</div>";
+                }
+                str = str + "</div>";
+            }
+
+            str = str +
                     "\t\t\t</div>\n" +
                     "\t\t\t<div class=\"text\">\n" +
                     "\t\t\t\t<p>"+ screen.getText()+"</p>\n" +
