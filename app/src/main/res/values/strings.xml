@@ -84,4 +84,7 @@
 
     <string name="waiting">Waiting……</string>
 
+    <string name="prompt">prompt</string>
+    <string name="confirm_delete">Confirm the deletion?</string>
+
 </resources>

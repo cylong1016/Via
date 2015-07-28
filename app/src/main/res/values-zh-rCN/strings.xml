@@ -64,4 +64,7 @@
 
     <string name="waiting">图片渲染中……</string>
 
+    <string name="prompt">提示</string>
+    <string name="confirm_delete">确认删除？</string>
+
 </resources>
