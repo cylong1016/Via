@@ -43,6 +43,7 @@ import njuse.via.po.Screen;
 import njuse.via.po.ScreenEnum;
 import njuse.via.po.Treasure;
 import njuse.via.po.TreasureSet;
+import njuse.via.util.Util;
 
 /**
  * 制作界面
@@ -109,40 +110,16 @@ public class MakeActivity extends Activity {
      * by cylong
      */
     private void createJSAndCSSFile() {
-        copyFileFromRaw(R.raw.blur_css, "blur_css.css", PathConfig.WEB_CSS);
-        copyFileFromRaw(R.raw.full_page, "full_page.css", PathConfig.WEB_CSS);
-        copyFileFromRaw(R.raw.global, "global.css", PathConfig.WEB_CSS);
-        copyFileFromRaw(R.raw.index, "index.css", PathConfig.WEB_CSS);
-        copyFileFromRaw(R.raw.blur, "blur.js", PathConfig.WEB_JS);
-        copyFileFromRaw(R.raw.jquery_easing, "jquery_easing.js", PathConfig.WEB_JS);
-        copyFileFromRaw(R.raw.jquery_full_page_min, "jquery_full_page_min.js", PathConfig.WEB_JS);
-        copyFileFromRaw(R.raw.jquery_min, "jquery_min.js", PathConfig.WEB_JS);
-        copyFileFromRaw(R.raw.no_photo, "no_photo.jpg", PathConfig.WEB);
+        Util.copyFileFromRaw(R.raw.blur_css, "blur_css.css", PathConfig.WEB_CSS, this);
+        Util.copyFileFromRaw(R.raw.full_page, "full_page.css", PathConfig.WEB_CSS, this);
+        Util.copyFileFromRaw(R.raw.global, "global.css", PathConfig.WEB_CSS, this);
+        Util.copyFileFromRaw(R.raw.index, "index.css", PathConfig.WEB_CSS, this);
+        Util.copyFileFromRaw(R.raw.blur, "blur.js", PathConfig.WEB_JS, this);
+        Util.copyFileFromRaw(R.raw.jquery_easing, "jquery_easing.js", PathConfig.WEB_JS, this);
+        Util.copyFileFromRaw(R.raw.jquery_full_page_min, "jquery_full_page_min.js", PathConfig.WEB_JS, this);
+        Util.copyFileFromRaw(R.raw.jquery_min, "jquery_min.js", PathConfig.WEB_JS, this);
+        Util.copyFileFromRaw(R.raw.no_photo, "no_photo.jpg", PathConfig.WEB, this);
     }
-
-    public void copyFileFromRaw(int id, String fileName, String dirPath) {
-        String filePath = dirPath + "/" + fileName;// 文件路径
-        File dir = new File(dirPath);// 目录路径
-        if (!dir.exists()) {// 如果不存在，则创建路径名
-            dir.mkdirs();   // 创建该路径名，返回true则表示创建成功
-        }
-        // 目录存在，则将apk中raw中的需要的文档复制到该目录下
-        try {
-            File file = new File(filePath);
-            InputStream ins = getResources().openRawResource(id);// 通过raw得到数据资源
-            FileOutputStream fos = new FileOutputStream(file);
-            byte[] buffer = new byte[8192];
-            int count = 0;// 循环写出
-            while ((count = ins.read(buffer)) > 0) {
-                fos.write(buffer, 0, count);
-            }
-            fos.close();// 关闭流
-            ins.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 
     /*
     初始化故事板界面

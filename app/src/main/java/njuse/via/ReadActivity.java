@@ -130,10 +130,6 @@ public class ReadActivity extends Activity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT
         );
-        int margin = (int) getResources().getDimension(R.dimen.read_list_margin);
-        if (i == dirNames.length - 1) {
-            imgViewParams.width = (screenWidth - margin) / 2 - margin;
-        }
         imageView.setLayoutParams(imgViewParams);
         imageView.setOnLongClickListener(longClickListener);
         return imageView;
@@ -157,10 +153,6 @@ public class ReadActivity extends Activity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        int margin = (int) getResources().getDimension(R.dimen.read_list_margin);
-        if (i == dirNames.length - 1) {
-            textParams.width = (screenWidth - margin) / 2 - margin;
-        }
         titleView.setLayoutParams(textParams);
         return titleView;
     }
@@ -176,6 +168,7 @@ public class ReadActivity extends Activity {
         RelativeLayout relativeLayout = new RelativeLayout(this);
         relativeLayout.addView(imageView);
         relativeLayout.addView(titleView);
+        relativeLayout.setBackgroundResource(R.drawable.list_icon_selector);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 0,
                 LinearLayout.LayoutParams.WRAP_CONTENT
@@ -183,6 +176,10 @@ public class ReadActivity extends Activity {
         params.weight = 1;
         int margin = (int) getResources().getDimension(R.dimen.read_list_margin);
         params.setMargins(0, 0, margin, 0);
+        if (i == dirNames.length - 1) {
+            params.width = (screenWidth - margin) / 2 - margin;
+            params.weight = 0;
+        }
         relativeLayout.setLayoutParams(params);
         return relativeLayout;
     }
@@ -210,6 +207,8 @@ public class ReadActivity extends Activity {
     private View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
+            RelativeLayout relativeLayout = (RelativeLayout) v.getParent();
+            relativeLayout.setBackgroundResource(R.drawable.list_icon_border);
             Intent intent = new Intent();
             intent.setClass(ReadActivity.this, DeleteActivity.class);
             int id = v.getId();

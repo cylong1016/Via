@@ -63,7 +63,7 @@ public class DeleteActivity extends Activity {
      * @param view
      */
     public void cancelListener(View view) {
-        this.finish();
+        cancel();
     }
 
     protected void dialog() {
@@ -82,6 +82,7 @@ public class DeleteActivity extends Activity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+                sendBroad();
             }
 
         });
@@ -91,6 +92,14 @@ public class DeleteActivity extends Activity {
     private void deleteAndRefresh() {
         File file = new File(deletePath);
         RecursionDeleteFile(file);
+        sendBroad();
+    }
+
+    private void cancel() {
+        sendBroad();
+    }
+
+    private void sendBroad() {
         // 广播通知
         Intent intent = new Intent();
         intent.setAction("action.refreshList");

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="line"
     android:layerType="software">
 
     <!-- 边框 -->
     <stroke
-        android:dashWidth="3px"
-        android:dashGap="3px"
+        android:dashWidth="6dp"
+        android:dashGap="3dp"
         android:width="@dimen/text_border_width"
         android:color="@android:color/darker_gray"/>
 

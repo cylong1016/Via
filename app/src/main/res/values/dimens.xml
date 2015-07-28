@@ -35,5 +35,8 @@
     <dimen name="btn_border_width">1dp</dimen>
 
     <!--文本边框宽度-->
-    <dimen name="text_border_width">1.5dp</dimen>
+    <dimen name="text_border_width">1dp</dimen>
+
+    <!--回忆故事列表的边框边距-->
+    <dimen name="list_border">4dp</dimen>
 </resources>
