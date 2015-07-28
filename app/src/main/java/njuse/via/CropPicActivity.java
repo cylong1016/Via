@@ -93,6 +93,8 @@ public class CropPicActivity extends Activity {
         mClipImageLayout.rotate();
     }
 
+    public void rotateAntiClock(View v){mClipImageLayout.rotateAnti();}
+
     private void saveMyBitmap(Bitmap mBitmap,Bitmap.CompressFormat format)  {
         String temp = picPath;
 

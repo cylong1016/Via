@@ -457,6 +457,10 @@ public class ClipZoomImageView extends ImageView implements
         setImageMatrix(mScaleMatrix);
     }
 
+    public void rotateAnti(){
+        mScaleMatrix.postRotate(-10,getWidth()/2,getHeight()/2);
+        setImageMatrix(mScaleMatrix);
+    }
     /**
      * 边界检测
      */

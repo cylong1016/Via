@@ -89,4 +89,5 @@ public class ClipImageLayout extends RelativeLayout
     public void rotate(){
        mZoomImageView.rotate();
     }
+    public void rotateAnti(){mZoomImageView.rotateAnti();}
 }
