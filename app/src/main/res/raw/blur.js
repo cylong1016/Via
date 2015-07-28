@@ -90,13 +90,14 @@ function hasTreasure(){
 		forbidScolling();
 	}
 
-	//resetTreasure();
 
 	$(".hasTreasure").click(function(){
 		var treasure_num = $(".active .treasure img").length;
 		$(".active .treasure span i:first-child").text(treasure_num);
 		showSelector(".active .treasure span");
 		$(this).unbind("click");
+
+		resetTreasure();
 
 		setTip()
 
@@ -110,7 +111,7 @@ function resetTreasure(){
 	for(var i=0; i<treasure_num; i++){
 		setLeft = $(".active .images .treasure img").eq(i).offset().left;
 		setTop = $(".active .images .treasure img").eq(i).offset().top;
-		$(".active .images .treasure img").eq(i).style({"left":100, "top":100});
+		$(".active .images .treasure img").eq(i).css({"left":setLeft - halfH, "top":setTop - halfH});
 	}
 }
 
@@ -152,7 +153,7 @@ function setTip(){
 				var id = e.target.id;
 				showSelector("#"+id);
 				find++;
-				remain+=3;
+				remain+=2;
 				$(".active .treasure span i").eq(1).text(find);
 				$(".active .treasure span i").eq(2).text(remain);
 				isFind = true;
