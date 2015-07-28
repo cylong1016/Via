@@ -184,8 +184,6 @@ public class MakeActivity extends Activity {
         for (int i = 0; i < preButton.size(); i++) {
             if (preButton.get(i).getId() == isselect) {
                 preButton.get(i).setImageBitmap(bitmap);
-                bitmap.recycle();
-                System.gc();
             }
         }
     }
@@ -461,9 +459,6 @@ public class MakeActivity extends Activity {
                 }
                 mImageView.setImageBitmap(bitmap);
                 setPreviewImg(bitmap, format);
-                bitmap.recycle();
-                System.gc();
-
             }
 
             screen.setBackGroundURL(path);
@@ -505,8 +500,6 @@ public class MakeActivity extends Activity {
         ImageView mImageView = (ImageView) findViewById(R.id.photoView);
         if (bitmap != null) {
             mImageView.setImageBitmap(bitmap);
-            bitmap.recycle();
-            System.gc();
         }
     }
 

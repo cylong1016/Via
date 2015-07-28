@@ -54,6 +54,12 @@
             android:theme="@style/ActivityPopup" >
         </activity>
         <activity
+            android:name=".DeleteActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_delete"
+            android:theme="@style/ActivityPopup" >
+        </activity>
+        <activity
             android:name=".FilterActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_filter">

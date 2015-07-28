@@ -5,20 +5,16 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ActionMenuView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.File;
-import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -26,7 +22,6 @@ import java.util.Date;
 
 import njuse.via.config.CommonConfig;
 import njuse.via.config.PathConfig;
-import njuse.via.data.MakeData;
 
 /**
  * 读取制作测作品
@@ -36,12 +31,21 @@ public class ReadActivity extends Activity {
 
     private LinearLayout layout;
     private String[] dirNames = readFile(PathConfig.WEB_PROJECT);
+    private int screenWidth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read);
+        getScreenWidth();
         initProjectList(); // 初始化已经制作的项目列表
+    }
+
+    private void getScreenWidth() {
+        /* 获取屏幕宽高 */
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        screenWidth = dm.widthPixels;
     }
 
     private void initProjectList() {
@@ -50,18 +54,20 @@ public class ReadActivity extends Activity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        int mergin = (int) getResources().getDimension(R.dimen.read_list_margin);
-        params.setMargins(mergin, mergin, 0, 0);
-        /* 获取屏幕宽高 */
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int screenWidth = dm.widthPixels;
-        params.height = (screenWidth - mergin) / 2 - mergin;
+        int margin = (int) getResources().getDimension(R.dimen.read_list_margin);
+        params.setMargins(margin, margin, 0, 0);
+        params.height = (screenWidth - margin) / 2 - margin;
+
+        if(dirNames.length == 0) {
+            TextView hint = new TextView(this);
+            hint.setText("什么都没有哟，快去创建吧！");
+            layout.addView(hint);
+        }
 
         for (int i = 0; i < dirNames.length; i += 2) {
             RelativeLayout relativeLayout_1 = createProjectView(i);
             LinearLayout subLinear = new LinearLayout(this); // 每个子线性布局中放置水平两个项目
-            subLinear.addView(relativeLayout_1, 0);
+            subLinear.addView(relativeLayout_1);
             if(!(i == dirNames.length - 1)) { // 最后一个
                 RelativeLayout relativeLayout_2 = createProjectView(i + 1);
                 subLinear.setOrientation(LinearLayout.HORIZONTAL);
@@ -95,9 +101,14 @@ public class ReadActivity extends Activity {
         imageView.setOnClickListener(clickListener);
         LinearLayout.LayoutParams imgViewParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
+                LinearLayout.LayoutParams.MATCH_PARENT
         );
+        int margin = (int) getResources().getDimension(R.dimen.read_list_margin);
+        if(i == dirNames.length - 1) {
+            imgViewParams.width = (screenWidth - margin) / 2 - margin;
+        }
         imageView.setLayoutParams(imgViewParams);
+        imageView.setOnLongClickListener(longClickListener);
         return imageView;
     }
 
@@ -119,6 +130,10 @@ public class ReadActivity extends Activity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
+        int margin = (int) getResources().getDimension(R.dimen.read_list_margin);
+        if(i == dirNames.length - 1) {
+            textParams.width = (screenWidth - margin) / 2 - margin;
+        }
         titleView.setLayoutParams(textParams);
         return titleView;
     }
@@ -138,12 +153,15 @@ public class ReadActivity extends Activity {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
         params.weight = 1;
-        int margins = (int) getResources().getDimension(R.dimen.read_list_margin);
-        params.setMargins(0, 0, margins, 0);
+        int margin = (int) getResources().getDimension(R.dimen.read_list_margin);
+        params.setMargins(0, 0, margin, 0);
         relativeLayout.setLayoutParams(params);
         return relativeLayout;
     }
 
+    /**
+     * 点击进入的监听
+     */
     private ImageView.OnClickListener clickListener = new ImageView.OnClickListener() {
 
         @Override
@@ -158,9 +176,31 @@ public class ReadActivity extends Activity {
         }
     };
 
+    /**
+     * 长按删除的监听
+     */
+    private View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(ReadActivity.this, DeleteActivity.class);
+            int id = v.getId();
+            String name = dirNames[id];
+            String path = PathConfig.WEB_PROJECT + "/" + name;
+            intent.putExtra("path", path);
+            ReadActivity.this.startActivity(intent);
+            //设置切换动画，从左边进入，右边退出
+            overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+            return false;
+        }
+    };
+
     private String[] readFile(String path) {
         File dir = new File(path);
         File[] files = dir.listFiles();
+        if(files == null) {
+            return new String[0];
+        }
         String[] dirNames = new String[files.length];
         for (int i = 0; i < files.length; i++) {
             dirNames[i] = files[i].getName();

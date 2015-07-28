@@ -60,4 +60,8 @@
     <string name="not_option_screen">此幕不是选项幕或普通幕,无法添加选项</string>
     <string name="not_treasure_screen">此幕不是宝藏幕或普通幕,无法添加宝藏</string>
 
+    <string name="delete">删除</string>
+
+    <string name="waiting">图片渲染中……</string>
+
 </resources>

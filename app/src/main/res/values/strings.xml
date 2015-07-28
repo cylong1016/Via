@@ -10,6 +10,7 @@
     <string name="title_activity_crop">PicCrop</string>
     <string name="title_activity_paster">PasterActivity</string>
     <string name="title_activity_show">ShowActivity</string>
+    <string name="title_activity_delete">DeleteActivity</string>
 
     <string name="pic_location">to_define</string>
 
@@ -78,5 +79,9 @@
 
     <string name="not_option_screen">This screen is not a NORMAL screen or a OPTION screen</string>
     <string name="not_treasure_screen">This screen is not a NORMAL screen or a TREASURE screen</string>
+
+    <string name="delete">delete</string>
+
+    <string name="waiting">Waiting……</string>
 
 </resources>
