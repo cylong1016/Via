@@ -125,8 +125,11 @@ function setTip(){
 
 	var treasureH = $(".active .images .treasure img").height();
 
+	resetTreasure();
+
 	var treasureLeft = new Array();
 	var treasureTop = new Array();
+
 	for(var i=0; i<treasure_num; i++){
 		treasureLeft.push($(".active .images .treasure img").eq(i).offset().left);
 		treasureTop.push($(".active .images .treasure img").eq(i).offset().top);
@@ -139,7 +142,7 @@ function setTip(){
 	var remain = parseInt($(".active .treasure span i:last-child").text());
 	var find = 0;
 
-	resetTreasure();
+
 
 	$(".active .treasure").click(function(ev){
 		e = event || ev;
