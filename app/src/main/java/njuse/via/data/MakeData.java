@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import njuse.via.bl.PicDelete;
 import njuse.via.config.CommonConfig;
 import njuse.via.config.PathConfig;
 import njuse.via.dataservice.MakeDataService;
@@ -25,6 +26,7 @@ import njuse.via.po.ScreenSet;
 public class MakeData implements MakeDataService {
 
     String dirpath = PathConfig.DATA_SER;                // 文件的存储路径
+    PicDelete picDelete=new PicDelete();
 
     @Override
     public void saveMakeRes(ScreenSet list, String fileName) {
@@ -62,7 +64,7 @@ public class MakeData implements MakeDataService {
         File fromFile;
 
         for (int i = 0; i < list.size(); i++) {
-
+            String url=list.get(i).getBackGroundURL();
             if (list.get(i).getBackGroundURL() == null && (list.get(i).getText() == null | list.get(i).getText().length() == 0)) {
                 list.remove(i);
                 continue;
@@ -76,6 +78,10 @@ public class MakeData implements MakeDataService {
                     continue;
                 }
                 fromFile = new File(ss[1]);
+
+//                String e_str[]=ss[1].split("/");
+
+                url=ss[1];
                 String s[] = ss[1].split("\\.");
                 if (s.length < 2) {
                     toPath = path + "/" + str + num;
@@ -92,8 +98,29 @@ public class MakeData implements MakeDataService {
             FileCopy.copyfile(fromFile, toFile, true);
             list.get(i).setBackGroundURL(picture_name);
             num++;
+            picDelete.delete(url);
+            deleteUnusedPic(url);
         }
     }
+
+    private void deleteUnusedPic(String url){
+        String file[]={"copy","original"};
+        String str[]=url.split("/");
+        int length=str.length;
+
+        for(int i=0;i<file.length;i++){
+            String path=str[0];
+            for(int j=1;j<str.length;j++){
+                if(j!=length-2) {
+                    path = path + "/" + str[j];
+                }else{
+                    path = path + "/" + file[i];
+                }
+            }
+            picDelete.delete(path);
+        }
+    }
+
 
     @Override    //读取已经完成的作品
     public ScreenSet readMakeRes(String fileName) {
