@@ -113,9 +113,9 @@ public class WebCreater {
                 for (int k = 0; k <ts.getTreasuresList().size(); k++){
                     str = str + "\t\t\t\t\t<img id=\"diamond_" + k +
                             "\" class=\"diamond\" src=\"../../icon_diamond.png\" style=\"" +
-                            "left:" + ts.getTreasuresList().get(k).getX() +
-                            "; top:" + ts.getTreasuresList().get(k).getY() +
-                            "\"/>\n";
+                            "left:" + ts.getTreasuresList().get(k).getX()*100 +
+                            "%; top:" + ts.getTreasuresList().get(k).getY()*100 +
+                            "%\"/>\n";
                 }
 
                 str = str + "\t\t\t\t\t<span>一共有<i></i>个宝藏，你找到了<i>0</i>个， 还有 <i>3</i> 次机会</span>\n" +
