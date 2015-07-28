@@ -236,7 +236,6 @@ public class PasterActivity extends Activity {
             //draw pasters into
             for(int i = 0;i<maps.size();i++) {
                 cv.drawBitmap(resizeBmp(maps.get(i), scale), points.get(i).x, points.get(i).y, null);
-                System.out.println(maps.get(i).getWidth());
                 }
                 //save all clip
                 cv.save(Canvas.ALL_SAVE_FLAG);//保存
