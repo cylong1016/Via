@@ -9,6 +9,8 @@ import android.view.View;
 
 import java.io.File;
 
+import njuse.via.util.Util;
+
 /**
  * 删除一个项目
  * Created by cylong on 2015-07-28 0028
@@ -23,29 +25,6 @@ public class DeleteActivity extends Activity {
         setContentView(R.layout.activity_delete);
         Intent intent = getIntent();
         deletePath = intent.getStringExtra("path");
-    }
-
-    /**
-     * 递归删除文件和文件夹
-     *
-     * @param file 要删除的根目录
-     */
-    private void RecursionDeleteFile(File file) {
-        if (file.isFile()) {
-            file.delete();
-            return;
-        }
-        if (file.isDirectory()) {
-            File[] childFile = file.listFiles();
-            if (childFile == null || childFile.length == 0) {
-                file.delete();
-                return;
-            }
-            for (File f : childFile) {
-                RecursionDeleteFile(f);
-            }
-            file.delete();
-        }
     }
 
     /**
@@ -91,7 +70,7 @@ public class DeleteActivity extends Activity {
 
     private void deleteAndRefresh() {
         File file = new File(deletePath);
-        RecursionDeleteFile(file);
+        Util.recursionDeleteFile(file);
         sendBroad();
     }
 
