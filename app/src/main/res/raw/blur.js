@@ -90,6 +90,8 @@ function hasTreasure(){
 		forbidScolling();
 	}
 
+	//resetTreasure();
+
 	$(".hasTreasure").click(function(){
 		var treasure_num = $(".active .treasure img").length;
 		$(".active .treasure span i:first-child").text(treasure_num);
@@ -100,6 +102,16 @@ function hasTreasure(){
 
 	})
 
+}
+
+function resetTreasure(){
+	var treasure_num = $(".active .treasure img").length;
+	var halfH = $(".active .images .treasure img").height()/2;
+	for(var i=0; i<treasure_num; i++){
+		setLeft = $(".active .images .treasure img").eq(i).offset().left;
+		setTop = $(".active .images .treasure img").eq(i).offset().top;
+		$(".active .images .treasure img").eq(i).style({"left":100, "top":100});
+	}
 }
 
 function setTip(){

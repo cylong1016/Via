@@ -6,6 +6,7 @@ import njuse.via.po.Option;
 import njuse.via.po.Screen;
 import njuse.via.po.ScreenEnum;
 import njuse.via.po.ScreenSet;
+import njuse.via.po.TreasureSet;
 
 /**
  * Created by zucewei on 2015/7/19
@@ -70,21 +71,22 @@ public class WebCreater {
             ScreenEnum e = screen.getScreenEnum();
 
             boolean isOption = (e==ScreenEnum.OPTION)?true:false;
-//            boolean isTreasure = (e==ScreenEnum.NORMAL)?true:false;
+            boolean isTreasure = (e==ScreenEnum.TREASURE)?true:false;
 
             str = str +"\n" +
                     "\t<div class=\"section ";
             if (isOption){
                 str = str + " hasSel\">\n";
             }
-//            else if(e == ScreenEnum.NORMAL){
-//                str = str + " hasTreasure\">\n";
-//            }
+            else if(isTreasure){
+                str = str + " hasTreasure\">\n";
+            }
             else{
                 str = str + "\">\n";
             }
             str = str +
                     "\t\t<img class=\"bg \" src=\""+screen.getBackGroundURL()+"\"/>\n" +
+                    "<div class=\"blur_bg\"></div>" +
                     "\t\t<div class=\"type t3\"></div>\n" +
                     "\t\t<div class=\"type t2\"></div>\n" +
                     "\t\t<div class=\"type t1\">\n" +
@@ -104,6 +106,21 @@ public class WebCreater {
                     "</div>";
                 }
                 str = str + "</div>";
+            }
+            else if(isTreasure){
+                str = str + "<div class=\"treasure\">\n";
+                TreasureSet ts = screen.getTreasureSet();
+                for (int k = 0; k <ts.getTreasuresList().size(); k++){
+                    str = str + "\t\t\t\t\t<img id=\"diamond_" + k +
+                            "\" class=\"diamond\" src=\"../../icon_diamond.png\" style=\"" +
+                            "left:" + ts.getTreasuresList().get(i).getX() +
+                            "; top:" + ts.getTreasuresList().get(i).getY() +
+                            "\"/>\n";
+                }
+
+                str = str + "\t\t\t\t\t<span>一共有<i></i>个宝藏，你找到了<i>0</i>个， 还有 <i>3</i> 次机会</span>\n" +
+                        "</div>";
+
             }
 
             str = str +
