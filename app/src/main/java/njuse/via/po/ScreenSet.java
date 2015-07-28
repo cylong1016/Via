@@ -9,18 +9,18 @@ import java.util.LinkedList;
 public class ScreenSet implements Serializable {
     int num=0;
     private LinkedList<Screen> screenList = new LinkedList<>();	//作品的每一幕信息
-    private int templateID;	//这一套作品使用的模板号
+    private String template_url;	//这一套作品使用的模板路径
     private String workName;	//制作的作品名称
 
 
-    public  ScreenSet(int templateID){
-        this.templateID=templateID;
+    public  ScreenSet(String template_url){
+        this.template_url=template_url;
         this.workName="default_work";
     }
     public ScreenSet(){}
 
-    public int getTemplateID(){
-        return templateID;
+    public String getTemplate_url(){
+        return template_url;
     }
 
     public boolean insert(Screen screen) {
@@ -60,8 +60,8 @@ public class ScreenSet implements Serializable {
     public String getWorkName(){
         return workName;
     }
-    public void setTemplateID(int id){
-        this.templateID=id;
+    public void setTemplate_url(String template_url){
+        this.template_url=template_url;
     }
     public LinkedList<Screen> getScreenList(){
         return screenList;

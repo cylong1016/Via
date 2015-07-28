@@ -1,7 +1,10 @@
 package njuse.via;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -39,13 +42,36 @@ public class ReadActivity extends Activity {
         setContentView(R.layout.activity_read);
         getScreenWidth();
         initProjectList(); // 初始化已经制作的项目列表
+        // 通过动态注册广播消息
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("action.refreshList");
+        registerReceiver(mRefreshBroadcastReceiver, intentFilter);
     }
+
+    // broadcast receiver
+    private BroadcastReceiver mRefreshBroadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals("action.refreshList")) {
+                refreshList();
+            }
+        }
+    };
 
     private void getScreenWidth() {
         /* 获取屏幕宽高 */
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         screenWidth = dm.widthPixels;
+    }
+
+    private void refreshList() {
+        layout = (LinearLayout) findViewById(R.id.read_layout); // 整体的线性布局
+        layout.removeAllViews();
+        dirNames = readFile(PathConfig.WEB_PROJECT);
+        initProjectList();
     }
 
     private void initProjectList() {
@@ -58,7 +84,7 @@ public class ReadActivity extends Activity {
         params.setMargins(margin, margin, 0, 0);
         params.height = (screenWidth - margin) / 2 - margin;
 
-        if(dirNames.length == 0) {
+        if (dirNames.length == 0) {
             TextView hint = new TextView(this);
             hint.setText("什么都没有哟，快去创建吧！");
             layout.addView(hint);
@@ -68,7 +94,7 @@ public class ReadActivity extends Activity {
             RelativeLayout relativeLayout_1 = createProjectView(i);
             LinearLayout subLinear = new LinearLayout(this); // 每个子线性布局中放置水平两个项目
             subLinear.addView(relativeLayout_1);
-            if(!(i == dirNames.length - 1)) { // 最后一个
+            if (!(i == dirNames.length - 1)) { // 最后一个
                 RelativeLayout relativeLayout_2 = createProjectView(i + 1);
                 subLinear.setOrientation(LinearLayout.HORIZONTAL);
                 subLinear.addView(relativeLayout_2, 1);
@@ -79,6 +105,7 @@ public class ReadActivity extends Activity {
 
     /**
      * 显示每一个项目的view
+     *
      * @return ImageView 图片放置上去
      */
     private ImageView createImageView(int i) {
@@ -104,7 +131,7 @@ public class ReadActivity extends Activity {
                 LinearLayout.LayoutParams.MATCH_PARENT
         );
         int margin = (int) getResources().getDimension(R.dimen.read_list_margin);
-        if(i == dirNames.length - 1) {
+        if (i == dirNames.length - 1) {
             imgViewParams.width = (screenWidth - margin) / 2 - margin;
         }
         imageView.setLayoutParams(imgViewParams);
@@ -131,7 +158,7 @@ public class ReadActivity extends Activity {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
         int margin = (int) getResources().getDimension(R.dimen.read_list_margin);
-        if(i == dirNames.length - 1) {
+        if (i == dirNames.length - 1) {
             textParams.width = (screenWidth - margin) / 2 - margin;
         }
         titleView.setLayoutParams(textParams);
@@ -140,6 +167,7 @@ public class ReadActivity extends Activity {
 
     /**
      * 每一个项目显示放置到一个RelativeLayout中
+     *
      * @return RelativeLayout
      */
     private RelativeLayout createProjectView(int i) {
@@ -198,7 +226,7 @@ public class ReadActivity extends Activity {
     private String[] readFile(String path) {
         File dir = new File(path);
         File[] files = dir.listFiles();
-        if(files == null) {
+        if (files == null) {
             return new String[0];
         }
         String[] dirNames = new String[files.length];

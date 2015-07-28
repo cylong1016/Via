@@ -15,7 +15,7 @@ public interface MakeBLService{
     /**
      * 设定一套作品的使用模板
      */
-    void setTemplateID(int id);
+    void setTemplate_url(String template_url);
     /**
      * 在末尾添加一幕
      *
