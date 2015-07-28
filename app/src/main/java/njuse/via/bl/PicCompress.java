@@ -88,10 +88,10 @@ public class PicCompress {
     public Bitmap compressPre(Bitmap image,Bitmap.CompressFormat format) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(format, 10, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        image.compress(format, 80, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
 
         BitmapFactory.Options option = new BitmapFactory.Options();
-        option.inSampleSize = 16;
+        option.inSampleSize = 2;
 
         Log.e("baos:",baos.toByteArray().length+";");
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
