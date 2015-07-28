@@ -514,8 +514,8 @@ public class OptionActivity extends Activity {
     protected void dialog() {
               AlertDialog.Builder builder = new AlertDialog.Builder(OptionActivity.this);
               builder.setMessage("此选项为正确选项，删除此选项将会删除整个选项模块，是否确认删除？");
-              builder.setTitle("警告");
-              builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+              builder.setTitle(R.string.prompt);
+              builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
                        dialog.dismiss();
@@ -523,7 +523,7 @@ public class OptionActivity extends Activity {
                        cancelOptionBtnListener(null);
                        }
                   });
-              builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+              builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

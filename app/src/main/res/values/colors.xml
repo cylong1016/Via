@@ -3,12 +3,13 @@
 
     <!--预览图箭头的背景颜色-->
     <color name="expand_arrows">#FFFFFD</color>
+    <color name="photo_bg">#D8D8D8</color>
 
     <!-- 选择图片activity的背景颜色 -->
     <color name="select_photo_background">#353535</color>
 
     <!-- 工具栏的背景颜色 -->
-    <color name="tool_bar_background">#30363A</color>
+    <color name="tool_bar_background">#292929</color>
 
     <!-- 按钮按下的背景 -->
     <color name="btn_down_background">#19FFFFFF</color>

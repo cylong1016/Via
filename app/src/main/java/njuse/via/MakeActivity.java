@@ -721,18 +721,25 @@ public class MakeActivity extends Activity {
     删除当前选中的幕
     */
     private void deletePreview(){
-        Builder dialog = new AlertDialog.Builder(this);
-
-        dialog.setTitle(R.string.delete_dialog).
-                setIcon(android.R.drawable.ic_dialog_info)
-                .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.confirm_delete);
+        builder.setTitle(R.string.prompt);
+        builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
                 deletePre();
-
             }
-        }).setNegativeButton(R.string.cancel, null).show();
+
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+
+        });
+        builder.create().show();
     }
 
     private void deletePre() {

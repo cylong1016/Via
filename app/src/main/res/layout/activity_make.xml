@@ -73,8 +73,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/bg"
-            android:scaleType="fitXY"
-            android:src="@mipmap/bg"/>
+            android:background="@color/photo_bg"
+            android:scaleType="fitXY"/>
         <RelativeLayout
             android:id="@+id/photoRelative"
             android:layout_width="wrap_content"

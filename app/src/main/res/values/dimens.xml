@@ -31,5 +31,9 @@
     <!-- 显示作品列表的边距 -->
     <dimen name="read_list_margin">5px</dimen>
 
+    <!--按钮边框宽度-->
     <dimen name="btn_border_width">1dp</dimen>
+
+    <!--文本边框宽度-->
+    <dimen name="text_border_width">1.5dp</dimen>
 </resources>

@@ -11,7 +11,7 @@
         android:paddingTop="@dimen/select_option_btn_top_margin"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:background="@color/select_photo_background">
+        android:background="@color/tool_bar_background">
 
     <LinearLayout
         android:id="@+id/option1_layout"
@@ -23,7 +23,7 @@
         android:paddingEnd="@dimen/select_option_layout_right_padding"
         android:paddingStart="@dimen/select_option_layout_left_padding"
         android:orientation="horizontal"
-        android:background="@color/select_photo_background">
+        android:background="@color/tool_bar_background">
 
         <Button
             android:id="@+id/btn_option1"
@@ -89,7 +89,7 @@
             android:paddingStart="@dimen/select_option_layout_left_padding"
             android:paddingLeft="@dimen/select_option_layout_left_padding"
             android:orientation="horizontal"
-            android:background="@color/select_photo_background">
+            android:background="@color/tool_bar_background">
 
             <Button
                 android:id="@+id/btn_option2"
@@ -155,7 +155,7 @@
             android:paddingEnd="@dimen/select_option_layout_right_padding"
             android:paddingStart="@dimen/select_option_layout_left_padding"
             android:orientation="horizontal"
-            android:background="@color/select_photo_background">
+            android:background="@color/tool_bar_background">
 
             <Button
                 android:id="@+id/btn_option3"
@@ -221,7 +221,7 @@
             android:paddingEnd="@dimen/select_option_layout_right_padding"
             android:paddingStart="@dimen/select_option_layout_left_padding"
             android:orientation="horizontal"
-            android:background="@color/select_photo_background">
+            android:background="@color/tool_bar_background">
 
             <Button
                 android:id="@+id/btn_option4"
