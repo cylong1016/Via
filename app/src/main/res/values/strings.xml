@@ -85,4 +85,7 @@
     <string name="waiting">Waiting……</string>
     <string name="delete_dialog">Are you sure to delete?</string>
 
+    <string name="prompt">prompt</string>
+    <string name="confirm_delete">Confirm the deletion?</string>
+
 </resources>

@@ -84,7 +84,7 @@ public class WebCreater {
                 str = str + "\">\n";
             }
             str = str +
-                    "\t\t<img class=\"bg blur\" src=\""+screen.getBackGroundURL()+"\"/>\n" +
+                    "\t\t<img class=\"bg \" src=\""+screen.getBackGroundURL()+"\"/>\n" +
                     "\t\t<div class=\"type t3\"></div>\n" +
                     "\t\t<div class=\"type t2\"></div>\n" +
                     "\t\t<div class=\"type t1\">\n" +

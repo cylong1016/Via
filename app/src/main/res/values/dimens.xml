@@ -30,4 +30,6 @@
 
     <!-- 显示作品列表的边距 -->
     <dimen name="read_list_margin">5px</dimen>
+
+    <dimen name="btn_border_width">1dp</dimen>
 </resources>
