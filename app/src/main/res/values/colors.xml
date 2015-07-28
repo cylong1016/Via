@@ -2,7 +2,7 @@
     <color name="white">#FFFFFF</color>
 
     <!--预览图箭头的背景颜色-->
-    <color name="expand_arrows">#3AA0D4</color>
+    <color name="expand_arrows">#FFFFFD</color>
 
     <!-- 选择图片activity的背景颜色 -->
     <color name="select_photo_background">#353535</color>
