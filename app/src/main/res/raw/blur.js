@@ -97,7 +97,7 @@ function hasTreasure(){
 		showSelector(".active .treasure span");
 		$(this).unbind("click");
 
-		resetTreasure();
+
 
 		setTip()
 
@@ -109,9 +109,13 @@ function resetTreasure(){
 	var treasure_num = $(".active .treasure img").length;
 	var halfH = $(".active .images .treasure img").height()/2;
 	for(var i=0; i<treasure_num; i++){
-		setLeft = $(".active .images .treasure img").eq(i).offset().left;
-		setTop = $(".active .images .treasure img").eq(i).offset().top;
-		$(".active .images .treasure img").eq(i).css({"left":setLeft - halfH, "top":setTop - halfH});
+		var setLeft = $(".active .images .treasure img").eq(i).offset().left;
+		var setTop = $(".active .images .treasure img").eq(i).offset().top;
+
+		var imgLeft = $(".active .images img").offset().left;
+		var imgTop = $(".active .images img").offset().top;
+
+		$(".active .images .treasure img").eq(i).css({"left":setLeft-imgLeft-halfH, "top":setTop-imgTop-halfH});
 	}
 }
 
@@ -134,6 +138,8 @@ function setTip(){
 
 	var remain = parseInt($(".active .treasure span i:last-child").text());
 	var find = 0;
+
+	resetTreasure();
 
 	$(".active .treasure").click(function(ev){
 		e = event || ev;
