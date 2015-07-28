@@ -517,15 +517,15 @@ public class OptionActivity extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(OptionActivity.this);
         builder.setMessage(R.string.option_btn_del_msg);
         builder.setTitle(R.string.prompt);
-        builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.confirm, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                button_show_number=0;
+                button_show_number = 0;
                 applyOptionBtnListener(null);
             }
         });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -538,7 +538,7 @@ public class OptionActivity extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(OptionActivity.this);
         builder.setMessage(R.string.option_can_msg);
         builder.setTitle(R.string.prompt);
-        builder.setPositiveButton(R.string.option_can_pos, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.option_can_pos, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -547,7 +547,7 @@ public class OptionActivity extends Activity {
             }
         });
 
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -562,26 +562,6 @@ public class OptionActivity extends Activity {
             }
         });
         builder.create().show();
-    }
-
-    private class setOnFocusChangeListener implements View.OnFocusChangeListener {
-
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-
-            if (v.getId() == R.id.edt_option1 || v.getId() == R.id.edt_option2 || v.getId() == R.id.edt_option3 || v.getId() == R.id.edt_option4) {
-
-                if (hasFocus) {
-                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                } else {
-                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    inputMethodManager.hideSoftInputFromWindow(OptionActivity.this.getCurrentFocus().getWindowToken()
-                            , InputMethodManager.HIDE_NOT_ALWAYS);
-                }
-
-            }
-
-        }
     }
 
 }

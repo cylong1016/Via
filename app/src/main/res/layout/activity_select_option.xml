@@ -310,8 +310,9 @@
 
         <!--android:layout_marginStart="@dimen/select_photo_btn_margin"-->
         <!--android:layout_marginEnd="@dimen/select_photo_btn_margin"-->
+
         <Button
-            android:id="@+id/option_btn_ensure"
+            android:id="@+id/btn_cancel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -321,15 +322,15 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="15dp"
             android:padding="10dp"
-            android:text="@string/apply"
+            android:text="@string/back"
             android:textStyle="bold"
             android:layout_weight="2"
             android:background="@drawable/btn_selector"
             android:textColor="@color/white"
-            android:onClick="applyOptionBtnListener"/>
+            android:onClick="cancelOptionBtnListener"/>
 
         <Button
-            android:id="@+id/btn_cancel"
+            android:id="@+id/option_btn_ensure"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -339,12 +340,12 @@
             android:layout_marginRight="25dp"
             android:layout_marginTop="15dp"
             android:padding="10dp"
-            android:text="@string/back"
+            android:text="@string/apply"
             android:textStyle="bold"
             android:layout_weight="2"
             android:background="@drawable/btn_selector"
             android:textColor="@color/white"
-            android:onClick="cancelOptionBtnListener"/>
+            android:onClick="applyOptionBtnListener"/>
 
         </LinearLayout>
     </LinearLayout>

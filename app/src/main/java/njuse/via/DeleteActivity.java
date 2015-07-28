@@ -49,7 +49,7 @@ public class DeleteActivity extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.confirm_delete);
         builder.setTitle(R.string.prompt);
-        builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.confirm, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -57,7 +57,7 @@ public class DeleteActivity extends Activity {
             }
 
         });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
