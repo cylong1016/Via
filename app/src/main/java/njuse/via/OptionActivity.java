@@ -5,20 +5,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.LinkedList;
 
 import njuse.via.config.CommonConfig;
 import njuse.via.po.Option;
@@ -32,6 +24,8 @@ public class OptionActivity extends Activity {
     int button_show_number;
     int button_max_number = CommonConfig.maxOptionNumber;
     int true_id;
+
+    boolean isEff=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,9 +121,13 @@ public class OptionActivity extends Activity {
         but4.setOnLongClickListener(new OptionButtonListener());
     }
 
-    public void cancelOptionBtnListener(View view) {
+    public void applyOptionBtnListener(View view) {
         setEditTextGone();
         this.finish();
+    }
+
+    public void cancelOptionBtnListener(View view){
+        dialog2();
     }
 
     @Override
@@ -138,6 +136,10 @@ public class OptionActivity extends Activity {
         OptionItem opItem = new OptionItem();
         Button but;
         boolean boo;
+
+        if(!isEff){
+            op.isEff=isEff;
+        }
 
         switch (button_show_number) {
             case 4:
@@ -512,25 +514,55 @@ public class OptionActivity extends Activity {
     }
 
     protected void dialog() {
-              AlertDialog.Builder builder = new AlertDialog.Builder(OptionActivity.this);
-              builder.setMessage("此选项为正确选项，删除此选项将会删除整个选项模块，是否确认删除？");
-              builder.setTitle(R.string.prompt);
-              builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialog, int which) {
-                       dialog.dismiss();
-                       button_show_number=0;
-                       cancelOptionBtnListener(null);
-                       }
-                  });
-              builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                       }
-                  });
-              builder.create().show();
-             }
+        AlertDialog.Builder builder = new AlertDialog.Builder(OptionActivity.this);
+        builder.setMessage(R.string.option_btn_del_msg);
+        builder.setTitle(R.string.prompt);
+        builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                button_show_number=0;
+                applyOptionBtnListener(null);
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
+    }
+
+    protected void dialog2() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(OptionActivity.this);
+        builder.setMessage(R.string.option_can_msg);
+        builder.setTitle(R.string.prompt);
+        builder.setPositiveButton(R.string.option_can_pos, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                button_show_number = 0;
+                applyOptionBtnListener(null);
+            }
+        });
+
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setNeutralButton(R.string.option_can_nar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                isEff=false;
+                applyOptionBtnListener(null);
+            }
+        });
+        builder.create().show();
+    }
 
     private class setOnFocusChangeListener implements View.OnFocusChangeListener {
 

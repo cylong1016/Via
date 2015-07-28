@@ -16,6 +16,8 @@ public class Option implements Serializable {
 
     private LinkedList<OptionItem> optionList = new LinkedList<>();
 
+    public boolean isEff=true;
+
     public void insert(OptionItem item){
         optionList.add(item);
     }

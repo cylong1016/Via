@@ -23,7 +23,13 @@
     <string name="album">album</string>
     <string name="cancel">cancel</string>
     <string name="back">back</string>
+    <string name="apply">apply</string>
     <string name="title_activity_filter">FilterActivity</string>
+
+    <string name="option_btn_del_msg">This option is the right option, which will remove the entire option module. Continue?</string>
+    <string name="option_can_msg">Do you want to remove all the options?</string>
+    <string name="option_can_pos">delete all</string>
+    <string name="option_can_nar">cancel changes</string>
 
     <string name="option1">Option 1</string>
     <string name="option2">Option 2</string>

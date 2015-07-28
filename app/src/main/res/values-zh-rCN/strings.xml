@@ -10,6 +10,7 @@
     <string name="album">从相册选择</string>
     <string name="cancel">取消</string>
     <string name="back">返回</string>
+    <string name="apply">应用</string>
     <string name="confirm">确认</string>
     <string name="option1">选项一</string>
     <string name="option2">选项二</string>
@@ -18,6 +19,11 @@
     <string name="new_option">新选项</string>
     <string name="del_err_inf">此幕为关键幕，无法删除</string>
     <string name="option_add">+</string>
+
+    <string name="option_btn_del_msg">此选项为正确选项，删除此选项将会删除整个选项模块，是否确认删除？</string>
+    <string name="option_can_msg">请问是否删除全部选项?</string>
+    <string name="option_can_pos">删除全部选项</string>
+    <string name="option_can_nar">取消本次修改</string>
 
     <string name="img_path_error">图片路径错误</string>
     <string name="no_photo">没有导入图片</string>

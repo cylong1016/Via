@@ -483,7 +483,14 @@ public class MakeActivity extends Activity {
 
         if (resultCode == 98) {
             Bundle b = data.getExtras();
-            screen.setOption((Option) b.get("roption"));
+            Option op=(Option) b.get("roption");
+            if(op!=null){
+                if(op.isEff){
+                    screen.setOption(op);
+                }
+            }else{
+                screen.setOption(op);
+            }
         }
         if (resultCode == 16) {
             setImgAfterFilter();
