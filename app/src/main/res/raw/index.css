@@ -1,3 +1,5 @@
+
+
 /*----------  INDEX   ----------*/
 
 .blur_bg{
@@ -10,6 +12,7 @@
 	/* Saf4+, Chrome */
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.4, rgba(255, 255, 255, 0.4)), color-stop(1, rgba(0, 0, 0, 0.4)));
 }
+
 /*----------  GAME OVER   ----------*/
 
 .game_over{
@@ -100,13 +103,10 @@
 }
 
 #diamond_1{
-	top: 50%;
-	left: 50%;
 }
 
 #diamond_2{
-	top: 20%;
-	left: 50%;
+
 }
 
 .images .treasure span{
