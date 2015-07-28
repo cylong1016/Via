@@ -110,6 +110,7 @@ public class MakeActivity extends Activity {
      * by cylong
      */
     private void createJSAndCSSFile() {
+        Util.copyFileFromRaw(R.raw.icon_diamond, "icon_diamond.png", PathConfig.WEB, this);
         Util.copyFileFromRaw(R.raw.blur_css, "blur_css.css", PathConfig.WEB_CSS, this);
         Util.copyFileFromRaw(R.raw.full_page, "full_page.css", PathConfig.WEB_CSS, this);
         Util.copyFileFromRaw(R.raw.global, "global.css", PathConfig.WEB_CSS, this);
@@ -357,6 +358,7 @@ public class MakeActivity extends Activity {
             return;
         }
 
+        arrangeTreasure();
         String workName = editText.getText().toString();
         makeBL.saveWork(workName);
         Toast.makeText(this, R.string.save_success, Toast.LENGTH_SHORT).show();
@@ -376,7 +378,6 @@ public class MakeActivity extends Activity {
     public void saveListener(View view) {
         refreshTreasure();
         screen.setText(((EditText) findViewById(R.id.explain)).getText().toString());
-        arrangeTreasure();
 
         final EditText editText = new EditText(this);
         Builder dialog = new AlertDialog.Builder(this);
@@ -388,7 +389,6 @@ public class MakeActivity extends Activity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 saveWork(editText);
-
             }
         }).setNegativeButton(R.string.cancel, null).show();
 
@@ -550,7 +550,7 @@ public class MakeActivity extends Activity {
                     ImageView mImageView = (ImageView) findViewById(R.id.photoView);
                     RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
                     TreasureView treasureView = new TreasureView(MakeActivity.this);
-                    treasureView.setImageDrawable(getResources().getDrawable(R.drawable.smallbackground));
+                    treasureView.setImageDrawable(getResources().getDrawable(R.drawable.icon_diamond));
                     mLayout.addView(treasureView);
 
                     treaviewset.add(treasureView);

@@ -990,8 +990,8 @@ public class TreasureView extends View {
         ViewGroup mViewGroup = (ViewGroup) getParent();
         int parentWidth=mViewGroup.getWidth();
         int parentHeight=mViewGroup.getHeight();
-        Log.e("parent", "esure"+Double.toString(mCenterPoint.x));
-        Log.e("parent", "esure"+Double.toString(mCenterPoint.y));
+//        Log.e("parent", "esure"+Double.toString(mCenterPoint.x));
+//        Log.e("parent", "esure"+Double.toString(mCenterPoint.y));
         return new PointF(mCenterPoint.x/(float)parentWidth,mCenterPoint.y/(float)parentHeight);
     }
 
@@ -1035,8 +1035,13 @@ public class TreasureView extends View {
         return pic;
     }
 
-    public Point getmLTPoint(){
-        return mLTPoint;
+    public PointF getmLTPointPer(){
+        ViewGroup mViewGroup = (ViewGroup) getParent();
+        int parentWidth=mViewGroup.getWidth();
+        int parentHeight=mViewGroup.getHeight();
+//        Log.e("parent", "esure"+Double.toString(mCenterPoint.x));
+//        Log.e("parent", "esure"+Double.toString(mCenterPoint.y));
+        return new PointF(mLTPoint.x/(float)parentWidth,mLTPoint.y/(float)parentHeight);
     }
 
 }
