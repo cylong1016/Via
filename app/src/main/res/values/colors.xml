@@ -11,6 +11,9 @@
     <!-- 工具栏的背景颜色 -->
     <color name="tool_bar_background">#292929</color>
 
+    <!-- 存在选项时的背景颜色 -->
+    <color name="option_bar_background">#44aaeb</color>
+
     <!-- 按钮按下的背景 -->
     <color name="btn_down_background">#19FFFFFF</color>
 

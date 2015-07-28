@@ -463,9 +463,13 @@ public class MakeActivity extends Activity {
             Option op=(Option) b.get("roption");
             if(op!=null){
                 if(op.isEff){
+                    ImageView img=(ImageView) findViewById(R.id.select);
+                    img.setBackgroundDrawable(getResources().getDrawable(R.drawable.option_icon_selector));
                     screen.setOption(op);
                 }
             }else{
+                ImageView img=(ImageView) findViewById(R.id.select);
+                img.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
                 screen.setOption(op);
             }
         }
