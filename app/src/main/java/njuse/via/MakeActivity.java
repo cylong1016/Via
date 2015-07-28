@@ -148,6 +148,7 @@ public class MakeActivity extends Activity {
     初始化故事板界面
      */
     private void initPreview() {
+        preview = (HorizontalScrollView) findViewById(R.id.preview);
         mInflater = LayoutInflater.from(this);
         plisten = new PreListener();
         preButton = new ArrayList<>();
@@ -301,7 +302,6 @@ public class MakeActivity extends Activity {
 
         //---------------------------------------------------------
         preview = (HorizontalScrollView) findViewById(R.id.preview); // 获取预览图组件
-        preview.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
         //preview.getBackground().setAlpha(50);
         ImageView expend = (ImageView) findViewById(R.id.expand); // 获取扩大按钮图片
 
@@ -720,7 +720,22 @@ public class MakeActivity extends Activity {
     /*
     删除当前选中的幕
     */
-    private void deletePreview() {
+    private void deletePreview(){
+        Builder dialog = new AlertDialog.Builder(this);
+
+        dialog.setTitle(R.string.delete_dialog).
+                setIcon(android.R.drawable.ic_dialog_info)
+                .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deletePre();
+
+            }
+        }).setNegativeButton(R.string.cancel, null).show();
+    }
+
+    private void deletePre() {
         ImageView imageView = (ImageView) findViewById(R.id.photoView);
         TextView textView = (TextView) findViewById(R.id.explain);
         cleanTreasure();
