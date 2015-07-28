@@ -76,6 +76,98 @@
                     android:layout_marginRight="10dp"
                     android:onClick="pasterListener3"
                     />
+                <ImageView
+                    android:id="@+id/paster4"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/paster_icon4"
+                    android:layout_marginRight="10dp"
+                    android:onClick="pasterListener4"
+                    />                <ImageView
+                android:id="@+id/paster5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/paster_icon5"
+                android:layout_marginRight="10dp"
+                android:onClick="pasterListener5"
+                />                <ImageView
+                android:id="@+id/paster6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/paster_icon3"
+                android:layout_marginRight="10dp"
+                android:onClick="pasterListener3"
+                />                <ImageView
+                android:id="@+id/paster3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/paster_icon6"
+                android:layout_marginRight="10dp"
+                android:onClick="pasterListener6"
+                />                <ImageView
+                android:id="@+id/paster7"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/paster_icon8"
+                android:layout_marginRight="10dp"
+                android:onClick="pasterListener8"
+                />                <ImageView
+                android:id="@+id/paster9"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/paster_icon9"
+                android:layout_marginRight="10dp"
+                android:onClick="pasterListener9"
+                />                <ImageView
+                android:id="@+id/paster10"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/paster_icon10"
+                android:layout_marginRight="10dp"
+                android:onClick="pasterListener10"
+                />                <ImageView
+                android:id="@+id/paster11"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/paster_icon11"
+                android:layout_marginRight="10dp"
+                android:onClick="pasterListener11"
+                />                <ImageView
+                android:id="@+id/paster12"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/paster_icon12"
+                android:layout_marginRight="10dp"
+                android:onClick="pasterListener12"
+                />                <ImageView
+                android:id="@+id/paster13"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/paster_icon13"
+                android:layout_marginRight="10dp"
+                android:onClick="pasterListener13"
+                />                <ImageView
+                android:id="@+id/paster14"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/paster_icon14"
+                android:layout_marginRight="10dp"
+                android:onClick="pasterListener14"
+                />                <ImageView
+                android:id="@+id/paster15"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/paster_icon15"
+                android:layout_marginRight="10dp"
+                android:onClick="pasterListener15"
+                />     <ImageView
+                android:id="@+id/paster16"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/paster_icon16"
+                android:layout_marginRight="10dp"
+                android:onClick="pasterListener16"
+                />
 
 
 
