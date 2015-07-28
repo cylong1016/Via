@@ -113,8 +113,8 @@ public class WebCreater {
                 for (int k = 0; k <ts.getTreasuresList().size(); k++){
                     str = str + "\t\t\t\t\t<img id=\"diamond_" + k +
                             "\" class=\"diamond\" src=\"../../icon_diamond.png\" style=\"" +
-                            "left:" + ts.getTreasuresList().get(i).getX() +
-                            "; top:" + ts.getTreasuresList().get(i).getY() +
+                            "left:" + ts.getTreasuresList().get(k).getX() +
+                            "; top:" + ts.getTreasuresList().get(k).getY() +
                             "\"/>\n";
                 }
 
