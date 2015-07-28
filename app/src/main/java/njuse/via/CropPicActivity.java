@@ -80,6 +80,8 @@ public class CropPicActivity extends Activity {
 
         saveMyBitmap(bitmap,format);
 
+        bitmap.recycle();
+        System.gc();
 
         Intent intent = new Intent();
         intent.putExtra("bitmap", uri);

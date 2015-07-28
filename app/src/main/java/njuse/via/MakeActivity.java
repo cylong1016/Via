@@ -184,6 +184,8 @@ public class MakeActivity extends Activity {
         for (int i = 0; i < preButton.size(); i++) {
             if (preButton.get(i).getId() == isselect) {
                 preButton.get(i).setImageBitmap(bitmap);
+                bitmap.recycle();
+                System.gc();
             }
         }
     }
@@ -459,6 +461,7 @@ public class MakeActivity extends Activity {
                 }
                 mImageView.setImageBitmap(bitmap);
                 setPreviewImg(bitmap, format);
+                bitmap.recycle();
                 System.gc();
 
             }
@@ -470,9 +473,8 @@ public class MakeActivity extends Activity {
             screen.setBackGroundURL(path);
 
             Uri uri = Uri.parse(path);
-            Bitmap bitmap = decodeUriAsBitmap(uri);
 
-            if (bitmap != null) {
+            if (uri != null) {
                 Intent intent = new Intent();
                 intent.setClass(this, CropPicActivity.class);
                 intent.putExtra("path", path);
@@ -503,6 +505,8 @@ public class MakeActivity extends Activity {
         ImageView mImageView = (ImageView) findViewById(R.id.photoView);
         if (bitmap != null) {
             mImageView.setImageBitmap(bitmap);
+            bitmap.recycle();
+            System.gc();
         }
     }
 

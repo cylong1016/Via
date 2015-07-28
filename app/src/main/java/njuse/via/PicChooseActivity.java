@@ -102,6 +102,12 @@ public class PicChooseActivity extends Activity {
                 saveMyBitmap(bitmap, bitname, Bitmap.CompressFormat.JPEG);
                 saveOriginalBitmap(bitmap, bitname, Bitmap.CompressFormat.JPEG);
 
+                /*
+                回收
+                * */
+                bitmap.recycle();
+                System.gc();
+
                 Intent intent = new Intent();
                 intent.setClass(this, MakeActivity.class);
                 intent.putExtra("path", uri);
@@ -136,6 +142,9 @@ public class PicChooseActivity extends Activity {
                 bitmap1 = pc.comp(bitmap1, format);
                 saveOriginalBitmap(bitmap1,bitname, format);
                 saveMyBitmap(bitmap1, bitname, format);
+
+                bitmap1.recycle();
+                System.gc();
 
                 Intent inte = new Intent();
                 inte.setClass(this, MakeActivity.class);
