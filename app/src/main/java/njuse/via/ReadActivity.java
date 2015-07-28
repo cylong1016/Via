@@ -168,7 +168,6 @@ public class ReadActivity extends Activity {
         RelativeLayout relativeLayout = new RelativeLayout(this);
         relativeLayout.addView(imageView);
         relativeLayout.addView(titleView);
-        relativeLayout.setBackgroundResource(R.drawable.list_icon_selector);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 0,
                 LinearLayout.LayoutParams.WRAP_CONTENT

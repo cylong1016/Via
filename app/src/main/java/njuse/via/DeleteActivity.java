@@ -79,7 +79,7 @@ public class DeleteActivity extends Activity {
     }
 
     private void sendBroad() {
-        // 广播通知
+        // 广播通知刷新列表
         Intent intent = new Intent();
         intent.setAction("action.refreshList");
         sendBroadcast(intent);
