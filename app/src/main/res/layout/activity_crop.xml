@@ -31,7 +31,7 @@
     android:id="@+id/rotate"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@mipmap/actionbar_clip_icon"
+    android:background="@mipmap/clock"
     android:onClick="rotateClock" />
 
     <ImageView
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:background="@mipmap/actionbar_clip_icon"
+        android:background="@mipmap/anticlock"
         android:onClick="rotateAntiClock" />
     </LinearLayout>>
 </RelativeLayout>
