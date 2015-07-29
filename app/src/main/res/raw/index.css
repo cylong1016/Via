@@ -9,8 +9,22 @@
 
 	/* Firefox */
 	background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4));
-	/* Saf4+, Chrome */
+	/*/!* Saf4+, Chrome *!/*/
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.4, rgba(255, 255, 255, 0.4)), color-stop(1, rgba(0, 0, 0, 0.4)));
+
+	/*background: url("../images/temp_1.png") no-repeat;*/
+	/*opacity: 0.5;*/
+
+}
+
+.images span{
+	position: absolute;
+
+	color: #eeeeee;
+	background: rgba(51, 51, 51, 1);
+	padding: 10px 30px;
+
+	border-radius: 20px;
 }
 
 /*----------  GAME OVER   ----------*/
@@ -95,7 +109,7 @@
 .images .treasure img{
 	position: absolute;
 
-	width: 12%;
+	width: 18%;
 
 
 	opacity: 0;
@@ -114,14 +128,19 @@
 	text-align: center;
 	bottom: -16%;
 
-	padding: 10px 30px;
-
-	color: #eeeeee;
-	background: rgba(51, 51, 51, 1);
-
-	border-radius: 20px;
-
 	z-index: 100;
+	display: none;
+}
+
+/*----------  PUZZZLE   ----------*/
+
+.right-img{
+	display: none;
+}
+
+.images .correct-res{
+	margin: 91% 0 0 36%;
+
 	display: none;
 }
 

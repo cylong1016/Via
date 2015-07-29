@@ -1,8 +1,6 @@
 
 window.onload=function(){              //not DOM
 
-	// $(".sel").hide();
-
 	var h = $(".images img").height();
 	$(".sel").height(h);
 	$(".treasure").height(h);
@@ -16,7 +14,12 @@ function hasGame(){
 	if(hasSel()){
 		return;
 	}
-	hasTreasure();
+	else if(hasTreasure()){
+		return;
+	}
+	else if(hasPuzzle()){
+		return;
+	}
 }
 
 
@@ -84,24 +87,22 @@ function hasTreasure(){
 		$(".active").click(function(){
 			$.fn.fullpage.moveSectionDown();
 		})
-		return;
+		return false;
 	}
 	else{
 		forbidScolling();
 	}
-
 
 	$(".hasTreasure").click(function(){
 		var treasure_num = $(".active .treasure img").length;
 		$(".active .treasure span i:first-child").text(treasure_num);
 		showSelector(".active .treasure span");
 		$(this).unbind("click");
-
-
-
 		setTip()
 
 	})
+
+	return true;
 
 }
 
@@ -136,8 +137,6 @@ function setTip(){
 	}
 
 	// splice(i,i);
-	//var treasureLeft = $(".active .images .treasure img").offset().left;
-	//var treasureTop =  $(".active .images .treasure img").offset().top;
 
 	var remain = parseInt($(".active .treasure span i:last-child").text());
 	var find = 0;
@@ -147,8 +146,6 @@ function setTip(){
 	$(".active .treasure").click(function(ev){
 		e = event || ev;
 
-		//var scaleL = e.clientX - treasureLeft;
-		//var scaleT = e.clientY - treasureTop;
 		var end = false;
 		var isFind = false;
 
@@ -194,6 +191,7 @@ function setTip(){
 
 		if(end){
 			$(".active .treasure").unbind("click");
+			$(".active").removeClass("hasTreasure");
 			allowScrolling();
 			setTimeout("hideSelector('.active .images .treasure span')", 1000);
 			setTimeout("bindActiveClick()", 1000);
@@ -202,6 +200,23 @@ function setTip(){
 
 	})
 }
+
+
+function hasPuzzle(){
+	$(".active").unbind("click");
+	if (!$(".active").hasClass("hasPuzzle")) {
+		$(".active").click(function(){
+			$.fn.fullpage.moveSectionDown();
+		})
+		return false;
+	}
+	else{
+		forbidScolling();
+	}
+
+	return true;
+}
+
 
 function showSelector(selector){
 	var $e = $(selector);

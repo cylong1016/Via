@@ -34,6 +34,9 @@ public class WebCreater {
                 "<script type=\"text/javascript\" src=\"../../js/jquery_easing.js\"></script>\n" +
                 "<script type=\"text/javascript\" src=\"../../js/jquery_full_page_min.js\"></script>\n" +
                 "<script type=\"text/javascript\" src=\"../../js/blur.js\"></script>\n" +
+
+                "<script type=\"text/javascript\" src=\"../../js/lufylegend.js\"></script>\n" +
+                "<script type=\"text/javascript\" src=\"../../js/pic_main.js\"></script>\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +
@@ -66,12 +69,16 @@ public class WebCreater {
     private static String divCreater(ScreenSet screenSet){
         String str = "";
         LinkedList<Screen> screenList = screenSet.getScreenList();
+
+        screenSet.getTemplateName();
+
         for(int i = 0; i < screenList.size(); i++){
             Screen screen = screenList.get(i);
             ScreenEnum e = screen.getScreenEnum();
 
             boolean isOption = (e==ScreenEnum.OPTION)?true:false;
             boolean isTreasure = (e==ScreenEnum.TREASURE)?true:false;
+            boolean isPuzzle = (e==ScreenEnum.PUZZLE)?true:false;
 
             str = str +"\n" +
                     "\t<div class=\"section ";
@@ -80,6 +87,9 @@ public class WebCreater {
             }
             else if(isTreasure){
                 str = str + " hasTreasure\">\n";
+            }
+            else if(isPuzzle){
+                str = str + " hasPuzzle\">\n";
             }
             else{
                 str = str + "\">\n";
@@ -90,8 +100,11 @@ public class WebCreater {
                     "\t\t<div class=\"type t3\"></div>\n" +
                     "\t\t<div class=\"type t2\"></div>\n" +
                     "\t\t<div class=\"type t1\">\n" +
-                    "\t\t\t<div class=\"images\">\n" +
-                    "\t\t\t\t<img src=\""+screen.getBackGroundURL()+"\"/>\n";
+                    "\t\t\t<div class=\"images\">\n";
+
+            if(!isPuzzle){
+                str = str + "\t\t\t\t<img src=\"" + screen.getBackGroundURL() + "\"/>\n";
+            }
 
             if(isOption){
                 str = str +
@@ -121,6 +134,13 @@ public class WebCreater {
                 str = str + "\t\t\t\t\t<span>一共有<i></i>个宝藏，你找到了<i>0</i>个， 还有 <i>3</i> 次机会</span>\n" +
                         "</div>";
 
+            }
+
+            else if(isPuzzle){
+                str = str + "<div id=\"mytest\">loading……</div>\n" +
+                        "\t\t\t\t<img class=\"right-img\" src=\"" + screen.getBackGroundURL() + "\"/>\n" +
+                        "<span class=\"file-name\" style=\"display: none;\">" + "adb" + "</span>" +
+                        "\t\t\t\t<span class=\"correct-res\">拼出来啦</span>";
             }
 
             str = str +
