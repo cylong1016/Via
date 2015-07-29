@@ -11,6 +11,7 @@
     <string name="title_activity_paster">PasterActivity</string>
     <string name="title_activity_show">ShowActivity</string>
     <string name="title_activity_delete">DeleteActivity</string>
+    <string name="title_activity_template">TemplateActivity</string>
 
     <string name="pic_location">to_define</string>
 

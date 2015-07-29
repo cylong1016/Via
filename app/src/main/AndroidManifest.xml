@@ -38,6 +38,11 @@
             android:label="@string/title_activity_read" >
         </activity>
         <activity
+            android:name=".TemplateActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_template" >
+        </activity>
+        <activity
             android:name=".PicChooseActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_photo" >
