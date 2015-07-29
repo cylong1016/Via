@@ -14,7 +14,7 @@ import njuse.via.po.TreasureSet;
  */
 public class WebCreater {
     public static void createHTML(String path,ScreenSet screenSet){
-        ForFileWriter(path,createWeb(screenSet),screenSet.getWorkName()+".html");
+        ForFileWriter(path,createWeb(screenSet),screenSet.getProjectName()+".html");
     }
 
     public static String createWeb(ScreenSet screenSet){
@@ -25,7 +25,7 @@ public class WebCreater {
                 "\t  content=\"width=device-width,initial-scale=1.0,minimum-scale=1.0,\n" +
                 "\t  maximum-scale=1.0,user-scalable=no,minimal-ui\"/>\n" +
                 "\n" +
-                "<title>" + screenSet.getWorkName() + "</title>\n"+
+                "<title>" + screenSet.getProjectName() + "</title>\n"+
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/global.css\" />\n" +
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/blur_css.css\">\n" +
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/index.css\">\n" +
@@ -162,7 +162,8 @@ public class WebCreater {
             else if(isPuzzle){
                 str = str + "<div id=\"mytest\">loading……</div>\n" +
                         "\t\t\t\t<img class=\"right-img\" src=\"" + screen.getBackGroundURL() + "\"/>\n" +
-                        "<span class=\"file-name\" style=\"display: none;\">" + "adb" + "</span>" +
+                        "<span class=\"file-name\" style=\"display: none;\">" + screenSet.getProjectName() + "</span>" +
+                        "<span class=\"current-num\" style=\"display: none;\">" + i + "</span>" +
                         "\t\t\t\t<span class=\"correct-res\">拼出来啦</span>";
             }
 
