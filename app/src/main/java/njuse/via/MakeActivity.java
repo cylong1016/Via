@@ -240,6 +240,29 @@ public class MakeActivity extends Activity {
         } else {
             img.setImageResource(R.mipmap.make_background);
         }
+
+        if(screen.getScreenEnum()==ScreenEnum.NORMAL||screen.getScreenEnum()==ScreenEnum.TREASURE){
+            ImageView img1=(ImageView) findViewById(R.id.select);
+            img1.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
+            ImageView img2=(ImageView) findViewById(R.id.puzzle);
+            img2.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
+        }else if(screen.getScreenEnum()==ScreenEnum.PUZZLE){
+            ImageView img1=(ImageView) findViewById(R.id.select);
+            img1.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
+            ImageView img2=(ImageView) findViewById(R.id.puzzle);
+            img2.setBackgroundDrawable(getResources().getDrawable(R.drawable.option_icon_selector));
+        }else if(screen.getScreenEnum()==ScreenEnum.OPTION){
+            ImageView img1=(ImageView) findViewById(R.id.select);
+            img1.setBackgroundDrawable(getResources().getDrawable(R.drawable.option_icon_selector));
+            ImageView img2=(ImageView) findViewById(R.id.puzzle);
+            img2.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
+        }else{
+            ImageView img1=(ImageView) findViewById(R.id.select);
+            img1.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
+            ImageView img2=(ImageView) findViewById(R.id.puzzle);
+            img2.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
+        }
+
     }
 
     /**
@@ -887,7 +910,33 @@ public class MakeActivity extends Activity {
                 /*
                 设置当前界面的更新
                 */
+
+
+
                 screen = makeBL.getScreenByID(isselect);
+
+                if(screen.getScreenEnum()==ScreenEnum.NORMAL||screen.getScreenEnum()==ScreenEnum.TREASURE){
+                    ImageView img1=(ImageView) findViewById(R.id.select);
+                    img1.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
+                    ImageView img2=(ImageView) findViewById(R.id.puzzle);
+                    img2.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
+                }else if(screen.getScreenEnum()==ScreenEnum.PUZZLE){
+                    ImageView img1=(ImageView) findViewById(R.id.select);
+                    img1.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
+                    ImageView img2=(ImageView) findViewById(R.id.puzzle);
+                    img2.setBackgroundDrawable(getResources().getDrawable(R.drawable.option_icon_selector));
+                }else if(screen.getScreenEnum()==ScreenEnum.OPTION){
+                    ImageView img1=(ImageView) findViewById(R.id.select);
+                    img1.setBackgroundDrawable(getResources().getDrawable(R.drawable.option_icon_selector));
+                    ImageView img2=(ImageView) findViewById(R.id.puzzle);
+                    img2.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
+                }else{
+                    ImageView img1=(ImageView) findViewById(R.id.select);
+                    img1.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
+                    ImageView img2=(ImageView) findViewById(R.id.puzzle);
+                    img2.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
+                }
+
                 if (screen.getBackGroundURL() != null) {
                     initTreasure();
                     Uri uri = Uri.parse(screen.getBackGroundURL());
