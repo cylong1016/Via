@@ -20,7 +20,7 @@ public class ScreenSet implements Serializable {
     }
     public ScreenSet(){
         this.projectName = "201507028_defaultWork";
-        this.workNmae="defaultWork";
+        this.workName="defaultWork";
     }
 
     public void setWorkName(String workName){

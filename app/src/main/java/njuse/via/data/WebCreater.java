@@ -14,7 +14,7 @@ import njuse.via.po.TreasureSet;
  */
 public class WebCreater {
     public static void createHTML(String path,ScreenSet screenSet){
-        ForFileWriter(path,createWeb(screenSet),screenSet.getProjectName()+".html");
+        ForFileWriter(path,createWeb(screenSet),screenSet.getWorkName()+".html");
     }
 
     public static String createWeb(ScreenSet screenSet){
