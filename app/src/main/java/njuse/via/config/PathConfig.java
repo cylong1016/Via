@@ -15,4 +15,5 @@ public class PathConfig {
     public static final String WEB_CSS = WEB + "/css";
     public static final String WEB_JS = WEB + "/js";
     public static final String WEB_PROJECT = WEB + "/project";
+    public static final String WEB_TEMPLATE = WEB + "/template";
 }

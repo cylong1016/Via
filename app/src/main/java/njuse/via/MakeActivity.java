@@ -77,7 +77,6 @@ public class MakeActivity extends Activity {
         initPhotoViewLoc();
         screen = makeBL.getNewScreen();
         initPreview();
-        createJSAndCSSFile();
         setTemplate();
     }
 
@@ -87,8 +86,9 @@ public class MakeActivity extends Activity {
         ImageView template = (ImageView) findViewById(R.id.template);
         if(id != 0) {
             template.setImageResource(id);
-            String name = getResources().getResourceName(id);
-            makeBL.setTemplateName(name);
+            String name = getResources().getResourceEntryName(id);
+            String index = name.split("_")[1];
+            makeBL.setTemplateName(index);
         }
     }
 
@@ -111,23 +111,6 @@ public class MakeActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * 把raw中的css和js文件复制到手机sdcard中
-     * by cylong
-     */
-    private void createJSAndCSSFile() {
-        Util.copyFileFromRaw(R.raw.icon_diamond, "icon_diamond.png", PathConfig.WEB, this);
-        Util.copyFileFromRaw(R.raw.blur_css, "blur_css.css", PathConfig.WEB_CSS, this);
-        Util.copyFileFromRaw(R.raw.full_page, "full_page.css", PathConfig.WEB_CSS, this);
-        Util.copyFileFromRaw(R.raw.global, "global.css", PathConfig.WEB_CSS, this);
-        Util.copyFileFromRaw(R.raw.index, "index.css", PathConfig.WEB_CSS, this);
-        Util.copyFileFromRaw(R.raw.blur, "blur.js", PathConfig.WEB_JS, this);
-        Util.copyFileFromRaw(R.raw.jquery_easing, "jquery_easing.js", PathConfig.WEB_JS, this);
-        Util.copyFileFromRaw(R.raw.jquery_full_page_min, "jquery_full_page_min.js", PathConfig.WEB_JS, this);
-        Util.copyFileFromRaw(R.raw.jquery_min, "jquery_min.js", PathConfig.WEB_JS, this);
-        Util.copyFileFromRaw(R.raw.no_photo, "no_photo.jpg", PathConfig.WEB, this);
     }
 
     /*
