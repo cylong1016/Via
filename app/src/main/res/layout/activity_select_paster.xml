@@ -168,6 +168,79 @@
                 android:layout_marginRight="10dp"
                 android:onClick="pasterListener16"
                 />
+                <ImageView
+                    android:id="@+id/paster17"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/paster_icon17"
+                    android:layout_marginRight="10dp"
+                    android:onClick="pasterListener17"
+                    />
+                <ImageView
+                    android:id="@+id/paster18"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/paster_icon18"
+                    android:layout_marginRight="10dp"
+                    android:onClick="pasterListener18"
+                    />
+                <ImageView
+                    android:id="@+id/paster19"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/paster_icon19"
+                    android:layout_marginRight="10dp"
+                    android:onClick="pasterListener19"
+                    />
+                <ImageView
+                    android:id="@+id/paster20"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/paster_icon20"
+                    android:layout_marginRight="10dp"
+                    android:onClick="pasterListener20"
+                    />
+                <ImageView
+                    android:id="@+id/paster21"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/paster_icon21"
+                    android:layout_marginRight="10dp"
+                    android:onClick="pasterListener21"
+                    />
+                <ImageView
+                    android:id="@+id/paster22"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/paster_icon22"
+                    android:layout_marginRight="10dp"
+                    android:onClick="pasterListener22"
+                    />
+                <ImageView
+                    android:id="@+id/paster23"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/paster_icon23"
+                    android:layout_marginRight="10dp"
+                    android:onClick="pasterListener23"
+                    />
+                <ImageView
+                    android:id="@+id/paster24"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/paster_icon24"
+                    android:layout_marginRight="10dp"
+                    android:onClick="pasterListener24"
+                    />
+                <ImageView
+                    android:id="@+id/paster25"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/paster_icon25"
+                    android:layout_marginRight="10dp"
+                    android:onClick="pasterListener25"
+                    />
+
 
 
 

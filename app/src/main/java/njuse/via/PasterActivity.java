@@ -178,6 +178,78 @@ public class PasterActivity extends Activity {
         pasters.add(singleTouchView);
     }
 
+    public void pasterListener17(View v){
+        RelativeLayout mLayout = (RelativeLayout) iv.getParent();
+        SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this,new PointF(360,360),0);
+        singleTouchView.setImageResource(R.mipmap.paster17);
+        mLayout.addView(singleTouchView);
+        pasters.add(singleTouchView);
+    }
+
+    public void pasterListener18(View v){
+        RelativeLayout mLayout = (RelativeLayout) iv.getParent();
+        SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this,new PointF(360,360),0);
+        singleTouchView.setImageResource(R.mipmap.paster18);
+        mLayout.addView(singleTouchView);
+        pasters.add(singleTouchView);
+    }
+
+    public void pasterListener19(View v){
+        RelativeLayout mLayout = (RelativeLayout) iv.getParent();
+        SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this,new PointF(360,360),0);
+        singleTouchView.setImageResource(R.mipmap.paster19);
+        mLayout.addView(singleTouchView);
+        pasters.add(singleTouchView);
+    }
+
+    public void pasterListener20(View v){
+        RelativeLayout mLayout = (RelativeLayout) iv.getParent();
+        SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this,new PointF(360,360),0);
+        singleTouchView.setImageResource(R.mipmap.paster20);
+        mLayout.addView(singleTouchView);
+        pasters.add(singleTouchView);
+    }
+
+    public void pasterListener21(View v){
+        RelativeLayout mLayout = (RelativeLayout) iv.getParent();
+        SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this,new PointF(360,360),0);
+        singleTouchView.setImageResource(R.mipmap.paster21);
+        mLayout.addView(singleTouchView);
+        pasters.add(singleTouchView);
+    }
+
+    public void pasterListener22(View v){
+        RelativeLayout mLayout = (RelativeLayout) iv.getParent();
+        SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this,new PointF(360,360),0);
+        singleTouchView.setImageResource(R.mipmap.paster22);
+        mLayout.addView(singleTouchView);
+        pasters.add(singleTouchView);
+    }
+
+    public void pasterListener23(View v){
+        RelativeLayout mLayout = (RelativeLayout) iv.getParent();
+        SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this,new PointF(360,360),0);
+        singleTouchView.setImageResource(R.mipmap.paster23);
+        mLayout.addView(singleTouchView);
+        pasters.add(singleTouchView);
+    }
+
+    public void pasterListener24(View v){
+        RelativeLayout mLayout = (RelativeLayout) iv.getParent();
+        SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this,new PointF(360,360),0);
+        singleTouchView.setImageResource(R.mipmap.paster24);
+        mLayout.addView(singleTouchView);
+        pasters.add(singleTouchView);
+    }
+
+    public void pasterListener25(View v){
+        RelativeLayout mLayout = (RelativeLayout) iv.getParent();
+        SingleTouchView singleTouchView = new SingleTouchView(PasterActivity.this,new PointF(360,360),0);
+        singleTouchView.setImageResource(R.mipmap.paster25);
+        mLayout.addView(singleTouchView);
+        pasters.add(singleTouchView);
+    }
+
     public void cancelPasterBtnListener(View view) {
         this.finish();
     }
