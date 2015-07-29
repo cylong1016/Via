@@ -42,6 +42,10 @@ public class MainActivity extends Activity {
         Util.copyFileFromRaw(R.raw.global, "global.css", PathConfig.WEB_CSS, this);
         Util.copyFileFromRaw(R.raw.index, "index.css", PathConfig.WEB_CSS, this);
         Util.copyFileFromRaw(R.raw.blur, "blur.js", PathConfig.WEB_JS, this);
+        Util.copyFileFromRaw(R.raw.glb, "glb.js", PathConfig.WEB_JS, this);
+        Util.copyFileFromRaw(R.raw.lufylegend, "lufylegend.js", PathConfig.WEB_JS, this);
+        Util.copyFileFromRaw(R.raw.pic_main, "pic_main.js", PathConfig.WEB_JS, this);
+        Util.copyFileFromRaw(R.raw.show_tile, "show_tile.js", PathConfig.WEB_JS, this);
         Util.copyFileFromRaw(R.raw.jquery_easing, "jquery_easing.js", PathConfig.WEB_JS, this);
         Util.copyFileFromRaw(R.raw.jquery_full_page_min, "jquery_full_page_min.js", PathConfig.WEB_JS, this);
         Util.copyFileFromRaw(R.raw.jquery_min, "jquery_min.js", PathConfig.WEB_JS, this);
