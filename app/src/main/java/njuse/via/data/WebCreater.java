@@ -118,8 +118,7 @@ public class WebCreater {
 
                     "\t\t<div class=\"type t2 " + tempClass + "\"></div>\n" +
 
-                    "\t\t<div class=\"type t1 " + tempClass + "\"" +
-                    " style=\"background: url('" + tempImg + "')" + "\">" +
+                    "\t\t<div class=\"type t1 " + tempClass + "\">" +
                     "<img class=\"temp_bg\" src=\"" + tempImg + "\" />" +
                     "\t\t\t<div class=\"images\">\n";
 
