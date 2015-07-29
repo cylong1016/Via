@@ -164,7 +164,11 @@ ShowTile.prototype.setState = function (ste){
 ShowTile.prototype.onClicked = function (x,y){
     var self = this;
     var rect = this.rect;
-    if(x > rect.left && x < rect.right && y > rect.top && y < rect.bottom){
+//    if(x > rect.left && x < rect.right && y > rect.top && y < rect.bottom){
+
+    var picWid = ($(window).width()) * 0.93 * 0.92;
+    var tileWH = picWid/3;
+    if(x > rect.left && x < rect.right && y > (rect.top+tileWH*0.9) && y < (rect.bottom+tileWH*0.9)){
         switch (self.state){
             case ShowTile.STATE_WAIT:
                 self.setState(ShowTile.STATE_SELECTED);

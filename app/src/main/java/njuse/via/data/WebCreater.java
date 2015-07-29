@@ -114,11 +114,9 @@ public class WebCreater {
             str = str +
                     "\t\t<img class=\"bg \" src=\""+screen.getBackGroundURL()+"\"/>\n" +
                     "<img class=\"" + bg_blur + "\" src=\""+ tempBgImg + "\" />" +
-                    "\t\t<div class=\"type t3 " + tempClass + "\"" +
-                    " style=\"background: url('" + tempImg + "')" + "\"></div>\n" +
+                    "\t\t<div class=\"type t3 " + tempClass + "\"></div>\n" +
 
-                    "\t\t<div class=\"type t2 " + tempClass + "\"" +
-                    " style=\"background: url('" + tempImg + "')" + "\"></div>\n" +
+                    "\t\t<div class=\"type t2 " + tempClass + "\"></div>\n" +
 
                     "\t\t<div class=\"type t1 " + tempClass + "\"" +
                     " style=\"background: url('" + tempImg + "')" + "\">" +

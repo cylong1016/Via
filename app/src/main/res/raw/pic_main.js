@@ -228,6 +228,8 @@ function endGame(){
     setTimeout("$('.active .images #mytest').remove();", 600);
     setTimeout("showSelector('.active .right-img');", 700);
 
+    setTimeout("hideSelector('.active .correct-res');", 1400);
+
     $(".active").removeClass("hasPuzzle");
     allowScrolling();
 
