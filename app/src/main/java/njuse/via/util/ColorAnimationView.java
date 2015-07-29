@@ -110,7 +110,7 @@ public class ColorAnimationView extends View
 
     private void createDefaultAnimation() {
         colorAnim = ObjectAnimator.ofInt(this,
-                "backgroundColor", RED, GREEN, BLUE, WHITE, RED, BLUE);
+                "backgroundColor", RED, WHITE, BLUE, RED, BLUE, GREEN, RED);
         colorAnim.setEvaluator(new ArgbEvaluator());
         colorAnim.setDuration(DURATION);
         colorAnim.addUpdateListener(this);
