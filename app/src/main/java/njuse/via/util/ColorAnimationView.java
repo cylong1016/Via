@@ -5,6 +5,7 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.View;
@@ -98,7 +99,7 @@ public class ColorAnimationView extends View
 
     private void createDefaultAnimation() {
         colorAnim = ObjectAnimator.ofInt(this,
-                "backgroundColor", RED, BLUE, WHITE, GREEN, WHITE);
+                "backgroundColor", BLUE, RED, WHITE, GREEN, RED);
         colorAnim.setEvaluator(new ArgbEvaluator());
         colorAnim.setDuration(DURATION);
         colorAnim.addUpdateListener(this);
