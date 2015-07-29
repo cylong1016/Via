@@ -587,6 +587,22 @@ public class MakeActivity extends Activity {
         }
     }
 
+    public void puzzleListener(View view){
+        arrangeTreasure();
+        if(screen.getBackGroundURL()!=null){
+            if(screen.getScreenEnum()==ScreenEnum.NORMAL){
+                dialog(false);
+            }else if(screen.getScreenEnum()==ScreenEnum.PUZZLE){
+                dialog(true);
+            }else{
+                Toast.makeText(this, R.string.not_puzzle_screen, Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(this, R.string.no_photo, Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
     public int countTreasure(){
         int num=0;
         for(int i=0;i<treaviewset.size();i++){
@@ -802,6 +818,38 @@ public class MakeActivity extends Activity {
             }
         }
 
+    }
+
+    protected void dialog(final boolean isPuzzle) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MakeActivity.this);
+        if(isPuzzle){
+            builder.setMessage(R.string.puzzle_del_msg);
+        }else{
+            builder.setMessage(R.string.puzzle_add_msg);
+        }
+        builder.setTitle(R.string.prompt);
+        builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                if (isPuzzle) {
+                    screen.setScreenEnum(ScreenEnum.NORMAL);
+                    ImageView img = (ImageView) findViewById(R.id.puzzle);
+                    img.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
+                } else {
+                    screen.setScreenEnum(ScreenEnum.PUZZLE);
+                    ImageView img = (ImageView) findViewById(R.id.puzzle);
+                    img.setBackgroundDrawable(getResources().getDrawable(R.drawable.option_icon_selector));
+                }
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
     }
 
     /*缩略图的监听

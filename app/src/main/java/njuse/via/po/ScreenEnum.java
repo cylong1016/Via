@@ -9,7 +9,8 @@ import java.io.Serializable;
 public enum ScreenEnum implements Serializable {
     NORMAL("正常幕"),
     TREASURE("宝藏幕"),
-    OPTION("选项幕");
+    OPTION("选项幕"),
+    PUZZLE("宝藏幕");
 
     private final String value;
     ScreenEnum(String value) {

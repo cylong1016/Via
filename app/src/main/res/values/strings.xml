@@ -32,6 +32,9 @@
     <string name="option_can_pos">delete all</string>
     <string name="option_can_nar">cancel changes</string>
 
+    <string name="puzzle_del_msg">Are you sure to remove puzzle setting?</string>
+    <string name="puzzle_add_msg">Are you sure to add puzzle setting?</string>
+
     <string name="option1">Option 1</string>
     <string name="option2">Option 2</string>
     <string name="option3">Option 3</string>
@@ -86,6 +89,7 @@
 
     <string name="not_option_screen">This screen is not a NORMAL screen or a OPTION screen</string>
     <string name="not_treasure_screen">This screen is not a NORMAL screen or a TREASURE screen</string>
+    <string name="not_puzzle_screen">This screen is not a NORMAL screen or a PUZZLE screen</string>
 
     <string name="delete">delete</string>
 
