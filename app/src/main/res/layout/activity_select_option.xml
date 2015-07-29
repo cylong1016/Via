@@ -13,11 +13,22 @@
         android:orientation="vertical"
         android:background="@color/tool_bar_background">
 
-    <LinearLayout
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/option_remind"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:id="@+id/textView2" />
+
+        <LinearLayout
         android:id="@+id/option1_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+            android:layout_marginTop="5dp"
         android:paddingRight="@dimen/select_option_layout_right_padding"
         android:paddingLeft="@dimen/select_option_layout_left_padding"
         android:paddingEnd="@dimen/select_option_layout_right_padding"
@@ -284,6 +295,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/select_photo_btn_margin"
             android:layout_marginEnd="@dimen/select_photo_btn_margin"
+            android:layout_marginLeft="@dimen/select_photo_btn_margin"
+            android:layout_marginRight="@dimen/select_photo_btn_margin"
             android:layout_marginTop="5dp"
             android:padding="10dp"
             android:onClick="addOptionListener"

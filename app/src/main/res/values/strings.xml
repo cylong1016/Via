@@ -35,6 +35,7 @@
     <string name="puzzle_del_msg">Are you sure to remove puzzle setting?</string>
     <string name="puzzle_add_msg">Are you sure to add puzzle setting?</string>
     <string name="puzzle_max_num_msg">There is a puzzle setting in the project.</string>
+    <string name="option_remind">(Hold on to change the TRUE option)</string>
 
     <string name="option1">Option 1</string>
     <string name="option2">Option 2</string>

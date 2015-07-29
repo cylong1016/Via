@@ -70,6 +70,7 @@
     <string name="not_treasure_screen">此幕不是宝藏幕或普通幕,无法添加宝藏</string>
     <string name="not_puzzle_screen">此幕已经添加了其他游戏设置，无法设置拼图</string>
     <string name="puzzle_max_num_msg">此项目中已经存在拼图设置,不能再次设置</string>
+    <string name="option_remind">(长按以改变正确选项)</string>
 
     <string name="delete">删除</string>
 
