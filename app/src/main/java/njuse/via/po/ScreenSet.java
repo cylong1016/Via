@@ -11,13 +11,24 @@ public class ScreenSet implements Serializable {
     private LinkedList<Screen> screenList = new LinkedList<>();	//作品的每一幕信息
     private String templateName;	//这一套作品使用的模板名称
     private String projectName;	//制作的作品名称
+    private String workName;
 
 
     public  ScreenSet(String templateName){
         this.templateName = templateName;
         this.projectName = "201507028_defaultWork";
     }
-    public ScreenSet(){}
+    public ScreenSet(){
+        this.projectName = "201507028_defaultWork";
+        this.workNmae="defaultWork";
+    }
+
+    public void setWorkName(String workName){
+        this.workName=workName;
+    }
+    public String getWorkName(){
+        return workName;
+    }
 
     public String getTemplateName(){
         return templateName;

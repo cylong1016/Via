@@ -39,7 +39,8 @@ public class MakeData implements MakeDataService {
         File file = new File(dirpath);
         creatNewFile(path);                //创建存放产物的文件夹
 
-        list.setProjectName(date+"_"+fileName);                   //设置文件名
+        list.setProjectName(date+"_"+fileName);        //设置项目名
+        list.setWorkName(fileName);                    //设置文件名
         copy_picture(list, path);
         WebCreater.createHTML(path, list);            //同时生成html文件，保存在"/sdcard/Via/web"路径下
         String ser_path = dirpath + "/" + fileName + ".out";
