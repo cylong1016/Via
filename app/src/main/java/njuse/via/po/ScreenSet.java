@@ -4,23 +4,23 @@ import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
- * Created by zucewei on 2015/7/16.
+ * Created by zucewei on 2015/7/16
  */
 public class ScreenSet implements Serializable {
     int num=0;
     private LinkedList<Screen> screenList = new LinkedList<>();	//作品的每一幕信息
-    private String template_url;	//这一套作品使用的模板路径
+    private String templateName;	//这一套作品使用的模板名称
     private String workName;	//制作的作品名称
 
 
-    public  ScreenSet(String template_url){
-        this.template_url=template_url;
-        this.workName="default_work";
+    public  ScreenSet(String templateName){
+        this.templateName = templateName;
+        this.workName = "default_work";
     }
     public ScreenSet(){}
 
-    public String getTemplate_url(){
-        return template_url;
+    public String getTemplateName(){
+        return templateName;
     }
 
     public boolean insert(Screen screen) {
@@ -60,8 +60,8 @@ public class ScreenSet implements Serializable {
     public String getWorkName(){
         return workName;
     }
-    public void setTemplate_url(String template_url){
-        this.template_url=template_url;
+    public void setTemplateName(String templateName){
+        this.templateName = templateName;
     }
     public LinkedList<Screen> getScreenList(){
         return screenList;

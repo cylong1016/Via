@@ -1,14 +1,10 @@
 package njuse.via.bl;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-
 import njuse.via.blservice.MakeBLService;
 import njuse.via.data.MakeData;
 import njuse.via.dataservice.MakeDataService;
 import njuse.via.po.Screen;
 import njuse.via.po.ScreenSet;
-import njuse.via.po.TreasureSet;
 
 /**
  * 制作时候的操作
@@ -19,8 +15,8 @@ public class MakeBL implements MakeBLService {
     private ScreenSet screenList = new ScreenSet();
 
     @Override
-    public void setTemplate_url(String template_url) {
-        screenList.setTemplate_url(template_url);
+    public void setTemplateName(String templateName) {
+        screenList.setTemplateName(templateName);
     }
 
     @Override

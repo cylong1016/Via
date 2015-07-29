@@ -26,10 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import njuse.via.bl.MakeBL;
@@ -68,7 +65,7 @@ public class MakeActivity extends Activity {
     public Screen screen;
 
     //----------------这里是宝藏的变量
-    public ArrayList<TreasureView> treaviewset=new ArrayList<TreasureView>();
+    public ArrayList<TreasureView> treaviewset=new ArrayList<>();
     //--------------------------------
 
     @Override
@@ -90,6 +87,8 @@ public class MakeActivity extends Activity {
         ImageView template = (ImageView) findViewById(R.id.template);
         if(id != 0) {
             template.setImageResource(id);
+            String name = getResources().getResourceName(id);
+            makeBL.setTemplateName(name);
         }
     }
 
