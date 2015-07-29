@@ -594,17 +594,23 @@ public class MakeActivity extends Activity {
 
     public void puzzleListener(View view){
         arrangeTreasure();
-        if(screen.getBackGroundURL()!=null){
-            if(screen.getScreenEnum()==ScreenEnum.NORMAL){
-                dialog(false);
-            }else if(screen.getScreenEnum()==ScreenEnum.PUZZLE){
-                dialog(true);
+            if(screen.getBackGroundURL()!=null){
+                if(screen.getScreenEnum()==ScreenEnum.NORMAL){
+                    if(makeBL.getScreenSet().puzzle_num==0){
+                       dialog(false);
+                    }else{
+                        Toast.makeText(this, R.string.puzzle_max_num_msg, Toast.LENGTH_SHORT).show();
+                    }
+                }else if(screen.getScreenEnum()==ScreenEnum.PUZZLE){
+                    dialog(true);
+                }else{
+                    Toast.makeText(this, R.string.not_puzzle_screen, Toast.LENGTH_SHORT).show();
+                }
             }else{
-                Toast.makeText(this, R.string.not_puzzle_screen, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.no_photo, Toast.LENGTH_SHORT).show();
             }
-        }else{
-            Toast.makeText(this, R.string.no_photo, Toast.LENGTH_SHORT).show();
-        }
+
+
 
     }
 
@@ -841,10 +847,12 @@ public class MakeActivity extends Activity {
                     screen.setScreenEnum(ScreenEnum.NORMAL);
                     ImageView img = (ImageView) findViewById(R.id.puzzle);
                     img.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
+                    makeBL.getScreenSet().puzzle_num--;
                 } else {
                     screen.setScreenEnum(ScreenEnum.PUZZLE);
                     ImageView img = (ImageView) findViewById(R.id.puzzle);
                     img.setBackgroundDrawable(getResources().getDrawable(R.drawable.option_icon_selector));
+                    makeBL.getScreenSet().puzzle_num++;
                 }
             }
         });

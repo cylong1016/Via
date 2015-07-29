@@ -12,6 +12,7 @@ public class ScreenSet implements Serializable {
     private String templateName;	//这一套作品使用的模板名称
     private String projectName;	//制作的作品名称
     private String workName;
+    public int puzzle_num=0;
 
 
     public  ScreenSet(String templateName){
