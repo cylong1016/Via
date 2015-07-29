@@ -134,12 +134,27 @@ function newGame(){
     {
         tempArys.push(i);
     }
-    // 得到图片数组
-    var ids = Global.getRandomArray(tempArys,imgLength);
 
-    // 把当前图片设为正确图片
-    var currentNum = $(".active .current-num").text();
-    gameBmp = new LBitmap(bmpData[currentNum]);
+    var randomNum = imgLength;
+
+    if(imgLength > 4){
+          randomNum = 4;
+    }
+      // 得到图片数组
+    var ids = Global.getRandomArray(tempArys,randomNum);
+      // 随机选择图片
+    var currentNum = $(".current-num").text();
+
+    if(jQuery.inArray(parseInt(currentNum),ids) == -1){
+          ids.splice(0);
+    }
+    else{
+          ids.splice(jQuery.inArray(parseInt(currentNum),ids));
+    }
+
+    ids.unshift(parseInt(currentNum));
+
+    gameBmp = new LBitmap(bmpData[ids[0]]);
 
     teamTiles = new Array();
     //把用到的图块拆出来，放到2维数组bmpTiles里
@@ -163,7 +178,7 @@ function newGame(){
             //tile
             var tileTeam = new ShowTile(getMaxWaitCount());
             for(var id = 0; id < ids.length; id++){
-                var tempBmpData = new LBitmapData(imglist["pic"+id],x,y,len,len);
+                var tempBmpData = new LBitmapData(imglist["pic"+ids[id]],x,y,len,len);
 
                 var tempBmp = new LBitmap(tempBmpData);
                 var tempSpr = new LSprite();
