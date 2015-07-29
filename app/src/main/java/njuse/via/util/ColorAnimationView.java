@@ -20,6 +20,17 @@ public class ColorAnimationView extends View
     private static final int BLUE = 0xff8080FF;
     private static final int WHITE = 0xffffffff;
     private static final int GREEN = 0xff80ff80;
+
+    private static final int COLOR_1 = 0xDFFFFFFF;
+    private static final int COLOR_2 = 0xFFE7E0D7;
+    private static final int COLOR_3 = 0xff808080;
+    private static final int COLOR_4 = 0xffA0A0A0;
+    private static final int COLOR_5 = 0xffA0A0A0;
+    private static final int COLOR_6 = 0xffA0A0A0;
+    private static final int COLOR_7 = 0xffA0A0A0;
+    private static final int COLOR_8 = 0xffA0A0A0;
+    private static final int COLOR_9 = 0xFF85D2E5;
+
     private static final int DURATION = 3000;
     ValueAnimator colorAnim = null;
 
@@ -99,7 +110,7 @@ public class ColorAnimationView extends View
 
     private void createDefaultAnimation() {
         colorAnim = ObjectAnimator.ofInt(this,
-                "backgroundColor", BLUE, RED, WHITE, GREEN, RED, BLUE, RED);
+                "backgroundColor", RED, GREEN, BLUE, WHITE, RED, BLUE);
         colorAnim.setEvaluator(new ArgbEvaluator());
         colorAnim.setDuration(DURATION);
         colorAnim.addUpdateListener(this);
