@@ -33,7 +33,6 @@ import njuse.via.bl.MakeBL;
 import njuse.via.bl.PicCompress;
 import njuse.via.blservice.MakeBLService;
 import njuse.via.config.CommonConfig;
-import njuse.via.config.PathConfig;
 import njuse.via.paster.TreasureView;
 import njuse.via.po.Option;
 import njuse.via.po.Screen;
@@ -65,8 +64,10 @@ public class MakeActivity extends Activity {
     public Screen screen;
 
     //----------------这里是宝藏的变量
-    public ArrayList<TreasureView> treaviewset=new ArrayList<>();
+    public ArrayList<TreasureView> treaviewset = new ArrayList<>();
     //--------------------------------
+
+    private ArrayList<Bitmap> templateCache = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +85,15 @@ public class MakeActivity extends Activity {
         Intent intent = getIntent();
         int id = intent.getIntExtra("id", 0);
         ImageView template = (ImageView) findViewById(R.id.template);
-        if(id != 0) {
-            template.setImageResource(id);
+        if (id != 0) {
+            BitmapFactory.Options opts = new BitmapFactory.Options();
+            opts.inJustDecodeBounds = true;
+            BitmapFactory.decodeResource(getResources(), id, opts);
+            opts.inSampleSize = Util.computeSampleSize(opts, -1, 720 * 850);
+            opts.inJustDecodeBounds = false;
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), id, opts);
+            templateCache.add(bitmap);
+            template.setImageBitmap(bitmap);
             String name = getResources().getResourceEntryName(id);
             String index = name.split("_")[1];
             makeBL.setTemplateName(index);
@@ -348,6 +356,7 @@ public class MakeActivity extends Activity {
         //设置切换动画，从左边进入，右边退出
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
         this.finish();
+        Util.clearImgCache(templateCache);
     }
 
     /**
@@ -382,6 +391,7 @@ public class MakeActivity extends Activity {
         //设置切换动画，从左边进入，右边退出
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
         this.finish();
+        Util.clearImgCache(templateCache);
     }
 
     /**
@@ -474,15 +484,15 @@ public class MakeActivity extends Activity {
 
         if (resultCode == 98) {
             Bundle b = data.getExtras();
-            Option op=(Option) b.get("roption");
-            if(op!=null){
-                if(op.isEff){
-                    ImageView img=(ImageView) findViewById(R.id.select);
+            Option op = (Option) b.get("roption");
+            if (op != null) {
+                if (op.isEff) {
+                    ImageView img = (ImageView) findViewById(R.id.select);
                     img.setBackgroundDrawable(getResources().getDrawable(R.drawable.option_icon_selector));
                     screen.setOption(op);
                 }
-            }else{
-                ImageView img=(ImageView) findViewById(R.id.select);
+            } else {
+                ImageView img = (ImageView) findViewById(R.id.select);
                 img.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
                 screen.setOption(op);
             }
@@ -498,7 +508,7 @@ public class MakeActivity extends Activity {
      */
     public void setImgAfterFilter() {
         Bitmap bitmap = decodeUriAsBitmap(Uri.parse(screen.getBackGroundURL()));
-        Log.i("scurl",screen.getBackGroundURL());
+        Log.i("scurl", screen.getBackGroundURL());
         ImageView mImageView = (ImageView) findViewById(R.id.photoView);
         if (bitmap != null) {
             mImageView.setImageBitmap(bitmap);
@@ -540,14 +550,14 @@ public class MakeActivity extends Activity {
      */
     public void selectListener(View view) {
         refreshTreasure();
-        if(screen.getScreenEnum()==ScreenEnum.NORMAL||screen.getScreenEnum()==ScreenEnum.OPTION) {
+        if (screen.getScreenEnum() == ScreenEnum.NORMAL || screen.getScreenEnum() == ScreenEnum.OPTION) {
             Intent intent = new Intent();
             intent.setClass(this, OptionActivity.class);
             Bundle b = new Bundle();
             b.putSerializable("option", screen.getOption());
             intent.putExtras(b);
             this.startActivityForResult(intent, 98);
-        }else{
+        } else {
             Toast.makeText(this, R.string.not_option_screen, Toast.LENGTH_SHORT).show();
         }
     }
@@ -558,10 +568,11 @@ public class MakeActivity extends Activity {
 
     /**
      * 添加宝藏监听
+     *
      * @param view
      */
     public void treasureListener(View view) {
-        if(screen.getScreenEnum()==ScreenEnum.NORMAL||screen.getScreenEnum()==ScreenEnum.TREASURE) {
+        if (screen.getScreenEnum() == ScreenEnum.NORMAL || screen.getScreenEnum() == ScreenEnum.TREASURE) {
             if (screen.getBackGroundURL() != null) {
                 screen.setScreenEnum(ScreenEnum.TREASURE);
                 if (countTreasure() < CommonConfig.maxTreasureNumber) {
@@ -587,59 +598,53 @@ public class MakeActivity extends Activity {
             } else {
                 Toast.makeText(this, R.string.no_photo, Toast.LENGTH_SHORT).show();
             }
-        }else{
+        } else {
             Toast.makeText(this, R.string.not_treasure_screen, Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void puzzleListener(View view){
+    public void puzzleListener(View view) {
         arrangeTreasure();
-            if(screen.getBackGroundURL()!=null){
-                if(screen.getScreenEnum()==ScreenEnum.NORMAL){
-                    if(makeBL.getScreenSet().puzzle_num==0){
-                       dialog(false);
-                    }else{
-                        Toast.makeText(this, R.string.puzzle_max_num_msg, Toast.LENGTH_SHORT).show();
-                    }
-                }else if(screen.getScreenEnum()==ScreenEnum.PUZZLE){
-                    dialog(true);
-                }else{
-                    Toast.makeText(this, R.string.not_puzzle_screen, Toast.LENGTH_SHORT).show();
-                }
-            }else{
-                Toast.makeText(this, R.string.no_photo, Toast.LENGTH_SHORT).show();
+        if (screen.getBackGroundURL() != null) {
+            if (screen.getScreenEnum() == ScreenEnum.NORMAL) {
+                dialog(false);
+            } else if (screen.getScreenEnum() == ScreenEnum.PUZZLE) {
+                dialog(true);
+            } else {
+                Toast.makeText(this, R.string.not_puzzle_screen, Toast.LENGTH_SHORT).show();
             }
-
-
+        } else {
+            Toast.makeText(this, R.string.no_photo, Toast.LENGTH_SHORT).show();
+        }
 
     }
 
-    public int countTreasure(){
-        int num=0;
-        for(int i=0;i<treaviewset.size();i++){
-            if(treaviewset.get(i).getVisibility()==View.VISIBLE){
+    public int countTreasure() {
+        int num = 0;
+        for (int i = 0; i < treaviewset.size(); i++) {
+            if (treaviewset.get(i).getVisibility() == View.VISIBLE) {
                 num++;
             }
         }
         return num;
     }
 
-    public void initTreasure(){
-        treaviewset=new ArrayList<TreasureView>();
+    public void initTreasure() {
+        treaviewset = new ArrayList<TreasureView>();
 
-        if(screen.getBackGroundURL()!=null){
-            TreasureSet set=screen.getTreasureSet();
-            ArrayList<Treasure> array=set.getTreasuresList();
-            ImageView mImageView=(ImageView) findViewById(R.id.photoView);
+        if (screen.getBackGroundURL() != null) {
+            TreasureSet set = screen.getTreasureSet();
+            ArrayList<Treasure> array = set.getTreasuresList();
+            ImageView mImageView = (ImageView) findViewById(R.id.photoView);
             RelativeLayout mLayout = (RelativeLayout) mImageView.getParent();
 
-            for(int i=0;i<array.size();i++){
-                PointF p=new PointF((float)array.get(i).getX(),(float)array.get(i).getY());
-                TreasureView treasureView = new TreasureView(MakeActivity.this,p,0);
+            for (int i = 0; i < array.size(); i++) {
+                PointF p = new PointF((float) array.get(i).getX(), (float) array.get(i).getY());
+                TreasureView treasureView = new TreasureView(MakeActivity.this, p, 0);
                 treasureView.setImageDrawable(getResources().getDrawable(R.drawable.smallbackground));
                 mLayout.addView(treasureView);
 
-                treasureView.id=array.get(i).getID();
+                treasureView.id = array.get(i).getID();
 
                 treaviewset.add(treasureView);
             }
@@ -647,46 +652,46 @@ public class MakeActivity extends Activity {
 
     }
 
-    public void arrangeTreasure(){
-        if(screen.getBackGroundURL()!=null){
+    public void arrangeTreasure() {
+        if (screen.getBackGroundURL() != null) {
 //            ImageView img=(ImageView) findViewById(R.id.photoView);
 //            RelativeLayout mlayout=(RelativeLayout) img.getParent();
-                TreasureSet set=screen.getTreasureSet();
-            for(int i=0;i<treaviewset.size();i++){
-                if(treaviewset.get(i).getVisibility()==View.GONE||treaviewset.get(i).getVisibility()==View.INVISIBLE){
+            TreasureSet set = screen.getTreasureSet();
+            for (int i = 0; i < treaviewset.size(); i++) {
+                if (treaviewset.get(i).getVisibility() == View.GONE || treaviewset.get(i).getVisibility() == View.INVISIBLE) {
                     set.deletTreasure(treaviewset.get(i).id);
-                }else{
-                    Treasure lin=set.getTreasure(treaviewset.get(i).id);
-                    PointF mCen=treaviewset.get(i).getCenPointPer();
+                } else {
+                    Treasure lin = set.getTreasure(treaviewset.get(i).id);
+                    PointF mCen = treaviewset.get(i).getCenPointPer();
                     lin.setX(mCen.x);
                     lin.setY(mCen.y);
                 }
-                RelativeLayout mlayout=(RelativeLayout) treaviewset.get(i).getParent();
+                RelativeLayout mlayout = (RelativeLayout) treaviewset.get(i).getParent();
                 mlayout.removeView(treaviewset.get(i));
             }
         }
-        treaviewset=new ArrayList<TreasureView>();
+        treaviewset = new ArrayList<>();
     }
 
-    public void refreshTreasure(){
-        int num=countTreasure();
-        if(num<=0){
-            if(screen.getScreenEnum()==ScreenEnum.TREASURE){
+    public void refreshTreasure() {
+        int num = countTreasure();
+        if (num <= 0) {
+            if (screen.getScreenEnum() == ScreenEnum.TREASURE) {
                 screen.setScreenEnum(ScreenEnum.NORMAL);
             }
-        }else{
+        } else {
             screen.setScreenEnum(ScreenEnum.TREASURE);
         }
     }
 
-    public void cleanTreasure(){
-        if(screen.getBackGroundURL()!=null){
-            for(int i=0;i<treaviewset.size();i++){
-                RelativeLayout mlayout=(RelativeLayout) treaviewset.get(i).getParent();
+    public void cleanTreasure() {
+        if (screen.getBackGroundURL() != null) {
+            for (int i = 0; i < treaviewset.size(); i++) {
+                RelativeLayout mlayout = (RelativeLayout) treaviewset.get(i).getParent();
                 mlayout.removeView(treaviewset.get(i));
             }
         }
-        treaviewset=new ArrayList<TreasureView>();
+        treaviewset = new ArrayList<TreasureView>();
     }
 
 
@@ -731,7 +736,7 @@ public class MakeActivity extends Activity {
         preButton.add(newsc);
         mGallery.addView(v2);
         Log.e("height", mGallery.getChildCount() + ";");
-        int postion = (mGallery.getChildCount()-5)*144;
+        int postion = (mGallery.getChildCount() - 5) * 144;
         //mGallery.scrollTo(postion,0);
         new Handler().post(new Runnable() {
             @Override
@@ -744,7 +749,7 @@ public class MakeActivity extends Activity {
     /*
     删除当前选中的幕
     */
-    private void deletePreview(){
+    private void deletePreview() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.confirm_delete);
         builder.setTitle(R.string.prompt);
@@ -823,8 +828,6 @@ public class MakeActivity extends Activity {
                     imageView.setImageResource(R.mipmap.make_background);
                 }
                 textView.setText(screen.getText());
-
-
                 break;
             }
         }
@@ -833,9 +836,9 @@ public class MakeActivity extends Activity {
 
     protected void dialog(final boolean isPuzzle) {
         AlertDialog.Builder builder = new AlertDialog.Builder(MakeActivity.this);
-        if(isPuzzle){
+        if (isPuzzle) {
             builder.setMessage(R.string.puzzle_del_msg);
-        }else{
+        } else {
             builder.setMessage(R.string.puzzle_add_msg);
         }
         builder.setTitle(R.string.prompt);
@@ -847,12 +850,10 @@ public class MakeActivity extends Activity {
                     screen.setScreenEnum(ScreenEnum.NORMAL);
                     ImageView img = (ImageView) findViewById(R.id.puzzle);
                     img.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_selector));
-                    makeBL.getScreenSet().puzzle_num--;
                 } else {
                     screen.setScreenEnum(ScreenEnum.PUZZLE);
                     ImageView img = (ImageView) findViewById(R.id.puzzle);
                     img.setBackgroundDrawable(getResources().getDrawable(R.drawable.option_icon_selector));
-                    makeBL.getScreenSet().puzzle_num++;
                 }
             }
         });
@@ -953,7 +954,6 @@ public class MakeActivity extends Activity {
                     imageView.setImageResource(R.mipmap.make_background);
                 }
                 textView.setText(screen.getText());
-
             }
         }
     }

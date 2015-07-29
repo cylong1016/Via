@@ -1,9 +1,9 @@
 package njuse.via;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -11,18 +11,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import njuse.via.util.ColorAnimationView;
+import njuse.via.util.Util;
 
 /**
  * 模板的activity
@@ -31,7 +29,7 @@ import njuse.via.util.ColorAnimationView;
 public class TemplateActivity extends FragmentActivity {
 
     /** 模板图片，先写死吧 */
-    private static final int[] resource = new int[]{
+    private final int[] resource = new int[]{
             R.mipmap.template_1_real,
             R.mipmap.template_2_real,
             R.mipmap.template_3_real,
@@ -40,8 +38,11 @@ public class TemplateActivity extends FragmentActivity {
             R.mipmap.template_6_real,
             R.mipmap.template_7_real,
             R.mipmap.template_8_real,
-            R.mipmap.template_9_real};
-    private static final int[] template = new int[]{
+            R.mipmap.template_9_real
+    };
+
+
+    private final int[] template = new int[]{
             R.mipmap.template_1,
             R.mipmap.template_2,
             R.mipmap.template_3,
@@ -50,12 +51,20 @@ public class TemplateActivity extends FragmentActivity {
             R.mipmap.template_6,
             R.mipmap.template_7,
             R.mipmap.template_8,
-            R.mipmap.template_9};
+            R.mipmap.template_9
+    };
+
+    private ArrayList<Bitmap> imgCache = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_template);
+        for(int id : resource) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), id);
+            imgCache.add(bitmap);
+        }
+
         MyFragmentStatePager adpter = new MyFragmentStatePager(getSupportFragmentManager());
         ColorAnimationView colorAnimationView = (ColorAnimationView) findViewById(R.id.ColorAnimationView);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
@@ -76,24 +85,7 @@ public class TemplateActivity extends FragmentActivity {
          *          a change color by default.
          * */
         colorAnimationView.setmViewPager(viewPager, resource.length);
-        colorAnimationView.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.e("TAG", "onPageScrolled");
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                Log.e("TAG", "onPageSelected");
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                Log.e("TAG", "onPageScrollStateChanged");
-            }
-        });
     }
-
 
     /**
      * 点击进入的监听
@@ -107,6 +99,8 @@ public class TemplateActivity extends FragmentActivity {
             intent.setClass(TemplateActivity.this, MakeActivity.class);
             intent.putExtra("id", id);
             TemplateActivity.this.startActivity(intent);
+            Util.clearImgCache(imgCache);
+            TemplateActivity.this.finish();
         }
     };
 
@@ -118,6 +112,8 @@ public class TemplateActivity extends FragmentActivity {
         intent.setClass(this, MainActivity.class);
         this.startActivity(intent);
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+        Util.clearImgCache(imgCache);
+        this.finish();
     }
 
     public class MyFragmentStatePager extends FragmentStatePagerAdapter {
@@ -148,7 +144,7 @@ public class TemplateActivity extends FragmentActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             ImageView imageView = new ImageView(getActivity());
-            imageView.setImageResource(resource[position]);
+            imageView.setImageBitmap(imgCache.get(position));
             imageView.setId(template[position]);
             imageView.setOnClickListener(clickListener);
             return imageView;
