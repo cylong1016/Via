@@ -2,6 +2,7 @@ package njuse.via.data;
 
 import java.util.LinkedList;
 
+import njuse.via.config.PathConfig;
 import njuse.via.po.Option;
 import njuse.via.po.Screen;
 import njuse.via.po.ScreenEnum;
@@ -70,7 +71,23 @@ public class WebCreater {
         String str = "";
         LinkedList<Screen> screenList = screenSet.getScreenList();
 
-        screenSet.getTemplateName();
+        String temp = screenSet.getTemplateName();
+        String tempClass = "temp_" + temp;
+        String tempPath = "../../template/";
+        String tempImg = tempPath + "template_" + temp + ".png";
+        String tempBgImg = tempImg;
+
+        String bg_blur = "temp_bg opacity_5";
+
+        if (temp.equals("3")){
+            tempImg = "";
+            bg_blur = "temp_bg";
+        }
+        else if(temp.equals("0")){
+            tempImg = "";
+            tempBgImg = "";
+            bg_blur = "blur_bg";
+        }
 
         for(int i = 0; i < screenList.size(); i++){
             Screen screen = screenList.get(i);
@@ -96,10 +113,16 @@ public class WebCreater {
             }
             str = str +
                     "\t\t<img class=\"bg \" src=\""+screen.getBackGroundURL()+"\"/>\n" +
-                    "<div class=\"blur_bg\"></div>" +
-                    "\t\t<div class=\"type t3\"></div>\n" +
-                    "\t\t<div class=\"type t2\"></div>\n" +
-                    "\t\t<div class=\"type t1\">\n" +
+                    "<img class=\"" + bg_blur + "\" src=\""+ tempBgImg + "\" />" +
+                    "\t\t<div class=\"type t3 " + tempClass + "\"" +
+                    "style=\"background: url('" + tempImg + "')" + "\"></div>\n" +
+
+                    "\t\t<div class=\"type t2 " + tempClass + "\"></div>\n" +
+                    "style=\"background: url('" + tempImg + "')" + "\"></div>\n" +
+
+                    "\t\t<div class=\"type t1 " + tempClass + "\">\n" +
+                    "style=\"background: url('" + tempImg + "')" + "\"></div>\n" +
+                    "<img class=\"temp_bg\" src=\"" + tempImg + "\" />" +
                     "\t\t\t<div class=\"images\">\n";
 
             if(!isPuzzle){
@@ -147,8 +170,11 @@ public class WebCreater {
                     "\t\t\t</div>\n" +
                     "\t\t\t<div class=\"text\">\n" +
                     "\t\t\t\t<p>"+ screen.getText()+"</p>\n" +
-                    "\t\t\t</div>\n" +
-                    "\t\t</div>\n" +
+                    "\t\t\t</div>\n";
+            if (temp.equals("1")){
+                str = str + "<img class=\"tage\" src=\"" + tempPath + "template_tape.png" + "\" />";
+            }
+            str = str + "\t\t</div>\n" +
                     "\t</div>\n" +
                     "\n";
         }
