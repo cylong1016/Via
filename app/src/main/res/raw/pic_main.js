@@ -52,12 +52,13 @@ function main(){
 
     imgLength = parseInt($(".section").length);
 
-    var pathName = "project/" + $(".file-name").text();
+    var pathName = "../../project/" + $(".file-name").text();
 
     //准备读取图片
     for(var i = 0; i < imgLength; i++)
     {
-        imgData.push({name:"pic"+i,path: "picture_"+i+1+".jpg"});
+            var a = i+1;
+            imgData.push({name:"pic"+i, path: pathName + "/picture_"+a+".jpg"});
     }
     imgData.push({type:"js",path:"../../js/glb.js"});
     imgData.push({type:"js",path:"../../js/show_tile.js"});
