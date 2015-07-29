@@ -81,8 +81,17 @@ public class MakeActivity extends Activity {
         screen = makeBL.getNewScreen();
         initPreview();
         createJSAndCSSFile();
+        setTemplate();
     }
 
+    private void setTemplate() {
+        Intent intent = getIntent();
+        int id = intent.getIntExtra("id", 0);
+        ImageView template = (ImageView) findViewById(R.id.template);
+        if(id != 0) {
+            template.setImageResource(id);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

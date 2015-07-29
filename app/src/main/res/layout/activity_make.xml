@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:src="@mipmap/template_1" />
+            android:src="@mipmap/template_1_real" />
 
         <EditText
             android:id="@+id/explain"

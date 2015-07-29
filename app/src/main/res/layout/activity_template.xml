@@ -23,7 +23,7 @@
 
     </LinearLayout>
 
-    <ScrollView
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="@dimen/LinearComponentSize"
         android:layout_weight="21"
@@ -33,10 +33,10 @@
             android:id="@+id/template_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_gravity="center_horizontal">
 
         </LinearLayout>
-    </ScrollView>
+    </HorizontalScrollView>
 
 </LinearLayout>
