@@ -14,7 +14,7 @@ import android.view.View;
  */
 public class ColorAnimationView extends View
         implements ValueAnimator.AnimatorUpdateListener, Animator.AnimatorListener {
-    
+
     private static final int RED = 0xffFF8080;
     private static final int BLUE = 0xff8080FF;
     private static final int WHITE = 0xffffffff;
