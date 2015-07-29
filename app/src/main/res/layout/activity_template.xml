@@ -23,20 +23,24 @@
 
     </LinearLayout>
 
-    <HorizontalScrollView
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="@dimen/LinearComponentSize"
         android:layout_weight="21"
-        android:layout_gravity="center_horizontal">
+        tools:context="njuse.via.SampleActivity">
 
-        <LinearLayout
-            android:id="@+id/template_layout"
+        <njuse.via.util.ColorAnimationView
+            android:id="@+id/ColorAnimationView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
+            android:layout_height="match_parent"/>
 
-        </LinearLayout>
-    </HorizontalScrollView>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:padding="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </FrameLayout>
 
 </LinearLayout>

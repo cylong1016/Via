@@ -1,11 +1,20 @@
 package njuse.via;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -13,85 +22,78 @@ import android.widget.TextView;
 
 import java.lang.reflect.Field;
 
+import njuse.via.util.ColorAnimationView;
+
 /**
  * 模板的activity
  * Created by cylong on 2015-07-29 0029
  */
-public class TemplateActivity extends Activity {
+public class TemplateActivity extends FragmentActivity {
+
+    /** 模板图片，先写死吧 */
+    private static final int[] resource = new int[]{
+            R.mipmap.template_1_real,
+            R.mipmap.template_2_real,
+            R.mipmap.template_3_real,
+            R.mipmap.template_4_real,
+            R.mipmap.template_5_real,
+            R.mipmap.template_6_real,
+            R.mipmap.template_7_real,
+            R.mipmap.template_8_real,
+            R.mipmap.template_9_real};
+    private static final int[] template = new int[]{
+            R.mipmap.template_1,
+            R.mipmap.template_2,
+            R.mipmap.template_3,
+            R.mipmap.template_4,
+            R.mipmap.template_5,
+            R.mipmap.template_6,
+            R.mipmap.template_7,
+            R.mipmap.template_8,
+            R.mipmap.template_9};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_template);
-        addTemplate();  // 添加模板
-    }
-
-    private void addTemplate() {
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.template_layout);
-        Field[] templates = R.mipmap.class.getFields();
-        for(int i = 0; i < templates.length; i++) {
-            String effectName = templates[i].getName();
-            if(effectName.startsWith("template")) {
-                i++; // 跳过后面的实际模板图片
-                // 效果图片ID
-                int effectImgID = getResources().getIdentifier(effectName, "mipmap", getPackageName());
-                int templateID = getResources().getIdentifier(effectName + "_real", "mipmap", getPackageName());
-                RelativeLayout relativeLayout = createTemplateView(effectImgID, templateID, effectName);
-                linearLayout.addView(relativeLayout);
+        MyFragmentStatePager adpter = new MyFragmentStatePager(getSupportFragmentManager());
+        ColorAnimationView colorAnimationView = (ColorAnimationView) findViewById(R.id.ColorAnimationView);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPager.setAdapter(adpter);
+        /**
+         *  首先，你必须在 设置 Viewpager的 adapter 之后在调用这个方法
+         *  第二点，setmViewPager(ViewPager mViewPager,Object obj, int count, int... colors)
+         *         第一个参数 是 你需要传人的 viewpager
+         *         第二个参数 是 一个实现了ColorAnimationView.OnPageChangeListener接口的Object,用来实现回调
+         *         第三个参数 是 viewpager 的 孩子数量
+         *         第四个参数 int... colors ，你需要设置的颜色变化值~~ 如何你传人 空，那么触发默认设置的颜色动画
+         * */
+        /**
+         *  Frist: You need call this method after you set the Viewpager adpter;
+         * Second: setmViewPager(ViewPager mViewPager,Object obj， int count, int... colors)
+         *          so,you can set any length colors to make the animation more cool!
+         * Third: If you call this method like below, make the colors no data, it will create
+         *          a change color by default.
+         * */
+        colorAnimationView.setmViewPager(viewPager, resource.length);
+        colorAnimationView.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Log.e("TAG", "onPageScrolled");
             }
-        }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.e("TAG", "onPageSelected");
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                Log.e("TAG", "onPageScrollStateChanged");
+            }
+        });
     }
 
-    private ImageView createImageView(int id, int templateID) {
-        ImageView imageView = new ImageView(this);
-        imageView.setBackgroundResource(id);
-        imageView.setId(templateID); // 用来知道当前模板图片的ID
-        LinearLayout.LayoutParams imgViewParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
-        );
-        imageView.setLayoutParams(imgViewParams);
-        imageView.setOnClickListener(clickListener);
-        return imageView;
-    }
-
-    private TextView createViewTitle(String name) {
-        TextView titleView = new TextView(this);
-        titleView.setText(name);
-        titleView.setBackgroundResource(R.color.text_background);
-        titleView.setTextColor(Color.WHITE);
-        titleView.setGravity(Gravity.CENTER);
-        LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        titleView.setLayoutParams(textParams);
-        return titleView;
-    }
-
-    /**
-     * 创建模板view
-     * @param effectID 模板效果图片id
-     * @param templateID 实际模板ID
-     * @param name 模板图片名称
-     * @return RelativeLayout
-     */
-    private RelativeLayout createTemplateView(int effectID, int templateID, String name) {
-        ImageView imageView = createImageView(effectID, templateID);
-        TextView titleView = createViewTitle(name);
-        RelativeLayout relativeLayout = new RelativeLayout(this);
-        relativeLayout.addView(imageView);
-        relativeLayout.addView(titleView);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                0,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        params.weight = 1;
-        int margin = (int) getResources().getDimension(R.dimen.read_list_margin);
-        params.setMargins(0, 0, margin, 0);
-        relativeLayout.setLayoutParams(params);
-        return relativeLayout;
-    }
 
     /**
      * 点击进入的监听
@@ -116,5 +118,40 @@ public class TemplateActivity extends Activity {
         intent.setClass(this, MainActivity.class);
         this.startActivity(intent);
         overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+    }
+
+    public class MyFragmentStatePager extends FragmentStatePagerAdapter {
+
+        public MyFragmentStatePager(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return new MyFragment(position);
+        }
+
+        @Override
+        public int getCount() {
+            return resource.length;
+        }
+    }
+
+    @SuppressLint("ValidFragment")
+    public class MyFragment extends Fragment {
+        private int position;
+
+        public MyFragment(int position) {
+            this.position = position;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            ImageView imageView = new ImageView(getActivity());
+            imageView.setImageResource(resource[position]);
+            imageView.setId(template[position]);
+            imageView.setOnClickListener(clickListener);
+            return imageView;
+        }
     }
 }
