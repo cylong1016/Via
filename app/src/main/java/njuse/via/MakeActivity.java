@@ -368,7 +368,7 @@ public class MakeActivity extends Activity {
 
     private void saveWork(EditText editText) {
         if (editText.getText().toString() == null | editText.getText().toString().length() == 0) {
-            Toast.makeText(this, R.string.no_inputName + editText.getText().toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_inputName, Toast.LENGTH_SHORT).show();
             return;
         }
 
