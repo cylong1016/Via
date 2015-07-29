@@ -32,26 +32,26 @@ public class TemplateActivity extends FragmentActivity {
     private final int[] resource = new int[]{
             R.mipmap.template_1_real,
             R.mipmap.template_2_real,
-            R.mipmap.template_3_real,
-            R.mipmap.template_4_real,
-            R.mipmap.template_5_real,
-            R.mipmap.template_6_real,
-            R.mipmap.template_7_real,
-            R.mipmap.template_8_real,
-            R.mipmap.template_9_real
+//            R.mipmap.template_3_real,
+//            R.mipmap.template_4_real,
+//            R.mipmap.template_5_real,
+//            R.mipmap.template_6_real,
+//            R.mipmap.template_7_real,
+//            R.mipmap.template_8_real,
+//            R.mipmap.template_9_real
     };
 
 
     private final int[] template = new int[]{
             R.mipmap.template_1,
             R.mipmap.template_2,
-            R.mipmap.template_3,
-            R.mipmap.template_4,
-            R.mipmap.template_5,
-            R.mipmap.template_6,
-            R.mipmap.template_7,
-            R.mipmap.template_8,
-            R.mipmap.template_9
+//            R.mipmap.template_3,
+//            R.mipmap.template_4,
+//            R.mipmap.template_5,
+//            R.mipmap.template_6,
+//            R.mipmap.template_7,
+//            R.mipmap.template_8,
+//            R.mipmap.template_9
     };
 
     private ArrayList<Bitmap> imgCache = new ArrayList<>();
