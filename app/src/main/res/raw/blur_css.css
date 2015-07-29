@@ -68,10 +68,11 @@
 .text{
 	position: absolute;
 	width: 90%;
-	height: 16%;
+	height: 30%;
 	left: 5%;
-	line-height: 1.3em;
-	bottom: 4%;
+	line-height: 1.2em;
+	font-size: 0.8em;
+	bottom: 1%;
 
 	overflow: hidden;
 }
