@@ -21,6 +21,14 @@
             android:onClick="backListener"
             android:src="@mipmap/icon_back" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/templete_select"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:id="@+id/template_select" />
+
     </LinearLayout>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"

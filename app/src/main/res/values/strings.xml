@@ -99,4 +99,6 @@
 
     <string name="prompt">prompt</string>
 
+    <string name="templete_select">Select templete</string>
+
 </resources>

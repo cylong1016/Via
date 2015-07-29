@@ -78,4 +78,5 @@
     <string name="prompt">提示</string>
     <string name="confirm_delete">确认删除？</string>
 
+    <string name="templete_select">选择模板</string>
 </resources>
