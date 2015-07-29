@@ -121,7 +121,7 @@ public class WebCreater {
                     " style=\"background: url('" + tempImg + "')" + "\"></div>\n" +
 
                     "\t\t<div class=\"type t1 " + tempClass + "\"" +
-                    " style=\"background: url('" + tempImg + "')" + "\"></div>\n" +
+                    " style=\"background: url('" + tempImg + "')" + "\">" +
                     "<img class=\"temp_bg\" src=\"" + tempImg + "\" />" +
                     "\t\t\t<div class=\"images\">\n";
 
