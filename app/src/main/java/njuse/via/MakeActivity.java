@@ -604,7 +604,7 @@ public class MakeActivity extends Activity {
     }
 
     public void puzzleListener(View view) {
-        arrangeTreasure();
+        refreshTreasure();
         if (screen.getBackGroundURL() != null) {
             if (screen.getScreenEnum() == ScreenEnum.NORMAL) {
                 if(makeBL.getScreenSet().puzzle_num==0){
