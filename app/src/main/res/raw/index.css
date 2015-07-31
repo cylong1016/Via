@@ -27,6 +27,29 @@
 	border-radius: 20px;
 }
 
+/*----------  END   ----------*/
+.end {
+
+}
+
+.end .end-form{
+	width: 80%;
+	height: 40%;
+
+	margin: 54% auto;
+	padding: 26% 0;
+
+	border-radius: 10%;
+
+	background: rgba(255, 255, 255, 0.66);
+	text-align: center;
+}
+
+.end-form h2{
+	margin: 20px 0;
+}
+
+
 /*----------  GAME OVER   ----------*/
 
 .game_over{
@@ -54,7 +77,7 @@
 	margin: 0 0 8% 0;
 }
 
-.game_over .reset{
+.game_over .reset, .end .reset{
 	width: 40%;
 	margin: 0 auto;
 	padding: 15px;
@@ -96,6 +119,17 @@
 
 .sel:first-child{
 	margin: 60px;
+}
+
+.sel .choose-correct{
+	width: 30%;
+	text-align: center;
+
+	left: 35%;
+	bottom: 10%;
+
+	z-index: 200;
+
 }
 
 /*----------  TREASURE   ----------*/
@@ -143,6 +177,8 @@
 
 	display: none;
 }
+
+
 
 /*========================================*/
 /*               ANIMATION                */

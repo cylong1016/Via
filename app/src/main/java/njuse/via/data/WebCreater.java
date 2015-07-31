@@ -47,6 +47,14 @@ public class WebCreater {
                 "<div id=\"fullpage\">" +
                 divCreater(screenSet) +
                 "\n" +
+
+                "<div class=\"section end\">\n" +
+                "\t\t<div class=\"end-form\">\n" +
+                "\t\t\t<h2>浏览了所有的照片</h2>\n" +
+                "\t\t\t<div class=\"reset\">再看一遍</div>\n" +
+                "\t\t</div>\n" +
+                "\t</div>" +
+
                 "</div>\n" +
                 "\n" +
                 "<script type=\"text/javascript\">\n" +

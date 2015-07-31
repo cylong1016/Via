@@ -1,4 +1,7 @@
 
+
+var windowWid = ($(window).width());
+
 window.onload=function(){              //not DOM
 
 	var h = $(".images img").height();
@@ -7,29 +10,19 @@ window.onload=function(){              //not DOM
 	$(".treasure").width(h);
 
 	hasGame();
+	addOver();
 
 }
 
 function hasGame(){
-	var isGame = false;
 	if(hasSel()){
-		isGame = true;
 	}
 	else if(hasTreasure()){
-		isGame = true;
 	}
 	else if(hasPuzzle()){
-		isGame = true;
 	}
-	if(!isGame){
-		$("#fullpage .active").click(function(){
-			var index = $("#fullpage .section").index(this);
-			if(index == ($(".section").length-1)){
-				addOver();
-			}
-		})
-		bindActiveClick();
-	}
+
+
 }
 
 
@@ -63,17 +56,19 @@ function jump(){
 			if($(this).hasClass("correct")){
 				allowScrolling();
 				$(".active").removeClass("hasSel");
-				$(".active .sel").animate({opacity:'0.0'},function(){
-					$(".active .sel").remove();
-					$.fn.fullpage.moveSectionDown();
-					$("#fullpage .section").click(function(){
-						var index = $("#fullpage .section").index(this);
-						if(index == ($(".section").length-1)){
-							addOver();
 
-						}
-					})
-				});	
+				var correct = "<span class='choose-correct'>选对了</span>";
+
+				$(".active .sel").prepend(correct);
+
+				$(".active .sel .choose-correct").animate({opacity: '0.0'}, 2000, function(){
+					$(".active .sel").animate({opacity:'0.0'},function(){
+
+						$(".active .sel").remove();
+						$.fn.fullpage.moveSectionDown();
+					});
+				})
+
 				
 			}
 			else{
@@ -213,16 +208,6 @@ function setTip(){
 			setTimeout("hideSelector('.active .images .treasure span')", 1000);
 			setTimeout("bindActiveClick()", 1000);
 
-			$(".active .treasure").animate({},function(){
-				$("#fullpage .section").click(function(){
-					var index = $("#fullpage .section").index(this);
-					if(index == ($(".section").length-1)){
-						addOver();
-
-					}
-				})
-			});
-
 		}
 
 
@@ -247,17 +232,17 @@ function hasPuzzle(){
 }
 
 function addOver(){
-	var bg = "<div class='game_over'><div class='reset_form'></div></div>";
-	var over_text = "<h1>游戏结束</h1>";
-	var reset = "<div class='reset'>再玩一遍</div>";
-
-	$("body").prepend(bg);
-	$(".reset_form").prepend(over_text);
-	$(".reset_form").append(reset);
-
 	$(".reset").click(function(){
 		location.reload();
 	})
+}
+
+function setPosition(selector){
+	var $e = $(selector);
+	var eWid = $e.width();
+	var eLeft = (windowWid - eWid)/2;
+	$e.css({"left": eLeft});
+
 
 }
 

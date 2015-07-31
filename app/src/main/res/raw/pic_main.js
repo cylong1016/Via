@@ -50,7 +50,7 @@ var txt;
 function main(){
     LGlobal.setDebug(true);
 
-    imgLength = parseInt($(".section").length);
+    imgLength = parseInt($(".section").length)-1;
 
     var pathName = "../../project/" + $(".file-name").text();
 
