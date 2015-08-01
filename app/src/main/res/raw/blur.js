@@ -39,6 +39,8 @@ function hasSel(){
 		forbidScolling();
 	}
 
+	setSelPosition();
+
 	$(".hasSel").click(function(){
 		showSelector(".active .sel");
 		jump();
@@ -47,6 +49,22 @@ function hasSel(){
 
 	return true;
 
+}
+
+function setSelPosition(){
+	var num = $(".active .sel .answer").length;
+	switch (num) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			$(".answer").css({"margin":"44px 100px", "top":"15%"});
+			break;
+		case 4:
+			$(".answer").css({"margin":"39px 100px", "top":"10%"});
+			break;
+	}
 }
 
 function jump(){
