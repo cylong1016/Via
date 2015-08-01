@@ -213,7 +213,6 @@ public class MakeActivity extends Activity {
             explainY = (int) (672.0 * magniscaleW + temp + dpTopx(28));
             explainW = (int) (magniscaleW * 583.0);
             explainH = (int) (explainW * (122.0 / 583.0));
-            Log.i("height", explainX + " " + explainY + " " + explainW + " " + explainH);
         } else {
             // TODO 横屏
             viewX = 0;

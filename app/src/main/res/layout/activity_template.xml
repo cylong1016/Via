@@ -47,6 +47,7 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:padding="10dp"
+            android:background="@mipmap/template_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
