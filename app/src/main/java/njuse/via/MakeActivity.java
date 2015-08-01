@@ -634,7 +634,7 @@ public class MakeActivity extends Activity {
     }
 
     public void initTreasure() {
-        treaviewset = new ArrayList<TreasureView>();
+        treaviewset = new ArrayList<>();
 
         if (screen.getBackGroundURL() != null) {
             TreasureSet set = screen.getTreasureSet();
