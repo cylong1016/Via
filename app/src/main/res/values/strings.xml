@@ -12,6 +12,7 @@
     <string name="title_activity_show">ShowActivity</string>
     <string name="title_activity_delete">DeleteActivity</string>
     <string name="title_activity_template">TemplateActivity</string>
+    <string name="title_activity_filter">FilterActivity</string>
 
     <string name="pic_location">to_define</string>
 
@@ -25,7 +26,6 @@
     <string name="cancel">cancel</string>
     <string name="back">back</string>
     <string name="apply">apply</string>
-    <string name="title_activity_filter">FilterActivity</string>
 
     <string name="option_btn_del_msg">This option is the right option, which will remove the entire option module. Continue?</string>
     <string name="option_can_msg">Do you want to remove all the options?</string>
@@ -48,7 +48,6 @@
     <string name="true_option">√.</string>
     <string name="false_option">X.</string>
     <string name="confirm">confirm</string>
-    <string name="hello_world">Hello world!</string>
 
     <string name="img_path_error">Image path error</string>
     <string name="no_photo">No Photo</string>

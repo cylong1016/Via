@@ -2,6 +2,18 @@
     <string name="app_name">沿图</string>
 
     <string name="action_settings">设置</string>
+    <string name="title_activity_make">MakeActivity</string>
+    <string name="title_activity_read">ReadActivity</string>
+    <string name="title_activity_photo">PicChooseActivity</string>
+    <string name="title_activity_select_photo">PicChooseActivity</string>
+    <string name="title_activity_select_option">OptionActivity</string>
+    <string name="title_activity_crop">PicCrop</string>
+    <string name="title_activity_paster">PasterActivity</string>
+    <string name="title_activity_show">ShowActivity</string>
+    <string name="title_activity_delete">DeleteActivity</string>
+    <string name="title_activity_template">TemplateActivity</string>
+    <string name="title_activity_filter">FilterActivity</string>
+    <string name="pic_location">to_define</string>
 
     <string name="make">开始记录</string>
     <string name="read">读取记忆</string>
@@ -19,6 +31,8 @@
     <string name="new_option">新选项</string>
     <string name="del_err_inf">此幕为关键幕，无法删除</string>
     <string name="option_add">+</string>
+    <string name="true_option">√.</string>
+    <string name="false_option">X.</string>
 
     <string name="option_btn_del_msg">此选项为正确选项，删除此选项将会删除整个选项模块，是否确认删除？</string>
     <string name="option_can_msg">请问是否删除全部选项?</string>
